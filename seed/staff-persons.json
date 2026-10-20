@@ -1,0 +1,668 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "identifier": {
+    "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/seed",
+    "value": "agenda-staff-2026"
+  },
+  "entry": [
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-762bfa1037d19e1853bca6d8",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-762bfa1037d19e1853bca6d8",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-762bfa1037d19e1853bca6d8"
+          }
+        ],
+        "name": [
+          {
+            "text": "Michal Jan Warecki"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "michal.jan.warecki@nhn.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NHN"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "care-plans"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-ba51f344f5cbc2908d80e375",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-ba51f344f5cbc2908d80e375",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-ba51f344f5cbc2908d80e375"
+          }
+        ],
+        "name": [
+          {
+            "text": "Sigurd Ringbakken"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "sigurd.ringbakken@nhn.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NHN"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "care-plans"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-b67ed7500b817e8dc24ca8c7",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-b67ed7500b817e8dc24ca8c7",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-b67ed7500b817e8dc24ca8c7"
+          }
+        ],
+        "name": [
+          {
+            "text": "Bjørnar Selvén"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "bjornar.selven@nhn.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NHN"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "care-plans"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-f04508d4ec406f2503b34ff7",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-f04508d4ec406f2503b34ff7",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-f04508d4ec406f2503b34ff7"
+          }
+        ],
+        "name": [
+          {
+            "text": "Tormod Haugene"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "Tormod.Haugene@nhn.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NHN"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "care-plans"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-6dca6949f89191d0571ccf58",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-6dca6949f89191d0571ccf58",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-6dca6949f89191d0571ccf58"
+          }
+        ],
+        "name": [
+          {
+            "text": "Thomas Tveit Rosenlund"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "Thomas.Tveit.Rosenlund@helsedir.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Helsedirektoratet"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "fhir-101"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-cfef67868a8780ea91d9e9f6",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-cfef67868a8780ea91d9e9f6",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-cfef67868a8780ea91d9e9f6"
+          }
+        ],
+        "name": [
+          {
+            "text": "Espen Stranger Seland"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "Espen.Stranger.Seland@helsedir.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Helsedirektoratet"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "fhir-101"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-12756ed4388e0a2b79a62fcd",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-12756ed4388e0a2b79a62fcd",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-12756ed4388e0a2b79a62fcd"
+          }
+        ],
+        "name": [
+          {
+            "text": "Leo-Andreas Ervik"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "leo-andreas.ervik@nav.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Nav"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "smart"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-0ba8a6fff6053687db713dfb",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-0ba8a6fff6053687db713dfb",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-0ba8a6fff6053687db713dfb"
+          }
+        ],
+        "name": [
+          {
+            "text": "Michal Cermak"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "michal.cermak@nhn.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "IHE Norge"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "ihe-mhd"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-ba685b261fc41f40e5ff3929",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-ba685b261fc41f40e5ff3929",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-ba685b261fc41f40e5ff3929"
+          }
+        ],
+        "name": [
+          {
+            "text": "Ingvar Sørlien"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "ingvar.sorlien@sykehuspartner.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "IHE Norge"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "ehds-summary"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-6eb4ec005bccdeccfa91d1ea",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-6eb4ec005bccdeccfa91d1ea",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-6eb4ec005bccdeccfa91d1ea"
+          }
+        ],
+        "name": [
+          {
+            "text": "Linn Brandt"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "Linn.Brandt@helsedir.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Helsedirektoratet"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "ehds-summary"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-fe644572ed5339b6484a06b4",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-fe644572ed5339b6484a06b4",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-fe644572ed5339b6484a06b4"
+          }
+        ],
+        "name": [
+          {
+            "text": "Karin Drivenes"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "karin.drivenes@helsedir.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Helsedirektoratet"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "medication-definition"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-799aa5f524fc3ea064416478",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-799aa5f524fc3ea064416478",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-799aa5f524fc3ea064416478"
+          }
+        ],
+        "name": [
+          {
+            "text": "Ádám Z. Kövér"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "adam.kover@dmp.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NoMA"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "medication-definition"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-256864590d335383a7834cc8",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-256864590d335383a7834cc8",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-256864590d335383a7834cc8"
+          }
+        ],
+        "name": [
+          {
+            "text": "Nikolai Meldre Nordby"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "nikolai.nordby@dmp.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NoMA"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "medication-definition"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-788747cfcd455b901f432578",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-788747cfcd455b901f432578",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-788747cfcd455b901f432578"
+          }
+        ],
+        "name": [
+          {
+            "text": "Kristine Aasen"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "kristine.aasen@dmp.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "NoMA"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "code": "medication-definition"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-367a277fbf126a593a7a3254",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-367a277fbf126a593a7a3254",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-367a277fbf126a593a7a3254"
+          }
+        ],
+        "name": [
+          {
+            "text": "Nino Lo Cascio"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "nino.lo.cascio@tieto.com"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Bedredelt"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-e2d72fcef5e180faf9942943",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-e2d72fcef5e180faf9942943",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "value": "agenda-e2d72fcef5e180faf9942943"
+          }
+        ],
+        "name": [
+          {
+            "text": "Øyvind Aassve"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "oeyaas@sykehuspartner.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "valueString": "Sykehuspartner"
+          }
+        ]
+      }
+    }
+  ]
+}

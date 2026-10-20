@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+data/
+coverage/
+fhir/fsh-generated/
+fhir/output/
+fhir/temp/
+fhir/template/
+fhir/input-cache/
+*.log

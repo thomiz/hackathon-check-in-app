@@ -1,0 +1,89 @@
+name: hackathon-registration-2026
+services:
+  postgres:
+    image: postgres:16.10
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: medplum
+      POSTGRES_DB: medplum
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run configure first}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    command:
+      - postgres
+      - -c
+      - statement_timeout=60000
+      - -c
+      - default_transaction_isolation=REPEATABLE READ
+      - -c
+      - shared_preload_libraries=pg_stat_statements,auto_explain
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medplum -d medplum"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  redis:
+    image: redis:7.4.6
+    restart: unless-stopped
+    environment:
+      REDISCLI_AUTH: ${REDIS_PASSWORD:?Run npm run configure first}
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:?Run npm run configure first}", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  medplum:
+    image: medplum/medplum-server:5.2.6
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8103:8103"
+    command: ["env"]
+    environment:
+      MEDPLUM_PORT: 8103
+      MEDPLUM_BASE_URL: http://localhost:8103/
+      MEDPLUM_APP_BASE_URL: http://localhost:3000/
+      MEDPLUM_STORAGE_BASE_URL: http://localhost:8103/storage/
+      MEDPLUM_DATABASE_HOST: postgres
+      MEDPLUM_DATABASE_PORT: 5432
+      MEDPLUM_DATABASE_DBNAME: medplum
+      MEDPLUM_DATABASE_USERNAME: medplum
+      MEDPLUM_DATABASE_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run configure first}
+      MEDPLUM_REDIS_HOST: redis
+      MEDPLUM_REDIS_PORT: 6379
+      MEDPLUM_REDIS_PASSWORD: ${REDIS_PASSWORD:?Run npm run configure first}
+      MEDPLUM_BINARY_STORAGE: file:/var/medplum/binary/
+      MEDPLUM_ALLOWED_ORIGINS: http://localhost:3000
+      MEDPLUM_SUPPORT_EMAIL: '"Hackathon" <support@example.invalid>'
+      MEDPLUM_VM_CONTEXT_BOTS_ENABLED: "false"
+      MEDPLUM_INTROSPECTION_ENABLED: "false"
+      MEDPLUM_MAX_JSON_SIZE: 5mb
+      MEDPLUM_MAX_BATCH_SIZE: 50mb
+      MEDPLUM_SHUTDOWN_TIMEOUT_MILLISECONDS: 30000
+    volumes:
+      - binary-data:/var/medplum/binary
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8103/healthcheck').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
+  medplum-app:
+    image: medplum/medplum-app:5.2.6
+    restart: unless-stopped
+    depends_on:
+      medplum:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+volumes:
+  postgres-data:
+  redis-data:
+  binary-data:
