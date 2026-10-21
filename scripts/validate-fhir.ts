@@ -9,7 +9,7 @@ const examples: string[] = [];
 for (const name of files) {
   const path = resolve('fhir', 'fsh-generated', 'resources', name);
   const resource = JSON.parse(await readFile(path, 'utf8')) as { resourceType: string };
-  if (['Person', 'Practitioner', 'List', 'Task'].includes(resource.resourceType)) examples.push(path);
+  if (['Person', 'Practitioner', 'List'].includes(resource.resourceType)) examples.push(path);
 }
 if (!examples.length) throw new Error('No examples found. Run npm run fhir:build first.');
 if (existsSync(join('fhir', 'output', 'runtime-fixtures.json'))) examples.push(join('fhir', 'output', 'runtime-fixtures.json'));

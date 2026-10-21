@@ -7,10 +7,9 @@ import rateLimit from '@fastify/rate-limit';
 import staticFiles from '@fastify/static';
 import { z, ZodError } from 'zod';
 import { checkinSchema, detailsSchema, manualSchema, roleSchema, tracks } from '../shared/domain.js';
-import { AppError, put, type FhirStore } from './fhir.js';
+import { AppError, type FhirStore } from './fhir.js';
 import { RegistrationService } from './registration.js';
 import { importRoster, parseRoster } from './imports.js';
-import { EmailWorker } from './email.js';
 import type { Config } from './config.js';
 
 export async function buildApp(store: FhirStore, config: Config) {
@@ -18,7 +17,6 @@ export async function buildApp(store: FhirStore, config: Config) {
   await app.register(cookie);
   await app.register(rateLimit, { max: 600, timeWindow: '1 minute' });
   const service = new RegistrationService(store, config.sessionSecret);
-  const worker = new EmailWorker(store, config.email);
   const session = (request: FastifyRequest): string => {
     try {
       const user = service.verify(request.cookies.staff ?? '', 'staff');
@@ -52,7 +50,7 @@ export async function buildApp(store: FhirStore, config: Config) {
   app.get('/api/config', async () => ({ tracks, privacyUrl: config.privacyUrl }));
   app.get('/api/health', async () => {
     await service.list('hackathon-2026-checkins');
-    return { status: 'ok', emailConfigured: !!config.email };
+    return { status: 'ok' };
   });
   app.get('/api/matches', async request => {
     const query = z.object({ name: z.string().max(160), affiliation: z.string().max(160).default('') }).parse(request.query);
@@ -106,22 +104,16 @@ export async function buildApp(store: FhirStore, config: Config) {
     const { source, csv } = z.object({ source: z.enum(['roster', 'staff']), csv: z.string().min(1).max(900000) }).parse(request.body);
     return { imported: await importRoster(service, source, parseRoster(csv)) };
   });
-  app.post('/api/staff/email/:id/retry', async request => {
-    const staff = session(request);
-    const { id } = z.object({ id: z.string().uuid() }).parse(request.params);
-    z.object({ providerHistoryReviewed: z.literal(true) }).parse(request.body);
-    const task = await store.read<import('fhir/r4').Task>('Task', id);
-    const checkedIn = task?.focus?.reference;
-    const participant = checkedIn ? (await store.search<import('fhir/r4').Person>('Person', `link=${encodeURIComponent(checkedIn)}`))[0] : undefined;
-    if (!participant?.id) throw new AppError(409, 'Cannot resolve the email recipient to a Person for auditing.');
-    await worker.retry(id, put(service.audit(participant.id, staff, 'Provider history reviewed', 'Email retry'), true));
-    return { ok: true };
+  app.get('/api/staff/receipts/:id', async request => {
+    session(request);
+    const { id } = z.object({ id: z.string().regex(/^[A-Za-z0-9.-]{1,64}$/) }).parse(request.params);
+    return service.receipt(id);
   });
   app.get('/api/staff/export', async (request, reply) => {
     session(request);
     const { rows } = await service.dashboard();
     const cell = (value: string) => `"${(/^[=+\-@\t\r]/.test(value) ? "'" + value : value).replace(/"/g, '""')}"`;
-    const columns = ['name', 'email', 'affiliation', 'track', 'role', 'arrived', 'emailStatus'] as const;
+    const columns = ['name', 'email', 'affiliation', 'track', 'role', 'arrived'] as const;
     reply.header('Content-Disposition', 'attachment; filename="hackathon-2026-checkins.csv"').type('text/csv; charset=utf-8');
     return '\uFEFF' + [columns.join(','), ...rows.map(row => columns.map(key => cell(row[key])).join(','))].join('\r\n');
   });
@@ -133,5 +125,5 @@ export async function buildApp(store: FhirStore, config: Config) {
       return reply.sendFile('index.html');
     });
   }
-  return { app, service, worker };
+  return { app, service };
 }

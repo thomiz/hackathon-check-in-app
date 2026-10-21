@@ -1,6 +1,5 @@
-import type { Extension, List, Person, Practitioner, Task } from 'fhir/r4';
-import { randomUUID } from 'node:crypto';
-import { CANONICAL, EVENT, EXT, ID_SYSTEM, JOB_SYSTEM, ROLE_SYSTEM, TRACK_SYSTEM, type Details, type Role, detailsSchema, roleSchema } from '../shared/domain.js';
+import type { Extension, List, Person, Practitioner } from 'fhir/r4';
+import { CANONICAL, EXT, ID_SYSTEM, ROLE_SYSTEM, TRACK_SYSTEM, type Details, type Role, detailsSchema, roleSchema } from '../shared/domain.js';
 import { AppError } from './fhir.js';
 
 export function extensions(details: Details): Extension[] {
@@ -56,14 +55,4 @@ export function emptyList(id: string): List {
 }
 export function refs(list: List): string[] {
   return [...new Set((list.entry ?? []).filter(e => !e.deleted).map(e => e.item.reference).filter((ref): ref is string => !!ref))];
-}
-export function emailTask(practitionerId: string, participantIdentifier: string): Task {
-  return {
-    resourceType: 'Task', id: randomUUID(), meta: { profile: [profile('confirmation-email')] },
-    identifier: [{ system: `${CANONICAL}/identifier/email`, value: `${EVENT}:${participantIdentifier}` }],
-    status: 'ready', intent: 'order',
-    code: { coding: [{ system: JOB_SYSTEM, code: 'confirmation-email' }] },
-    focus: { reference: `Practitioner/${practitionerId}` }, authoredOn: new Date().toISOString(),
-    extension: [{ url: EXT.attempts, valueInteger: 0 }]
-  };
 }

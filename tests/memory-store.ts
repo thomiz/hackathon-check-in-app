@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { BundleEntry, Resource, Task, Person, List } from 'fhir/r4';
+import type { BundleEntry, Resource, Person, List } from 'fhir/r4';
 import { FhirError, type FhirStore } from '../server/fhir.js';
 
 export class MemoryStore implements FhirStore {
@@ -19,10 +19,9 @@ export class MemoryStore implements FhirStore {
           const [system, token] = value.split('|');
           return resource.identifier.some(i => i.system === system && i.value === token);
         }
-        if (key === 'focus' && resource.resourceType === 'Task') return (resource as Task).focus?.reference === value;
         if (key === 'code' && 'code' in resource && resource.code && typeof resource.code === 'object' && 'coding' in resource.code) {
           const [system, token] = value.split('|');
-          return (resource as Task | List).code?.coding?.some(i => i.system === system && i.code === token);
+          return (resource as List).code?.coding?.some(i => i.system === system && i.code === token);
         }
         if (key === 'link' && resource.resourceType === 'Person') return (resource as Person).link?.some(l => l.target.reference === value);
         return false;

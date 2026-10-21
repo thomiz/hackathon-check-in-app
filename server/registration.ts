@@ -1,13 +1,13 @@
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import Fuse from 'fuse.js';
-import type { AuditEvent, BundleEntry, List, Person, Practitioner, Task } from 'fhir/r4';
+import type { AuditEvent, BundleEntry, List, Person, Practitioner } from 'fhir/r4';
 import { z } from 'zod';
 import {
-  CANONICAL, EXT, ID_SYSTEM, JOB_SYSTEM, LISTS, ROLE_SYSTEM, type Candidate, type Confirmation, type Dashboard,
+  CANONICAL, EXT, ID_SYSTEM, LISTS, ROLE_SYSTEM, type Candidate, type Confirmation, type Dashboard,
   type Details, type Role, type Selection, detailsSchema, roleSchema
 } from '../shared/domain.js';
 import { AppError, FhirError, put, type FhirStore } from './fhir.js';
-import { detailsOf, emailTask, emptyList, person, practitioner, refs, roleOf } from './model.js';
+import { detailsOf, emptyList, person, practitioner, refs, roleOf } from './model.js';
 
 export const normalize = (value: string): string => value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim().replace(/\s+/g, ' ');
 export const letterCount = (value: string): number => (value.match(/\p{L}/gu) ?? []).length;
@@ -128,10 +128,7 @@ export class RegistrationService {
     const currentPerson = await this.store.read<Person>('Person', id);
     const linked = currentPerson?.link?.find(link => link.target.reference?.startsWith('Practitioner/'))?.target.reference;
     if (linked && refs(list).includes(linked)) {
-      const current = await this.store.read<Practitioner>('Practitioner', linked.slice(13));
-      const task = (await this.store.search<Task>('Task', `focus=${encodeURIComponent(linked)}&code=${encodeURIComponent(`${JOB_SYSTEM}|confirmation-email`)}`))[0];
-      if (!current || !task) throw new AppError(503, 'Existing check-in is incomplete; contact staff.');
-      return { name: detailsOf(current).name, alreadyCheckedIn: true, emailStatus: task.status };
+      return this.receipt(linked.slice(13));
     }
     if (!manual && !currentPerson) throw new AppError(404, 'Participant was not found.');
     const stableIdentifier = currentPerson?.identifier?.find(i => i.system === ID_SYSTEM)?.value ?? manual?.stableIdentifier;
@@ -146,10 +143,19 @@ export class RegistrationService {
       item: { reference: `Practitioner/${practitionerId}` }, date: now,
       ...(manual ? { extension: [{ url: EXT.manual, valueBoolean: true }] } : {})
     }];
-    const entries = [put(expected, !currentPerson), put(checkedIn, true), put(list), put(emailTask(practitionerId, stableIdentifier), true)];
+    const entries = [put(expected, !currentPerson), put(checkedIn, true), put(list)];
     if (manual) entries.push(put(this.audit(id, manual.staff, manual.reason, 'Manual registration'), true));
     await this.store.transaction(entries);
-    return { name: details.name, alreadyCheckedIn: false, emailStatus: 'ready' };
+    const saved = await this.store.search<Practitioner>('Practitioner', `identifier=${encodeURIComponent(`${ID_SYSTEM}|${stableIdentifier}`)}`);
+    if (saved.length !== 1 || !saved[0]?.id) throw new AppError(503, 'Cannot resolve the saved check-in. Ask staff to retrieve your receipt.');
+    return this.receipt(saved[0].id, false);
+  }
+  async receipt(id: string, alreadyCheckedIn = true): Promise<Confirmation> {
+    const [current, list] = await Promise.all([this.store.read<Practitioner>('Practitioner', id), this.list(LISTS.checkins)]);
+    const entry = list.entry?.find(item => !item.deleted && item.item.reference === `Practitioner/${id}`);
+    if (!current || !entry) throw new AppError(404, 'Check-in receipt not found.');
+    if (!entry.date || !Number.isFinite(Date.parse(entry.date))) throw new AppError(503, 'Check-in timestamp is missing or invalid. Ask staff to repair the record.');
+    return { ...detailsOf(current), role: roleOf(current), arrived: entry.date, receiptId: id, alreadyCheckedIn };
   }
   audit(id: string, staff: string, reason: string, action: string): AuditEvent {
     return {
@@ -185,7 +191,6 @@ export class RegistrationService {
   async dashboard(): Promise<Dashboard> {
     const [roster, staff, checkins] = await Promise.all(Object.values(LISTS).map(id => this.list(id)));
     if (!roster || !staff || !checkins) throw new AppError(503, 'Event Lists are unavailable.');
-    const tasks = await this.store.search<Task>('Task', `code=${encodeURIComponent(`${CANONICAL}/CodeSystem/workflow|confirmation-email`)}&_count=200`);
     const people = await this.store.search<Person>('Person', '_count=200');
     const practitioners = await this.store.search<Practitioner>('Practitioner', '_count=200');
     const rows: Dashboard['rows'] = [];
@@ -194,13 +199,11 @@ export class RegistrationService {
       const item = practitioners.find(p => p.id === ref.slice(13));
       if (!item?.id) throw new AppError(503, 'Check-in refers to a missing Practitioner.');
       const entry = checkins.entry?.find(e => !e.deleted && e.item.reference === ref);
-      const task = tasks.find(t => t.focus?.reference === ref);
       const expected = people.find(p => p.link?.some(link => link.target.reference === ref));
       if (!expected?.id) throw new AppError(503, 'Checked-in Practitioner has no linked Person.');
       rows.push({
         ...detailsOf(item), id: item.id, personId: expected.id, role: roleOf(item), arrived: entry?.date ?? '',
-        manual: entry?.extension?.some(e => e.url === EXT.manual && e.valueBoolean) ?? false,
-        taskId: task?.id ?? '', emailStatus: task?.status ?? 'missing', emailReason: task?.statusReason?.text ?? ''
+        manual: entry?.extension?.some(e => e.url === EXT.manual && e.valueBoolean) ?? false
       });
     }
     const missing = async (list: List): Promise<number> => {

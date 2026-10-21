@@ -5,13 +5,10 @@ export const EVENT = 'hackathon-2026';
 export const ID_SYSTEM = `${CANONICAL}/identifier/participant-2026`;
 export const ROLE_SYSTEM = `${CANONICAL}/CodeSystem/participation-role`;
 export const TRACK_SYSTEM = `${CANONICAL}/CodeSystem/track`;
-export const JOB_SYSTEM = `${CANONICAL}/CodeSystem/workflow`;
 export const EXT = {
   affiliation: `${CANONICAL}/StructureDefinition/affiliation`,
   track: `${CANONICAL}/StructureDefinition/primary-track`,
-  manual: `${CANONICAL}/StructureDefinition/manual-registration`,
-  attempts: `${CANONICAL}/StructureDefinition/email-attempts`,
-  nextAttempt: `${CANONICAL}/StructureDefinition/email-next-attempt`
+  manual: `${CANONICAL}/StructureDefinition/manual-registration`
 };
 export const LISTS = {
   roster: `${EVENT}-roster`,
@@ -44,16 +41,13 @@ export const manualSchema = detailsSchema.extend({
 export type Details = z.infer<typeof detailsSchema>;
 export type Candidate = { token: string; name: string; affiliation: string };
 export type Selection = Details & { selection: string };
-export type Confirmation = { name: string; alreadyCheckedIn: boolean; emailStatus: string };
+export type Confirmation = Details & { alreadyCheckedIn: boolean; role: Role; arrived: string; receiptId: string };
 export type DashboardRow = Details & {
   id: string;
   personId: string;
   role: Role;
   arrived: string;
   manual: boolean;
-  taskId: string;
-  emailStatus: string;
-  emailReason: string;
 };
 export type Dashboard = {
   totals: { roster: number; staff: number; checkedIn: number; rosterMissing: number; staffMissing: number; manual: number; attendees: number; trackLeads: number };

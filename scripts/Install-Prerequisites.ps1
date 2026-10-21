@@ -121,9 +121,9 @@ if ($LASTEXITCODE -ne 0) {
 $containerOS = & $docker info --format '{{.OSType}}'
 if ($LASTEXITCODE -ne 0) { throw 'Could not verify the Docker container platform.' }
 if (($containerOS -join '').Trim() -ne 'linux') {
-    throw 'Docker Desktop must use Linux containers for the planned Medplum deployment.'
+    throw 'Docker Desktop must use Linux containers for the planned Blaze deployment.'
 }
 
 Write-Host 'Windows prerequisites are available and the Docker Linux engine is responsive.'
-Write-Host 'Next run scripts\Install-App.ps1 to install locked application dependencies and pull Medplum images.'
-Write-Host 'No npm packages, Medplum images, databases, or application services have been installed or started by this prerequisite script.'
+Write-Host 'Next run scripts\Install-App.ps1 to install locked application dependencies and pull the Blaze image.'
+Write-Host 'No npm packages, Blaze images, databases, or application services have been installed or started by this prerequisite script.'

@@ -29,10 +29,10 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Deployment configuration validation failed.' }
     if (-not $SkipImages) {
         & docker.exe compose pull
-        if ($LASTEXITCODE -ne 0) { throw 'Medplum infrastructure image download failed.' }
+        if ($LASTEXITCODE -ne 0) { throw 'Blaze FHIR server image download failed.' }
     }
     Write-Host 'Dependencies and build artifacts are installed. Services have not been started.'
-    Write-Host 'Follow README.md to start Medplum, configure project credentials and verify application health.'
+    Write-Host 'Follow README.md to create the Blaze host data directory, start Blaze and verify application health.'
 } finally {
     Pop-Location
 }

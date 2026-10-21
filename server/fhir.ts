@@ -1,5 +1,4 @@
 import type { Bundle, BundleEntry, Resource } from 'fhir/r4';
-import { z } from 'zod';
 import { randomUUID } from 'node:crypto';
 
 export class AppError extends Error {
@@ -33,38 +32,26 @@ export function put(resource: Resource, createOnly = false): BundleEntry {
   };
 }
 
-export class MedplumStore implements FhirStore {
-  private token?: { value: string; expires: number };
-  constructor(private config: { baseUrl: string; clientId: string; clientSecret: string }, private fetcher: typeof fetch = fetch) {}
-  private async accessToken(): Promise<string> {
-    if (this.token && this.token.expires > Date.now()) return this.token.value;
-    let response: Response;
-    try {
-      response = await this.fetcher(`${this.config.baseUrl}/oauth2/token`, {
-        method: 'POST',
-        headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ grant_type: 'client_credentials', client_id: this.config.clientId, client_secret: this.config.clientSecret }),
-        signal: AbortSignal.timeout(10000)
-      });
-    } catch { throw new FhirError(503, 'Cannot connect to Medplum authentication. Check the local server.'); }
-    if (!response.ok) throw new FhirError(503, 'Medplum client authentication failed. Check backend credentials.');
-    const token = z.object({ access_token: z.string(), expires_in: z.number().optional() }).parse(await response.json());
-    this.token = { value: token.access_token, expires: Date.now() + Math.max(0, (token.expires_in ?? 300) - 30) * 1000 };
-    return this.token.value;
+/**
+ * Blaze has no built-in authentication, so it must only be reachable from the
+ * registration PC (Compose binds it to 127.0.0.1).
+ */
+export class BlazeStore implements FhirStore {
+  private root: string;
+  constructor(config: { baseUrl: string }, private fetcher: typeof fetch = fetch) {
+    this.root = `${config.baseUrl.replace(/\/+$/, '')}/`;
   }
   private async request(path: string, init: RequestInit = {}): Promise<Response> {
-    const token = await this.accessToken();
     let response: Response;
     try {
-      response = await this.fetcher(`${this.config.baseUrl}/fhir/R4/${path}`, {
-        ...init, headers: { authorization: `Bearer ${token}`, 'content-type': 'application/fhir+json' },
+      response = await this.fetcher(`${this.root}${path}`, {
+        ...init, headers: { accept: 'application/fhir+json', 'content-type': 'application/fhir+json' },
         signal: AbortSignal.timeout(15000)
       });
-    } catch { throw new FhirError(503, 'Medplum is unavailable or the write outcome is uncertain. Retry with the same registration.'); }
-    if (response.status === 401) this.token = undefined;
+    } catch { throw new FhirError(503, 'Blaze is unavailable or the write outcome is uncertain. Retry with the same registration.'); }
     if (!response.ok && response.status !== 404) {
       throw new FhirError(response.status === 412 || response.status === 409 ? 409 : 503,
-        response.status === 412 || response.status === 409 ? 'FHIR version conflict; retry the operation.' : `Medplum rejected the request (HTTP ${response.status}).`);
+        response.status === 412 || response.status === 409 ? 'FHIR version conflict; retry the operation.' : `Blaze rejected the request (HTTP ${response.status}).`);
     }
     return response;
   }
@@ -77,7 +64,7 @@ export class MedplumStore implements FhirStore {
     let path: string | undefined = `${type}?${query}`;
     const visited = new Set<string>();
     while (path) {
-      if (visited.has(path)) throw new FhirError(503, 'Medplum returned a cyclic pagination link.');
+      if (visited.has(path)) throw new FhirError(503, 'Blaze returned a cyclic pagination link.');
       visited.add(path);
       const response = await this.request(path);
       if (response.status === 404) throw new FhirError(503, 'FHIR search endpoint was not found.');
@@ -87,10 +74,9 @@ export class MedplumStore implements FhirStore {
       const next = bundle.link?.find(link => link.relation === 'next')?.url;
       path = undefined;
       if (next) {
-        const root = `${this.config.baseUrl}/fhir/R4/`;
-        const url = new URL(next, root);
-        if (!url.href.startsWith(root)) throw new FhirError(503, 'Medplum returned an unsafe pagination link.');
-        path = url.href.slice(root.length);
+        const url = new URL(next, this.root);
+        if (!url.href.startsWith(this.root)) throw new FhirError(503, 'Blaze returned an unsafe pagination link. Check that BASE_URL in compose.yaml matches FHIR_BASE_URL.');
+        path = url.href.slice(this.root.length);
       }
     }
     return resources;
@@ -115,7 +101,7 @@ export class MedplumStore implements FhirStore {
     if (response.status === 404) throw new FhirError(503, 'FHIR transaction endpoint was not found.');
     const bundle = await response.json() as Bundle;
     if (bundle.type !== 'transaction-response' || bundle.entry?.length !== entries.length) {
-      throw new FhirError(503, 'Medplum did not confirm the complete transaction.');
+      throw new FhirError(503, 'Blaze did not confirm the complete transaction.');
     }
     for (const entry of bundle.entry) {
       const status = Number(entry.response?.status?.split(' ')[0]);

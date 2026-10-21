@@ -18,11 +18,9 @@ if (password.length < 12) throw new Error('Password must have at least 12 charac
 const salt = randomBytes(16).toString('hex');
 const values: Record<string, string> = {
   SESSION_SECRET: randomBytes(32).toString('hex'),
-  STAFF_PASSWORD_HASH: `${salt}:${scryptSync(password, salt, 64).toString('hex')}`,
-  POSTGRES_PASSWORD: randomBytes(24).toString('hex'),
-  REDIS_PASSWORD: randomBytes(24).toString('hex')
+  STAFF_PASSWORD_HASH: `${salt}:${scryptSync(password, salt, 64).toString('hex')}`
 };
 const template = await readFile('.env.example', 'utf8');
 await writeFile('.env', template.replace(/^([A-Z_]+)=(.*)$/gm, (line, key: string) => key in values ? `${key}=${values[key]}` : line), { flag: 'wx', mode: 0o600 });
 console.log('Created .env with generated secrets. Restrict its Windows file permissions to event operators.');
-console.log('Next start Medplum, create a project ClientApplication, and fill in MEDPLUM_CLIENT_ID and MEDPLUM_CLIENT_SECRET.');
+console.log('Next create the Blaze host data directory (BLAZE_DATA_DIR) and start Blaze with docker compose up -d. See README.md.');

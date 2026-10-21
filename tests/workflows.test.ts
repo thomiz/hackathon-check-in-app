@@ -1,12 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import type { Person, Practitioner, Task } from 'fhir/r4';
+import type { Person, Practitioner } from 'fhir/r4';
 import { MemoryStore } from './memory-store';
 import { RegistrationService, letterCount } from '../server/registration';
 import { importRoster, parseRoster, type ImportRow } from '../server/imports';
 import { detailsOf } from '../server/model';
-import { EmailWorker } from '../server/email';
 import { put } from '../server/fhir';
-import { CANONICAL, EXT, ID_SYSTEM, JOB_SYSTEM, LISTS } from '../shared/domain';
+import { LISTS } from '../shared/domain';
 
 const alice: ImportRow = { id: 'synthetic-alice', name: 'Alice Example', email: 'alice@example.invalid', affiliation: 'Example Labs', track: 'smart', role: 'attendee' };
 const bob: ImportRow = { id: 'synthetic-bob', name: 'Alicia Example', email: 'alicia@example.invalid', affiliation: 'Another Group', track: 'fhir-101', role: 'track-lead' };
@@ -18,12 +17,10 @@ async function select(name = 'Alice') {
   if (!match) throw new Error('Missing test match');
   return service.select(match.token);
 }
-async function tasks() { return store.search<Task>('Task', `code=${encodeURIComponent(`${JOB_SYSTEM}|confirmation-email`)}`); }
 async function checkin() {
   const selected = await select();
   return service.checkin(selected, selected.selection);
 }
-const emailConfig = { apiKey: 'synthetic', senderEmail: 'sender@example.invalid', senderName: 'Test event' };
 
 beforeEach(async () => {
   store = new MemoryStore(); service = new RegistrationService(store, 'test-only-session-secret-over-32-characters');
@@ -78,7 +75,7 @@ describe('rosters and matching', () => {
 describe('transactional check-in', () => {
   it('links Person and Practitioner, records role and persists changed track', async () => {
     const selected = await select();
-    await service.checkin({ ...selected, track: 'care-plans' }, selected.selection);
+    const receipt = await service.checkin({ ...selected, track: 'care-plans' }, selected.selection);
     const people = await store.search<Person>('Person', '');
     const practitioners = await store.search<Practitioner>('Practitioner', '');
     expect(people[0]?.link?.[0]?.target.reference).toBe(`Practitioner/${practitioners[0]?.id}`);
@@ -86,17 +83,21 @@ describe('transactional check-in', () => {
     expect(detailsOf(practitioners[0]!).track).toBe('care-plans');
     expect(practitioners[0]?.identifier?.[0]?.value).toBe(alice.id);
     expect((await service.dashboard()).tracks['care-plans']).toBe(1);
-    expect((await tasks())[0]?.focus?.reference).toBe(`Practitioner/${practitioners[0]?.id}`);
+    expect(receipt).toMatchObject({ name: alice.name, email: alice.email, affiliation: alice.affiliation, track: 'care-plans', role: 'attendee', receiptId: practitioners[0]?.id, alreadyCheckedIn: false });
+    expect(receipt.arrived).toBe((await service.list(LISTS.checkins)).entry?.[0]?.date);
+    expect(await store.search('Task', '')).toHaveLength(0);
   });
   it('does not persist a selected draft or imported track changes before submission', async () => {
     const selected = await select(); selected.track = 'ehds-summary';
     expect((await service.dashboard()).totals.checkedIn).toBe(0);
     expect(detailsOf((await store.search<Person>('Person', ''))[0]!).track).toBe('smart');
   });
-  it('does not duplicate arrivals or email Tasks on repeated submissions', async () => {
-    expect((await checkin()).alreadyCheckedIn).toBe(false);
-    expect((await checkin()).alreadyCheckedIn).toBe(true);
-    expect(await tasks()).toHaveLength(1);
+  it('returns the original saved receipt on repeated submissions, not new draft details', async () => {
+    const first = await checkin();
+    const selected = await select();
+    const repeated = await service.checkin({ ...selected, name: 'Unsaved name', track: 'fhir-101' }, selected.selection);
+    expect(first.alreadyCheckedIn).toBe(false);
+    expect(repeated).toEqual({ ...first, alreadyCheckedIn: true });
     expect((await service.dashboard()).totals.checkedIn).toBe(1);
   });
   it('checks in track leads from staff roster without Google Sheet sign-up', async () => {
@@ -112,8 +113,8 @@ describe('transactional check-in', () => {
   it('saves manual registrations with an audit without inflating either roster', async () => {
     const id = 'b84670ad-39ac-4cf8-bc12-981f290b8cb9';
     const details = { ...bob, name: 'Manual Visitor' };
-    await service.manual(details, 'attendee', 'Not on either roster', id, 'organizer');
-    await service.manual(details, 'attendee', 'Not on either roster', id, 'organizer');
+    const first = await service.manual(details, 'attendee', 'Not on either roster', id, 'organizer');
+    expect(await service.manual(details, 'attendee', 'Not on either roster', id, 'organizer')).toEqual({ ...first, alreadyCheckedIn: true });
     expect((await service.dashboard()).totals).toMatchObject({ roster: 1, staff: 0, checkedIn: 1, manual: 1 });
     expect(await store.search('AuditEvent', '')).toHaveLength(1);
     await expect(service.manual(alice, 'attendee', 'Should not duplicate', id, 'organizer')).rejects.toThrow('possible existing');
@@ -137,7 +138,7 @@ describe('transactional check-in', () => {
     const selected = await select();
     await Promise.all([service.checkin(selected, selected.selection), service.checkin(selected, selected.selection)]);
     expect(await store.search('Practitioner', '')).toHaveLength(1);
-    expect(await tasks()).toHaveLength(1);
+    expect(await store.search('Task', '')).toHaveLength(0);
     expect((await service.dashboard()).totals.checkedIn).toBe(1);
   });
   it('corrects both linked resources and does not let reimport overwrite confirmed track', async () => {
@@ -150,74 +151,30 @@ describe('transactional check-in', () => {
     expect(detailsOf((await store.search<Person>('Person', ''))[0]!).track).toBe('ehds-summary');
   });
 });
-describe('durable email workflow', () => {
-  it('queues without credentials and survives service reconstruction', async () => {
-    await checkin();
-    const fetcher = vi.fn<typeof fetch>();
-    await new EmailWorker(store, undefined, fetcher).tick();
-    expect(fetcher).not.toHaveBeenCalled();
-    expect((await tasks())[0]?.status).toBe('ready');
-    const restored = new RegistrationService(store, 'same-secret');
-    expect((await restored.dashboard()).totals.checkedIn).toBe(1);
-  });
-  it('sends confirmed track and marks acceptance separately from delivery', async () => {
-    const selected = await select();
-    await service.checkin({ ...selected, track: 'ehds-summary' }, selected.selection);
-    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(new Response('{"messageId":"test"}', { status: 201 }));
-    const worker = new EmailWorker(store, emailConfig, fetcher);
-    await worker.tick(); await worker.tick();
-    expect(fetcher).toHaveBeenCalledTimes(1);
-    expect(String(fetcher.mock.calls[0]?.[1]?.body)).toContain('EHDS patient summary');
-    expect((await tasks())[0]).toMatchObject({ status: 'completed', businessStatus: { text: 'accepted' } });
-  });
-  it('retries explicit transient rejection with persistent backoff', async () => {
-    await checkin();
-    await new EmailWorker(store, emailConfig, vi.fn<typeof fetch>().mockResolvedValue(new Response('', { status: 429 }))).tick();
-    const task = (await tasks())[0]!;
-    expect(task.status).toBe('ready');
-    expect(task.extension?.find(e => e.url === EXT.nextAttempt)?.valueDateTime).toBeDefined();
-  });
-  it('does not automatically retry ambiguous network failures', async () => {
-    await checkin();
-    const fetcher = vi.fn<typeof fetch>().mockRejectedValue(new Error('network'));
-    const worker = new EmailWorker(store, emailConfig, fetcher);
-    await worker.tick(); await worker.tick();
-    expect(fetcher).toHaveBeenCalledTimes(1);
-    expect((await tasks())[0]?.status).toBe('failed');
-  });
-  it('fails permanent rejection without losing attendance', async () => {
-    await checkin();
-    await new EmailWorker(store, emailConfig, vi.fn<typeof fetch>().mockResolvedValue(new Response('', { status: 400 }))).tick();
+describe('persisted attendance receipts', () => {
+  it('reports receipt retrieval failure after a saved transaction and recovers without another arrival', async () => {
+    vi.spyOn(service, 'receipt').mockRejectedValueOnce(new Error('Receipt retrieval unavailable'));
+    await expect(checkin()).rejects.toThrow('Receipt retrieval unavailable');
     expect((await service.dashboard()).totals.checkedIn).toBe(1);
-    expect((await tasks())[0]?.status).toBe('failed');
+    const recovered = await checkin();
+    expect(recovered.alreadyCheckedIn).toBe(true);
+    expect(await store.search('Practitioner', '')).toHaveLength(1);
+    expect(recovered.arrived).toBe((await service.list(LISTS.checkins)).entry?.[0]?.date);
   });
-  it('requires review for an interrupted send and supports audited staff retry', async () => {
-    await checkin();
-    const task = (await tasks())[0]!;
-    task.status = 'in-progress'; task.lastModified = new Date(Date.now() - 180000).toISOString();
-    await store.transaction([put(task)]);
-    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(new Response('{}', { status: 201 }));
-    const worker = new EmailWorker(store, emailConfig, fetcher);
-    await worker.tick();
-    expect((await tasks())[0]?.status).toBe('failed');
-    expect(fetcher).not.toHaveBeenCalled();
+  it('reconstructs receipts after restart and includes staff corrections with the original arrival', async () => {
+    const first = await checkin();
+    const restored = new RegistrationService(store, 'same-secret');
+    expect(await restored.receipt(first.receiptId)).toEqual({ ...first, alreadyCheckedIn: true });
     const p = (await store.search<Person>('Person', ''))[0]!;
-    await worker.retry(task.id!, put(service.audit(p.id!, 'organizer', 'Provider history reviewed', 'Email retry'), true));
-    await worker.tick();
-    expect((await tasks())[0]?.status).toBe('completed');
-    expect(await store.search('AuditEvent', '')).toHaveLength(1);
+    await restored.correct(p.id!, { ...alice, track: 'ehds-summary' }, 'track-lead', 'Organizer correction', 'organizer');
+    expect(await restored.receipt(first.receiptId)).toEqual({ ...first, track: 'ehds-summary', role: 'track-lead', alreadyCheckedIn: true });
   });
-  it('bounds automatic transient retries to five attempts', async () => {
-    await checkin();
-    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(new Response('', { status: 503 }));
-    const worker = new EmailWorker(store, emailConfig, fetcher);
-    for (let attempt = 0; attempt < 5; attempt++) {
-      const task = (await tasks())[0]!;
-      task.extension = task.extension?.filter(extension => extension.url !== EXT.nextAttempt);
-      await store.transaction([put(task)]);
-      await worker.tick();
-    }
-    expect((await tasks())[0]?.status).toBe('failed');
-    expect(fetcher).toHaveBeenCalledTimes(5);
+  it('rejects missing check-ins and invalid persisted timestamps', async () => {
+    await expect(service.receipt('missing')).rejects.toThrow('not found');
+    const first = await checkin();
+    const list = await service.list(LISTS.checkins);
+    list.entry![0]!.date = 'invalid';
+    await store.transaction([put(list)]);
+    await expect(service.receipt(first.receiptId)).rejects.toThrow('timestamp');
   });
 });

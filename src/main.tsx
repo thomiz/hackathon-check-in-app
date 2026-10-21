@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type Selection } from '../shared/domain';
 import { api } from './api';
+import { Receipt } from './Receipt';
 import './styles.css';
 
 const blank: Details = { name: '', email: '', affiliation: '', track: '' };
@@ -72,15 +73,8 @@ function Checkin() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [privacyUrl, setPrivacyUrl] = useState('');
-  const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => { void api<{ privacyUrl: string }>('/config').then(value => setPrivacyUrl(value.privacyUrl)).catch(err => setError(message(err))); }, []);
   function reset() { setSelected(undefined); setResult(undefined); setDetails(blank); setError(''); }
-  useEffect(() => {
-    if (!result) return;
-    heading.current?.focus();
-    const timer = setTimeout(reset, 30000);
-    return () => clearTimeout(timer);
-  }, [result]);
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     if (!selected) return;
@@ -93,14 +87,7 @@ function Checkin() {
   return <main className="registration">
     <div className="intro"><p className="eyebrow">9 NOVEMBER 2026 · REBEL, OSLO</p><h1>Welcome to the<br />FHIR Hackathon</h1><p>Find your registration, choose a track and let us know you’re here.</p></div>
     <div className="card">
-      {result ? <section className="success">
-        <span className="success-icon" aria-hidden="true">✓</span>
-        <h2 tabIndex={-1} ref={heading}>You’re checked in, {result.name}!</h2>
-        <p>{result.alreadyCheckedIn ? 'Your existing check-in was found. No duplicate registration was created.' : 'Welcome! Your attendance has been saved.'}</p>
-        <p>Email: {result.emailStatus === 'completed' ? 'accepted by the email provider' : result.emailStatus === 'ready' ? 'queued for sending' : result.emailStatus}. Email status does not affect your check-in.</p>
-        <p className="muted">This screen clears after 30 seconds.</p>
-        <button onClick={reset}>Register the next person</button>
-      </section> : selected ? <form onSubmit={event => void submit(event)}>
+      {result ? <Receipt receipt={result} onDone={reset} /> : selected ? <form onSubmit={event => void submit(event)}>
         <p className="eyebrow">REVIEW & CONFIRM</p><h2>Your registration</h2>
         <DetailsFields value={details} onChange={setDetails} />
         <p className="notice">Choose a different primary track if you wish. Changes are saved only when you confirm.</p>
@@ -132,6 +119,7 @@ function Staff() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [receipt, setReceipt] = useState<Confirmation>();
   async function refresh() { setDashboard(await api<Dashboard>('/staff/dashboard')); }
   async function action(operation: () => Promise<void>) {
     setBusy(true); setError(''); setNotice('');
@@ -146,6 +134,7 @@ function Staff() {
   function resetForm() { setEditing(undefined); setDetails(blank); setRole('attendee'); setReason(''); setRequestId(crypto.randomUUID()); }
   function edit(row: DashboardRow) { setEditing(row.personId); setDetails(row); setRole(row.role); setReason(''); document.getElementById('participant-form')?.scrollIntoView({ behavior: 'smooth' }); }
   const filtered = dashboard?.rows.filter(row => `${row.name} ${row.email} ${row.affiliation}`.toLowerCase().includes(filter.toLowerCase())) ?? [];
+  if (receipt) return <main className="registration"><div className="card"><Receipt receipt={receipt} onDone={() => setReceipt(undefined)} /></div></main>;
   return <main className="staff">
     <div className="staff-title"><div><p className="eyebrow">EVENT OPERATIONS</p><h1>Registration desk</h1></div>
       {loggedIn && <button className="secondary" onClick={() => void action(async () => { await api('/staff/logout', {}); setLoggedIn(false); setDashboard(undefined); resetForm(); })}>Sign out</button>}
@@ -165,19 +154,16 @@ function Staff() {
           {Object.entries(dashboard.totals).map(([key, value]) => <div className="metric" key={key}><strong>{value}</strong><span>{({ roster: 'Advance sign-ups', staff: 'Staff roster', checkedIn: 'Checked in', rosterMissing: 'Sign-ups not here', staffMissing: 'Staff not here', manual: 'Manual registrations', attendees: 'Attendees here', trackLeads: 'Track leads here' } as Record<string, string>)[key]}</span></div>)}
         </section>
         <section className="card"><h2>Tracks at check-in</h2><ul className="track-totals">{[...tracks, { code: 'unselected', label: 'Not selected' }].map(track => <li key={track.code}><span>{track.label}</span><strong>{dashboard.tracks[track.code] ?? 0}</strong></li>)}</ul></section>
-        <section className="card"><h2>Arrivals & email status</h2><label>Filter check-ins<input value={filter} onChange={e => setFilter(e.target.value)} /></label>
-          <div className="table-scroll"><table><thead><tr><th>Name / affiliation</th><th>Role / track</th><th>Arrival</th><th>Email</th><th>Actions</th></tr></thead>
+        <section className="card"><h2>Arrivals</h2><label>Filter check-ins<input value={filter} onChange={e => setFilter(e.target.value)} /></label>
+          <div className="table-scroll"><table><thead><tr><th>Name / affiliation</th><th>Role / track</th><th>Arrival</th><th>Actions</th></tr></thead>
             <tbody>{filtered.map(row => <tr key={row.id}>
               <td><strong>{row.name}</strong><br />{row.affiliation}<br /><small>{row.email}{row.manual ? ' · manual registration' : ''}</small></td>
               <td>{row.role}<br /><small>{tracks.find(t => t.code === row.track)?.label ?? 'Not selected'}</small></td>
               <td>{new Date(row.arrived).toLocaleTimeString('en-GB', { timeZone: 'Europe/Oslo' })}</td>
-              <td><span className={`badge ${row.emailStatus}`}>{row.emailStatus}</span><br /><small>{row.emailReason}</small></td>
               <td><button className="secondary compact" onClick={() => edit(row)}>Correct details</button>
-                {row.emailStatus === 'failed' && <button disabled={busy} className="secondary compact" onClick={() => {
-                  if (window.confirm('Check Brevo history first. Retrying an uncertain send may send a duplicate. Have you verified that a retry is needed?')) {
-                    void action(async () => { await api(`/staff/email/${row.taskId}/retry`, { providerHistoryReviewed: true }); await refresh(); });
-                  }
-                }}>Retry email</button>}</td>
+                <button disabled={busy} className="secondary compact" onClick={() => void action(async () => {
+                  setReceipt(await api<Confirmation>(`/staff/receipts/${row.id}`));
+                })}>Show receipt</button></td>
             </tr>)}</tbody></table></div>
           {!filtered.length && <p className="muted">No check-ins to display.</p>}
         </section>
@@ -196,7 +182,7 @@ function Staff() {
               setNotice('Details corrected. Attendance was not changed.');
             } else {
               const result = await api<Confirmation>('/staff/manual', { ...details, role, reason, requestId });
-              setNotice(`${result.name}: ${result.alreadyCheckedIn ? 'existing check-in confirmed' : 'checked in'}. Email ${result.emailStatus}.`);
+              setReceipt(result);
             }
             resetForm(); await refresh();
           });

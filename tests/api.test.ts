@@ -10,9 +10,9 @@ import type { Selection } from '../shared/domain';
 const salt = '0123456789abcdef0123456789abcdef';
 export const config: Config = {
   host: '127.0.0.1', port: 8080, publicUrl: 'http://localhost:8080', privacyUrl: 'https://example.invalid/privacy',
-  medplum: { baseUrl: 'http://localhost:8103', clientId: 'test', clientSecret: 'test' },
+  fhir: { baseUrl: 'http://localhost:8090/fhir' },
   sessionSecret: 'only-for-tests-secret-at-least-32-characters',
-  staffUsername: 'organizer', staffPasswordHash: `${salt}:${scryptSync('test-password', salt, 64).toString('hex')}`, email: undefined
+  staffUsername: 'organizer', staffPasswordHash: `${salt}:${scryptSync('test-password', salt, 64).toString('hex')}`
 };
 let app: FastifyInstance | undefined;
 afterEach(async () => { await app?.close(); });
@@ -46,6 +46,17 @@ describe('HTTP authorization and input boundaries', () => {
       payload: { name: 'Synthetic Visitor', email: 'visitor@example.invalid', affiliation: 'Test', track: '', role: 'attendee', reason: 'Not in either list', requestId: 'd013a848-0639-4824-a97a-5d457e42ab21' }
     });
     expect(response.statusCode).toBe(200);
+    expect(response.json()).toMatchObject({ name: 'Synthetic Visitor', track: '', role: 'attendee', alreadyCheckedIn: false });
+    const receiptUrl = `/api/staff/receipts/${response.json().receiptId}`;
+    expect((await app!.inject(receiptUrl)).statusCode).toBe(401);
+    const receipt = await app!.inject({ url: receiptUrl, cookies: { staff } });
+    expect(receipt.statusCode).toBe(200);
+    expect(receipt.json()).toEqual({ ...response.json(), alreadyCheckedIn: true });
+    expect(receipt.headers['cache-control']).toBe('no-store');
+    expect((await app!.inject({ url: '/api/staff/receipts/missing', cookies: { staff } })).statusCode).toBe(404);
+    const exported = await app!.inject({ url: '/api/staff/export', cookies: { staff } });
+    expect(exported.body.replace(/^\uFEFF/, '').split('\r\n')[0]).toBe('name,email,affiliation,track,role,arrived');
+    expect((await app!.inject('/api/health')).json()).toEqual({ status: 'ok' });
     const dashboard = await app!.inject({ url: '/api/staff/dashboard', cookies: { staff } });
     expect(dashboard.json().totals.manual).toBe(1);
     expect(dashboard.headers['cache-control']).toBe('no-store');
@@ -60,7 +71,8 @@ describe('HTTP authorization and input boundaries', () => {
     expect(selected.json().email).toBe('test@example.invalid');
     const checkin = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: { ...selected.json<Selection>(), track: 'ehds-summary' } });
     expect(checkin.statusCode).toBe(200);
+    expect(checkin.json()).toMatchObject({ name: 'Alice Example', email: 'test@example.invalid', track: 'ehds-summary' });
     const again = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: selected.json() });
-    expect(again.json().alreadyCheckedIn).toBe(true);
+    expect(again.json()).toEqual({ ...checkin.json(), alreadyCheckedIn: true });
   });
 });

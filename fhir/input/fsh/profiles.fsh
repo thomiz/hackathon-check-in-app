@@ -19,19 +19,6 @@ Context: List.entry
 * value[x] only boolean
 * valueBoolean 1..1
 
-Extension: EmailAttempts
-Id: email-attempts
-Context: Task
-* value[x] only integer
-* valueInteger 1..1
-* valueInteger ^minValueInteger = 0
-
-Extension: EmailNextAttempt
-Id: email-next-attempt
-Context: Task
-* value[x] only dateTime
-* valueDateTime 1..1
-
 RuleSet: ParticipantDetails
 * identifier 1..*
 * identifier ^slicing.discriminator.type = #value
@@ -97,15 +84,3 @@ Id: checkin-list
 * entry.item only Reference(CheckedInParticipant)
 * entry.date 1..1
 * entry.extension contains ManualRegistration named manualRegistration 0..1
-
-Profile: ConfirmationEmail
-Parent: Task
-Id: confirmation-email
-* identifier 1..*
-* intent = #order (exactly)
-* code 1..1
-* code = Workflow#confirmation-email
-* focus 1..1
-* focus only Reference(CheckedInParticipant)
-* authoredOn 1..1
-* extension contains EmailAttempts named emailAttempts 1..1 and EmailNextAttempt named nextAttempt 0..1

@@ -35,8 +35,3 @@ Id: list-purpose
 ValueSet: ListPurposes
 Id: list-purposes
 * include codes from system ListPurpose
-
-CodeSystem: Workflow
-Id: workflow
-* ^caseSensitive = true
-* #confirmation-email "2026 check-in confirmation email"
