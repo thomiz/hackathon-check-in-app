@@ -15,7 +15,7 @@ services:
     volumes:
       # Database files live on the host disk, not inside the container or a Docker volume.
       - type: bind
-        source: ${BLAZE_DATA_DIR:-./data/blaze}
+        source: ${BLAZE_DATA_DIR:-C:/hackathon-data/blaze}
         target: /app/data
         bind:
           create_host_path: false
