@@ -10,15 +10,11 @@ export function receiptText(receipt: Confirmation): string {
   const line = (value: string) => value.replace(/\s+/gu, ' ').trim();
   return [
     'Norwegian FHIR Hackathon 2026',
-    'Attendance check-in confirmation',
-    'Event: 9 November 2026 - Rebel, Oslo',
+    'Check-in confirmation',
     `Name: ${line(receipt.name)}`,
     `Email: ${line(receipt.email)}`,
-    `Affiliation: ${line(receipt.affiliation)}`,
-    `Role: ${receiptRole(receipt.role)}`,
-    `Primary track: ${receiptTrack(receipt.track)}`,
+    `Primary track: ${receipt.track || 'Not selected'}`,
     `Checked in: ${receiptTime(receipt.arrived)}`,
-    `Receipt reference: ${receipt.receiptId}`,
-    'Confirms check-in, not duration of participation.'
+    `Receipt reference: ${receipt.receiptId}`
   ].join('\n');
 }

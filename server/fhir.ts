@@ -4,7 +4,9 @@ import { randomUUID } from 'node:crypto';
 export class AppError extends Error {
   constructor(public status: number, message: string) { super(message); }
 }
-export class FhirError extends AppError {}
+export class FhirError extends AppError {
+  constructor(status: number, message: string, public diagnostics?: string) { super(status, message); }
+}
 export interface FhirStore {
   read<T extends Resource>(type: T['resourceType'], id: string): Promise<T | undefined>;
   search<T extends Resource>(type: T['resourceType'], query: string): Promise<T[]>;
@@ -50,8 +52,17 @@ export class BlazeStore implements FhirStore {
       });
     } catch { throw new FhirError(503, 'Blaze is unavailable or the write outcome is uncertain. Retry with the same registration.'); }
     if (!response.ok && response.status !== 404) {
+      let outcome: unknown;
+      try { outcome = JSON.parse(await response.text()); }
+      catch (error) { if (!(error instanceof SyntaxError)) throw error; }
+      const diagnostics = outcome && typeof outcome === 'object' && 'issue' in outcome && Array.isArray(outcome.issue)
+        ? outcome.issue.flatMap((issue: unknown) => issue && typeof issue === 'object' && 'diagnostics' in issue && typeof issue.diagnostics === 'string'
+          ? [issue.diagnostics] : []).join('; ') || undefined
+        : undefined;
       throw new FhirError(response.status === 412 || response.status === 409 ? 409 : 503,
-        response.status === 412 || response.status === 409 ? 'FHIR version conflict; retry the operation.' : `Blaze rejected the request (HTTP ${response.status}).`);
+        response.status === 412 ? 'FHIR version conflict; retry the operation.'
+          : response.status === 409 ? 'Blaze rejected the request due to a conflict. Check the server diagnostics.'
+            : `Blaze rejected the request (HTTP ${response.status}).`, diagnostics);
     }
     return response;
   }

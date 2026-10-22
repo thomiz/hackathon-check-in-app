@@ -218,3 +218,85 @@ Do not switch to an empty database or assume an older app can safely read a
 database changed by an upgrade. Restore only through the approved recovery
 procedure. Legacy Medplum and email-receipt upgrades have
 [separate migration guidance](DESIGN.md#legacy-deployment-upgrades).
+
+## 4. Start check-ins again (reset all attendance)
+
+Use this after a rehearsal or when an authorized organizer decides to restart
+attendance collection. **This resets every check-in for this app's event,
+not just a selected person.** It does not reset roster counts or restore
+original CSV details.
+
+The reset command:
+
+* Empties the check-in List and removes event Practitioner check-in records.
+* Removes links from Persons to those deleted check-in records, allowing
+  roster members to check in again with a new arrival time and receipt.
+* Preserves attendee and staff Lists, participant IDs, and the latest saved
+  names, emails, affiliations and tracks, including check-in corrections.
+* Preserves Persons created through manual registration and existing AuditEvents.
+  Unrelated Practitioner records are not deleted.
+
+**This is an operational reset, not secure erasure of personal data.** FHIR
+resource history, audit records, backups, and previously saved receipt copies
+can still contain earlier attendance information. Old receipts cannot be
+reopened in the app after reset.
+
+### Reset procedure
+
+1. Confirm approval and stop all check-in activity. Export the arrivals CSV
+   from the staff dashboard if you need a readable record of the previous run.
+2. Stop the registration app with **Ctrl+C** in its PowerShell window.
+   Stop any other app instance, development server, or import process using
+   this database. **Keep the app stopped until verification is complete.**
+   The reset command cannot enforce exclusive access by itself.
+3. Take a [database backup](README.md#backup-and-restore-of-the-host-data-directory).
+   That procedure stops Blaze while copying its data and starts it afterwards.
+   Confirm the backup succeeded before proceeding.
+4. With Blaze running, check its health:
+
+   ```powershell
+   Invoke-RestMethod 'http://localhost:8090/health'
+   ```
+
+5. From the application folder, run:
+
+   ```powershell
+   npm.cmd run checkins:reset -- --confirm-reset-checkins
+   ```
+
+   The explicit confirmation flag is required. The command uses the FHIR server
+   configured in `.env`; check that it is the intended database before running.
+   It uses two FHIR transactions: first remove Person links and clear the check-in
+   List, then delete event Practitioners. Blaze checks delete references against
+   the database before each transaction, so these steps cannot be combined.
+   It then verifies zero active check-ins and no remaining event Practitioners.
+   Expect a message starting with `Reset verified:`.
+
+   If it reports an error, **do not reopen registration** until resolved. A
+   transport error can mean the write outcome is uncertain. Inspect the database
+   or rerun the command with the app still stopped; a completed reset can safely
+   be repeated. If the first stage succeeded but deletion failed, the dashboard
+   may show zero arrivals while old Practitioners still remain: **this is not
+   a completed reset**. Keep the app stopped and rerun the command to finish.
+   Inconsistent references must be repaired before resetting. A conflict with
+   diagnostics saying `Referential integrity violated` is not a version conflict;
+   if it persists with the two-stage reset, have the maintainer inspect additional
+   references rather than disabling referential-integrity checks.
+
+6. Follow [Normal startup](#normal-startup). Reload the browser to discard old
+   selections and receipts, sign in, and refresh the dashboard.
+7. Verify:
+   * Checked-in, attendee-arrival, track-lead-arrival and manual-arrival totals
+     are zero; the arrivals table is empty.
+   * Attendee and staff roster counts are unchanged.
+   * Expected roster members appear as not yet checked in.
+
+No roster reimport is needed for existing roster members. Manual-only people
+remain outside both rosters, as before; they are not automatically eligible for
+public roster check-in. If they should participate in the next run, arrange a
+reviewed roster import using their existing participant IDs before reopening.
+Do not create duplicate manual registrations with new IDs to bypass duplicate
+checks.
+
+Do any trial check-in on a separate test database. A check-in on the live
+database after reset is a real new attendance record.

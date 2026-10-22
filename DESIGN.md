@@ -95,7 +95,11 @@ QR generation uses `qrcode.react` (ISC license) locally, without an external
 service, API key, font, CDN or internet request. It renders a black-on-white SVG
 with a four-module quiet zone and at least medium error correction. Receipt text
 is embedded directly, not a URL or FHIR JSON, so phones do not need access to the
-registration server to read it.
+registration server to read it. The payload uses "Check-in confirmation" and
+includes the event name, participant name/email, primary-track code, original
+arrival time and receipt reference. Event date/location, affiliation, role and
+the participation-duration disclaimer remain on screen only to reduce QR
+density without removing full receipt details from the UI.
 
 The development-only dependency `jsqr` (Apache-2.0) decodes rendered QR codes in
 tests to verify exact text round trips, including maximum-length and Unicode

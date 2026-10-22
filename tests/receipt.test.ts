@@ -2,6 +2,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import jsQR from 'jsqr';
+import { QRCodeSVG } from 'qrcode.react';
 import { Receipt } from '../src/Receipt';
 import { receiptText } from '../shared/receipt';
 import { detailsSchema, tracks, type Confirmation } from '../shared/domain';
@@ -23,7 +24,7 @@ function decodeReceipt(markup: string): string | undefined {
   const size = Number(dimensions[1]) * scale;
   const pixels = new Uint8ClampedArray(size * size * 4).fill(255);
   // qrcode.react encodes each black row run as an SVG horizontal rectangle.
-  const runs = [...markup.matchAll(/M(\d+) (\d+)h(\d+)v1H\d+z/g)];
+  const runs = [...markup.matchAll(/M(\d+)[ ,](\d+)\s*h(\d+)v1H\d+z/g)];
   if (!runs.length) throw new Error('Expected QR module paths.');
   for (const run of runs) {
     const x = Number(run[1]) * scale;
@@ -40,19 +41,28 @@ function decodeReceipt(markup: string): string | undefined {
 }
 
 describe('local QR attendance receipts', () => {
-  it('renders readable saved details and encodes exactly the same receipt as offline text', () => {
+  it('keeps full readable details while encoding only the compact confirmation', () => {
     const markup = renderReceipt(receipt);
     expect(markup).toContain('Alex Example');
     expect(markup).toContain('alex@example.invalid');
     expect(markup).toContain('Example Organization');
     expect(markup).toContain('SMART on FHIR');
+    expect(markup).toContain('Scan or photograph this QR code and store the information contained or an image of this confirmation as a check in receipt.');
     expect(markup).toContain(receipt.receiptId);
     expect(markup).not.toContain('<img');
     expect(markup).not.toContain('<script');
     const text = decodeReceipt(markup);
     expect(text).toBe(receiptText(receipt));
-    expect(text).toContain('Checked in: 9 Nov 2026, 08:42:00');
-    expect(text).toContain('Role: Attendee');
+    expect(text).toBe([
+      'Norwegian FHIR Hackathon 2026',
+      'Check-in confirmation',
+      'Name: Alex Example',
+      'Email: alex@example.invalid',
+      'Primary track: smart',
+      'Checked in: 9 Nov 2026, 08:42:00 CET',
+      `Receipt reference: ${receipt.receiptId}`
+    ].join('\n'));
+    expect(text).not.toMatch(/Event:|Affiliation:|Role:|Confirms check-in|Attendance check-in|SMART on FHIR/);
     expect(text).not.toMatch(/https?:\/\//);
   });
   it('round trips maximum-length Unicode details and the longest track label without truncation', () => {
@@ -73,8 +83,27 @@ describe('local QR attendance receipts', () => {
   it('handles no selected track and prevents embedded line breaks from creating receipt fields', () => {
     const value = { ...receipt, name: 'Alex\nExample', affiliation: 'Example\r\nOrganization', track: '' as const };
     expect(receiptText(value)).toContain('Name: Alex Example\n');
-    expect(receiptText(value)).toContain('Affiliation: Example Organization\n');
+    expect(receiptText(value)).not.toContain('Affiliation:');
     expect(receiptText(value)).toContain('Primary track: Not selected\n');
     expect(decodeReceipt(renderReceipt(value))).toBe(receiptText(value));
+  });
+  it('produces fewer QR modules than the previous full receipt payload', () => {
+    const previousText = [
+      'Norwegian FHIR Hackathon 2026',
+      'Attendance check-in confirmation',
+      'Event: 9 November 2026 - Rebel, Oslo',
+      `Name: ${receipt.name}`,
+      `Email: ${receipt.email}`,
+      `Affiliation: ${receipt.affiliation}`,
+      'Role: Attendee',
+      'Primary track: SMART on FHIR',
+      'Checked in: 9 Nov 2026, 08:42:00 CET',
+      `Receipt reference: ${receipt.receiptId}`,
+      'Confirms check-in, not duration of participation.'
+    ].join('\n');
+    const renderCode = (value: string) => renderToStaticMarkup(createElement(QRCodeSVG, { value, level: 'M', marginSize: 4 }));
+    const modules = (markup: string) => Number(/viewBox="0 0 (\d+) \d+"/.exec(markup)![1]);
+    expect(Buffer.byteLength(receiptText(receipt))).toBeLessThan(Buffer.byteLength(previousText));
+    expect(modules(renderReceipt(receipt))).toBeLessThan(modules(renderCode(previousText)));
   });
 });

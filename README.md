@@ -18,7 +18,8 @@ Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 * FSH profiles, terminology, synthetic examples and a generated validation package.
 
 For day-to-day use, follow the [Operations guide](OPERATIONS.md): starting and
-stopping the app, changing rosters, and installing application updates.
+stopping the app, changing rosters, installing application updates, and resetting
+attendance after a rehearsal.
 See [Design choices](DESIGN.md) for architecture, FHIR modeling, receipt design
 and migration guidance for older deployments.
 
@@ -297,8 +298,10 @@ relationships and package identifiers.
 
 Successful check-in shows a receipt with registered details, event role, primary
 track, event date/location, original arrival time in Europe/Oslo and a stable
-receipt reference. The QR contains the same details as plain text, not a URL.
-It is generated locally and works without internet access.
+receipt reference. The QR contains a compact plain-text confirmation: event name,
+name, email, primary-track code, arrival time and receipt reference. The full
+event details, affiliation and role remain on screen but are omitted from the QR
+to reduce its density. It is generated locally and works without internet access.
 
 Ask the attendee to scan the code using their phone's camera/QR reader and copy
 the text or take a screenshot. Some phones need a dedicated QR reader or Lens
@@ -308,6 +311,8 @@ rehearse scanning at the workstation's actual screen size.
 
 The receipt clears after 120 seconds for shared-workstation privacy. **Keep
 receipt open** restarts that period; **Done / clear receipt** clears it immediately.
+These controls appear in the top bar between the brand and navigation link.
+The check-in welcome heading is hidden while a receipt is displayed.
 Manual registrations show the same receipt. Staff can use **Show receipt** in
 the arrivals table to reopen a receipt, including after correcting details,
 without registering again. Only the selected receipt is displayed, not the

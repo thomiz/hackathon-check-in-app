@@ -32,10 +32,24 @@ export class MemoryStore implements FhirStore {
   async transaction(entries: BundleEntry[]): Promise<void> {
     if (this.fail) throw new FhirError(503, 'Injected transaction failure.');
     if (this.conflicts > 0) { this.conflicts--; throw new FhirError(409, 'Injected conflict.'); }
+    const deletions = new Set(entries.filter(entry => entry.request?.method === 'DELETE').map(entry => entry.request!.url));
+    const references = (value: unknown, target: string): boolean => {
+      if (Array.isArray(value)) return value.some(item => references(item, target));
+      if (!value || typeof value !== 'object') return false;
+      return Object.entries(value).some(([key, item]) => key === 'reference' && item === target || references(item, target));
+    };
+    for (const target of deletions) {
+      for (const [key, resource] of this.resources) {
+        if (!deletions.has(key) && references(resource, target)) {
+          throw new FhirError(409, 'Referential integrity violated: resource is still referenced before the transaction.');
+        }
+      }
+    }
     const pending = new Map(this.resources);
     const aliases = new Map<string, string>();
     const creations = new Map<BundleEntry, string>();
     for (const entry of entries) {
+      if (entry.request?.method === 'DELETE') continue;
       if (!entry.resource || !entry.request) throw new Error('Invalid transaction entry.');
       if (entry.request.method === 'POST') {
         const identifier = entry.request.ifNoneExist ? new URLSearchParams(entry.request.ifNoneExist).get('identifier') : undefined;
@@ -54,6 +68,10 @@ export class MemoryStore implements FhirStore {
       return value;
     };
     for (const entry of entries) {
+      if (entry.request?.method === 'DELETE') {
+        pending.delete(entry.request.url);
+        continue;
+      }
       const resource = rewrite(entry.resource) as Resource;
       if (creations.has(entry)) {
         resource.id = creations.get(entry)!;

@@ -33,6 +33,18 @@ describe('Blaze transport contract', () => {
     const bundle = JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body)) as Bundle;
     expect(bundle.entry?.[0]?.request).toEqual({ method: 'PUT', url: 'Person/existing', ifMatch: 'W/"7"' });
   });
+  it('sends resource deletions in the same transaction as link updates', async () => {
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(json({
+      resourceType: 'Bundle', type: 'transaction-response',
+      entry: [{ response: { status: '200' } }, { response: { status: '204 No Content' } }]
+    }));
+    await new BlazeStore(config, fetcher).transaction([
+      put(person('existing', details)),
+      { request: { method: 'DELETE', url: 'Practitioner/old-arrival' } }
+    ]);
+    const bundle = JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body)) as Bundle;
+    expect(bundle.entry?.[1]).toEqual({ request: { method: 'DELETE', url: 'Practitioner/old-arrival' } });
+  });
   it('follows Blaze search pages under the FHIR base', async () => {
     const fetcher = vi.fn<typeof fetch>()
       .mockResolvedValueOnce(json({ resourceType: 'Bundle', entry: [{ resource: { resourceType: 'Person', id: 'one' } }], link: [{ relation: 'next', url: 'http://localhost:8090/fhir/Person/__page/DD7MLX6H7OGJN7SD?_count=200' }] }))
@@ -49,6 +61,21 @@ describe('Blaze transport contract', () => {
   it('maps a failed If-Match precondition to a retryable conflict', async () => {
     const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(json({ resourceType: 'OperationOutcome', issue: [] }, 412));
     await expect(new BlazeStore(config, fetcher).transaction([put(person('existing', details))])).rejects.toMatchObject({ status: 409 });
+  });
+  it('preserves referential-integrity diagnostics without mislabeling HTTP 409 as a version conflict', async () => {
+    const diagnostics = 'Referential integrity violated. Resource is still referenced.';
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(json({
+      resourceType: 'OperationOutcome', issue: [{ severity: 'error', code: 'conflict', diagnostics }]
+    }, 409));
+    await expect(new BlazeStore(config, fetcher).transaction([
+      { request: { method: 'DELETE', url: 'Practitioner/old-arrival' } }
+    ])).rejects.toMatchObject({ status: 409, diagnostics, message: 'Blaze rejected the request due to a conflict. Check the server diagnostics.' });
+  });
+  it('reports non-JSON server errors explicitly', async () => {
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValueOnce(new Response('Bad Gateway', { status: 502 }));
+    await expect(new BlazeStore(config, fetcher).read('Person', 'existing')).rejects.toMatchObject({
+      status: 503, message: 'Blaze rejected the request (HTTP 502).'
+    });
   });
   it('does not treat a failed transaction response as success', async () => {
     const fetcher = vi.fn<typeof fetch>()

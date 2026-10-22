@@ -14,6 +14,7 @@
     "configure": "tsx scripts/configure.ts",
     "test": "vitest run",
     "import": "tsx server/import-cli.ts",
+    "checkins:reset": "tsx server/reset-checkins-cli.ts",
     "staff:generate": "tsx scripts/generate-staff.ts",
     "fhir:build": "sushi fhir",
     "fhir:package": "tsx scripts/package-fhir.ts",

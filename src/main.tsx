@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type Selection } from '../shared/domain';
 import { api } from './api';
-import { Receipt } from './Receipt';
+import { Receipt, ReceiptActionsContext } from './Receipt';
 import './styles.css';
 
 const blank: Details = { name: '', email: '', affiliation: '', track: '' };
@@ -85,7 +85,7 @@ function Checkin() {
     } catch (err) { setError(message(err)); } finally { setBusy(false); }
   }
   return <main className="registration">
-    <div className="intro"><p className="eyebrow">9 NOVEMBER 2026 · REBEL, OSLO</p><h1>Welcome to the<br />FHIR Hackathon</h1><p>Find your registration, choose a track and let us know you’re here.</p></div>
+    {!result && <div className="intro"><p className="eyebrow">9 NOVEMBER 2026 · REBEL, OSLO</p><h1>Welcome to the<br />FHIR Hackathon</h1><p>Find your registration, choose a track and let us know you’re here.</p></div>}
     <div className="card">
       {result ? <Receipt receipt={result} onDone={reset} /> : selected ? <form onSubmit={event => void submit(event)}>
         <p className="eyebrow">REVIEW & CONFIRM</p><h2>Your registration</h2>
@@ -211,12 +211,13 @@ function Staff() {
 
 function App() {
   const [staff, setStaff] = useState(window.location.hash === '#staff');
+  const [receiptActions, setReceiptActions] = useState<HTMLDivElement | null>(null);
   useEffect(() => {
     const changed = () => setStaff(window.location.hash === '#staff');
     window.addEventListener('hashchange', changed);
     return () => window.removeEventListener('hashchange', changed);
   }, []);
-  return <><header><a className="brand" href="#">HL7 <span>NORWAY</span></a><a href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
+  return <ReceiptActionsContext.Provider value={receiptActions}><header><a className="brand" href="#">HL7 <span>NORWAY</span></a><div className="header-receipt-actions" ref={setReceiptActions} /><a href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></ReceiptActionsContext.Provider>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

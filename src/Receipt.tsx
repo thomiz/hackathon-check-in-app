@@ -1,7 +1,10 @@
-import { Component, useEffect, useRef, useState } from 'react';
+import { Component, createContext, useContext, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import type { Confirmation } from '../shared/domain';
 import { receiptRole, receiptText, receiptTime, receiptTrack } from '../shared/receipt';
+
+export const ReceiptActionsContext = createContext<HTMLElement | null>(null);
 
 class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
   state = { failed: false };
@@ -13,12 +16,13 @@ class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
       <button type="button" onClick={() => this.setState({ failed: false })}>Retry QR code</button>
     </>;
     return <QRCodeSVG className="receipt-qr" value={this.props.text} size={600} level="M" marginSize={4}
-      role="img" title="QR code containing the attendance receipt shown below" />;
+      role="img" title="QR code containing a compact check-in confirmation" />;
   }
 }
 
 export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: () => void }) {
   const [remaining, setRemaining] = useState(120);
+  const actionsContainer = useContext(ReceiptActionsContext);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
   useEffect(() => {
@@ -26,12 +30,16 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     return () => clearInterval(timer);
   }, []);
   useEffect(() => { if (remaining === 0) onDone(); }, [remaining, onDone]);
+  const actions = <div className="receipt-actions">
+    <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
+    <button type="button" onClick={onDone}>Done / clear receipt</button>
+  </div>;
   return <section className="success receipt" aria-labelledby="receipt-heading">
     <h2 id="receipt-heading" tabIndex={-1} ref={heading}>You are checked in, {receipt.name}!</h2>
     <p>{receipt.alreadyCheckedIn ? 'Your existing check-in was found. No duplicate registration was created.' : 'Your attendance has been saved.'}</p>
     <h3>Attendance receipt</h3>
     <p>Review your registered details below. If anything is incorrect, ask registration staff to correct it before saving your receipt.</p>
-    <p>Scan this QR code to read your receipt as text. No internet or connection to this computer is needed. Copy the scanned text or take a screenshot to keep it. You can also photograph this page.</p>
+    <p>Scan or photograph this QR code and store the information contained or an image of this confirmation as a check in receipt.</p>
     <ReceiptCode key={receipt.receiptId} text={receiptText(receipt)} />
     <dl className="receipt-details">
       <dt>Event</dt><dd>Norwegian FHIR Hackathon 2026</dd>
@@ -46,9 +54,6 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     </dl>
     <p className="muted">This receipt confirms check-in, not duration of participation. It is not digitally signed.</p>
     <p className="muted">The receipt includes your email address. Keep your saved copy private. This screen clears in {remaining} seconds.</p>
-    <div className="receipt-actions">
-      <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
-      <button type="button" onClick={onDone}>Done / clear receipt</button>
-    </div>
+    {actionsContainer ? createPortal(actions, actionsContainer) : actions}
   </section>;
 }
