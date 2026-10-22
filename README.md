@@ -4,16 +4,7 @@ Responsive attendee check-in and authenticated registration-desk tools for
 November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 
-The planning specification remains in the event repository at
-`Norwegian-FHIR-hackathon-2026/planlegging/registreringsapp.md`.
-All application and application-specific FHIR sources live here.
-
-The IG title and package ID are `hackathon-attendance-registration-app`, with
-canonical URL `https://hl7.no/fhir/ig/hackathon-attendance-registration-app`.
-Its FHIR machine-readable name is `HackathonAttendanceRegistrationApp`.
-The repository directory remains `hackaton-registration-app`.
-
-## What is implemented
+## Features
 
 * Live fuzzy name matching after five letters, optional affiliation refinement,
   all near matches ranked by relevance, explicit selection and email/track prefill.
@@ -26,9 +17,10 @@ The repository directory remains `hackaton-registration-app`.
   check-in, including original arrival time and registered details.
 * FSH profiles, terminology, synthetic examples and a generated validation package.
 
-The public agenda staff roster is bundled in `seed`, as requested, separately
-from synthetic examples. No private Google Sheet attendee data is bundled.
-There is no fake persistence or automatic success fallback when Blaze is unavailable.
+For day-to-day use, follow the [Operations guide](OPERATIONS.md): starting and
+stopping the app, changing rosters, and installing application updates.
+See [Design choices](DESIGN.md) for architecture, FHIR modeling, receipt design
+and migration guidance for older deployments.
 
 ## Windows setup
 
@@ -84,18 +76,14 @@ container: no separate database, cache or administration app is needed.
 
 ### Store the database on the host disk
 
-Blaze keeps all data in `/app/data` inside the container. `compose.yaml` maps that
-path with a **bind mount** to a directory on the PC's own disk, so the database
-files are never stored inside the Docker image, the container layer or a Docker
-named volume. They survive `docker compose down`, image upgrades and Docker
-Desktop resets, and can be backed up with ordinary file tools.
+Blaze stores its database in a **bind-mounted directory on the host disk**,
+outside the container. Keep this directory when stopping or upgrading services.
 
 The host directory is set by `BLAZE_DATA_DIR` in `.env` (default
 `./data/blaze`, relative to the repository; `data/` is ignored by Git). Compose
 uses `create_host_path: false`, so you must create the directory before the first
 start; a typo then fails loudly instead of silently starting an empty database.
-Blaze creates its `index`, `transaction`, `resource` and admin sub-directories on
-the first start; the directory must otherwise be empty.
+Use an empty directory for a new database.
 
 ```powershell
 # Default location inside the repository:
@@ -116,12 +104,8 @@ Notes:
 * The container runs as UID 1001. With Docker Desktop on Windows, bind-mounted
   Windows folders are writable without further steps. On a Linux host run
   `sudo chown -R 1001:1001 <dir>` once.
-* Docker Desktop shares Windows paths into the WSL 2 VM, which is slower than a
-  Docker volume for RocksDB. Expected event load (a few hundred attendees) is
-  small, but rehearse startup and check-in speed on the event PC. For better I/O
-  while still keeping the files outside Docker, point `BLAZE_DATA_DIR` at a WSL
-  ext4 path such as `\\wsl$\Ubuntu\home\<user>\blaze-data` (create it inside WSL
-  and `chown 1001:1001` it), and include it in backups.
+* Rehearse startup and check-in speed on the event PC. See
+  [Storage design](DESIGN.md#storage-and-transactions) for WSL storage options.
 * Never point two Blaze containers at the same directory at once.
 * Do not put the directory in a OneDrive/Dropbox-synchronized folder; sync tools
   can corrupt open RocksDB files.
@@ -145,22 +129,11 @@ as `127.0.0.1:8090`, because the registration app already uses 8080. Blaze runs
 forward it through a firewall or reverse proxy, and never expose it to the venue
 Wi-Fi. Phones and browsers only talk to the registration backend, which is the
 only Blaze client. Set `FHIR_BASE_URL=http://localhost:8090/fhir` in `.env`.
-`BASE_URL` in `compose.yaml` must match the host side (`http://localhost:8090`)
-because Blaze uses it for absolute search paging links; the backend rejects
-paging links outside `FHIR_BASE_URL`.
+Keep `BASE_URL` in `compose.yaml` aligned with the host side
+(`http://localhost:8090`) so search paging works.
 
 Compose sets a 2 GB JVM heap (`JAVA_TOOL_OPTIONS=-Xmx2g`) plus a 256 MiB RocksDB
-block cache; allow about 3 GB RAM for Docker Desktop's WSL VM. Referential
-integrity is enforced, so references must point to existing resources or to
-entries in the same transaction.
-
-The backend creates new resources with conditional POSTs (`ifNoneExist` on the
-stable identifier) and transaction-local `urn:uuid` references; Blaze assigns
-resource IDs. Stable identifiers provide idempotency. Existing resources are
-updated with `If-Match`; the entire check-in transaction is retried after version
-conflicts (HTTP 409/412). Blaze executes transactions atomically and serially.
-List names in the planning specification are logical identifiers, not literal
-Blaze resource IDs.
+block cache; allow about 3 GB RAM for Docker Desktop's WSL VM.
 
 Verify transaction/conditional-create behavior, version conflicts, backup
 restore and resource use on the event PC before admitting real attendees.
@@ -230,27 +203,16 @@ Generate the distributable snapshot from that Markdown file:
 npm.cmd run staff:generate -- 'D:\Programdisk-2\GitRepo\Norwegian-FHIR-Hackathon-2026\Norwegian-FHIR-hackathon-2026\input\pagecontent\hack-agenda.md'
 ```
 
-This generates `seed\staff.csv`, a matching collection Bundle of preloaded
-Persons in `seed\staff-persons.json`, and source metadata/review warnings in
-`seed\staff-source.json`. Startup imports the CSV through the same transactional
-importer used by staff tools; the Person Bundle is the portable distributable
-representation, not a transaction to POST directly to Blaze.
+This generates `seed\staff.csv`, a matching Person Bundle in
+`seed\staff-persons.json`, and source metadata/review warnings in
+`seed\staff-source.json`. Review the warnings before deployment. Startup imports
+the CSV; do not POST the collection Bundle directly to Blaze.
 
-The snapshot contains 16 named people: track-associated rows use `track-lead`,
-while Partner rows use `attendee` with no primary track. It preserves the master
-agenda's spelling, accents and affiliations. Stable IDs are derived from normalized
-names and are independent of email; reconcile IDs manually if someone is renamed.
+Track-associated rows use `track-lead`, while Partner rows use `attendee` with
+no primary track. Stable IDs are derived from names and are independent of email;
+reconcile IDs manually if someone is renamed.
 For a Google Sheet participant who is also in the staff roster, use the same
 bundled ID and role when preparing that attendee CSV.
-
-Review warnings emitted by generation:
-
-* The grouped Michal Cermak row produces only Michal's Person, not four invented
-  team members. Add named members to the master table or use staff manual
-  registration on arrival.
-* Nino Lo Cascio's displayed email differs from the mailto target. The generator
-  consistently uses the mailto target and flags the discrepancy for organizer
-  review. Correct the master agenda and regenerate if needed.
 
 After updating the master, regenerate and explicitly refresh an existing project:
 
@@ -259,24 +221,34 @@ npm.cmd run import -- staff '.\seed\staff.csv'
 ```
 
 Imports are additive, so removal from the master requires an explicit staff
-data-maintenance step in Blaze as well. The snapshot is not fetched from GitHub
-at runtime and has no dependency on the planning repository during deployment.
-It is intentionally distributed personal contact data from the public master:
-protect it in the deployed app, never serve `seed` as static files, and include
-this distribution in the event's privacy review. It is excluded from the IG
-package and validation examples, which contain synthetic people only.
+data-maintenance step in Blaze as well. The snapshot contains public personal
+contact data: protect it in the deployed app, never serve `seed` as static files,
+and include this distribution in the event's privacy review.
 
 ### Google Sheet attendees and optional staff updates
 
-Export only the needed Google Sheet fields, then map columns to:
+The Google Forms attendee CSV export can be imported directly. The importer uses
+`Your name`, `E-postadresse`, `Your affiliation/employer`, and
+`What primary track do you want to attend?`, maps primary-track labels to event
+codes, and assigns the `attendee` event role. Other columns (including phone
+numbers, professional roles, allergies and free-text answers) are not imported.
+Unknown primary tracks are rejected rather than silently discarded.
+
+Alternatively, map the needed fields to:
 
 ```csv
-id,name,email,affiliation,track,role
-reviewed-stable-id,Example Person,example@example.invalid,Example Org,smart,attendee
+name,email,affiliation,track,role
+Example Person,example@example.invalid,Example Org,smart,attendee
 ```
 
-`id` is an organizer-assigned stable participant key, not an email address or
-Blaze resource ID. Use the same ID and event role for anyone in both rosters.
+The optional `id` column is a stable participant key, not an email address or
+Blaze resource ID. Missing or empty IDs are generated as `roster-` plus a hash
+of normalized name and affiliation. IDs are deterministic across repeat imports,
+row ordering, email corrections and track changes. Keep name and affiliation
+unchanged on reimport, or supply the previously generated ID when correcting them.
+Explicit IDs remain unchanged. For anyone already in the staff roster, add `id`
+and `role` columns with the bundled ID and event role, including when using the
+Google Forms export. Ambiguous overlaps are rejected, not automatically merged.
 Allowed roles: `attendee`, `track-lead`. Other partners/staff are attendees unless
 confirmed as track leads. Allowed track codes appear in the UI and FHIR ValueSet;
 an empty track is allowed. Imports validate every row, reject ambiguous duplicates
@@ -289,8 +261,7 @@ npm.cmd run import -- roster 'D:\private\reviewed-attendees.csv'
 npm.cmd run import -- staff 'D:\private\reviewed-staff.csv'
 ```
 
-Alternatively paste CSV in the authenticated staff page. The event index is the
-track source. No 2025 data is used.
+Alternatively paste CSV in the authenticated staff page.
 
 Synthetic samples are in `examples`, with reserved `example.invalid` addresses.
 Do not import samples into the real event project.
@@ -318,46 +289,16 @@ and a compatible Java runtime. Validation runs locally with external terminology
 lookups disabled; inspect `fhir\output\validation.json`. The fixture command also
 exports synthetic resources from the actual check-in service, including manual
 registration and audit, so validation covers runtime output as well as FSH examples.
-The app uses typed
-resource builders and input validation at runtime; full profile conformance is
-checked against the generated package, not assumed from `meta.profile`.
 For an HTML IG, run IG Publisher using `fhir\ig.ini`.
-
-* Person identifiers use the event participant identifier system.
-* Additional synthetic attendee examples cover care plans, medication, IHE,
-  EHDS, FHIR 101 and no selected track, with a linked checked-in attendee and
-  a sample attendee-roster List. These are IG examples, not live attendee seeds.
-* Practitioners share that identifier and are linked from their Person.
-* Roster/staff Lists reference Persons and carry expected event-role flags.
-* The check-in List references Practitioners and records arrival dates.
-* Event-role `qualification.code` is **not a professional credential**.
-* Receipts read registered details/role from the saved Practitioner and the
-  original check-in timestamp from its check-in List entry.
-
-All dashboard data comes from FHIR. Search pagination is followed; List entries
-are read as a whole. Corrections update linked resources and roster roles
-transactionally, and create AuditEvents. Manual registration creates a Person,
-Practitioner, marked check-in entry and audit atomically without adding to
-either expected roster.
+See [FHIR model and validation](DESIGN.md#fhir-model-and-validation) for resource
+relationships and package identifiers.
 
 ## QR attendance receipts
 
-After a successful FHIR transaction, the app reads back the saved check-in and
-shows a receipt with name, email, affiliation, event role, primary track, event
-date/location, original arrival time in Europe/Oslo and a stable receipt reference
-(the server-assigned Practitioner ID). The readable details and QR represent the
-same data. Duplicate submissions return the existing saved details and timestamp,
-not the newly submitted draft or current time.
-
-QR generation uses **`qrcode.react` 4.2.0** (ISC license, bundled TypeScript
-definitions) as a runtime dependency. Run `npm.cmd ci` after updating; no separate
-QR service, API key, font, CDN or internet request is used. The library renders a
-black-on-white SVG with a four-module quiet zone and at least medium error
-correction. Receipt text is embedded directly, not a URL or FHIR JSON.
-The development-only dependency **`jsqr` 1.4.0** (Apache-2.0, bundled types)
-decodes rendered receipt QR codes in tests to check exact text round trips,
-including maximum-length and Unicode registration fields. It is not bundled
-into the application.
+Successful check-in shows a receipt with registered details, event role, primary
+track, event date/location, original arrival time in Europe/Oslo and a stable
+receipt reference. The QR contains the same details as plain text, not a URL.
+It is generated locally and works without internet access.
 
 Ask the attendee to scan the code using their phone's camera/QR reader and copy
 the text or take a screenshot. Some phones need a dedicated QR reader or Lens
@@ -382,52 +323,12 @@ credentials. They are not digitally signed. They include personal contact
 details: keep screenshots/private copies secure and clear the screen between
 attendees. Existing name matching is not identity verification.
 
-### Updating an existing deployment
-
-Stop the old application before starting this version. Email sending, provider
-configuration, retry routes, status columns and email Task creation are removed.
-Remove obsolete `BREVO_*` settings from your private `.env` and revoke unused
-provider credentials. The attendee email field remains registered contact data.
-Existing FHIR email Tasks are left untouched for retention/audit review; this
-version neither reads nor processes them. Existing check-ins need no Tasks to
-reopen a receipt. No attendance data or local FHIR storage is migrated or deleted.
-
-Rebuild the FHIR definitions/package in a clean generated-output directory so
-obsolete email profiles, extensions, terminology and examples are not retained.
-
-### Migrating from the previous Medplum backend
-
-Earlier versions stored data in Medplum (PostgreSQL/Redis Docker volumes). This
-version talks only to Blaze; data is **not** migrated automatically and the new
-Blaze database starts empty.
-
-1. Stop the old application and run `docker compose stop` with the *old*
-   `compose.yaml` before pulling this version. Do not run `docker compose down -v`;
-   keep the old volumes until retention/deletion is approved.
-2. Remove `MEDPLUM_BASE_URL`, `MEDPLUM_CLIENT_ID`, `MEDPLUM_CLIENT_SECRET`,
-   `POSTGRES_PASSWORD` and `REDIS_PASSWORD` from your private `.env`, and add
-   `FHIR_BASE_URL` and `BLAZE_DATA_DIR` as in `.env.example`.
-3. Create the Blaze data directory, start Blaze and the app as described above.
-   The staff roster is preloaded on first start; reimport reviewed attendee CSVs.
-4. If check-ins already recorded in Medplum must be carried over, export Person,
-   Practitioner, List and AuditEvent resources from Medplum as a FHIR transaction
-   Bundle (with references rewritten to `urn:uuid` entries) and POST it to
-   `http://localhost:8090/fhir` before admitting attendees. Rehearse this on a
-   test Blaze directory first.
-
-Because no event has run yet, the normal path is a clean start plus reimport.
-
 ## Verification and event operation
 
 ```powershell
 npm.cmd test
 npm.cmd run build
 ```
-
-Tests use a test-only versioned in-memory FHIR adapter; production has no memory
-fallback. They cover imports, matching thresholds, role handling, linked resources,
-duplicate/concurrent arrivals, manual audit, API authorization, track changes,
-transaction failure, persisted receipts, QR encoding/decoding, and Blaze request shapes.
 
 Before event day, also rehearse against the actual local Blaze server:
 

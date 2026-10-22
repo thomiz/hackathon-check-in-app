@@ -200,7 +200,7 @@ function Staff() {
         event.preventDefault();
         void action(async () => { const result = await api<{ imported: number }>('/staff/import', { source, csv }); setNotice(`Imported ${result.imported} entries; no check-ins created.`); setCsv(''); await refresh(); });
       }}>
-        <h2>Import reviewed roster CSV</h2><p className="muted">Columns: id,name,email,affiliation,track,role. Use the same stable ID and role for a person in both rosters. Imports add/update entries; they do not remove absent rows.</p>
+        <h2>Import reviewed roster CSV</h2><p className="muted">Columns: name,email,affiliation,track,role, with optional id. Google Forms attendee exports are also supported and default to attendee. Missing IDs are generated from name and affiliation; keep these unchanged on reimport or supply the previous ID. For anyone already in the other roster, supply the same ID and event role. Imports add/update entries; they do not remove absent rows.</p>
         <label>Roster<select value={source} onChange={e => setSource(e.target.value)}><option value="roster">Google Sheet attendees</option><option value="staff">Agenda staff / track leads</option></select></label>
         <label>CSV content<textarea rows={6} required value={csv} onChange={e => setCsv(e.target.value)} /></label>
         <button disabled={busy}>Validate and import</button>

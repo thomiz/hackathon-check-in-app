@@ -71,6 +71,55 @@ describe('rosters and matching', () => {
     expect(() => parseRoster('name,email\nAlice,nope')).toThrow();
     await expect(importRoster(service, 'roster', [alice, alice])).rejects.toThrow('Duplicate');
   });
+  it('generates valid stable IDs for missing or blank IDs without changing explicit IDs', () => {
+    const csv = 'name,email,affiliation,track,role\nAlicia Example,alicia@example.invalid,Another Group,smart,attendee';
+    const [generated] = parseRoster(csv);
+    expect(generated!.id).toMatch(/^roster-[a-f0-9]{32}$/);
+    expect(parseRoster(csv)[0]!.id).toBe(generated!.id);
+    expect(parseRoster('id,' + csv.replace('\n', '\n,'))[0]!.id).toBe(generated!.id);
+    expect(parseRoster(csv.replace('alicia@example.invalid', 'corrected@example.invalid').replace(',smart,', ',fhir-101,'))[0]!.id).toBe(generated!.id);
+    expect(parseRoster(csv.replace('Alicia Example', 'ALICIA EXAMPLE'))[0]!.id).toBe(generated!.id);
+    expect(parseRoster('id,' + csv.replace('\n', '\nreviewed-id,'))[0]!.id).toBe('reviewed-id');
+    expect(() => parseRoster('id,' + csv.replace('\n', '\ninvalid/id,'))).toThrow();
+  });
+  it('reimports generated IDs across both rosters without adding people or attendance', async () => {
+    const csv = 'name,email,affiliation,track,role\nAlicia Example,alicia@example.invalid,Another Group,smart,attendee';
+    await importRoster(service, 'roster', parseRoster(csv));
+    const people = await store.search<Person>('Person', '');
+    await importRoster(service, 'roster', parseRoster(csv.replace('alicia@example.invalid', 'corrected@example.invalid')));
+    await importRoster(service, 'staff', parseRoster(csv));
+    expect((await store.search<Person>('Person', '')).map(p => p.id)).toEqual(people.map(p => p.id));
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 2, staff: 1, checkedIn: 0 });
+    expect(await store.search('Practitioner', '')).toHaveLength(0);
+  });
+  it.each([
+    ['Medication Definition on FHIR', 'medication-definition'],
+    ['SMART on FHIR', 'smart'],
+    ['Document sharing for IHE MHD', 'ihe-mhd'],
+    ['EHDS patient summary', 'ehds-summary'],
+    ['Digital home monitoring plans and observations', 'care-plans'],
+    ['FHIR 101: Introduction to HL7 FHIR with practical assignments', 'fhir-101'],
+    ['', '']
+  ])('maps Google Forms primary track "%s" and ignores unrelated fields', (label, track) => {
+    const csv = '\uFEFFTidsmerke,E-postadresse,Your name,Your affiliation/employer,What primary track do you want to attend?,What is your main role,"Other\nquestion"\r\n' +
+      `2026-10-22,alicia@example.invalid,Alicia Example,Another Group,${label},Developer,"ignored\nanswer"`;
+    const [row] = parseRoster(csv);
+    expect(row).toEqual({ id: expect.stringMatching(/^roster-[a-f0-9]{32}$/), name: bob.name, email: bob.email, affiliation: bob.affiliation, track, role: 'attendee' });
+    const canonical = `name,email,affiliation,track,role\n${bob.name},${bob.email},${bob.affiliation},${track},attendee`;
+    expect(parseRoster(canonical)).toEqual([row]);
+  });
+  it('rejects unknown export tracks and honors reviewed export ID and event role', () => {
+    const csv = 'id,role,E-postadresse,Your name,Your affiliation/employer,What primary track do you want to attend?\nreviewed-id,track-lead,alicia@example.invalid,Alicia Example,Another Group,SMART on FHIR';
+    expect(parseRoster(csv)[0]).toMatchObject({ id: 'reviewed-id', role: 'track-lead', track: 'smart' });
+    expect(() => parseRoster(csv.replace('SMART on FHIR', 'Unknown track'))).toThrow();
+    expect(() => parseRoster(csv.replace('alicia@example.invalid', 'invalid'))).toThrow();
+  });
+  it('rejects duplicate generated identities atomically', async () => {
+    const row = '\nAlicia Example,alicia@example.invalid,Another Group,smart,attendee';
+    const rows = parseRoster('name,email,affiliation,track,role' + row + row);
+    await expect(importRoster(service, 'roster', rows)).rejects.toThrow('Duplicate participant ID');
+    expect(await store.search('Person', '')).toHaveLength(1);
+  });
 });
 describe('transactional check-in', () => {
   it('links Person and Practitioner, records role and persists changed track', async () => {

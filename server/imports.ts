@@ -1,8 +1,8 @@
 import { parse } from 'csv-parse/sync';
 import type { Person } from 'fhir/r4';
 import { z } from 'zod';
-import { randomUUID } from 'node:crypto';
-import { detailsSchema, ID_SYSTEM, LISTS, ROLE_SYSTEM, roleSchema } from '../shared/domain.js';
+import { createHash, randomUUID } from 'node:crypto';
+import { detailsSchema, ID_SYSTEM, LISTS, ROLE_SYSTEM, roleSchema, tracks } from '../shared/domain.js';
 import { AppError, put } from './fhir.js';
 import { detailsOf, person, roleOf } from './model.js';
 import { normalize, type RegistrationService } from './registration.js';
@@ -10,9 +10,28 @@ import { normalize, type RegistrationService } from './registration.js';
 const rowSchema = detailsSchema.extend({ id: z.string().regex(/^[A-Za-z0-9.-]{1,64}$/), role: roleSchema });
 export type ImportRow = z.infer<typeof rowSchema>;
 
+const inputRowSchema = rowSchema.extend({ id: rowSchema.shape.id.or(z.literal('')).optional() }).transform(row => ({
+  ...row,
+  id: row.id || `roster-${createHash('sha256').update(JSON.stringify([normalize(row.name), normalize(row.affiliation)])).digest('hex').slice(0, 32)}`
+}));
+const exportTrackCodes = new Map<string, string>([
+  ...tracks.map(({ label, code }): [string, string] => [label, code]),
+  ['Medication Definition on FHIR', 'medication-definition'],
+  ['Document sharing for IHE MHD', 'ihe-mhd'],
+  ['Digital home monitoring plans and observations', 'care-plans']
+]);
+
 export function parseRoster(csv: string): ImportRow[] {
   const records: unknown = parse(csv, { columns: true, skip_empty_lines: true, bom: true, trim: true });
-  return z.array(rowSchema).min(1).max(500).parse(records);
+  const rows = z.array(z.record(z.string())).min(1).max(500).parse(records);
+  return rows.map(row => inputRowSchema.parse('Your name' in row ? {
+    id: row.id,
+    name: row['Your name'],
+    email: row['E-postadresse'],
+    affiliation: row['Your affiliation/employer'],
+    track: exportTrackCodes.get(row['What primary track do you want to attend?'] ?? '') ?? row['What primary track do you want to attend?'],
+    role: row.role ?? 'attendee'
+  } : row));
 }
 export async function importRoster(service: RegistrationService, source: 'roster' | 'staff', rows: ImportRow[]): Promise<number> {
   const ids = new Set<string>();

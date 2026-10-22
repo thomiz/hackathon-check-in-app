@@ -75,4 +75,18 @@ describe('HTTP authorization and input boundaries', () => {
     const again = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: selected.json() });
     expect(again.json()).toEqual({ ...checkin.json(), alreadyCheckedIn: true });
   });
+  it('imports an attendee export without IDs through the staff endpoint and safely reimports it', async () => {
+    const { service } = await setup();
+    const staff = await login();
+    const csv = 'E-postadresse,Your name,Your affiliation/employer,What primary track do you want to attend?\nalice@example.invalid,Alice Example,Example Labs,SMART on FHIR';
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const response = await app!.inject({
+        method: 'POST', url: '/api/staff/import', headers: origin, cookies: { staff }, payload: { source: 'roster', csv }
+      });
+      expect(response.statusCode).toBe(200);
+      expect(response.json()).toEqual({ imported: 1 });
+    }
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0, attendees: 0 });
+    expect(await service.matches('Alice')).toHaveLength(1);
+  });
 });
