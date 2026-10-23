@@ -300,3 +300,88 @@ checks.
 
 Do any trial check-in on a separate test database. A check-in on the live
 database after reset is a real new attendance record.
+
+## 5. Monitor check-ins remotely over Wi-Fi
+
+Use this to follow check-in status from a second computer, for example when
+both computers are connected to the organizer's phone hotspot. **Never expose
+Blaze or the app directly on the Wi-Fi.** Blaze has no authentication, so anyone
+who can reach port 8090 can read, change or delete every record. Plain HTTP would
+also send staff passwords and personal data unencrypted. Keep both services
+bound to `127.0.0.1` as configured and use an encrypted SSH tunnel with key
+authentication instead:
+
+```text
+Monitoring PC ──(SSH, port 22, key login, encrypted)──> Registration PC
+  localhost:8080  →  registration app (staff dashboard)
+  localhost:8090  →  Blaze FHIR API (optional, full access)
+```
+
+No change to `.env`, `compose.yaml` or the application is needed.
+
+### Prepare the registration PC (once)
+
+Run in an administrator PowerShell window:
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+Set-Service sshd -StartupType Automatic
+Start-Service sshd
+```
+
+* On the monitoring PC, create a key with `ssh-keygen -t ed25519` and copy the
+  public key (`id_ed25519.pub`) into the event operator account's
+  `%USERPROFILE%\.ssh\authorized_keys` on the registration PC. For an account in
+  the Administrators group, use `C:\ProgramData\ssh\administrators_authorized_keys`
+  instead (only Administrators and SYSTEM may have access to that file).
+* Disable password logins: set `PasswordAuthentication no` in
+  `C:\ProgramData\ssh\sshd_config`, then run `Restart-Service sshd`.
+* Allow SSH only from the hotspot subnet. Find the PC's address with `ipconfig`;
+  iPhone hotspots typically use `172.20.10.0/28`:
+
+  ```powershell
+  Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -RemoteAddress 172.20.10.0/28
+  ```
+
+### Connect from the monitoring PC
+
+Check the connection, then open the tunnel and leave the window open while
+monitoring (replace the user and address):
+
+```powershell
+Test-NetConnection 172.20.10.2 -Port 22
+ssh -N -L 8080:127.0.0.1:8080 eventops@172.20.10.2
+```
+
+Add `-L 8090:127.0.0.1:8090` only if raw FHIR access to Blaze is needed.
+Some Android hotspots isolate clients from each other; if the connection test
+fails, check the hotspot settings.
+
+### What to view
+
+**Recommended: the staff dashboard.** Open `http://localhost:8080` on the
+monitoring PC and sign in via **Staff access** to see check-in counts, track
+totals, arrivals, receipts and CSV export. `PUBLIC_URL` remains
+`http://localhost:8080`, matching the tunneled browser origin, so same-origin
+checks and cookies work unchanged.
+
+**Optional: raw FHIR queries to Blaze** (requires the 8090 tunnel). A Practitioner
+is created only at check-in, so their count equals the number of arrivals:
+
+* Count of checked-in participants:
+  `http://localhost:8090/fhir/Practitioner?_summary=count`
+* Check-in List with arrival times plus the referenced Practitioners:
+  `http://localhost:8090/fhir/List?identifier=https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list%7Chackathon-2026-checkins&_include=List:item`
+* All checked-in Practitioners:
+  `http://localhost:8090/fhir/Practitioner?_count=500`
+
+### Security notes
+
+* The 8090 tunnel gives **full read/write/delete** access to Blaze. For
+  read-only monitoring, forward only 8080 and use the authenticated dashboard.
+* Use a private hotspot with WPA2/WPA3 and a strong password; do not share it.
+* The monitoring PC displays personal data: lock its screen, avoid local
+  exports unless needed and close the SSH window after monitoring.
+* Without SSH, the only acceptable alternative is the trusted HTTPS reverse
+  proxy described under [Configuration](README.md#configuration), never
+  `HOST=0.0.0.0` over plain HTTP or publishing Blaze on `0.0.0.0:8090`.

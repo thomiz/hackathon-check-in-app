@@ -18,8 +18,8 @@ Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 * FSH profiles, terminology, synthetic examples and a generated validation package.
 
 For day-to-day use, follow the [Operations guide](OPERATIONS.md): starting and
-stopping the app, changing rosters, installing application updates, and resetting
-attendance after a rehearsal.
+stopping the app, changing rosters, installing application updates, resetting
+attendance after a rehearsal, and monitoring check-ins remotely.
 See [Design choices](DESIGN.md) for architecture, FHIR modeling, receipt design
 and migration guidance for older deployments.
 
@@ -192,6 +192,11 @@ If attendees instead open the app on their phones, they cannot use the PC's
 `localhost`. Configure a reachable venue hostname,
 trusted HTTPS certificate, Wi-Fi client connectivity and Windows Firewall first.
 Distribute that URL as a QR code. Keep the staffed kiosk as fallback.
+
+To follow check-ins from a second computer on the same Wi-Fi (for example a
+phone hotspot), use an SSH tunnel as described in
+[Monitor check-ins remotely](OPERATIONS.md#5-monitor-check-ins-remotely-over-wi-fi).
+Never publish the app or Blaze directly on the network.
 
 ## Roster imports
 
