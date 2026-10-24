@@ -1,4 +1,4 @@
-# Norwegian FHIR Hackathon 2026 registration
+# Norwegian FHIR Hackathon 2026 check-in
 
 Responsive attendee check-in and authenticated registration-desk tools for
 November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
