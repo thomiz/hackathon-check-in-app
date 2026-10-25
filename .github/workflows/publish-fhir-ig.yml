@@ -1,0 +1,45 @@
+name: Build and publish FHIR Implementation Guide
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies and build FHIR definitions
+        run: |
+          npm ci
+          npm run fhir:build
+
+      - name: Download FHIR IG Publisher
+        run: |
+          curl --fail --location --silent --show-error \
+            https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar \
+            --output publisher.jar
+
+      - name: Generate Implementation Guide
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          args: java -jar publisher.jar publisher -ig fhir/ig.ini
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: fhir/output
+          exclude_assets: "**.zip,**.tgz,**.pack"
+          commit_message: "Publish FHIR IG from ${{ github.sha }}"

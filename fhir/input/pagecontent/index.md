@@ -1,47 +1,86 @@
-# hackathon-attendance-registration-app
+# Hackathon attendance registration FHIR model
 
-This event-specific demonstration uses FHIR R4 (4.0.1).
+This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event
+roster and attendee check-in. It documents the FHIR resources, profiles,
+extensions, terminology and examples used to represent those records. It does
+not describe the internal operation or architecture of any application.
 
-* Persons represent expected participants from the advance attendee and staff rosters.
-* Practitioners represent checked-in participants. **This use does not establish
-  healthcare employment or professional credentials.** The event-role
-  qualification distinguishes `attendee` from `track-lead` only.
-* Two roster Lists reference Persons; the actual-arrival List references
-  Practitioners and records check-in timestamps.
-* Person links point to the corresponding checked-in Practitioner.
-* Attendance receipts are derived from the saved Practitioner and its check-in
-  List entry. A locally generated QR code contains the receipt as plain text,
-  including registered contact details, event role, primary track, the original
-  arrival timestamp and the Practitioner ID as receipt reference.
+## Scope and terminology
 
-Stable event identifiers are independent of the FHIR server's (Blaze's) generated resource
-IDs. Clients resolve Lists by their identifier, then read their references.
-Creating a participant, Practitioner and check-in entry uses an atomic
-transaction. Conditional creates and version-aware List updates prevent duplicate
-or lost arrivals. Clients must follow pagination for FHIR search results.
+The profiles distinguish people registered for the event from people who have
+arrived:
 
-The application backend enforces roster membership, signed selection tokens,
-staff-only overrides and corrections, and validated track/role values. The IG
-package supplies profiles for full HL7 validator checks; no claim is made that
-the Blaze FHIR server alone enforces every profile constraint.
+* `ExpectedParticipant` profiles `Person` and represents an attendee or
+  organizer registered for the event.
+* `CheckedInParticipant` profiles `Practitioner` and represents an attendee or
+  organizer who has checked in. `Practitioner` is used here as an
+  event-specific demonstration model; it does not imply healthcare employment
+  or a professional credential.
 
-Near-match suggestions intentionally expose names and affiliations after five
-typed letters. Explicit selection reveals email and track. This event-specific
-convenience mechanism is not authentication.
+## Participant and list profiles
 
-Only synthetic examples may be published in this guide. Real rosters, check-ins,
-audit records, receipt QR codes and credentials must remain private.
+### Registered participants
 
-Receipts are not separate FHIR resources and do not replace FHIR persistence.
-Staff can reopen them after corrections; the original check-in time is preserved.
-The QR contains data rather than a URL, so scanning requires neither internet nor
-access to the local server. It confirms check-in, not duration of participation,
-and is not digitally signed or identity-verified. No email Tasks are created.
+`ExpectedParticipant` uses `Person` for the event's advance roster. Each record
+has an event-specific identifier, a name, an email address and an affiliation.
+The primary track is optional. The `Affiliation` and `PrimaryTrack` extensions
+carry event details that are not part of the base `Person` resource.
 
-The synthetic attendee examples cover care plans, medication definition, IHE MHD,
-EHDS, FHIR 101 and an undecided attendee, alongside the SMART example. They include
-an attendee-roster List and a linked checked-in Practitioner with the `attendee`
-qualification code, in addition to the track-lead example.
+### Checked-in participants
 
-The app separately distributes an agenda-derived staff snapshot as CSV and Person
-resources. It is not included in this IG or its package and does not record attendance.
+`CheckedInParticipant` uses `Practitioner` for a registered person who has
+arrived. It carries the same identifying and event details as the expected
+participant and requires an event role in `Practitioner.qualification`. The
+role codes distinguish attendees from track leads; they are event roles, not
+professional qualifications.
+
+When a person checks in, `Person.link.target` can reference the corresponding
+`CheckedInParticipant`. The shared event-specific participant identifier
+supports identification across the two resources.
+
+### Lists
+
+`EventList` is the base profile for event lists. It requires a current,
+working list with an identifier, purpose and date.
+
+* `RosterList` represents registered people. Each entry references an
+  `ExpectedParticipant`, and `List.entry.flag` records the person's event
+  role.
+* `CheckinList` represents arrivals. Each entry references a
+  `CheckedInParticipant`, and `List.entry.date` records the check-in time.
+  `ManualRegistration` can mark an entry that was registered manually.
+
+The relationships between the profiles are:
+
+```text
+RosterList.entry.item  ------> ExpectedParticipant (Person)
+RosterList.entry.flag  ------> ParticipationRole
+ExpectedParticipant.link ----> CheckedInParticipant (Practitioner)
+CheckinList.entry.item ------> CheckedInParticipant (Practitioner)
+CheckinList.entry.date ------> Check-in time
+```
+
+## Event use cases
+
+The following overview shows the actors' basic interactions with the event
+process. It describes the use cases, not a particular user interface or
+application workflow.
+
+```text
+Attendee  ------> (Register for the event)
+Attendee  ------> (Check in on arrival)
+Organizer ------> (Maintain participant roster)
+Organizer ------> (Record attendee check-in)
+```
+
+Registration is represented by a `Person` referenced from a roster list.
+Check-in is represented by a linked `Practitioner` referenced from a check-in
+list, with the arrival time recorded on the list entry.
+
+## Terminology and examples
+
+The guide defines code systems and value sets for list purposes, participation
+roles and event tracks. The examples illustrate roster entries, checked-in
+participants and the links between them. Published examples use synthetic
+information only; real participant details and event records must remain
+private.
