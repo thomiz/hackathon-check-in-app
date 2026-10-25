@@ -63,8 +63,11 @@ export class RegistrationService {
   }
   async matches(name: string, affiliation = '', staff = false): Promise<Candidate[]> {
     if (!staff && letterCount(name) < 5) return [];
-    const people = (await this.expected()).map(resource => ({
+    const [expected, checkins] = await Promise.all([this.expected(), this.list(LISTS.checkins)]);
+    const checkedIn = new Set(refs(checkins));
+    const people = expected.map(resource => ({
       id: resource.id!, ...detailsOf(resource),
+      alreadyCheckedIn: resource.link?.some(link => checkedIn.has(link.target.reference ?? '')) ?? false,
       normalizedName: normalize(detailsOf(resource).name),
       normalizedAffiliation: normalize(detailsOf(resource).affiliation)
     }));
@@ -76,7 +79,8 @@ export class RegistrationService {
         .search(normalize(affiliation)).map(match => match.item.id));
       matches = matches.filter(item => allowed.has(item.id));
     }
-    return matches.map(item => ({ token: this.sign(item.id, 'candidate'), name: item.name, affiliation: item.affiliation }));
+    return matches.sort((a, b) => Number(a.alreadyCheckedIn) - Number(b.alreadyCheckedIn))
+      .map(item => ({ token: this.sign(item.id, 'candidate'), name: item.name, affiliation: item.affiliation, alreadyCheckedIn: item.alreadyCheckedIn }));
   }
   async select(token: string): Promise<Selection> {
     const id = this.verify(token, 'candidate');

@@ -6,8 +6,22 @@ Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 
 ## Features
 
+![ArchiMate process view: attendee and organizer roles perform registration processes; the Web-app application service serves Check-in, Store check-in and Show check-in status.](docs/attendance-process.svg)
+
+[Edit the process diagram in draw.io](docs/attendance-process.drawio).
+The view includes business-layer roles, processes and objects, and a Web-app
+application service serving Check-in, Store check-in and Show check-in status.
+The attendee role performs Check-in; the organizer role imports rosters and
+views check-in status. The organizer roster is the app's staff roster.
+The check-in List is included because saved attendance status
+depends on both the Practitioner and its active List entry. Keep the SVG preview
+in sync when editing the draw.io source.
+
 * Live fuzzy name matching after five letters, optional affiliation refinement,
-  all near matches ranked by relevance, explicit selection and email/track prefill.
+  unchecked-in matches first and already checked-in matches last, ranked by
+  relevance within each group. Checked-in tiles have a distinct color and an
+  "Already checked in" label, and remain selectable for receipt retrieval.
+  Explicit selection and email/track prefill.
 * Editable confirmed primary track and transactional check-in.
 * Google Sheet and organizer-reviewed agenda CSV imports into Person rosters.
 * Linked Practitioners for actual arrivals, with attendee/track-lead qualification.

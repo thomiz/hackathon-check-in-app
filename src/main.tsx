@@ -59,8 +59,10 @@ function Search({ onSelect, staff = false }: { onSelect: (candidate: Candidate) 
     <div aria-live="polite">{loading && <p>Looking for near matches...</p>}{searched && !results.length && <p>No near matches. Try another spelling or ask registration staff.</p>}</div>
     {error && <p className="error" role="alert">{error}</p>}
     <ul className="candidates" aria-label="Matching registrations">
-      {results.map(candidate => <li key={candidate.token}><button type="button" disabled={selecting} onClick={() => void choose(candidate)}>
-        <strong>{candidate.name}</strong><span>{candidate.affiliation}</span><span className="select-label">Select registration →</span>
+      {results.map(candidate => <li key={candidate.token}><button type="button" className={candidate.alreadyCheckedIn ? 'already-checked-in' : undefined} disabled={selecting} onClick={() => void choose(candidate)}>
+        <strong>{candidate.name}</strong><span>{candidate.affiliation}</span>
+        {candidate.alreadyCheckedIn && <span className="checkin-status">Already checked in</span>}
+        <span className="select-label">Select registration →</span>
       </button></li>)}
     </ul>
   </section>;

@@ -51,8 +51,41 @@ describe('rosters and matching', () => {
     await importRoster(service, 'staff', [bob]);
     const matches = await service.matches('Alici');
     expect(matches.length).toBe(2);
-    expect(Object.keys(matches[0]!).sort()).toEqual(['affiliation', 'name', 'token']);
+    expect(Object.keys(matches[0]!).sort()).toEqual(['affiliation', 'alreadyCheckedIn', 'name', 'token']);
     expect((await service.select(matches[0]!.token)).email).toContain('@');
+  });
+  it('places checked-in matches last in public and staff searches while preserving relevance within each group', async () => {
+    const extra = { ...alice, id: 'synthetic-alison', name: 'Alison Example', email: 'alison@example.invalid' };
+    const other = { ...alice, id: 'synthetic-alina', name: 'Alina Example', email: 'alina@example.invalid' };
+    await importRoster(service, 'roster', [alice, extra, other]);
+    await importRoster(service, 'staff', [bob]);
+    const ranked = await service.matches('Alice');
+    expect(ranked[0]!.name).toBe(alice.name);
+    expect(ranked).toHaveLength(4);
+    expect(ranked.every(item => !item.alreadyCheckedIn)).toBe(true);
+    await checkin();
+    const selected = await service.select(ranked.find(item => item.name === extra.name)!.token);
+    await service.checkin(selected, selected.selection);
+    const arrived = new Set([alice.name, extra.name]);
+    for (const staff of [false, true]) {
+      const matches = await service.matches('Alice', '', staff);
+      expect(matches.map(item => item.name)).toEqual([
+        ...ranked.filter(item => !arrived.has(item.name)),
+        ...ranked.filter(item => arrived.has(item.name))
+      ].map(item => item.name));
+      expect(matches.map(item => item.alreadyCheckedIn)).toEqual([false, false, true, true]);
+    }
+    expect((await service.matches('Alice', alice.affiliation)).map(item => item.name))
+      .toEqual([other.name, alice.name, extra.name]);
+    const repeat = await service.select((await service.matches('Alice')).find(item => item.name === alice.name)!.token);
+    expect((await service.checkin(repeat, repeat.selection)).alreadyCheckedIn).toBe(true);
+  });
+  it('does not treat a linked Practitioner without an active check-in entry as checked in', async () => {
+    await checkin();
+    const list = await service.list(LISTS.checkins);
+    list.entry![0]!.deleted = true;
+    await store.transaction([put(list)]);
+    expect((await service.matches('Alice'))[0]!.alreadyCheckedIn).toBe(false);
   });
   it('rejects malformed, tampered, wrong-purpose and expired selection tokens', async () => {
     const candidate = (await service.matches('Alice'))[0]!;

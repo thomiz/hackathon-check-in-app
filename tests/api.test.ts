@@ -67,11 +67,15 @@ describe('HTTP authorization and input boundaries', () => {
     await importRoster(service, 'roster', [{ id: 'test', name: 'Alice Example', email: 'test@example.invalid', affiliation: 'Example', role: 'attendee', track: 'smart' }]);
     const match = await app!.inject('/api/matches?name=Alice');
     expect(match.json()[0]).not.toHaveProperty('email');
+    expect(match.json()[0].alreadyCheckedIn).toBe(false);
     const selected = await app!.inject({ method: 'POST', url: '/api/select', headers: origin, payload: { token: match.json()[0].token } });
     expect(selected.json().email).toBe('test@example.invalid');
     const checkin = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: { ...selected.json<Selection>(), track: 'ehds-summary' } });
     expect(checkin.statusCode).toBe(200);
     expect(checkin.json()).toMatchObject({ name: 'Alice Example', email: 'test@example.invalid', track: 'ehds-summary' });
+    expect((await app!.inject('/api/matches?name=Alice')).json()[0].alreadyCheckedIn).toBe(true);
+    const staff = await login();
+    expect((await app!.inject({ url: '/api/staff/matches?name=Alice', cookies: { staff } })).json()[0].alreadyCheckedIn).toBe(true);
     const again = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: selected.json() });
     expect(again.json()).toEqual({ ...checkin.json(), alreadyCheckedIn: true });
   });

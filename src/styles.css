@@ -30,6 +30,9 @@ button:disabled { opacity: .55; cursor: wait; }
 .candidates li { margin-top: 10px; }
 .candidates button { width: 100%; background: #f4f8f6; color: #193c43; border-color: #d1e0d9; padding: 16px; text-align: left; }
 .candidates button:hover { background: #e7f1eb; border-color: #17666c; }
+.candidates button.already-checked-in { background: #fff5e5; border-color: #d5ae6b; }
+.candidates button.already-checked-in:hover { background: #fbe9cc; border-color: #946019; }
+.candidates .checkin-status { color: #795015; font-weight: 650; }
 .candidates strong, .candidates span { display: block; }
 .candidates span { font-size: 14px; margin-top: 5px; font-weight: 400; }
 .candidates .select-label { font-size: 12px; color: #17666c; font-weight: 650; margin-top: 12px; }

@@ -33,6 +33,7 @@ describe('attendance reset', () => {
     expect((await service.dashboard()).totals).toMatchObject({ checkedIn: 0, rosterMissing: 1, staffMissing: 1 });
     await expect(service.receipt(first.receiptId)).rejects.toThrow('not found');
     const [match] = await service.matches('Alice');
+    expect(match!.alreadyCheckedIn).toBe(false);
     expect((await service.select(match!.token)).track).toBe('care-plans');
     const second = await arrive();
     expect(second.alreadyCheckedIn).toBe(false);

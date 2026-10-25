@@ -39,7 +39,7 @@ export const manualSchema = detailsSchema.extend({
   requestId: z.string().uuid()
 });
 export type Details = z.infer<typeof detailsSchema>;
-export type Candidate = { token: string; name: string; affiliation: string };
+export type Candidate = { token: string; name: string; affiliation: string; alreadyCheckedIn: boolean };
 export type Selection = Details & { selection: string };
 export type Confirmation = Details & { alreadyCheckedIn: boolean; role: Role; arrived: string; receiptId: string };
 export type DashboardRow = Details & {
