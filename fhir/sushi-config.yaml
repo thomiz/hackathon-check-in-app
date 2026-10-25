@@ -14,6 +14,6 @@ description: Event-specific check-in demonstration; Practitioner event roles are
 jurisdiction: urn:iso:std:iso:3166#NO
 pages:
   index.md:
-    title: Registration API
+    title: FHIR data model
 menu:
   Home: index.html
