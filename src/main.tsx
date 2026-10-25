@@ -88,7 +88,7 @@ function Checkin() {
     } catch (err) { setError(message(err)); } finally { setBusy(false); }
   }
   return <main className="registration">
-    {!result && <div className="intro"><p>Find your registration, choose a track and let us know you’re here.</p></div>}
+    {!result && <div className="intro"><p>Find your registration and let us know you're here.</p></div>}
     <div className="card">
       {result ? <Receipt receipt={result} onDone={reset} /> : selected ? <form onSubmit={event => void submit(event)}>
         <p className="eyebrow">REVIEW & CONFIRM</p><h2>Your registration</h2>
@@ -219,14 +219,14 @@ function App() {
     window.addEventListener('hashchange', changed);
     return () => window.removeEventListener('hashchange', changed);
   }, []);
-  return <><header>
+  return <><header><div className="header-content">
     <a className="brand" href="#"><img src={logoUrl} alt="HL7 Norway" width={170} height={114} /></a>
     <div className="event-heading">
       <h1>Welcome to the FHIR Hackathon</h1>
       <p className="eyebrow">9 NOVEMBER 2026 · REBEL, OSLO</p>
     </div>
-    <a href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a>
-  </header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
+    <a className="header-navigation" href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a>
+  </div></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
