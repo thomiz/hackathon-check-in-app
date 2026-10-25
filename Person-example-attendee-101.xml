@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Person xmlns="http://hl7.org/fhir">
+  <id value="example-attendee-101"/>
+  <meta>
+    <profile value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+  </meta>
+  <text>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Person example-attendee-101</b></p><a name="example-attendee-101"> </a><a name="hcexample-attendee-101"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-expected-participant.html">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic university</p><p><b>Confirmed or expected primary track</b>: <a href="CodeSystem-track.html#track-fhir-101">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-105</p><p><b>name</b>: Jamie Learner</p><p><b>telecom</b>: <a href="mailto:jamie@example.invalid">jamie@example.invalid</a></p><h3>Links</h3><table class="grid"><tr><td style="display: none">-</td><td><b>Target</b></td></tr><tr><td style="display: none">*</td><td><a href="Practitioner-example-attendee-practitioner.html">Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-105)</a></td></tr></table></div>
+  </text>
+  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation">
+    <valueString value="Synthetic university"/>
+  </extension>
+  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track">
+    <valueCoding>
+      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"/>
+      <code value="fhir-101"/>
+    </valueCoding>
+  </extension>
+  <identifier>
+    <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"/>
+    <value value="synthetic-105"/>
+  </identifier>
+  <name>
+    <text value="Jamie Learner"/>
+  </name>
+  <telecom>
+    <system value="email"/>
+    <value value="jamie@example.invalid"/>
+  </telecom>
+  <link>
+    <target>
+      <reference value="Practitioner/example-attendee-practitioner"/>
+    </target>
+  </link>
+</Person>

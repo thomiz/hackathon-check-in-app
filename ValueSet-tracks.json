@@ -1,0 +1,32 @@
+{
+  "resourceType" : "ValueSet",
+  "id" : "tracks",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet tracks</b></p><a name=\"tracks\"> </a><a name=\"hctracks\"> </a><ul><li>Include all codes defined in <a href=\"CodeSystem-track.html\"><code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track</code></a><span title=\"Version is not explicitly stated, which means it is fixed to the version provided in this specification\"> version &#x1F4E6;0.1.0</span></li></ul></div>"
+  },
+  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks",
+  "version" : "0.1.0",
+  "name" : "Tracks",
+  "status" : "draft",
+  "date" : "2026-10-25T13:18:28+00:00",
+  "publisher" : "HL7 Norway",
+  "contact" : [{
+    "name" : "HL7 Norway",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://www.hl7.no"
+    }]
+  }],
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "NO"
+    }]
+  }],
+  "compose" : {
+    "include" : [{
+      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"
+    }]
+  }
+}

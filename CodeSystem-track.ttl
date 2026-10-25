@@ -1,0 +1,74 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track> a fhir:CodeSystem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "track"] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem track</b></p><a name=\"track\"> </a><a name=\"hctrack\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">care-plans<a name=\"track-care-plans\"> </a></td><td>Modeling Patient care plans as FHIR</td></tr><tr><td style=\"white-space:nowrap\">smart<a name=\"track-smart\"> </a></td><td>SMART on FHIR</td></tr><tr><td style=\"white-space:nowrap\">medication-definition<a name=\"track-medication-definition\"> </a></td><td>Medication Definition on FHIR - Exploration of FHIR services from EMA and NoMA</td></tr><tr><td style=\"white-space:nowrap\">ihe-mhd<a name=\"track-ihe-mhd\"> </a></td><td>Document sharing for IHE MHD</td></tr><tr><td style=\"white-space:nowrap\">ehds-summary<a name=\"track-ehds-summary\"> </a></td><td>EHDS patient summary</td></tr><tr><td style=\"white-space:nowrap\">fhir-101<a name=\"track-fhir-101\"> </a></td><td>FHIR 101: Introduction to HL7 FHIR with practical assignments</td></tr></table></div>"
+  ] ;
+  fhir:CodeSystem.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"] ;
+  fhir:CodeSystem.version [ fhir:value "0.1.0"] ;
+  fhir:CodeSystem.name [ fhir:value "Track"] ;
+  fhir:CodeSystem.title [ fhir:value "2026 Hackathon tracks"] ;
+  fhir:CodeSystem.status [ fhir:value "draft"] ;
+  fhir:CodeSystem.date [ fhir:value "2026-10-25T13:18:28+00:00"^^xsd:dateTime] ;
+  fhir:CodeSystem.publisher [ fhir:value "HL7 Norway"] ;
+  fhir:CodeSystem.contact [
+     fhir:index 0 ;
+     fhir:ContactDetail.name [ fhir:value "HL7 Norway" ] ;
+     fhir:ContactDetail.telecom [
+       fhir:index 0 ;
+       fhir:ContactPoint.system [ fhir:value "url" ] ;
+       fhir:ContactPoint.value [ fhir:value "https://www.hl7.no" ]
+     ]
+  ] ;
+  fhir:CodeSystem.jurisdiction [
+     fhir:index 0 ;
+     fhir:CodeableConcept.coding [
+       fhir:index 0 ;
+       fhir:Coding.system [ fhir:value "urn:iso:std:iso:3166" ] ;
+       fhir:Coding.code [ fhir:value "NO" ]
+     ]
+  ] ;
+  fhir:CodeSystem.caseSensitive [ fhir:value "true"^^xsd:boolean] ;
+  fhir:CodeSystem.content [ fhir:value "complete"] ;
+  fhir:CodeSystem.count [ fhir:value "6"^^xsd:nonNegativeInteger] ;
+  fhir:CodeSystem.concept [
+     fhir:index 0 ;
+     fhir:CodeSystem.concept.code [ fhir:value "care-plans" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "Modeling Patient care plans as FHIR" ]
+  ], [
+     fhir:index 1 ;
+     fhir:CodeSystem.concept.code [ fhir:value "smart" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "SMART on FHIR" ]
+  ], [
+     fhir:index 2 ;
+     fhir:CodeSystem.concept.code [ fhir:value "medication-definition" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "Medication Definition on FHIR - Exploration of FHIR services from EMA and NoMA" ]
+  ], [
+     fhir:index 3 ;
+     fhir:CodeSystem.concept.code [ fhir:value "ihe-mhd" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "Document sharing for IHE MHD" ]
+  ], [
+     fhir:index 4 ;
+     fhir:CodeSystem.concept.code [ fhir:value "ehds-summary" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "EHDS patient summary" ]
+  ], [
+     fhir:index 5 ;
+     fhir:CodeSystem.concept.code [ fhir:value "fhir-101" ] ;
+     fhir:CodeSystem.concept.display [ fhir:value "FHIR 101: Introduction to HL7 FHIR with practical assignments" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

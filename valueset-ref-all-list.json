@@ -1,0 +1,270 @@
+{
+  "codeSystems" : [{
+    "url" : "http://hl7.org/fhir/ValueSet/administrative-gender",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "AdministrativeGender",
+    "title" : "AdministrativeGender",
+    "description" : "The gender of a person used for administrative purposes.",
+    "systems" : ["http://hl7.org/fhir/administrative-gender"],
+    "oids" : ["2.16.840.1.113883.4.642.3.1"],
+    "sources" : ["2.16.840.1.113883.4.642.3.1"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/contact-point-system",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ContactPointSystem",
+    "title" : "ContactPointSystem",
+    "description" : "Telecommunications form for contact point.",
+    "systems" : ["http://hl7.org/fhir/contact-point-system"],
+    "oids" : ["2.16.840.1.113883.4.642.3.71"],
+    "sources" : ["2.16.840.1.113883.4.642.3.71"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/contact-point-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ContactPointUse",
+    "title" : "ContactPointUse",
+    "description" : "Use of contact point.",
+    "systems" : ["http://hl7.org/fhir/contact-point-use"],
+    "oids" : ["2.16.840.1.113883.4.642.3.73"],
+    "sources" : ["2.16.840.1.113883.4.642.3.73"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/identifier-type",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "Identifier Type Codes",
+    "title" : "IdentifierType",
+    "description" : "A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.",
+    "systems" : ["http://terminology.hl7.org/CodeSystem/v2-0203"],
+    "oids" : ["2.16.840.1.113883.4.642.3.45"],
+    "sources" : ["2.16.840.1.113883.4.642.3.45"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/identifier-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "IdentifierUse",
+    "title" : "IdentifierUse",
+    "description" : "Identifies the purpose for this identifier, if known .",
+    "systems" : ["http://hl7.org/fhir/identifier-use"],
+    "oids" : ["2.16.840.1.113883.4.642.3.57"],
+    "sources" : ["2.16.840.1.113883.4.642.3.57"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/identity-assuranceLevel",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "IdentityAssuranceLevel",
+    "title" : "IdentityAssuranceLevel",
+    "description" : "The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.",
+    "systems" : ["http://hl7.org/fhir/identity-assuranceLevel"],
+    "oids" : ["2.16.840.1.113883.4.642.3.656"],
+    "sources" : ["2.16.840.1.113883.4.642.3.656"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/languages",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "CommonLanguages",
+    "title" : "Common Languages",
+    "description" : "This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)",
+    "systems" : ["urn:ietf:bcp:47"],
+    "oids" : ["2.16.840.1.113883.4.642.3.20"],
+    "sources" : ["2.16.840.1.113883.4.642.3.20"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/list-empty-reason",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListEmptyReasons",
+    "title" : "List Empty Reasons",
+    "description" : "General reasons for a list to be empty. Reasons are either related to a summary list (i.e. problem or medication list) or to a workflow related list (i.e. consultation list).",
+    "systems" : ["http://terminology.hl7.org/CodeSystem/list-empty-reason"],
+    "oids" : ["2.16.840.1.113883.4.642.3.322"],
+    "sources" : ["2.16.840.1.113883.4.642.3.322"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/list-item-flag",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "PatientMedicineChangeTypes",
+    "title" : "Patient Medicine Change Types",
+    "description" : "Example Item Flags for the List Resource. In this case, these are the kind of flags that would be used on a medication list at the end of a consultation.",
+    "systems" : ["urn:oid:1.2.36.1.2001.1001.101.104.16592"],
+    "oids" : ["2.16.840.1.113883.4.642.3.320"],
+    "sources" : ["2.16.840.1.113883.4.642.3.320"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/list-mode",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListMode",
+    "title" : "ListMode",
+    "description" : "The processing mode that applies to this list.",
+    "systems" : ["http://hl7.org/fhir/list-mode"],
+    "oids" : ["2.16.840.1.113883.4.642.3.318"],
+    "sources" : ["2.16.840.1.113883.4.642.3.318"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/list-order",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListOrderCodes",
+    "title" : "List Order Codes",
+    "description" : "Base values for the order of the items in a list resource.",
+    "systems" : ["http://terminology.hl7.org/CodeSystem/list-order"],
+    "oids" : ["2.16.840.1.113883.4.642.3.324"],
+    "sources" : ["2.16.840.1.113883.4.642.3.324"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/list-status",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListStatus",
+    "title" : "ListStatus",
+    "description" : "The current state of the list.",
+    "systems" : ["http://hl7.org/fhir/list-status"],
+    "oids" : ["2.16.840.1.113883.4.642.3.326"],
+    "sources" : ["2.16.840.1.113883.4.642.3.326"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/name-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "NameUse",
+    "title" : "NameUse",
+    "description" : "The use of a human name.",
+    "systems" : ["http://hl7.org/fhir/name-use"],
+    "oids" : ["2.16.840.1.113883.4.642.3.65"],
+    "sources" : ["2.16.840.1.113883.4.642.3.65"],
+    "uses" : {
+    },
+    "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "http://hl7.org/fhir/ValueSet/resource-types",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ResourceType",
+    "title" : "ResourceType",
+    "description" : "One of the resource types defined as part of this version of FHIR.",
+    "systems" : ["http://hl7.org/fhir/resource-types"],
+    "oids" : ["2.16.840.1.113883.4.642.3.27"],
+    "sources" : ["2.16.840.1.113883.4.642.3.27"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "http://terminology.hl7.org/ValueSet/v2-2.7-0360",
+    "version" : "0360",
+    "status" : "active",
+    "name" : "v2.0360.2.7",
+    "title" : "v2 table 0360, Version 2.7",
+    "description" : "FHIR Value set/code system definition for HL7 v2 table 0360 ver 2.9 ( Degree/License/Certificate)",
+    "systems" : ["http://terminology.hl7.org/CodeSystem/v2-0360|2.7"],
+    "uses" : {
+    },
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ListPurposes",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list",
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ParticipationRoles",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"],
+    "uses" : {
+    },
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "Tracks",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"],
+    "uses" : {
+    },
+    "StructureDefinition-primary-track.html" : "Confirmed or expected primary track"
+  }]
+}

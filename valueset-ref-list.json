@@ -1,0 +1,39 @@
+{
+  "codeSystems" : [{
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ListPurposes",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"],
+    "uses" : {
+    },
+    "StructureDefinition-event-list.html" : "Hackathon event list"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ParticipationRoles",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"],
+    "uses" : {
+    },
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "Tracks",
+    "title" : null,
+    "description" : "",
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"],
+    "uses" : {
+    },
+    "StructureDefinition-primary-track.html" : "Confirmed or expected primary track"
+  }]
+}

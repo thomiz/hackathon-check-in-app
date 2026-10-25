@@ -1,0 +1,191 @@
+{
+  "codeSystems" : [{
+    "url" : "http://hl7.org/fhir/administrative-gender",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "AdministrativeGender",
+    "title" : "AdministrativeGender",
+    "description" : "The gender of a person used for administrative purposes.",
+    "oids" : ["2.16.840.1.113883.4.642.4.2"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-administrative-gender.html" : "AdministrativeGender"
+  },
+  {
+    "url" : "http://hl7.org/fhir/contact-point-system",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ContactPointSystem",
+    "title" : "ContactPointSystem",
+    "description" : "Telecommunications form for contact point.",
+    "oids" : ["2.16.840.1.113883.4.642.4.72"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-contact-point-system.html" : "ContactPointSystem"
+  },
+  {
+    "url" : "http://hl7.org/fhir/contact-point-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ContactPointUse",
+    "title" : "ContactPointUse",
+    "description" : "Use of contact point.",
+    "oids" : ["2.16.840.1.113883.4.642.4.74"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-contact-point-use.html" : "ContactPointUse"
+  },
+  {
+    "url" : "http://hl7.org/fhir/identifier-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "IdentifierUse",
+    "title" : "IdentifierUse",
+    "description" : "Identifies the purpose for this identifier, if known .",
+    "oids" : ["2.16.840.1.113883.4.642.4.58"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-identifier-use.html" : "IdentifierUse"
+  },
+  {
+    "url" : "http://hl7.org/fhir/identity-assuranceLevel",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "IdentityAssuranceLevel",
+    "title" : "IdentityAssuranceLevel",
+    "description" : "The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.",
+    "oids" : ["2.16.840.1.113883.4.642.4.657"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-identity-assuranceLevel.html" : "IdentityAssuranceLevel"
+  },
+  {
+    "url" : "http://hl7.org/fhir/list-mode",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListMode",
+    "title" : "ListMode",
+    "description" : "The processing mode that applies to this list.",
+    "oids" : ["2.16.840.1.113883.4.642.4.319"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-list-mode.html" : "ListMode"
+  },
+  {
+    "url" : "http://hl7.org/fhir/list-status",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "ListStatus",
+    "title" : "ListStatus",
+    "description" : "The current state of the list.",
+    "oids" : ["2.16.840.1.113883.4.642.4.327"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-list-status.html" : "ListStatus"
+  },
+  {
+    "url" : "http://hl7.org/fhir/name-use",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "NameUse",
+    "title" : "NameUse",
+    "description" : "The use of a human name.",
+    "oids" : ["2.16.840.1.113883.4.642.4.66"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-name-use.html" : "NameUse"
+  },
+  {
+    "url" : "http://hl7.org/fhir/resource-types",
+    "version" : "4.0.1",
+    "status" : "active",
+    "name" : "ResourceType",
+    "title" : "ResourceType",
+    "description" : "One of the resource types defined as part of this version of FHIR.",
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-resource-types.html" : "ResourceType"
+  },
+  {
+    "url" : "http://terminology.hl7.org/CodeSystem/list-empty-reason",
+    "version" : "1.0.1",
+    "status" : "active",
+    "name" : "ListEmptyReasons",
+    "title" : "List Empty Reasons",
+    "description" : "General reasons for a list to be empty. Reasons are either related to a summary list (i.e. problem or medication list) or to a workflow related list (i.e. consultation list).",
+    "oids" : ["2.16.840.1.113883.4.642.1.1106"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-list-empty-reason.html" : "List Empty Reasons"
+  },
+  {
+    "url" : "http://terminology.hl7.org/CodeSystem/list-order",
+    "version" : "2.0.0",
+    "status" : "active",
+    "name" : "ListOrderCodes",
+    "title" : "List Order Codes",
+    "description" : "Base values for the order of item lists in resources.",
+    "oids" : ["2.16.840.1.113883.4.642.1.1107"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-list-order.html" : "List Order Codes"
+  },
+  {
+    "url" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+    "version" : "5.0.0",
+    "status" : "active",
+    "name" : "IdentifierType",
+    "title" : "identifierType",
+    "description" : "HL7-defined code system of concepts specifying type of identifier. Used in HL7 Version 2.x messaging data types CX, PLN, PPN, XCN and XON.",
+    "oids" : ["2.16.840.1.113883.18.108"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-identifier-type.html" : "IdentifierType"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ListPurpose",
+    "title" : null,
+    "description" : "",
+    "uses" : {
+    },
+    "ValueSet-list-purposes.html" : "ListPurposes"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ParticipationRole",
+    "title" : "Hackathon participation role",
+    "description" : "Event roles only, not professional qualifications.",
+    "uses" : {
+    },
+    "ValueSet-participation-roles.html" : "ParticipationRoles"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "Track",
+    "title" : "2026 Hackathon tracks",
+    "description" : "",
+    "uses" : {
+    },
+    "ValueSet-tracks.html" : "Tracks"
+  },
+  {
+    "url" : "urn:oid:1.2.36.1.2001.1001.101.104.16592",
+    "version" : "4.0.1",
+    "status" : "draft",
+    "name" : "PatientMedicineChangeTypes",
+    "title" : "Patient Medicine Change Types",
+    "description" : "Example Item Flags for the List Resource. In this case, these are the kind of flags that would be used on a medication list at the end of a consultation.",
+    "oids" : ["1.2.36.1.2001.1001.101.104.16592",
+    "2.16.840.1.113883.4.642.4.321"],
+    "uses" : {
+    },
+    "http://hl7.org/fhir/R4/valueset-list-item-flag.html" : "Patient Medicine Change Types"
+  }]
+}

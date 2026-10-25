@@ -1,0 +1,55 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-care-plans> a fhir:Person ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "example-attendee-care-plans"] ;
+  fhir:Resource.meta [
+     fhir:Meta.profile [
+       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
+       fhir:index 0 ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+     ]
+  ] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "extensions" ] ;
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-care-plans</b></p><a name=\"example-attendee-care-plans\"> </a><a name=\"hcexample-attendee-care-plans\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic municipality</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-care-plans\">2026 Hackathon tracks: care-plans</a> (Modeling Patient care plans as FHIR)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-101</p><p><b>name</b>: Robin Sample</p><p><b>telecom</b>: <a href=\"mailto:robin@example.invalid\">robin@example.invalid</a></p></div>"
+  ] ;
+  fhir:DomainResource.extension [
+     fhir:index 0 ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation" ] ;
+     fhir:Extension.valueString [ fhir:value "Synthetic municipality" ]
+  ], [
+     fhir:index 1 ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track" ] ;
+     fhir:Extension.valueCoding [
+       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track" ] ;
+       fhir:Coding.code [ fhir:value "care-plans" ]
+     ]
+  ] ;
+  fhir:Person.identifier [
+     fhir:index 0 ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026" ] ;
+     fhir:Identifier.value [ fhir:value "synthetic-101" ]
+  ] ;
+  fhir:Person.name [
+     fhir:index 0 ;
+     fhir:HumanName.text [ fhir:value "Robin Sample" ]
+  ] ;
+  fhir:Person.telecom [
+     fhir:index 0 ;
+     fhir:ContactPoint.system [ fhir:value "email" ] ;
+     fhir:ContactPoint.value [ fhir:value "robin@example.invalid" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-care-plans.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

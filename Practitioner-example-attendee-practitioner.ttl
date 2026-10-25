@@ -1,0 +1,65 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Practitioner/example-attendee-practitioner> a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "example-attendee-practitioner"] ;
+  fhir:Resource.meta [
+     fhir:Meta.profile [
+       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant" ;
+       fhir:index 0 ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant>
+     ]
+  ] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Practitioner example-attendee-practitioner</b></p><a name=\"example-attendee-practitioner\"> </a><a name=\"hcexample-attendee-practitioner\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-checked-in-participant.html\">Checked-in Hackathon participant</a></p></div><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\">Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-105)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Practitioner\">Contact Detail</td><td colspan=\"3\"><a href=\"mailto:jamie@example.invalid\">jamie@example.invalid</a></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Certification, licensure, or training pertaining to the provision of care\">Qualification:</td><td colspan=\"3\"><span title=\"Codes:{https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role attendee}\">Attendee</span></td></tr><tr><td style=\"background-color: #f3f5da\"><a href=\"StructureDefinition-primary-track.html\">Confirmed or expected primary track</a></td><td colspan=\"3\"><a href=\"CodeSystem-track.html#track-fhir-101\">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</td></tr><tr><td style=\"background-color: #f3f5da\"><a href=\"StructureDefinition-affiliation.html\">Participant affiliation</a></td><td colspan=\"3\">Synthetic university</td></tr></table></div>"
+  ] ;
+  fhir:DomainResource.extension [
+     fhir:index 0 ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation" ] ;
+     fhir:Extension.valueString [ fhir:value "Synthetic university" ]
+  ], [
+     fhir:index 1 ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track" ] ;
+     fhir:Extension.valueCoding [
+       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track" ] ;
+       fhir:Coding.code [ fhir:value "fhir-101" ]
+     ]
+  ] ;
+  fhir:Practitioner.identifier [
+     fhir:index 0 ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026" ] ;
+     fhir:Identifier.value [ fhir:value "synthetic-105" ]
+  ] ;
+  fhir:Practitioner.name [
+     fhir:index 0 ;
+     fhir:HumanName.text [ fhir:value "Jamie Learner" ]
+  ] ;
+  fhir:Practitioner.telecom [
+     fhir:index 0 ;
+     fhir:ContactPoint.system [ fhir:value "email" ] ;
+     fhir:ContactPoint.value [ fhir:value "jamie@example.invalid" ]
+  ] ;
+  fhir:Practitioner.qualification [
+     fhir:index 0 ;
+     fhir:Practitioner.qualification.code [
+       fhir:CodeableConcept.coding [
+         fhir:index 0 ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.code [ fhir:value "attendee" ]
+       ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Practitioner/example-attendee-practitioner.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

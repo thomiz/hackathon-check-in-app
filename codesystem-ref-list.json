@@ -1,0 +1,35 @@
+{
+  "codeSystems" : [{
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ListPurpose",
+    "title" : null,
+    "description" : "",
+    "uses" : {
+    },
+    "ValueSet-list-purposes.html" : "ListPurposes"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "ParticipationRole",
+    "title" : "Hackathon participation role",
+    "description" : "Event roles only, not professional qualifications.",
+    "uses" : {
+    },
+    "ValueSet-participation-roles.html" : "ParticipationRoles"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+    "version" : "0.1.0",
+    "status" : "draft",
+    "name" : "Track",
+    "title" : "2026 Hackathon tracks",
+    "description" : "",
+    "uses" : {
+    },
+    "ValueSet-tracks.html" : "Tracks"
+  }]
+}

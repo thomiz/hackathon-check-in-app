@@ -1,0 +1,33 @@
+{
+  "resourceType" : "Person",
+  "id" : "example-attendee-ehds",
+  "meta" : {
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-ehds</b></p><a name=\"example-attendee-ehds\"> </a><a name=\"hcexample-attendee-ehds\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic interoperability group</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-ehds-summary\">2026 Hackathon tracks: ehds-summary</a> (EHDS patient summary)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-104</p><p><b>name</b>: Casey Example</p><p><b>telecom</b>: <a href=\"mailto:casey@example.invalid\">casey@example.invalid</a></p></div>"
+  },
+  "extension" : [{
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+    "valueString" : "Synthetic interoperability group"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+    "valueCoding" : {
+      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+      "code" : "ehds-summary"
+    }
+  }],
+  "identifier" : [{
+    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+    "value" : "synthetic-104"
+  }],
+  "name" : [{
+    "text" : "Casey Example"
+  }],
+  "telecom" : [{
+    "system" : "email",
+    "value" : "casey@example.invalid"
+  }]
+}

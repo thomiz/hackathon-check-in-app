@@ -1,0 +1,53 @@
+# hackathon-attendance-registration-app#0.1.0: hackathon-attendance-registration-app
+
+## Pages
+
+* [FHIR data model](index.md)
+* [Artifacts Summary](artifacts.md)
+
+## Resources
+
+### CodeSystems
+
+* [ListPurpose](CodeSystem-list-purpose.md)
+* [Hackathon participation role](CodeSystem-participation-role.md)
+* [2026 Hackathon tracks](CodeSystem-track.md)
+
+### ValueSets
+
+* [ListPurposes](ValueSet-list-purposes.md)
+* [ParticipationRoles](ValueSet-participation-roles.md)
+* [Tracks](ValueSet-tracks.md)
+
+### Resource Profiles
+
+* [Checked-in Hackathon participant](StructureDefinition-checked-in-participant.md)
+* [Hackathon check-in list](StructureDefinition-checkin-list.md)
+* [Hackathon event list](StructureDefinition-event-list.md)
+* [Expected Hackathon participant](StructureDefinition-expected-participant.md)
+* [Hackathon participant roster](StructureDefinition-roster-list.md)
+
+### Extensions
+
+* [Participant affiliation](StructureDefinition-affiliation.md)
+* [ManualRegistration](StructureDefinition-manual-registration.md)
+* [Confirmed or expected primary track](StructureDefinition-primary-track.md)
+
+### ImplementationGuides
+
+* [hackathon-attendance-registration-app](index.md)
+
+### Examples
+
+* [example-attendee-list (List)](List-example-attendee-list.md)
+* [example-checkins (List)](List-example-checkins.md)
+* [example-roster (List)](List-example-roster.md)
+* [example-attendee-101 (Person)](Person-example-attendee-101.md)
+* [example-attendee-care-plans (Person)](Person-example-attendee-care-plans.md)
+* [example-attendee-ehds (Person)](Person-example-attendee-ehds.md)
+* [example-attendee-ihe (Person)](Person-example-attendee-ihe.md)
+* [example-attendee-medication (Person)](Person-example-attendee-medication.md)
+* [example-attendee-undecided (Person)](Person-example-attendee-undecided.md)
+* [example-person (Person)](Person-example-person.md)
+* [example-attendee-practitioner (Practitioner)](Practitioner-example-attendee-practitioner.md)
+* [example-practitioner (Practitioner)](Practitioner-example-practitioner.md)

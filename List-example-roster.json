@@ -1,0 +1,35 @@
+{
+  "resourceType" : "List",
+  "id" : "example-roster",
+  "meta" : {
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"]
+  },
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: List example-roster</b></p><a name=\"example-roster\"> </a><a name=\"hcexample-roster\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-roster-list.html\">Hackathon participant roster</a></p></div><table class=\"clstu\"><tr><td>Date: 2026-11-09 08:00:00+0100 </td><td>Mode: Working List </td><td>Status: Current </td><td>Code: Staff roster </td></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td><td>Flag</td></tr><tr><td><a href=\"Person-example-person.html\">Person Alex Example</a></td><td>Track lead</td></tr></table></div>"
+  },
+  "identifier" : [{
+    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list",
+    "value" : "hackathon-2026-staff"
+  }],
+  "status" : "current",
+  "mode" : "working",
+  "code" : {
+    "coding" : [{
+      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "code" : "staff"
+    }]
+  },
+  "date" : "2026-11-09T08:00:00+01:00",
+  "entry" : [{
+    "flag" : {
+      "coding" : [{
+        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "code" : "track-lead"
+      }]
+    },
+    "item" : {
+      "reference" : "Person/example-person"
+    }
+  }]
+}

@@ -1,0 +1,4 @@
+URL,Version,Status,OIDs,Name,Title,Description,Used
+https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose,0.1.0,draft,,ListPurpose,,"","ValueSet/list-purposes"
+https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role,0.1.0,draft,,ParticipationRole,Hackathon participation role,"Event roles only, not professional qualifications.","ValueSet/participation-roles"
+https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track,0.1.0,draft,,Track,2026 Hackathon tracks,"","ValueSet/tracks"

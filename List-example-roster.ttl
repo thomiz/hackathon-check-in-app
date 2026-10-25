@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-roster> a fhir:List ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:Resource.id [ fhir:value "example-roster"] ;
+  fhir:Resource.meta [
+     fhir:Meta.profile [
+       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list" ;
+       fhir:index 0 ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list>
+     ]
+  ] ;
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ] ;
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: List example-roster</b></p><a name=\"example-roster\"> </a><a name=\"hcexample-roster\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-roster-list.html\">Hackathon participant roster</a></p></div><table class=\"clstu\"><tr><td>Date: 2026-11-09 08:00:00+0100 </td><td>Mode: Working List </td><td>Status: Current </td><td>Code: Staff roster </td></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td><td>Flag</td></tr><tr><td><a href=\"Person-example-person.html\">Person Alex Example</a></td><td>Track lead</td></tr></table></div>"
+  ] ;
+  fhir:List.identifier [
+     fhir:index 0 ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list" ] ;
+     fhir:Identifier.value [ fhir:value "hackathon-2026-staff" ]
+  ] ;
+  fhir:List.status [ fhir:value "current"] ;
+  fhir:List.mode [ fhir:value "working"] ;
+  fhir:List.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0 ;
+       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose" ] ;
+       fhir:Coding.code [ fhir:value "staff" ]
+     ]
+  ] ;
+  fhir:List.date [ fhir:value "2026-11-09T08:00:00+01:00"^^xsd:dateTime] ;
+  fhir:List.entry [
+     fhir:index 0 ;
+     fhir:List.entry.flag [
+       fhir:CodeableConcept.coding [
+         fhir:index 0 ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.code [ fhir:value "track-lead" ]
+       ]
+     ] ;
+     fhir:List.entry.item [
+       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-person> ;
+       fhir:Reference.reference [ fhir:value "Person/example-person" ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-roster.ttl> a owl:Ontology ;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

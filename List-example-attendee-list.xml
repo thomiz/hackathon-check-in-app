@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<List xmlns="http://hl7.org/fhir">
+  <id value="example-attendee-list"/>
+  <meta>
+    <profile value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: List example-attendee-list</b></p><a name="example-attendee-list"> </a><a name="hcexample-attendee-list"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-roster-list.html">Hackathon participant roster</a></p></div><table class="clstu"><tr><td>Date: 2026-11-09 08:00:00+0100 </td><td>Mode: Working List </td><td>Status: Current </td><td>Code: Advance sign-ups </td></tr></table><table class="grid"><tr style="backgound-color: #eeeeee"><td><b>Items</b></td><td>Flag</td></tr><tr><td><a href="Person-example-attendee-care-plans.html">Person Robin Sample</a></td><td>Attendee</td></tr><tr><td><a href="Person-example-attendee-medication.html">Person Morgan Demo</a></td><td>Attendee</td></tr><tr><td><a href="Person-example-attendee-ihe.html">Person Taylor Test</a></td><td>Attendee</td></tr><tr><td><a href="Person-example-attendee-ehds.html">Person Casey Example</a></td><td>Attendee</td></tr><tr><td><a href="Person-example-attendee-101.html">Person Jamie Learner</a></td><td>Attendee</td></tr><tr><td><a href="Person-example-attendee-undecided.html">Person Jordan Visitor</a></td><td>Attendee</td></tr></table></div>
+  </text>
+  <identifier>
+    <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list"/>
+    <value value="synthetic-attendee-roster"/>
+  </identifier>
+  <status value="current"/>
+  <mode value="working"/>
+  <code>
+    <coding>
+      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"/>
+      <code value="roster"/>
+    </coding>
+  </code>
+  <date value="2026-11-09T08:00:00+01:00"/>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-care-plans"/>
+    </item>
+  </entry>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-medication"/>
+    </item>
+  </entry>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-ihe"/>
+    </item>
+  </entry>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-ehds"/>
+    </item>
+  </entry>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-101"/>
+    </item>
+  </entry>
+  <entry>
+    <flag>
+      <coding>
+        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <code value="attendee"/>
+      </coding>
+    </flag>
+    <item>
+      <reference value="Person/example-attendee-undecided"/>
+    </item>
+  </entry>
+</List>

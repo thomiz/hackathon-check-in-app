@@ -1,0 +1,38 @@
+{
+  "resourceType" : "Person",
+  "id" : "example-person",
+  "meta" : {
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-person</b></p><a name=\"example-person\"> </a><a name=\"hcexample-person\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Example organization</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-smart\">2026 Hackathon tracks: smart</a> (SMART on FHIR)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-001</p><p><b>name</b>: Alex Example</p><p><b>telecom</b>: <a href=\"mailto:alex@example.invalid\">alex@example.invalid</a></p><h3>Links</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Target</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"Practitioner-example-practitioner.html\">Alex Example (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-001)</a></td></tr></table></div>"
+  },
+  "extension" : [{
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+    "valueString" : "Example organization"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+    "valueCoding" : {
+      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+      "code" : "smart"
+    }
+  }],
+  "identifier" : [{
+    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+    "value" : "synthetic-001"
+  }],
+  "name" : [{
+    "text" : "Alex Example"
+  }],
+  "telecom" : [{
+    "system" : "email",
+    "value" : "alex@example.invalid"
+  }],
+  "link" : [{
+    "target" : {
+      "reference" : "Practitioner/example-practitioner"
+    }
+  }]
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Person xmlns="http://hl7.org/fhir">
+  <id value="example-attendee-ehds"/>
+  <meta>
+    <profile value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+  </meta>
+  <text>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Person example-attendee-ehds</b></p><a name="example-attendee-ehds"> </a><a name="hcexample-attendee-ehds"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-expected-participant.html">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic interoperability group</p><p><b>Confirmed or expected primary track</b>: <a href="CodeSystem-track.html#track-ehds-summary">2026 Hackathon tracks: ehds-summary</a> (EHDS patient summary)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-104</p><p><b>name</b>: Casey Example</p><p><b>telecom</b>: <a href="mailto:casey@example.invalid">casey@example.invalid</a></p></div>
+  </text>
+  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation">
+    <valueString value="Synthetic interoperability group"/>
+  </extension>
+  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track">
+    <valueCoding>
+      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"/>
+      <code value="ehds-summary"/>
+    </valueCoding>
+  </extension>
+  <identifier>
+    <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"/>
+    <value value="synthetic-104"/>
+  </identifier>
+  <name>
+    <text value="Casey Example"/>
+  </name>
+  <telecom>
+    <system value="email"/>
+    <value value="casey@example.invalid"/>
+  </telecom>
+</Person>

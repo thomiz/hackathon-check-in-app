@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="participation-role"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: CodeSystem participation-role</b></p><a name="participation-role"> </a><a name="hcparticipation-role"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role</code> defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style="white-space:nowrap">attendee<a name="participation-role-attendee"> </a></td><td>Attendee</td></tr><tr><td style="white-space:nowrap">track-lead<a name="participation-role-track-lead"> </a></td><td>Track lead</td></tr></table></div>
+  </text>
+  <url value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+  <version value="0.1.0"/>
+  <name value="ParticipationRole"/>
+  <title value="Hackathon participation role"/>
+  <status value="draft"/>
+  <date value="2026-10-25T13:18:28+00:00"/>
+  <publisher value="HL7 Norway"/>
+  <contact>
+    <name value="HL7 Norway"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://www.hl7.no"/>
+    </telecom>
+  </contact>
+  <description value="Event roles only, not professional qualifications."/>
+  <jurisdiction>
+    <coding>
+      <system value="urn:iso:std:iso:3166"/>
+      <code value="NO"/>
+    </coding>
+  </jurisdiction>
+  <caseSensitive value="true"/>
+  <content value="complete"/>
+  <count value="2"/>
+  <concept>
+    <code value="attendee"/>
+    <display value="Attendee"/>
+  </concept>
+  <concept>
+    <code value="track-lead"/>
+    <display value="Track lead"/>
+  </concept>
+</CodeSystem>

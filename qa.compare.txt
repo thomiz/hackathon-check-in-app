@@ -1,0 +1,218 @@
+HackathonAttendanceRegistrationApp : Validation Results
+=========================================
+
+err = 21, warn = 55, info = 22, broken links = 0
+$--
+Generated $--. FHIR version $-- for hackathon-attendance-registration-app#$-- (canonical = https://hl7.no/fhir/ig/hackathon-attendance-registration-app)
+ Build Errors : 6 / 32 / 0
+ /github/workspace/fhir/fsh-generated/resources/CodeSystem-list-purpose : 3 / 2 / 1
+ /github/workspace/fhir/fsh-generated/resources/CodeSystem-participation-role : 1 / 2 / 1
+ /github/workspace/fhir/fsh-generated/resources/CodeSystem-track : 2 / 2 / 1
+ /github/workspace/fhir/fsh-generated/resources/ImplementationGuide-hackathon-attendance-registration-app : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/List-example-attendee-list : 0 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/List-example-checkins : 0 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/List-example-roster : 0 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-101 : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-care-plans : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-ehds : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-ihe : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-medication : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Person-example-attendee-undecided : 0 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/Person-example-person : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/Practitioner-example-attendee-practitioner : 0 / 1 / 3
+ /github/workspace/fhir/fsh-generated/resources/Practitioner-example-practitioner : 0 / 1 / 3
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-affiliation : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-checked-in-participant : 0 / 0 / 3
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-checkin-list : 0 / 0 / 4
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-event-list : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-expected-participant : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-manual-registration : 0 / 1 / 2
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-primary-track : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/StructureDefinition-roster-list : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/ValueSet-list-purposes : 3 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/ValueSet-participation-roles : 3 / 1 / 1
+ /github/workspace/fhir/fsh-generated/resources/ValueSet-tracks : 3 / 1 / 1
+</table>
+
+== n/a ==
+ERROR: ImplementationGuide.definition.parameter[23].value: Supressed messages file not found
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/primary-track.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/manual-registration.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/affiliation.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource ValueSet/list-purposes.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource ValueSet/participation-roles.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource ValueSet/tracks.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource CodeSystem/track.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource CodeSystem/list-purpose.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-101.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-care-plans.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-ehds.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-ihe.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource List/example-attendee-list.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-medication.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Practitioner/example-attendee-practitioner.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-attendee-undecided.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource List/example-checkins.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-person.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Practitioner/example-practitioner.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource List/example-roster.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+ERROR: /github/workspace/fhir/output/index.html: The heading <h1> 'Hackathon attendance registration FHIR model' (id=hackathon-attendance-registration-fhir-model) is at a higher level than the first heading on the page (<h2> 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Scope and terminology' (id=scope-and-terminology) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Participant and list profiles' (id=participant-and-list-profiles) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Event use cases' (id=event-use-cases) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Terminology and examples' (id=terminology-and-examples) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</a>" expecting "</img>" at line 34 column 177
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 79 column 10
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 80 column 9
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 109 column 8
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 111 column 12
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 112 column 20
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 113 column 16
+WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 115 column 12
+WARNING: 1: The HTML fragment 'ip-statements.xhtml' is not included anywhere in the produced implementation guide
+WARNING: 2: An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide
+WARNING: 3: An HTML fragment from the set [dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml] is not included anywhere in the produced implementation guide
+WARNING: 4: The HTML fragment 'globals-table.xhtml' is not included anywhere in the produced implementation guide
+
+
+== fsh-generated/resources/CodeSystem-list-purpose.json ==
+ERROR: CodeSystem/list-purpose: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.title is mandatory, but it is not present
+ERROR: CodeSystem/list-purpose: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.experimental is mandatory, but it is not present
+ERROR: CodeSystem/list-purpose: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.description is mandatory, but it is not present
+WARNING: CodeSystem/list-purpose: CodeSystem.concept[0]: HL7 Defined CodeSystems should ensure that every concept has a definition
+WARNING: Resource: The resource CodeSystem/list-purpose should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/CodeSystem-participation-role.json ==
+ERROR: CodeSystem/participation-role: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.experimental is mandatory, but it is not present
+WARNING: CodeSystem/participation-role: CodeSystem.concept[0]: HL7 Defined CodeSystems should ensure that every concept has a definition
+WARNING: Resource: The resource CodeSystem/participation-role should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/CodeSystem-track.json ==
+ERROR: CodeSystem/track: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.experimental is mandatory, but it is not present
+ERROR: CodeSystem/track: CodeSystem: Code systems published by HL7 SHALL conform to the ShareableCodeSystem profile, which says that the element CodeSystem.description is mandatory, but it is not present
+WARNING: CodeSystem/track: CodeSystem.concept[0]: HL7 Defined CodeSystems should ensure that every concept has a definition
+WARNING: Resource: The resource CodeSystem/track should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/ImplementationGuide-hackathon-attendance-registration-app.json ==
+INFORMATION: Resource: The resource ImplementationGuide/hackathon-attendance-registration-app could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/List-example-attendee-list.json ==
+WARNING: List/example-attendee-list: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+
+
+== fsh-generated/resources/List-example-checkins.json ==
+WARNING: List/example-checkins: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+
+
+== fsh-generated/resources/List-example-roster.json ==
+WARNING: List/example-roster: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+
+
+== fsh-generated/resources/Person-example-attendee-101.json ==
+INFORMATION: Person/example-attendee-101: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-attendee-101: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-attendee-care-plans.json ==
+INFORMATION: Person/example-attendee-care-plans: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-attendee-care-plans: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-attendee-ehds.json ==
+INFORMATION: Person/example-attendee-ehds: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-attendee-ehds: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-attendee-ihe.json ==
+INFORMATION: Person/example-attendee-ihe: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-attendee-ihe: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-attendee-medication.json ==
+INFORMATION: Person/example-attendee-medication: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-attendee-medication: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-attendee-undecided.json ==
+WARNING: Person/example-attendee-undecided: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Person-example-person.json ==
+INFORMATION: Person/example-person: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Person/example-person: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+
+
+== fsh-generated/resources/Practitioner-example-attendee-practitioner.json ==
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Practitioner/example-attendee-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role|0.1.0
+
+
+== fsh-generated/resources/Practitioner-example-practitioner.json ==
+INFORMATION: Practitioner/example-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
+WARNING: Practitioner/example-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Practitioner/example-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role|0.1.0
+
+
+== fsh-generated/resources/StructureDefinition-affiliation.json ==
+INFORMATION: Resource: The resource StructureDefinition/affiliation could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/StructureDefinition-checked-in-participant.json ==
+INFORMATION: StructureDefinition/checked-in-participant: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.3.0 is deprecated with the note: 'Use additionalBinding extension or element instead'
+INFORMATION: Resource: The resource StructureDefinition/checked-in-participant could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/StructureDefinition-checkin-list.json ==
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.snapshot.element[13].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose|0.1.0
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose|0.1.0
+INFORMATION: Resource: The resource StructureDefinition/checkin-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/StructureDefinition-event-list.json ==
+INFORMATION: Resource: The resource StructureDefinition/event-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list'): The Implementation Guide contains no examples for this profile
+
+
+== fsh-generated/resources/StructureDefinition-expected-participant.json ==
+INFORMATION: Resource: The resource StructureDefinition/expected-participant could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/StructureDefinition-manual-registration.json ==
+INFORMATION: Resource: The resource StructureDefinition/manual-registration could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration'): The Implementation Guide contains no examples for this extension
+
+
+== fsh-generated/resources/StructureDefinition-primary-track.json ==
+INFORMATION: Resource: The resource StructureDefinition/primary-track could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/StructureDefinition-roster-list.json ==
+INFORMATION: Resource: The resource StructureDefinition/roster-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/ValueSet-list-purposes.json ==
+ERROR: ValueSet/list-purposes: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.title is mandatory, but it is not present
+ERROR: ValueSet/list-purposes: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.experimental is mandatory, but it is not present
+ERROR: ValueSet/list-purposes: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.description is mandatory, but it is not present
+WARNING: Resource: The resource ValueSet/list-purposes should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/ValueSet-participation-roles.json ==
+ERROR: ValueSet/participation-roles: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.title is mandatory, but it is not present
+ERROR: ValueSet/participation-roles: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.experimental is mandatory, but it is not present
+ERROR: ValueSet/participation-roles: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.description is mandatory, but it is not present
+WARNING: Resource: The resource ValueSet/participation-roles should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+
+== fsh-generated/resources/ValueSet-tracks.json ==
+ERROR: ValueSet/tracks: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.title is mandatory, but it is not present
+ERROR: ValueSet/tracks: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.experimental is mandatory, but it is not present
+ERROR: ValueSet/tracks: ValueSet: Value sets published by HL7 SHALL conform to the ShareableValueSet profile, which says that the element ValueSet.description is mandatory, but it is not present
+WARNING: Resource: The resource ValueSet/tracks should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+

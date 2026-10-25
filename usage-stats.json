@@ -1,0 +1,99 @@
+{
+  "package": "hackathon-attendance-registration-app",
+  "version": "0.1.0",
+  "fhirVersion": "4.0.1",
+  "jurisdiction": "NO",
+  "extensions": [
+    {
+      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+      "title": "Participant affiliation",
+      "types": [
+        "string"
+      ]
+    },
+    {
+      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration",
+      "title": "ManualRegistration",
+      "types": [
+        "boolean"
+      ]
+    },
+    {
+      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+      "title": "Confirmed or expected primary track",
+      "types": [
+        "Coding"
+      ]
+    }
+  ],
+  "profiles": {
+    "Practitioner": [
+      {
+        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant",
+        "title": "Checked-in Hackathon participant"
+      }
+    ],
+    "List": [
+      {
+        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list",
+        "title": "Hackathon participant roster"
+      }
+    ],
+    "Person": [
+      {
+        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant",
+        "title": "Expected Hackathon participant"
+      }
+    ]
+  },
+  "usage": {
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice": [
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice-explanation": [
+      "StructureDefinition.snapshot.element.constraint"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName": [
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet": [
+      "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable": [
+      "StructureDefinition.snapshot.element"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type": [
+      "StructureDefinition.snapshot.element.type"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name": [
+      "ImplementationGuide.definition.page",
+      "ImplementationGuide.definition.page.page"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter": [
+      "ImplementationGuide.definition"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment": [
+      "ImplementationGuide.dependsOn"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/resource-information": [
+      "ImplementationGuide.definition.resource"
+    ],
+    "http://hl7.org/fhir/tools/StructureDefinition/snapshot-base-version": [
+      "StructureDefinition.snapshot"
+    ],
+    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation": [
+      "Person",
+      "Practitioner"
+    ],
+    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration": [
+      "List.entry"
+    ],
+    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track": [
+      "Person",
+      "Practitioner"
+    ]
+  }
+}

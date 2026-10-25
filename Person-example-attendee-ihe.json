@@ -1,0 +1,33 @@
+{
+  "resourceType" : "Person",
+  "id" : "example-attendee-ihe",
+  "meta" : {
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"]
+  },
+  "text" : {
+    "status" : "extensions",
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-ihe</b></p><a name=\"example-attendee-ihe\"> </a><a name=\"hcexample-attendee-ihe\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic integration team</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-ihe-mhd\">2026 Hackathon tracks: ihe-mhd</a> (Document sharing for IHE MHD)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-103</p><p><b>name</b>: Taylor Test</p><p><b>telecom</b>: <a href=\"mailto:taylor@example.invalid\">taylor@example.invalid</a></p></div>"
+  },
+  "extension" : [{
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+    "valueString" : "Synthetic integration team"
+  },
+  {
+    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+    "valueCoding" : {
+      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+      "code" : "ihe-mhd"
+    }
+  }],
+  "identifier" : [{
+    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+    "value" : "synthetic-103"
+  }],
+  "name" : [{
+    "text" : "Taylor Test"
+  }],
+  "telecom" : [{
+    "system" : "email",
+    "value" : "taylor@example.invalid"
+  }]
+}

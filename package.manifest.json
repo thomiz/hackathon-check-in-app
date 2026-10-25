@@ -1,0 +1,7 @@
+{
+  "version" : "0.1.0",
+  "fhirVersion" : ["4.0.1"],
+  "date" : "20261025131828",
+  "name" : "hackathon-attendance-registration-app",
+  "jurisdiction" : "urn:iso:std:iso:3166#NO"
+}
