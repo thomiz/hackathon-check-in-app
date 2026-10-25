@@ -35,6 +35,7 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     <button type="button" onClick={onDone}>Done / clear receipt</button>
   </div>;
   return <section className="success receipt" aria-labelledby="receipt-heading">
+    {actionsContainer ? createPortal(actions, actionsContainer) : actions}
     <h2 id="receipt-heading" tabIndex={-1} ref={heading}>You are checked in, {receipt.name}!</h2>
     <p>{receipt.alreadyCheckedIn ? 'Your existing check-in was found. No duplicate registration was created.' : 'Your attendance has been saved.'}</p>
     <h3>Attendance receipt</h3>
@@ -54,6 +55,6 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     </dl>
     <p className="muted">This receipt confirms check-in, not duration of participation. It is not digitally signed.</p>
     <p className="muted">The receipt includes your email address. Keep your saved copy private. This screen clears in {remaining} seconds.</p>
-    {actionsContainer ? createPortal(actions, actionsContainer) : actions}
+    {actions}
   </section>;
 }

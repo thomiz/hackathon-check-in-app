@@ -169,6 +169,12 @@ instead, import that file with `npm.cmd run import -- staff 'D:\private\reviewed
 Plan a maintenance window: check-in will be unavailable during this procedure.
 Keep the previous known-working application version and a database backup.
 
+The registration app runs directly on Windows; Docker runs only the Blaze FHIR
+server. Changes in `server/`, `src/`, `shared/` or `scripts/` do **not** require
+building or recreating a Docker image. Follow the app test, build and restart
+steps below. The separate Blaze/Docker step applies only when its configuration
+or pinned image changes.
+
 1. Finish active check-ins and stop the app with **Ctrl+C**.
 2. Take a [database backup](README.md#backup-and-restore-of-the-host-data-directory).
    Keep `.env` securely for recovery too.
@@ -205,11 +211,29 @@ Keep the previous known-working application version and a database backup.
    | Agenda source or bundled staff files | Generate if needed, then explicitly import staff as described above. |
    | Attendee CSV | Import the reviewed attendee file as described above. |
    | `.env.example` or configuration requirements | Review new settings and update the private `.env`; do not replace it with the example. |
-   | `compose.yaml` or the pinned Blaze image | Review release-specific upgrade requirements, run `docker compose pull`, then `docker compose up -d` and verify Blaze health. Preserve `BLAZE_DATA_DIR`. |
 
-8. Follow [Normal startup](#normal-startup), then reload the browser so it loads
+8. **If the Blaze configuration or pinned image changed, update Blaze before
+   restarting the app.** This includes changes to `compose.yaml` or Blaze-related
+   `.env` settings. Otherwise, leave the existing Blaze container running and
+   continue to the next step.
+
+   Review release-specific upgrade requirements and preserve `BLAZE_DATA_DIR`;
+   do not point Blaze at a new or empty database directory. Apply the update:
+
+   ```powershell
+   docker compose pull
+   docker compose up -d
+   docker compose ps
+   Invoke-RestMethod 'http://localhost:8090/health'
+   ```
+
+   Wait for Blaze to be healthy before continuing. Compose downloads the pinned
+   image and recreates the container if needed; there is no local Docker image
+   to build with `docker compose build`.
+
+9. Follow [Normal startup](#normal-startup), then reload the browser so it loads
    the new client. If it still shows the old UI, use **Ctrl+F5**.
-9. Check application health, staff login, dashboard counts and the changed
+10. Check application health, staff login, dashboard counts and the changed
    functionality. Rehearse actual check-in changes on a separate test database,
    not by creating fictitious attendance in the live event database.
 

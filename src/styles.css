@@ -4,8 +4,8 @@ body { margin: 0; }
 a { color: #126a70; text-underline-offset: 3px; }
 header { background: #fff; border-bottom: 1px solid #d6e1dc; padding: 20px max(5vw, 20px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .header-receipt-actions:empty { display: none; }
-.brand { font-size: 29px; font-weight: 850; text-decoration: none; color: #153d45; letter-spacing: -1px; }
-.brand span { font-size: 12px; letter-spacing: 2px; margin-left: 8px; }
+.brand { display: inline-flex; flex-shrink: 0; }
+.brand img { display: block; width: 119px; height: auto; }
 main { max-width: 1180px; margin: 0 auto; padding: 46px 24px; }
 .registration { max-width: 740px; }
 .intro { margin-bottom: 30px; }
@@ -46,6 +46,7 @@ button:disabled { opacity: .55; cursor: wait; }
 .receipt-details dd { margin: 4px 0 0; }
 .receipt-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .receipt-actions .secondary { margin-left: 0; }
+.receipt > .receipt-actions:first-child { margin-bottom: 22px; }
 .staff-title, .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .toolbar { justify-content: flex-start; }
 .login { max-width: 450px; }

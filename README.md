@@ -330,7 +330,11 @@ rehearse scanning at the workstation's actual screen size.
 
 The receipt clears after 120 seconds for shared-workstation privacy. **Keep
 receipt open** restarts that period; **Done / clear receipt** clears it immediately.
-These controls appear in the top bar between the brand and navigation link.
+These controls appear both in the top bar between the brand and navigation link
+and at the bottom of the receipt. Both sets control the same receipt and timer.
+The shared page header uses a locally bundled
+[HL7 Norway logo](https://github.com/HL7Norway/best-practice/blob/master/assets/images/logo.png),
+so displaying it does not require internet access.
 The check-in welcome heading is hidden while a receipt is displayed.
 Manual registrations show the same receipt. Staff can use **Show receipt** in
 the arrivals table to reopen a receipt, including after correcting details,

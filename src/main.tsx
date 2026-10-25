@@ -6,6 +6,7 @@ import { Receipt, ReceiptActionsContext } from './Receipt';
 import './styles.css';
 
 const blank: Details = { name: '', email: '', affiliation: '', track: '' };
+const logoUrl = new URL('./hl7-norway-logo.png', import.meta.url).href;
 const message = (error: unknown) => error instanceof Error ? error.message : 'An unexpected error occurred.';
 const letterCount = (value: string) => (value.match(/\p{L}/gu) ?? []).length;
 
@@ -219,7 +220,7 @@ function App() {
     window.addEventListener('hashchange', changed);
     return () => window.removeEventListener('hashchange', changed);
   }, []);
-  return <ReceiptActionsContext.Provider value={receiptActions}><header><a className="brand" href="#">HL7 <span>NORWAY</span></a><div className="header-receipt-actions" ref={setReceiptActions} /><a href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></ReceiptActionsContext.Provider>;
+  return <ReceiptActionsContext.Provider value={receiptActions}><header><a className="brand" href="#"><img src={logoUrl} alt="HL7 Norway" width={170} height={114} /></a><div className="header-receipt-actions" ref={setReceiptActions} /><a href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></ReceiptActionsContext.Provider>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
