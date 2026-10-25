@@ -3,7 +3,9 @@
 body { margin: 0; }
 a { color: #126a70; text-underline-offset: 3px; }
 header { background: #fff; border-bottom: 1px solid #d6e1dc; padding: 20px max(5vw, 20px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.header-receipt-actions:empty { display: none; }
+.event-heading { flex: 1; min-width: 0; }
+.event-heading h1 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 8px; }
+.event-heading .eyebrow { margin: 0; }
 .brand { display: inline-flex; flex-shrink: 0; }
 .brand img { display: block; width: 119px; height: auto; }
 main { max-width: 1180px; margin: 0 auto; padding: 46px 24px; }
@@ -46,7 +48,6 @@ button:disabled { opacity: .55; cursor: wait; }
 .receipt-details dd { margin: 4px 0 0; }
 .receipt-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .receipt-actions .secondary { margin-left: 0; }
-.receipt > .receipt-actions:first-child { margin-bottom: 22px; }
 .staff-title, .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .toolbar { justify-content: flex-start; }
 .login { max-width: 450px; }
@@ -65,7 +66,7 @@ td, th { padding: 14px 10px; border-bottom: 1px solid #e4ebe7; vertical-align: t
 td small { display: inline-block; margin-top: 5px; max-width: 220px; color: #617574; }
 footer { text-align: center; font-size: 12px; color: #617574; padding: 28px 20px; }
 @media (max-width: 650px) {
-  .header-receipt-actions { flex-basis: 100%; }
+  .event-heading { flex-basis: calc(100% - 135px); }
   main { padding: 30px 16px; } .card { padding: 22px 18px; } .staff-columns { grid-template-columns: 1fr; gap: 0; }
   .registration form > button { width: 100%; margin: 8px 0 0; }
   .metrics { grid-template-columns: repeat(2, 1fr); }

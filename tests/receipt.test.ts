@@ -41,11 +41,10 @@ function decodeReceipt(markup: string): string | undefined {
 }
 
 describe('local QR attendance receipts', () => {
-  it('provides the same receipt controls above and below the details without a header container', () => {
+  it('provides receipt controls only below the receipt details', () => {
     const markup = renderReceipt(receipt);
-    expect(markup.match(/Keep receipt open/g)).toHaveLength(2);
-    expect(markup.match(/Done \/ clear receipt/g)).toHaveLength(2);
-    expect(markup.indexOf('Done / clear receipt')).toBeLessThan(markup.indexOf('<h2'));
+    expect(markup.match(/Keep receipt open/g)).toHaveLength(1);
+    expect(markup.match(/Done \/ clear receipt/g)).toHaveLength(1);
     expect(markup.lastIndexOf('Keep receipt open')).toBeGreaterThan(markup.indexOf('</dl>'));
   });
   it('keeps full readable details while encoding only the compact confirmation', () => {

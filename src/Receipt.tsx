@@ -1,10 +1,7 @@
-import { Component, createContext, useContext, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { Component, useEffect, useRef, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { Confirmation } from '../shared/domain';
 import { receiptRole, receiptText, receiptTime, receiptTrack } from '../shared/receipt';
-
-export const ReceiptActionsContext = createContext<HTMLElement | null>(null);
 
 class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
   state = { failed: false };
@@ -22,7 +19,6 @@ class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
 
 export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: () => void }) {
   const [remaining, setRemaining] = useState(120);
-  const actionsContainer = useContext(ReceiptActionsContext);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
   useEffect(() => {
@@ -35,7 +31,6 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     <button type="button" onClick={onDone}>Done / clear receipt</button>
   </div>;
   return <section className="success receipt" aria-labelledby="receipt-heading">
-    {actionsContainer ? createPortal(actions, actionsContainer) : actions}
     <h2 id="receipt-heading" tabIndex={-1} ref={heading}>You are checked in, {receipt.name}!</h2>
     <p>{receipt.alreadyCheckedIn ? 'Your existing check-in was found. No duplicate registration was created.' : 'Your attendance has been saved.'}</p>
     <h3>Attendance receipt</h3>
