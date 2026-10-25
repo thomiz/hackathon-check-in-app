@@ -15,5 +15,7 @@ jurisdiction: urn:iso:std:iso:3166#NO
 pages:
   index.md:
     title: FHIR data model
+    
 menu:
   Home: index.html
+  Artifacts: artifacts.html
