@@ -3,12 +3,12 @@
 body { margin: 0; }
 a { color: #126a70; text-underline-offset: 3px; }
 header { background: #fff; border-bottom: 1px solid #d6e1dc; }
-.header-content { max-width: 740px; margin: 0 auto; padding: 20px 24px; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 16px; }
-.header-navigation { grid-column: 2; grid-row: 1; justify-self: end; }
-.event-heading { grid-column: 1 / -1; grid-row: 2; min-width: 0; text-align: left; }
+.header-content { padding: 20px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 740px) minmax(0, 1fr); align-items: center; row-gap: 16px; }
+.header-navigation { grid-column: 1 / -1; grid-row: 1; justify-self: end; margin-right: max(5vw, 20px); }
+.event-heading { grid-column: 2; grid-row: 2; min-width: 0; padding: 0 24px; text-align: left; }
 .event-heading h1 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 8px; }
 .event-heading .eyebrow { margin: 0; }
-.brand { display: inline-flex; flex-shrink: 0; }
+.brand { display: inline-flex; grid-column: 1 / -1; grid-row: 1; justify-self: start; margin-left: max(5vw, 20px); }
 .brand img { display: block; width: 119px; height: auto; }
 main { max-width: 1180px; margin: 0 auto; padding: 46px 24px; }
 .registration { max-width: 740px; }
@@ -68,7 +68,7 @@ td, th { padding: 14px 10px; border-bottom: 1px solid #e4ebe7; vertical-align: t
 td small { display: inline-block; margin-top: 5px; max-width: 220px; color: #617574; }
 footer { text-align: center; font-size: 12px; color: #617574; padding: 28px 20px; }
 @media (max-width: 650px) {
-  .header-content { padding-right: 16px; padding-left: 16px; }
+  .event-heading { padding-right: 16px; padding-left: 16px; }
   main { padding: 30px 16px; } .card { padding: 22px 18px; } .staff-columns { grid-template-columns: 1fr; gap: 0; }
   .registration form > button { width: 100%; margin: 8px 0 0; }
   .metrics { grid-template-columns: repeat(2, 1fr); }
