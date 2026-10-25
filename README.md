@@ -13,9 +13,6 @@ The view includes business-layer roles, processes and objects, and a Web-app
 application service serving Check-in, Store check-in and Show check-in status.
 The attendee role performs Check-in; the organizer role imports rosters and
 views check-in status. The organizer roster is the app's staff roster.
-The check-in List is included because saved attendance status
-depends on both the Practitioner and its active List entry. Keep the SVG preview
-in sync when editing the draw.io source.
 
 * Live fuzzy name matching after five letters, optional affiliation refinement,
   unchecked-in matches first and already checked-in matches last, ranked by

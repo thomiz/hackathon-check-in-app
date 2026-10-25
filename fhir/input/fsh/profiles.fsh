@@ -41,6 +41,7 @@ Profile: ExpectedParticipant
 Parent: Person
 Id: expected-participant
 Title: "Expected Hackathon participant"
+Description: "For attendees and organizers registered for the event."
 * insert ParticipantDetails
 * link.target only Reference(CheckedInParticipant)
 
@@ -48,7 +49,7 @@ Profile: CheckedInParticipant
 Parent: Practitioner
 Id: checked-in-participant
 Title: "Checked-in Hackathon participant"
-Description: "Event-specific demonstration model. Does not imply healthcare employment or a professional credential."
+Description: "For attendees and organizers checked in to the event. Event-specific demonstration model. Does not imply healthcare employment or a professional credential."
 * insert ParticipantDetails
 * qualification ^slicing.discriminator.type = #value
 * qualification ^slicing.discriminator.path = "code.coding.system"
