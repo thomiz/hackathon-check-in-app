@@ -92,5 +92,14 @@ describe('HTTP authorization and input boundaries', () => {
     }
     expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0, attendees: 0 });
     expect(await service.matches('Alice')).toHaveLength(1);
+    const response = await app!.inject({
+      method: 'POST', url: '/api/staff/import', headers: origin, cookies: { staff },
+      payload: { source: 'roster', csv: csv.replace('alice@example.invalid,Alice Example', 'bob@example.invalid,Bob Example') }
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toEqual({ imported: 1 });
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0 });
+    expect(await service.matches('Alice')).toHaveLength(0);
+    expect(await service.matches('Bob Example')).toHaveLength(1);
   });
 });

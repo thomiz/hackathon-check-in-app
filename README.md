@@ -237,8 +237,9 @@ After updating the master, regenerate and explicitly refresh an existing project
 npm.cmd run import -- staff '.\seed\staff.csv'
 ```
 
-Imports are additive, so removal from the master requires an explicit staff
-data-maintenance step in Blaze as well. The snapshot contains public personal
+Each import replaces the staff list, removing people absent from the latest CSV
+from that list. People still in the attendee list remain in the active roster;
+attendance history is preserved. The snapshot contains public personal
 contact data: protect it in the deployed app, never serve `seed` as static files,
 and include this distribution in the event's privacy review.
 
@@ -270,8 +271,16 @@ Allowed roles: `attendee`, `track-lead`. Other partners/staff are attendees unle
 confirmed as track leads. Allowed track codes appear in the UI and FHIR ValueSet;
 an empty track is allowed. Imports validate every row, reject ambiguous duplicates
 and conflicting roles, and import atomically (maximum 500 rows per import).
-Existing confirmed details are not overwritten by reimports. Imports are additive;
-absent CSV rows do not delete existing roster members.
+Existing confirmed details are not overwritten by reimports. Every import
+replaces the selected list with exactly the supplied rows: always import the
+complete latest CSV, not a file containing only changes. People absent from that
+CSV are removed from that list. The active roster/search is the union of the
+latest attendee and staff lists; import both CSVs if both have changed.
+Person resources and recorded check-ins are retained, so removed people may
+still appear in attendance history and exports, but cannot start a roster-based
+check-in unless they remain in the other list. Re-adding a stable ID reuses the
+existing Person and any recorded check-in. Empty/header-only CSVs are rejected;
+validation or transaction failures leave the previous list unchanged.
 
 ```powershell
 npm.cmd run import -- roster 'D:\private\reviewed-attendees.csv'

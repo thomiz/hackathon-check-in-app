@@ -44,6 +44,7 @@ export async function importRoster(service: RegistrationService, source: 'roster
     const otherList = await service.list(LISTS[source === 'staff' ? 'roster' : 'staff']);
     const all = await service.store.search<Person>('Person', '_count=200');
     const entries = [];
+    list.entry = [];
     for (const row of rows) {
       const existing = all.find(p => p.identifier?.some(i => i.system === ID_SYSTEM && i.value === row.id));
       const resourceId = existing?.id ?? randomUUID();
@@ -70,7 +71,7 @@ export async function importRoster(service: RegistrationService, source: 'roster
       // Reimports must not overwrite confirmed details or track changes made at check-in.
       if (!existing?.link?.length) entries.push(put(person(resourceId, row, existing, row.id), !existing));
       const entry = { item: { reference: `Person/${resourceId}` }, flag: { coding: [{ system: ROLE_SYSTEM, code: row.role }] } };
-      list.entry = [...(list.entry ?? []).filter(e => e.item.reference !== entry.item.reference), entry];
+      list.entry.push(entry);
     }
     list.date = new Date().toISOString();
     entries.push(put(list));

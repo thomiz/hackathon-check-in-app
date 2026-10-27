@@ -12,4 +12,4 @@ const config = loadConfig();
 const service = new RegistrationService(new BlazeStore(config.fhir), config.sessionSecret);
 await service.initialize();
 const count = await importRoster(service, source, parseRoster(await readFile(file, 'utf8')));
-console.log(`Imported ${count} ${source} entries. No attendance was recorded.`);
+console.log(`Imported ${count} ${source} entries. Replaced the selected list; absent rows were removed from it. The other roster and attendance history were preserved. No attendance was recorded.`);

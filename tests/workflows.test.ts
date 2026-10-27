@@ -39,6 +39,62 @@ describe('rosters and matching', () => {
     expect(await service.matches('Alice')).toHaveLength(1);
     expect((await service.dashboard()).totals.staff).toBe(1);
   });
+  it.each(['roster', 'staff'] as const)('replaces only the %s list and rejects stale selections for removed people', async source => {
+    const other = source === 'roster' ? 'staff' : 'roster';
+    await importRoster(service, source, [alice, bob]);
+    await importRoster(service, other, [bob]);
+    const otherList = await service.list(LISTS[other]);
+    const candidate = (await service.matches('Alice')).find(item => item.name === alice.name)!;
+    const selected = await service.select(candidate.token);
+    await importRoster(service, source, [bob]);
+    expect((await service.expected()).map(detailsOf)).toEqual([expect.objectContaining({ name: bob.name })]);
+    expect(await service.list(LISTS[other])).toEqual(otherList);
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, staff: 1, checkedIn: 0 });
+    await expect(service.select(candidate.token)).rejects.toThrow('no longer in either roster');
+    await expect(service.checkin(selected, selected.selection)).rejects.toThrow('no longer exists');
+    expect(await store.search('Person', '')).toHaveLength(2);
+  });
+  it('keeps people searchable until they are absent from both latest lists', async () => {
+    await importRoster(service, 'staff', [alice, bob]);
+    const staff = await service.list(LISTS.staff);
+    await importRoster(service, 'roster', [bob]);
+    expect(await service.list(LISTS.staff)).toEqual(staff);
+    expect((await service.matches('Alice')).some(item => item.name === alice.name)).toBe(true);
+    await importRoster(service, 'staff', [bob]);
+    expect((await service.matches('Alice')).some(item => item.name === alice.name)).toBe(false);
+  });
+  it('preserves attendance and identity when removing and re-adding a checked-in person', async () => {
+    const receipt = await checkin();
+    const people = await store.search<Person>('Person', '');
+    const checkins = await service.list(LISTS.checkins);
+    await importRoster(service, 'roster', [bob]);
+    expect((await service.expected()).map(detailsOf)).toEqual([expect.objectContaining({ name: bob.name })]);
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 1, rosterMissing: 1 });
+    expect(await service.list(LISTS.checkins)).toEqual(checkins);
+    expect(await service.receipt(receipt.receiptId)).toEqual({ ...receipt, alreadyCheckedIn: true });
+    const restored = new RegistrationService(store, 'test-only-session-secret-over-32-characters');
+    expect((await restored.expected()).map(detailsOf)).toEqual([expect.objectContaining({ name: bob.name })]);
+    await importRoster(restored, 'roster', [alice, bob]);
+    expect((await store.search<Person>('Person', '')).find(p => p.id === people[0]!.id)).toEqual(people[0]);
+    const candidate = (await restored.matches('Alice')).find(item => item.name === alice.name)!;
+    const selected = await restored.select(candidate.token);
+    expect(await restored.checkin(selected, selected.selection)).toEqual({ ...receipt, alreadyCheckedIn: true });
+    expect(await store.search('Practitioner', '')).toHaveLength(1);
+  });
+  it('does not replace the list when validation or persistence fails', async () => {
+    const list = await service.list(LISTS.roster);
+    await expect(importRoster(service, 'roster', [bob, { ...alice, role: 'track-lead', id: 'different' }])).rejects.toThrow('Ambiguous');
+    expect(await service.list(LISTS.roster)).toEqual(list);
+    expect(await store.search('Person', '')).toHaveLength(1);
+    store.fail = true;
+    await expect(importRoster(service, 'roster', [bob])).rejects.toThrow('failure');
+    store.fail = false;
+    expect(await service.list(LISTS.roster)).toEqual(list);
+    expect(await store.search('Person', '')).toHaveLength(1);
+    store.conflicts = 1;
+    await importRoster(service, 'roster', [bob]);
+    expect((await service.expected()).map(detailsOf)).toEqual([expect.objectContaining({ name: bob.name })]);
+  });
   it('requires five letters, excludes punctuation and supports near partial names', async () => {
     expect(letterCount('A l-i.c')).toBe(4);
     expect(await service.matches('Alic')).toEqual([]);
@@ -102,6 +158,7 @@ describe('rosters and matching', () => {
   });
   it('reports malformed CSV columns and duplicate rows', async () => {
     expect(() => parseRoster('name,email\nAlice,nope')).toThrow();
+    expect(() => parseRoster('name,email,affiliation,track,role\n')).toThrow();
     await expect(importRoster(service, 'roster', [alice, alice])).rejects.toThrow('Duplicate');
   });
   it('generates valid stable IDs for missing or blank IDs without changing explicit IDs', () => {
@@ -122,7 +179,7 @@ describe('rosters and matching', () => {
     await importRoster(service, 'roster', parseRoster(csv.replace('alicia@example.invalid', 'corrected@example.invalid')));
     await importRoster(service, 'staff', parseRoster(csv));
     expect((await store.search<Person>('Person', '')).map(p => p.id)).toEqual(people.map(p => p.id));
-    expect((await service.dashboard()).totals).toMatchObject({ roster: 2, staff: 1, checkedIn: 0 });
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, staff: 1, checkedIn: 0 });
     expect(await store.search('Practitioner', '')).toHaveLength(0);
   });
   it.each([

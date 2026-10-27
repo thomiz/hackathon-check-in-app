@@ -103,7 +103,8 @@ if you stopped the app or Blaze for the backup, restart them afterwards.
 ### Attendee list changes
 
 1. Export the latest Google Forms attendee CSV. Save it in a private location,
-   for example `D:\private\reviewed-attendees.csv`.
+   for example `D:\private\reviewed-attendees.csv`. Use the **complete latest
+   list**, not only new or changed rows: each import replaces the attendee list.
 2. Review changed people before importing:
    * Missing IDs are generated from name and affiliation. Repeat imports retain
      identity if those fields are unchanged.
@@ -117,11 +118,13 @@ if you stopped the app or Blaze for the backup, restart them afterwards.
    npm.cmd run import -- roster 'D:\private\reviewed-attendees.csv'
    ```
 
-4. Expect `Imported ... roster entries. No attendance was recorded.`
+4. Expect `Imported ... roster entries.` followed by confirmation that the selected
+   list was replaced and attendance history was preserved.
    If validation fails, correct the CSV and retry; the import is atomic.
 5. Refresh the staff dashboard and check the expected roster count and changes.
    The reported import count is the number of input rows, not the number of
-   newly added people. An import does not check anyone in.
+   newly added people. People absent from the CSV are removed from the attendee
+   list. An import does not check anyone in.
 
 You can also paste the CSV into **Import reviewed roster CSV** on the staff
 page with **Google Sheet attendees** selected.
@@ -140,7 +143,7 @@ See [CSV format and ID rules](README.md#google-sheet-attendees-and-optional-staf
 3. Review the generation warnings and `seed\staff.csv`. If someone was renamed,
    reconcile their existing participant ID before importing. Track-associated
    people are `track-lead`; Partner rows are `attendee`.
-4. Explicitly import the generated roster:
+4. Explicitly import the complete generated roster (this replaces the staff list):
 
    ```powershell
    npm.cmd run import -- staff '.\seed\staff.csv'
@@ -154,10 +157,16 @@ instead, import that file with `npm.cmd run import -- staff 'D:\private\reviewed
 
 ### Removals, role changes and already checked-in people
 
-* **Removing a CSV row does not remove that person from the database.** Imports
-  are additive. There is no roster-removal button or CLI command; arrange an
-  approved FHIR data-maintenance change with the maintainer. Do not delete the
-  database or attendance history to remove one person.
+* **Each import replaces only the selected list.** Removing a CSV row and
+  importing the complete updated file removes that person from that list.
+  The active roster/search combines the attendee and staff lists: someone
+  present in either remains eligible. Import both latest CSVs when both change.
+  Empty/header-only CSVs are rejected; failed imports leave the old list intact.
+* Removal from both lists prevents further roster-based selection/check-in,
+  including with an earlier selection token. Existing Person resources,
+  confirmed attendance, receipts and exports are preserved. A removed person
+  who already checked in still appears in attendance history. Do not delete the
+  database or attendance history to remove someone from the active roster.
 * Imports preserve already confirmed check-in details. Use the staff correction
   workflow for a checked-in person's details or event role, then align source
   files with that correction.
