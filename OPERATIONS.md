@@ -420,6 +420,35 @@ is created only at check-in, so their count equals the number of arrivals:
 * All checked-in Practitioners:
   `http://localhost:8090/fhir/Practitioner?_count=500`
 
+### Stop the SSH server after monitoring
+
+1. On the monitoring PC, press `Ctrl+C` in the SSH tunnel terminal.
+2. On the registration PC, open **PowerShell as Administrator** and run:
+
+   ```powershell
+   Stop-Service sshd
+   Get-Service sshd
+   ```
+
+   Confirm that the status is `Stopped`. Stopping the server interrupts SSH
+   access; closing the tunnel alone does not stop the server.
+3. To also prevent SSH from starting automatically after a reboot, run:
+
+   ```powershell
+   Set-Service sshd -StartupType Disabled
+   ```
+
+   Before the next monitoring session, restore automatic startup and start SSH:
+
+   ```powershell
+   Set-Service sshd -StartupType Automatic
+   Start-Service sshd
+   ```
+
+   If you also disabled the firewall rule, re-enable it with
+   `Enable-NetFirewallRule -Name OpenSSH-Server-In-TCP`. This preserves its
+   configured subnet restriction.
+
 ### Security notes
 
 * The 8090 tunnel gives **full read/write/delete** access to Blaze. For
