@@ -376,6 +376,18 @@ Start-Service sshd
   Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -RemoteAddress 172.20.10.0/28
   ```
 
+### Disable rule
+
+ ```powershell
+Disable-NetFirewallRule -Name OpenSSH-Server-In-TCP
+```
+
+### Slacker rules
+
+```powershell
+Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -Enabled True -Profile Private -RemoteAddress LocalSubnet
+```
+
 ### Connect from the monitoring PC
 
 Check the connection, then open the tunnel and leave the window open while
