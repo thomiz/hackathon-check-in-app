@@ -42,7 +42,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
   "name" : "CheckedInParticipant",
   "title" : "Checked-in Hackathon participant",
   "status" : "draft",
-  "date" : "2026-10-29T09:23:29+00:00",
+  "date" : "2026-10-29T13:05:39+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

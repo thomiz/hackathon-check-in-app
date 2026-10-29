@@ -17,7 +17,7 @@
   fhir:CodeSystem.name [ fhir:value "ParticipationRole"] ;
   fhir:CodeSystem.title [ fhir:value "Hackathon participation role"] ;
   fhir:CodeSystem.status [ fhir:value "draft"] ;
-  fhir:CodeSystem.date [ fhir:value "2026-10-29T09:23:29+00:00"^^xsd:dateTime] ;
+  fhir:CodeSystem.date [ fhir:value "2026-10-29T13:05:39+00:00"^^xsd:dateTime] ;
   fhir:CodeSystem.publisher [ fhir:value "HL7 Norway"] ;
   fhir:CodeSystem.contact [
      fhir:index 0 ;
