@@ -17,7 +17,7 @@ Check-in is represented by a linked `Practitioner` referenced from a check-in li
 
 ## Process view
 
-![ArchiMate process view: an organizer imports the participant roster, attendees check in on arrival, and the app records check-ins and provides status using the FHIR backend.](images/attendance-process.svg)
+![ArchiMate process view: an organizer imports the participant roster, attendees check in on arrival, and the app records check-ins and provides status using the FHIR backend.](../images/attendance-process.svg)
 
 Before the event, the organizer imports the expected participants. Each person
 is represented as a `Person` in the `RosterList`, which the app uses as the

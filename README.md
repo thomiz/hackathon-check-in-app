@@ -11,9 +11,9 @@ FHIR namespace and Compose project.
 
 ## Features
 
-![ArchiMate process view: attendee and organizer roles perform registration processes; the Web-app application service serves Check-in, Store check-in and Show check-in status.](fhir/images/attendance-process.svg)
+![ArchiMate process view: attendee and organizer roles perform registration processes; the Web-app application service serves Check-in, Store check-in and Show check-in status.](fhir/input/images/attendance-process.svg)
 
-[Edit the process diagram in draw.io](fhir/images-source/attendance-process.drawio).
+[Edit the process diagram in draw.io](fhir/input/images-source/attendance-process.drawio).
 The view includes business-layer roles, processes and objects, and a Web-app
 application service serving Check-in, Store check-in and Show check-in status.
 The attendee role performs Check-in; the organizer role imports rosters and
