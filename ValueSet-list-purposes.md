@@ -46,7 +46,7 @@
   "version" : "0.6.1",
   "name" : "ListPurposes",
   "status" : "draft",
-  "date" : "2026-10-29T13:05:39+00:00",
+  "date" : "2026-10-29T15:50:41+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

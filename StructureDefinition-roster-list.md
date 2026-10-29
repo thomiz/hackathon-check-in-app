@@ -41,7 +41,7 @@ Other representations of profile: [CSV](StructureDefinition-roster-list.csv), [E
   "name" : "RosterList",
   "title" : "Hackathon participant roster",
   "status" : "draft",
-  "date" : "2026-10-29T13:05:39+00:00",
+  "date" : "2026-10-29T15:50:41+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
