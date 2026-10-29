@@ -6,7 +6,7 @@ see the [README](README.md).
 Run commands in PowerShell from the application folder. For this PC:
 
 ```powershell
-Set-Location 'C:\GitRepo\hackaton-registration-app'
+Set-Location 'C:\GitRepo\hackathon-check-in-app'
 ```
 
 Use your actual installation path if different. Run each numbered step
@@ -52,14 +52,14 @@ See the [event checklist](README.md#verification-and-event-operation).
    Blaze normally takes 10-60 seconds to start. Wait for `healthy` in the
    Compose output and a successful health request before continuing.
 
-4. Start the registration app:
+4. Start the check-in app:
 
    ```powershell
    npm.cmd run start
    ```
 
    **Leave this PowerShell window open.** It runs the app; closing it stops
-   registration access. Docker Desktop alone does not start the registration app.
+   registration access. Docker Desktop alone does not start the check-in app.
 
 5. In a **second PowerShell window**, check application health:
 
@@ -178,7 +178,10 @@ instead, import that file with `npm.cmd run import -- staff 'D:\private\reviewed
 Plan a maintenance window: check-in will be unavailable during this procedure.
 Keep the previous known-working application version and a database backup.
 
-The registration app runs directly on Windows; Docker runs only the Blaze FHIR
+When upgrading to 0.6.0, first follow the
+[namespace and Compose migration guidance](DESIGN.md#upgrading-to-060).
+
+The check-in app runs directly on Windows; Docker runs only the Blaze FHIR
 server. Changes in `server/`, `src/`, `shared/` or `scripts/` do **not** require
 building or recreating a Docker image. Follow the app test, build and restart
 steps below. The separate Blaze/Docker step applies only when its configuration
@@ -278,7 +281,7 @@ reopened in the app after reset.
 
 1. Confirm approval and stop all check-in activity. Export the arrivals CSV
    from the staff dashboard if you need a readable record of the previous run.
-2. Stop the registration app with **Ctrl+C** in its PowerShell window.
+2. Stop the check-in app with **Ctrl+C** in its PowerShell window.
    Stop any other app instance, development server, or import process using
    this database. **Keep the app stopped until verification is complete.**
    The reset command cannot enforce exclusive access by itself.
@@ -346,7 +349,7 @@ authentication instead:
 
 ```text
 Monitoring PC ──(SSH, port 22, key login, encrypted)──> Registration PC
-  localhost:8080  →  registration app (staff dashboard)
+  localhost:8080  →  check-in app (staff dashboard)
   localhost:8090  →  Blaze FHIR API (optional, full access)
 ```
 
@@ -416,7 +419,7 @@ is created only at check-in, so their count equals the number of arrivals:
 * Count of checked-in participants:
   `http://localhost:8090/fhir/Practitioner?_summary=count`
 * Check-in List with arrival times plus the referenced Practitioners:
-  `http://localhost:8090/fhir/List?identifier=https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list%7Chackathon-2026-checkins&_include=List:item`
+  `http://localhost:8090/fhir/List?identifier=https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list%7Chackathon-2026-checkins&_include=List:item`
 * All checked-in Practitioners:
   `http://localhost:8090/fhir/Practitioner?_count=500`
 

@@ -4,6 +4,11 @@ Responsive attendee check-in and authenticated registration-desk tools for
 November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 
+The app and FHIR implementation guide are named `hackathon-check-in-app`,
+version `0.6.0`. Existing installations must follow the
+[0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
+FHIR namespace and Compose project.
+
 ## Features
 
 ![ArchiMate process view: attendee and organizer roles perform registration processes; the Web-app application service serves Check-in, Store check-in and Show check-in status.](docs/attendance-process.svg)
@@ -42,7 +47,7 @@ organization. Use a maintained Node.js LTS release; the application currently
 supports Node.js 18.17+ for compatibility with the development PC.
 
 ```powershell
-Set-Location 'D:\Programdisk-2\GitRepo\hackaton-registration-app'
+Set-Location 'D:\Programdisk-2\GitRepo\hackathon-check-in-app'
 .\scripts\Install-Prerequisites.ps1
 ```
 
@@ -136,10 +141,10 @@ Check that files appeared in the host directory (for example
 `Get-ChildItem .\data\blaze`).
 
 Blaze listens on container port 8080; Compose publishes it **only on loopback**
-as `127.0.0.1:8090`, because the registration app already uses 8080. Blaze runs
+as `127.0.0.1:8090`, because the check-in app already uses 8080. Blaze runs
 **without authentication**: never change the port mapping to `0.0.0.0`, never
 forward it through a firewall or reverse proxy, and never expose it to the venue
-Wi-Fi. Phones and browsers only talk to the registration backend, which is the
+Wi-Fi. Phones and browsers only talk to the check-in backend, which is the
 only Blaze client. Set `FHIR_BASE_URL=http://localhost:8090/fhir` in `.env`.
 Keep `BASE_URL` in `compose.yaml` aligned with the host side
 (`http://localhost:8090`) so search paging works.
@@ -382,7 +387,7 @@ consistent backup is a copy of that directory taken while Blaze is stopped
 (RocksDB files are not consistent while being written):
 
 ```powershell
-# Stop the registration backend first (Ctrl+C in its window), then:
+# Stop the check-in backend first (Ctrl+C in its window), then:
 docker compose stop blaze
 $stamp = Get-Date -Format 'yyyyMMdd-HHmm'
 robocopy '.\data\blaze' "D:\private\blaze-backup-$stamp" /MIR /COPY:DAT /R:1 /W:1

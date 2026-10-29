@@ -1,4 +1,4 @@
-name: hackathon-registration-2026
+name: hackathon-check-in-app
 services:
   blaze:
     image: samply/blaze:1.11.0

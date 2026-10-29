@@ -31,7 +31,7 @@ export async function buildApp(store: FhirStore, config: Config) {
     if (request.url.startsWith('/api/')) {
       reply.header('Cache-Control', 'no-store');
       if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method) && request.headers.origin !== config.publicUrl) {
-        throw new AppError(403, 'This action must originate from the registration website.');
+        throw new AppError(403, 'This action must originate from the check-in website.');
       }
     }
   });

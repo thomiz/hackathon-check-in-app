@@ -65,7 +65,7 @@ Usage: #example
 Instance: example-attendee-list
 InstanceOf: RosterList
 Usage: #example
-* identifier.system = "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list"
+* identifier.system = "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list"
 * identifier.value = "synthetic-attendee-roster"
 * code = ListPurpose#roster
 * date = "2026-11-09T08:00:00+01:00"

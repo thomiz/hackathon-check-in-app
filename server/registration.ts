@@ -167,7 +167,7 @@ export class RegistrationService {
       type: { system: 'http://terminology.hl7.org/CodeSystem/audit-event-type', code: 'rest', display: 'RESTful Operation' },
       action: 'U', recorded: new Date().toISOString(), outcome: '0',
       agent: [{ requestor: true, who: { identifier: { system: `${CANONICAL}/staff`, value: staff } } }],
-      source: { observer: { display: 'Hackathon registration backend' } },
+      source: { observer: { display: 'Hackathon check-in backend' } },
       entity: [{ what: { reference: `Person/${id}` }, description: `${action}: ${reason}` }]
     };
   }

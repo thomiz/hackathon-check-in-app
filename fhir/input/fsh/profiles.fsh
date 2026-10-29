@@ -25,7 +25,7 @@ RuleSet: ParticipantDetails
 * identifier ^slicing.discriminator.path = "system"
 * identifier ^slicing.rules = #open
 * identifier contains eventId 1..1
-* identifier[eventId].system = "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026" (exactly)
+* identifier[eventId].system = "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026" (exactly)
 * identifier[eventId].value 1..1
 * name 1..*
 * name.text 1..1
@@ -56,7 +56,7 @@ Description: "For attendees and organizers checked in to the event. Event-specif
 * qualification ^slicing.rules = #open
 * qualification contains eventRole 1..1
 * qualification[eventRole].code.coding 1..1
-* qualification[eventRole].code.coding.system = "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" (exactly)
+* qualification[eventRole].code.coding.system = "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" (exactly)
 * qualification[eventRole].code.coding.code 1..1
 * qualification[eventRole].code from ParticipationRoles (required)
 

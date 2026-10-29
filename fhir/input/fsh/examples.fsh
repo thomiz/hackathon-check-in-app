@@ -21,7 +21,7 @@ Usage: #example
 Instance: example-roster
 InstanceOf: RosterList
 Usage: #example
-* identifier.system = "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list"
+* identifier.system = "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list"
 * identifier.value = "hackathon-2026-staff"
 * code = ListPurpose#staff
 * date = "2026-11-09T08:00:00+01:00"
@@ -31,7 +31,7 @@ Usage: #example
 Instance: example-checkins
 InstanceOf: CheckinList
 Usage: #example
-* identifier.system = "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list"
+* identifier.system = "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list"
 * identifier.value = "hackathon-2026-checkins"
 * date = "2026-11-09T09:00:00+01:00"
 * entry.item = Reference(example-practitioner)

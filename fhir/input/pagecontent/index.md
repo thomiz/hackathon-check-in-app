@@ -1,4 +1,4 @@
-# Hackathon attendance registration FHIR model
+# Hackathon check-in app FHIR model
 
 This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event
 roster and attendee check-in. It documents the FHIR resources, profiles,

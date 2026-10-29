@@ -2,7 +2,7 @@
   "sourceRepository": "HL7Norway/Norwegian-FHIR-Hackathon-2026",
   "sourceFile": "Norwegian-FHIR-hackathon-2026/input/pagecontent/hack-agenda.md",
   "section": "Track leads and partners",
-  "roleSystem": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+  "roleSystem": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
   "roleRule": "Track-associated rows are track leads; Partner rows are attendees. Membership does not grant staff login.",
   "count": 20,
   "warnings": []

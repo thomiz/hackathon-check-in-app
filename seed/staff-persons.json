@@ -2,23 +2,23 @@
   "resourceType": "Bundle",
   "type": "collection",
   "identifier": {
-    "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/seed",
+    "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/seed",
     "value": "agenda-staff-2026"
   },
   "entry": [
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-762bfa1037d19e1853bca6d8",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-762bfa1037d19e1853bca6d8",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-762bfa1037d19e1853bca6d8",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-762bfa1037d19e1853bca6d8"
           }
         ],
@@ -35,13 +35,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "care-plans"
             }
           }
@@ -49,18 +49,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-ba51f344f5cbc2908d80e375",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-ba51f344f5cbc2908d80e375",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-ba51f344f5cbc2908d80e375",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-ba51f344f5cbc2908d80e375"
           }
         ],
@@ -77,13 +77,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "care-plans"
             }
           }
@@ -91,18 +91,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-b67ed7500b817e8dc24ca8c7",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-b67ed7500b817e8dc24ca8c7",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-b67ed7500b817e8dc24ca8c7",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-b67ed7500b817e8dc24ca8c7"
           }
         ],
@@ -119,13 +119,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "care-plans"
             }
           }
@@ -133,18 +133,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-f04508d4ec406f2503b34ff7",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-f04508d4ec406f2503b34ff7",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-f04508d4ec406f2503b34ff7",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-f04508d4ec406f2503b34ff7"
           }
         ],
@@ -161,13 +161,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "care-plans"
             }
           }
@@ -175,18 +175,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-6dca6949f89191d0571ccf58",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-6dca6949f89191d0571ccf58",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-6dca6949f89191d0571ccf58",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-6dca6949f89191d0571ccf58"
           }
         ],
@@ -203,13 +203,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Helsedirektoratet"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "fhir-101"
             }
           }
@@ -217,18 +217,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-cfef67868a8780ea91d9e9f6",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-cfef67868a8780ea91d9e9f6",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-cfef67868a8780ea91d9e9f6",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-cfef67868a8780ea91d9e9f6"
           }
         ],
@@ -245,13 +245,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Helsedirektoratet"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "fhir-101"
             }
           }
@@ -259,18 +259,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-12756ed4388e0a2b79a62fcd",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-12756ed4388e0a2b79a62fcd",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-12756ed4388e0a2b79a62fcd",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-12756ed4388e0a2b79a62fcd"
           }
         ],
@@ -287,13 +287,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Nav"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "smart"
             }
           }
@@ -301,18 +301,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-0ba8a6fff6053687db713dfb",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-0ba8a6fff6053687db713dfb",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-0ba8a6fff6053687db713dfb",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-0ba8a6fff6053687db713dfb"
           }
         ],
@@ -329,13 +329,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "IHE Norge"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ihe-mhd"
             }
           }
@@ -343,18 +343,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-ebd108d4fbbf3c28b390e7cd",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-ebd108d4fbbf3c28b390e7cd",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-ebd108d4fbbf3c28b390e7cd",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-ebd108d4fbbf3c28b390e7cd"
           }
         ],
@@ -371,13 +371,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ihe-mhd"
             }
           }
@@ -385,18 +385,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-421435794c94154ea53d8755",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-421435794c94154ea53d8755",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-421435794c94154ea53d8755",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-421435794c94154ea53d8755"
           }
         ],
@@ -413,13 +413,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ihe-mhd"
             }
           }
@@ -427,18 +427,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-df74f89dbee5145dd50e6f15",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-df74f89dbee5145dd50e6f15",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-df74f89dbee5145dd50e6f15",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-df74f89dbee5145dd50e6f15"
           }
         ],
@@ -455,13 +455,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ihe-mhd"
             }
           }
@@ -469,18 +469,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-db33224eedbe7dbaa2386a3c",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-db33224eedbe7dbaa2386a3c",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-db33224eedbe7dbaa2386a3c",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-db33224eedbe7dbaa2386a3c"
           }
         ],
@@ -497,13 +497,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NHN"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ihe-mhd"
             }
           }
@@ -511,18 +511,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-ba685b261fc41f40e5ff3929",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-ba685b261fc41f40e5ff3929",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-ba685b261fc41f40e5ff3929",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-ba685b261fc41f40e5ff3929"
           }
         ],
@@ -539,13 +539,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "IHE Norge"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ehds-summary"
             }
           }
@@ -553,18 +553,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-6eb4ec005bccdeccfa91d1ea",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-6eb4ec005bccdeccfa91d1ea",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-6eb4ec005bccdeccfa91d1ea",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-6eb4ec005bccdeccfa91d1ea"
           }
         ],
@@ -581,13 +581,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Helsedirektoratet"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "ehds-summary"
             }
           }
@@ -595,18 +595,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-fe644572ed5339b6484a06b4",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-fe644572ed5339b6484a06b4",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-fe644572ed5339b6484a06b4",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-fe644572ed5339b6484a06b4"
           }
         ],
@@ -623,13 +623,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Helsedirektoratet"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "medication-definition"
             }
           }
@@ -637,18 +637,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-799aa5f524fc3ea064416478",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-799aa5f524fc3ea064416478",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-799aa5f524fc3ea064416478",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-799aa5f524fc3ea064416478"
           }
         ],
@@ -665,13 +665,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NoMA"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "medication-definition"
             }
           }
@@ -679,18 +679,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-c8a0ecb301c579ef8ebd8d4d",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-c8a0ecb301c579ef8ebd8d4d",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-c8a0ecb301c579ef8ebd8d4d",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-c8a0ecb301c579ef8ebd8d4d"
           }
         ],
@@ -707,13 +707,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Sykehuspartner"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "medication-definition"
             }
           }
@@ -721,18 +721,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-788747cfcd455b901f432578",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-788747cfcd455b901f432578",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-788747cfcd455b901f432578",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-788747cfcd455b901f432578"
           }
         ],
@@ -749,13 +749,13 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "NoMA"
           },
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
             "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "medication-definition"
             }
           }
@@ -763,18 +763,18 @@
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-367a277fbf126a593a7a3254",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-367a277fbf126a593a7a3254",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-367a277fbf126a593a7a3254",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-367a277fbf126a593a7a3254"
           }
         ],
@@ -791,25 +791,25 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Bedredelt"
           }
         ]
       }
     },
     {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/agenda-e2d72fcef5e180faf9942943",
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-e2d72fcef5e180faf9942943",
       "resource": {
         "resourceType": "Person",
         "id": "agenda-e2d72fcef5e180faf9942943",
         "meta": {
           "profile": [
-            "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
           ]
         },
         "identifier": [
           {
-            "system": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
             "value": "agenda-e2d72fcef5e180faf9942943"
           }
         ],
@@ -826,7 +826,7 @@
         ],
         "extension": [
           {
-            "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
             "valueString": "Sykehuspartner"
           }
         ]

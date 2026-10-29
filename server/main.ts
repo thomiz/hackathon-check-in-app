@@ -14,7 +14,7 @@ try {
   process.once('SIGTERM', shutdown);
   await app.listen({ host: config.host, port: config.port });
 } catch (error) {
-  app.log.error(error, 'Startup failed; no registration server is available.');
+  app.log.error(error, 'Startup failed; no check-in server is available.');
   await app.close();
   process.exitCode = 1;
 }

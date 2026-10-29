@@ -12,7 +12,7 @@ All application and application-specific FHIR sources live here.
 The application uses a React/TypeScript frontend, a Fastify backend and a local
 Blaze FHIR R4 server. Blaze is the only container; its standalone RocksDB storage
 needs no separate database, cache or administration application. Browsers talk
-only to the registration backend. Blaze is unauthenticated and restricted to
+only to the check-in backend. Blaze is unauthenticated and restricted to
 loopback.
 
 All dashboard data comes from FHIR. There is no production memory fallback or
@@ -48,10 +48,11 @@ paging links outside `FHIR_BASE_URL`.
 
 ## FHIR model and validation
 
-The IG title and package ID are `hackathon-attendance-registration-app`, with
-canonical URL `https://hl7.no/fhir/ig/hackathon-attendance-registration-app`.
-Its FHIR machine-readable name is `HackathonAttendanceRegistrationApp`.
-The repository directory remains `hackaton-registration-app`.
+The IG title and package ID are `hackathon-check-in-app`, with
+canonical URL `https://hl7.no/fhir/ig/hackathon-check-in-app`.
+Its FHIR machine-readable name is `HackathonCheckInApp`.
+The repository, npm package and Compose project are also named
+`hackathon-check-in-app`. The app and IG release version is `0.6.0`.
 
 * Persons represent expected participants and use the event participant
   identifier system.
@@ -95,7 +96,7 @@ QR generation uses `qrcode.react` (ISC license) locally, without an external
 service, API key, font, CDN or internet request. It renders a black-on-white SVG
 with a four-module quiet zone and at least medium error correction. Receipt text
 is embedded directly, not a URL or FHIR JSON, so phones do not need access to the
-registration server to read it. The payload uses "Check-in confirmation" and
+check-in server to read it. The payload uses "Check-in confirmation" and
 includes the event name, participant name/email, primary-track code, original
 arrival time and receipt reference. Event date/location, affiliation, role and
 the participation-duration disclaimer remain on screen only to reduce QR
@@ -117,6 +118,27 @@ transaction failure, persisted receipts and Blaze request shapes.
 
 These steps apply only to deployments running older versions. For a new
 installation, follow the [README setup instructions](README.md#windows-setup).
+
+### Upgrading to 0.6.0
+
+The app and FHIR IG now use `hackathon-check-in-app`. This release changes the
+FHIR canonical namespace, including profile URLs, extensions, terminology and
+identifier systems. Existing Blaze resources are not migrated automatically;
+the new app will not find old rosters or check-ins by their previous identifiers.
+
+Before upgrading, stop the app and stop Blaze with `docker compose stop` using
+the old Compose project configuration. The renamed Compose project otherwise
+creates a separate container that can conflict on port 8090 or the same Blaze
+data directory. Back up `BLAZE_DATA_DIR` while Blaze is stopped.
+
+If existing attendance must be retained, migrate the old app-specific canonical
+URLs in the saved resources to the new namespace and validate the migrated data
+before restarting the app. Do not mix old and new namespaces in a live database.
+For a rehearsal with no attendance to retain, use a new Blaze data directory and
+reimport the reviewed rosters instead; keep the backup.
+
+Rebuild the FHIR definitions and package from clean generated output so the
+previously named ImplementationGuide and old canonical resources are not retained.
 
 ### Replacing emailed receipts
 

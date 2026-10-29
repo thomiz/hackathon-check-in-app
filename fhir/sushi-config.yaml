@@ -1,9 +1,9 @@
-id: hackathon-attendance-registration-app
-canonical: https://hl7.no/fhir/ig/hackathon-attendance-registration-app
-name: HackathonAttendanceRegistrationApp
-title: hackathon-attendance-registration-app
+id: hackathon-check-in-app
+canonical: https://hl7.no/fhir/ig/hackathon-check-in-app
+name: HackathonCheckInApp
+title: hackathon-check-in-app
 status: draft
-version: 0.5.0
+version: 0.6.0
 fhirVersion: 4.0.1
 copyrightYear: 2026+
 releaseLabel: ci-build

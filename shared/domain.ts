@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CANONICAL = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app';
+export const CANONICAL = 'https://hl7.no/fhir/ig/hackathon-check-in-app';
 export const EVENT = 'hackathon-2026';
 export const ID_SYSTEM = `${CANONICAL}/identifier/participant-2026`;
 export const ROLE_SYSTEM = `${CANONICAL}/CodeSystem/participation-role`;

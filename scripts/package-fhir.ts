@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 import { CANONICAL } from '../shared/domain.js';
 
 const generated = resolve('fhir', 'fsh-generated', 'resources');
+const { name, version } = JSON.parse(await readFile(resolve('package.json'), 'utf8')) as { name: string; version: string };
 const output = resolve('fhir', 'output');
 const staging = join(output, 'package');
 await mkdir(staging, { recursive: true });
@@ -19,9 +20,9 @@ for (const name of await readdir(generated)) {
   }
 }
 await writeFile(join(staging, 'package.json'), JSON.stringify({
-  name: 'hackathon-attendance-registration-app', version: '0.1.0', type: 'fhir.ig',
+  name, version, type: 'fhir.ig',
   canonical: CANONICAL, fhirVersions: ['4.0.1'], dependencies: { 'hl7.fhir.r4.core': '4.0.1' },
-  title: 'hackathon-attendance-registration-app'
+  title: name
 }, null, 2));
 const result = spawnSync('tar', ['-czf', join(output, 'package.tgz'), '-C', output, 'package'], { stdio: 'inherit' });
 if (result.error) throw result.error;
