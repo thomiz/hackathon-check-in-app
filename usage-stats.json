@@ -1,25 +1,25 @@
 {
-  "package": "hackathon-attendance-registration-app",
-  "version": "0.1.0",
+  "package": "hackathon-check-in-app",
+  "version": "0.6.0",
   "fhirVersion": "4.0.1",
   "jurisdiction": "NO",
   "extensions": [
     {
-      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+      "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
       "title": "Participant affiliation",
       "types": [
         "string"
       ]
     },
     {
-      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration",
+      "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration",
       "title": "ManualRegistration",
       "types": [
         "boolean"
       ]
     },
     {
-      "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+      "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
       "title": "Confirmed or expected primary track",
       "types": [
         "Coding"
@@ -29,19 +29,19 @@
   "profiles": {
     "Practitioner": [
       {
-        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant",
+        "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant",
         "title": "Checked-in Hackathon participant"
       }
     ],
     "List": [
       {
-        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list",
+        "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list",
         "title": "Hackathon participant roster"
       }
     ],
     "Person": [
       {
-        "url": "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant",
+        "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant",
         "title": "Expected Hackathon participant"
       }
     ]
@@ -84,14 +84,14 @@
     "http://hl7.org/fhir/tools/StructureDefinition/snapshot-base-version": [
       "StructureDefinition.snapshot"
     ],
-    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation": [
+    "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation": [
       "Person",
       "Practitioner"
     ],
-    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration": [
+    "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration": [
       "List.entry"
     ],
-    "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track": [
+    "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track": [
       "Person",
       "Practitioner"
     ]

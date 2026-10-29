@@ -1,4 +1,4 @@
-# 2026 Hackathon tracks - hackathon-attendance-registration-app v0.1.0
+# 2026 Hackathon tracks - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:Track |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:Track |
 
  This Code system is referenced in the content logical definition of the following value sets: 
 
@@ -23,12 +23,12 @@
 {
   "resourceType" : "CodeSystem",
   "id" : "track",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
+  "version" : "0.6.0",
   "name" : "Track",
   "title" : "2026 Hackathon tracks",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

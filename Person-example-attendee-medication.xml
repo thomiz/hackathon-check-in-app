@@ -3,22 +3,22 @@
 <Person xmlns="http://hl7.org/fhir">
   <id value="example-attendee-medication"/>
   <meta>
-    <profile value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+    <profile value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
   </meta>
   <text>
-    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Person example-attendee-medication</b></p><a name="example-attendee-medication"> </a><a name="hcexample-attendee-medication"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-expected-participant.html">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic medicines agency</p><p><b>Confirmed or expected primary track</b>: <a href="CodeSystem-track.html#track-medication-definition">2026 Hackathon tracks: medication-definition</a> (Medication Definition on FHIR - Exploration of FHIR services from EMA and NoMA)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-102</p><p><b>name</b>: Morgan Demo</p><p><b>telecom</b>: <a href="mailto:morgan@example.invalid">morgan@example.invalid</a></p></div>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Person example-attendee-medication</b></p><a name="example-attendee-medication"> </a><a name="hcexample-attendee-medication"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-expected-participant.html">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic medicines agency</p><p><b>Confirmed or expected primary track</b>: <a href="CodeSystem-track.html#track-medication-definition">2026 Hackathon tracks: medication-definition</a> (Medication Definition on FHIR - Exploration of FHIR services from EMA and NoMA)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026</code>/synthetic-102</p><p><b>name</b>: Morgan Demo</p><p><b>telecom</b>: <a href="mailto:morgan@example.invalid">morgan@example.invalid</a></p></div>
   </text>
-  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation">
+  <extension url="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation">
     <valueString value="Synthetic medicines agency"/>
   </extension>
-  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track">
+  <extension url="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track">
     <valueCoding>
-      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"/>
+      <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track"/>
       <code value="medication-definition"/>
     </valueCoding>
   </extension>
   <identifier>
-    <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"/>
+    <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026"/>
     <value value="synthetic-102"/>
   </identifier>
   <name>

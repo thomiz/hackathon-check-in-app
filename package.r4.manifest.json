@@ -1,6 +1,6 @@
 {
-  "version" : "0.1.0",
-  "date" : "20261025131828",
+  "version" : "0.6.0",
+  "date" : "20261029070630",
   "notForPublication" : true,
-  "name" : "hackathon-attendance-registration-app.r4"
+  "name" : "hackathon-check-in-app.r4"
 }

@@ -5,19 +5,19 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role> a fhir:CodeSystem ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role> a fhir:CodeSystem ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:Resource.id [ fhir:value "participation-role"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem participation-role</b></p><a name=\"participation-role\"> </a><a name=\"hcparticipation-role\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">attendee<a name=\"participation-role-attendee\"> </a></td><td>Attendee</td></tr><tr><td style=\"white-space:nowrap\">track-lead<a name=\"participation-role-track-lead\"> </a></td><td>Track lead</td></tr></table></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem participation-role</b></p><a name=\"participation-role\"> </a><a name=\"hcparticipation-role\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">attendee<a name=\"participation-role-attendee\"> </a></td><td>Attendee</td></tr><tr><td style=\"white-space:nowrap\">track-lead<a name=\"participation-role-track-lead\"> </a></td><td>Track lead</td></tr></table></div>"
   ] ;
-  fhir:CodeSystem.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"] ;
-  fhir:CodeSystem.version [ fhir:value "0.1.0"] ;
+  fhir:CodeSystem.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role"] ;
+  fhir:CodeSystem.version [ fhir:value "0.6.0"] ;
   fhir:CodeSystem.name [ fhir:value "ParticipationRole"] ;
   fhir:CodeSystem.title [ fhir:value "Hackathon participation role"] ;
   fhir:CodeSystem.status [ fhir:value "draft"] ;
-  fhir:CodeSystem.date [ fhir:value "2026-10-25T13:18:28+00:00"^^xsd:dateTime] ;
+  fhir:CodeSystem.date [ fhir:value "2026-10-29T07:06:30+00:00"^^xsd:dateTime] ;
   fhir:CodeSystem.publisher [ fhir:value "HL7 Norway"] ;
   fhir:CodeSystem.contact [
      fhir:index 0 ;
@@ -52,7 +52,7 @@
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

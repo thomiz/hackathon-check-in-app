@@ -100,11 +100,11 @@
     "sources" : ["2.16.840.1.113883.4.642.3.20"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
     "StructureDefinition-expected-participant.html" : "Expected Hackathon participant",
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant",
     "StructureDefinition-roster-list.html" : "Hackathon participant roster",
-    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/list-empty-reason",
@@ -118,9 +118,9 @@
     "sources" : ["2.16.840.1.113883.4.642.3.322"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/list-item-flag",
@@ -134,8 +134,8 @@
     "sources" : ["2.16.840.1.113883.4.642.3.320"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
-    "StructureDefinition-checkin-list.html" : "Hackathon check-in list"
+    "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/list-mode",
@@ -149,9 +149,9 @@
     "sources" : ["2.16.840.1.113883.4.642.3.318"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/list-order",
@@ -165,9 +165,9 @@
     "sources" : ["2.16.840.1.113883.4.642.3.324"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/list-status",
@@ -181,9 +181,9 @@
     "sources" : ["2.16.840.1.113883.4.642.3.326"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://hl7.org/fhir/ValueSet/name-use",
@@ -212,9 +212,9 @@
     "sources" : ["2.16.840.1.113883.4.642.3.27"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
     "url" : "http://terminology.hl7.org/ValueSet/v2-2.7-0360",
@@ -229,40 +229,40 @@
     "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
   },
   {
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes",
-    "version" : "0.1.0",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes",
+    "version" : "0.6.0",
     "status" : "draft",
     "name" : "ListPurposes",
     "title" : null,
     "description" : "",
-    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"],
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose"],
     "uses" : {
     },
-    "StructureDefinition-event-list.html" : "Hackathon event list",
     "StructureDefinition-checkin-list.html" : "Hackathon check-in list",
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
+    "StructureDefinition-event-list.html" : "Hackathon event list"
   },
   {
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles",
-    "version" : "0.1.0",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles",
+    "version" : "0.6.0",
     "status" : "draft",
     "name" : "ParticipationRoles",
     "title" : null,
     "description" : "",
-    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"],
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role"],
     "uses" : {
     },
-    "StructureDefinition-roster-list.html" : "Hackathon participant roster",
-    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant"
+    "StructureDefinition-checked-in-participant.html" : "Checked-in Hackathon participant",
+    "StructureDefinition-roster-list.html" : "Hackathon participant roster"
   },
   {
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks",
-    "version" : "0.1.0",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks",
+    "version" : "0.6.0",
     "status" : "draft",
     "name" : "Tracks",
     "title" : null,
     "description" : "",
-    "systems" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"],
+    "systems" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track"],
     "uses" : {
     },
     "StructureDefinition-primary-track.html" : "Confirmed or expected primary track"

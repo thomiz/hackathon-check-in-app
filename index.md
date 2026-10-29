@@ -1,4 +1,4 @@
-# FHIR data model - hackathon-attendance-registration-app v0.1.0
+# FHIR data model - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * **FHIR data model**
@@ -7,10 +7,10 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:HackathonAttendanceRegistrationApp |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:HackathonCheckInApp |
 
-# Hackathon attendance registration FHIR model
+# Hackathon check-in app FHIR model
 
 This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event roster and attendee check-in. It documents the FHIR resources, profiles, extensions, terminology and examples used to represent those records. It does not describe the internal operation or architecture of any application.
 
@@ -76,13 +76,13 @@ The guide defines code systems and value sets for list purposes, participation r
 ```json
 {
   "resourceType" : "ImplementationGuide",
-  "id" : "hackathon-attendance-registration-app",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app",
-  "version" : "0.1.0",
-  "name" : "HackathonAttendanceRegistrationApp",
-  "title" : "hackathon-attendance-registration-app",
+  "id" : "hackathon-check-in-app",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
+  "version" : "0.6.0",
+  "name" : "HackathonCheckInApp",
+  "title" : "hackathon-check-in-app",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -98,7 +98,7 @@ The guide defines code systems and value sets for list purposes, participation r
       "code" : "NO"
     }]
   }],
-  "packageId" : "hackathon-attendance-registration-app",
+  "packageId" : "hackathon-check-in-app",
   "license" : "CC0-1.0",
   "fhirVersion" : ["4.0.1"],
   "dependsOn" : [{
@@ -109,7 +109,7 @@ The guide defines code systems and value sets for list purposes, participation r
     }],
     "uri" : "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
     "packageId" : "hl7.terminology.r4",
-    "version" : "7.4.0"
+    "version" : "7.5.0"
   },
   {
     "id" : "hl7ext",
@@ -119,7 +119,7 @@ The guide defines code systems and value sets for list purposes, participation r
     }],
     "uri" : "http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions",
     "packageId" : "hl7.fhir.uv.extensions.r4",
-    "version" : "5.3.0"
+    "version" : "5.4.0"
   }],
   "definition" : {
     "extension" : [{
@@ -232,7 +232,7 @@ The guide defines code systems and value sets for list purposes, participation r
       },
       {
         "url" : "value",
-        "valueString" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/history.html"
+        "valueString" : "https://hl7.no/fhir/ig/hackathon-check-in-app/history.html"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -460,7 +460,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-101"
       },
       "name" : "example-attendee-101",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -475,7 +475,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-care-plans"
       },
       "name" : "example-attendee-care-plans",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -490,7 +490,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-ehds"
       },
       "name" : "example-attendee-ehds",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -505,7 +505,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-ihe"
       },
       "name" : "example-attendee-ihe",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -520,7 +520,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "List/example-attendee-list"
       },
       "name" : "example-attendee-list",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list"
     },
     {
       "extension" : [{
@@ -535,7 +535,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-medication"
       },
       "name" : "example-attendee-medication",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -550,7 +550,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Practitioner/example-attendee-practitioner"
       },
       "name" : "example-attendee-practitioner",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"
     },
     {
       "extension" : [{
@@ -565,7 +565,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-attendee-undecided"
       },
       "name" : "example-attendee-undecided",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -580,7 +580,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "List/example-checkins"
       },
       "name" : "example-checkins",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list"
     },
     {
       "extension" : [{
@@ -595,7 +595,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Person/example-person"
       },
       "name" : "example-person",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
     },
     {
       "extension" : [{
@@ -610,7 +610,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "Practitioner/example-practitioner"
       },
       "name" : "example-practitioner",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"
     },
     {
       "extension" : [{
@@ -625,7 +625,7 @@ The guide defines code systems and value sets for list purposes, participation r
         "reference" : "List/example-roster"
       },
       "name" : "example-roster",
-      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"
+      "exampleCanonical" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list"
     },
     {
       "extension" : [{

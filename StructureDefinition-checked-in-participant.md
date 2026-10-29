@@ -1,4 +1,4 @@
-# Checked-in Hackathon participant - hackathon-attendance-registration-app v0.1.0
+# Checked-in Hackathon participant - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:CheckedInParticipant |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:CheckedInParticipant |
 
  
 For attendees and organizers checked in to the event. Event-specific demonstration model. Does not imply healthcare employment or a professional credential. 
@@ -19,7 +19,7 @@ For attendees and organizers checked in to the event. Event-specific demonstrati
 * Refer to this Profile: [Hackathon check-in list](StructureDefinition-checkin-list.md) and [Expected Hackathon participant](StructureDefinition-expected-participant.md)
 * Examples for this Profile: [Practitioner/example-attendee-practitioner](Practitioner-example-attendee-practitioner.md) and [Practitioner/example-practitioner](Practitioner-example-practitioner.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-checked-in-participant.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-checked-in-participant.json)
 
 ### Formal Views of Profile Content
 
@@ -37,12 +37,12 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
 {
   "resourceType" : "StructureDefinition",
   "id" : "checked-in-participant",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant",
+  "version" : "0.6.0",
   "name" : "CheckedInParticipant",
   "title" : "Checked-in Hackathon participant",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -110,7 +110,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
       "max" : "1",
       "type" : [{
         "code" : "Extension",
-        "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation"]
+        "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation"]
       }]
     },
     {
@@ -121,7 +121,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
       "max" : "1",
       "type" : [{
         "code" : "Extension",
-        "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track"]
+        "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track"]
       }]
     },
     {
@@ -147,7 +147,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
       "id" : "Practitioner.identifier:eventId.system",
       "path" : "Practitioner.identifier.system",
       "min" : 1,
-      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"
+      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026"
     },
     {
       "id" : "Practitioner.identifier:eventId.value",
@@ -218,7 +218,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
       "path" : "Practitioner.qualification.code",
       "binding" : {
         "strength" : "required",
-        "valueSet" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles"
+        "valueSet" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles"
       }
     },
     {
@@ -231,7 +231,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
       "id" : "Practitioner.qualification:eventRole.code.coding.system",
       "path" : "Practitioner.qualification.code.coding.system",
       "min" : 1,
-      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"
+      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role"
     },
     {
       "id" : "Practitioner.qualification:eventRole.code.coding.code",

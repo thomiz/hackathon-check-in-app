@@ -46,10 +46,10 @@ ext-1:Must have either extensions or value[x], not both {extension.exists() != v
 "List.code","List.code","","","",1,1,"","","Y","CodeableConcept {[]} {[]}
 ","What the purpose of this list is","This code defines the purpose of the list - why it was created.","If there is no code, the purpose of the list is implied where it is used, such as in a document section using Document.section.code.","Lists often contain subsets of resources rather than an exhaustive list.  The code identifies what type of subset is included.","","","","<valueCodeableConcept xmlns=""http://hl7.org/fhir"">
   <coding>
-    <system value=""https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose""/>
+    <system value=""https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose""/>
     <code value=""checkins""/>
   </coding>
-</valueCodeableConcept>","","","",,"required","","https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes","",,,,"List.code",0,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
+</valueCodeableConcept>","","","",,"required","","https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes","",,,,"List.code",0,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ",".code","FiveWs.what[x]"
 "List.subject","List.subject","","","",0,1,"","","Y","Reference {[]} {[CanonicalType[http://hl7.org/fhir/StructureDefinition/Patient|4.0.1], CanonicalType[http://hl7.org/fhir/StructureDefinition/Group|4.0.1], CanonicalType[http://hl7.org/fhir/StructureDefinition/Device|4.0.1], CanonicalType[http://hl7.org/fhir/StructureDefinition/Location|4.0.1]]}
 ","If all resources have the same subject","The common subject (or patient) of the resources that are in the list if there is one.","Some purely arbitrary lists do not have a common subject, so this is optional.","The primary purpose of listing the subject explicitly is to help with finding the right list.","","","","","","","",,,,,"",,,,"List.subject",0,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
@@ -80,7 +80,7 @@ ext-1:Must have either extensions or value[x], not both {extension.exists() != v
 ","Extension","An Extension","","","","","","","","","",,,,,"","value:url}
 ","",,"open","Element.extension",0,*,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ext-1:Must have either extensions or value[x], not both {extension.exists() != value.exists()}"
-"List.entry.extension:manualRegistration","List.entry.extension","manualRegistration","","",0,1,"","","","Extension {[CanonicalType[https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration]]} {[]}
+"List.entry.extension:manualRegistration","List.entry.extension","manualRegistration","","",0,1,"","","","Extension {[CanonicalType[https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration]]} {[]}
 ","Optional Extensions Element","Optional Extension Element - found in all resources.","","","","","","","","","",,,,,"",,,,"Element.extension",0,*,"ele-1
 ","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ext-1:Must have either extensions or value[x], not both {extension.exists() != value.exists()}","n/a","N/A"
@@ -100,7 +100,7 @@ ext-1:Must have either extensions or value[x], not both {extension.exists() != v
 "List.entry.date","List.entry.date","","","",1,1,"","","","dateTime {[]} {[]}
 ","When item added to list","When this item was added to the list.","","The date may be significant for understanding the meaning of items in a working list.","","","","","","","",,,,,"",,,,"List.entry.date",0,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ",".availabilityTime"
-"List.entry.item","List.entry.item","","","",1,1,"","","","Reference {[]} {[CanonicalType[https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant]]}
+"List.entry.item","List.entry.item","","","",1,1,"","","","Reference {[]} {[CanonicalType[https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant]]}
 ","Actual entry","A reference to the actual resource from which data was derived.","","","","","","","","","",,,,,"",,,,"List.entry.item",1,1,"","ele-1:All FHIR elements must have a @value or children {hasValue() or (children().count() > id.count())}
 ",".target or .role or .role.entity"
 "List.entry.item.id","List.entry.item.id","","","",0,1,"","","","string {[]} {[]}

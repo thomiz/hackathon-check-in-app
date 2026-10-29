@@ -5,18 +5,18 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose> a fhir:CodeSystem ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose> a fhir:CodeSystem ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:Resource.id [ fhir:value "list-purpose"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem list-purpose</b></p><a name=\"list-purpose\"> </a><a name=\"hclist-purpose\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">roster<a name=\"list-purpose-roster\"> </a></td><td>Advance sign-ups</td></tr><tr><td style=\"white-space:nowrap\">staff<a name=\"list-purpose-staff\"> </a></td><td>Staff roster</td></tr><tr><td style=\"white-space:nowrap\">checkins<a name=\"list-purpose-checkins\"> </a></td><td>Actual arrivals</td></tr></table></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem list-purpose</b></p><a name=\"list-purpose\"> </a><a name=\"hclist-purpose\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">roster<a name=\"list-purpose-roster\"> </a></td><td>Advance sign-ups</td></tr><tr><td style=\"white-space:nowrap\">staff<a name=\"list-purpose-staff\"> </a></td><td>Staff roster</td></tr><tr><td style=\"white-space:nowrap\">checkins<a name=\"list-purpose-checkins\"> </a></td><td>Actual arrivals</td></tr></table></div>"
   ] ;
-  fhir:CodeSystem.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"] ;
-  fhir:CodeSystem.version [ fhir:value "0.1.0"] ;
+  fhir:CodeSystem.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose"] ;
+  fhir:CodeSystem.version [ fhir:value "0.6.0"] ;
   fhir:CodeSystem.name [ fhir:value "ListPurpose"] ;
   fhir:CodeSystem.status [ fhir:value "draft"] ;
-  fhir:CodeSystem.date [ fhir:value "2026-10-25T13:18:28+00:00"^^xsd:dateTime] ;
+  fhir:CodeSystem.date [ fhir:value "2026-10-29T07:06:30+00:00"^^xsd:dateTime] ;
   fhir:CodeSystem.publisher [ fhir:value "HL7 Norway"] ;
   fhir:CodeSystem.contact [
      fhir:index 0 ;
@@ -54,7 +54,7 @@
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

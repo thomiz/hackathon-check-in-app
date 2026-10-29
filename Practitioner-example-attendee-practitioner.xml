@@ -3,22 +3,22 @@
 <Practitioner xmlns="http://hl7.org/fhir">
   <id value="example-attendee-practitioner"/>
   <meta>
-    <profile value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"/>
+    <profile value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"/>
   </meta>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Practitioner example-attendee-practitioner</b></p><a name="example-attendee-practitioner"> </a><a name="hcexample-attendee-practitioner"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant</a></p></div><p style="border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;">Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-105)</p><hr/><table class="grid"><tr><td style="background-color: #f3f5da" title="Ways to contact the Practitioner">Contact Detail</td><td colspan="3"><a href="mailto:jamie@example.invalid">jamie@example.invalid</a></td></tr><tr><td style="background-color: #f3f5da" title="Certification, licensure, or training pertaining to the provision of care">Qualification:</td><td colspan="3"><span title="Codes:{https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role attendee}">Attendee</span></td></tr><tr><td style="background-color: #f3f5da"><a href="StructureDefinition-primary-track.html">Confirmed or expected primary track</a></td><td colspan="3"><a href="CodeSystem-track.html#track-fhir-101">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</td></tr><tr><td style="background-color: #f3f5da"><a href="StructureDefinition-affiliation.html">Participant affiliation</a></td><td colspan="3">Synthetic university</td></tr></table></div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Practitioner example-attendee-practitioner</b></p><a name="example-attendee-practitioner"> </a><a name="hcexample-attendee-practitioner"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant</a></p></div><p style="border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;">Jamie Learner (https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026#synthetic-105)</p><hr/><table class="grid"><tr><td style="background-color: #f3f5da" title="Ways to contact the Practitioner">Contact Detail</td><td colspan="3"><a href="mailto:jamie@example.invalid">jamie@example.invalid</a></td></tr><tr><td style="background-color: #f3f5da" title="Certification, licensure, or training pertaining to the provision of care">Qualification:</td><td colspan="3"><span title="Codes:{https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role attendee}">Attendee</span></td></tr><tr><td style="background-color: #f3f5da"><a href="StructureDefinition-affiliation.html">Participant affiliation</a></td><td colspan="3">Synthetic university</td></tr><tr><td style="background-color: #f3f5da"><a href="StructureDefinition-primary-track.html">Confirmed or expected primary track</a></td><td colspan="3"><a href="CodeSystem-track.html#track-fhir-101">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</td></tr></table></div>
   </text>
-  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation">
+  <extension url="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation">
     <valueString value="Synthetic university"/>
   </extension>
-  <extension url="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track">
+  <extension url="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track">
     <valueCoding>
-      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track"/>
+      <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track"/>
       <code value="fhir-101"/>
     </valueCoding>
   </extension>
   <identifier>
-    <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"/>
+    <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026"/>
     <value value="synthetic-105"/>
   </identifier>
   <name>
@@ -31,7 +31,7 @@
   <qualification>
     <code>
       <coding>
-        <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role"/>
+        <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role"/>
         <code value="attendee"/>
       </coding>
     </code>

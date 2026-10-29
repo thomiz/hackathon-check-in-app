@@ -5,35 +5,35 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-101> a fhir:Person ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-101> a fhir:Person ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:Resource.id [ fhir:value "example-attendee-101"] ;
   fhir:Resource.meta [
      fhir:Meta.profile [
-       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
+       fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
        fhir:index 0 ;
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
      ]
   ] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "extensions" ] ;
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-101</b></p><a name=\"example-attendee-101\"> </a><a name=\"hcexample-attendee-101\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic university</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-fhir-101\">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-105</p><p><b>name</b>: Jamie Learner</p><p><b>telecom</b>: <a href=\"mailto:jamie@example.invalid\">jamie@example.invalid</a></p><h3>Links</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Target</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"Practitioner-example-attendee-practitioner.html\">Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-105)</a></td></tr></table></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-101</b></p><a name=\"example-attendee-101\"> </a><a name=\"hcexample-attendee-101\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic university</p><p><b>Confirmed or expected primary track</b>: <a href=\"CodeSystem-track.html#track-fhir-101\">2026 Hackathon tracks: fhir-101</a> (FHIR 101: Introduction to HL7 FHIR with practical assignments)</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026</code>/synthetic-105</p><p><b>name</b>: Jamie Learner</p><p><b>telecom</b>: <a href=\"mailto:jamie@example.invalid\">jamie@example.invalid</a></p><h3>Links</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>Target</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"Practitioner-example-attendee-practitioner.html\">Jamie Learner (https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026#synthetic-105)</a></td></tr></table></div>"
   ] ;
   fhir:DomainResource.extension [
      fhir:index 0 ;
-     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation" ] ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation" ] ;
      fhir:Extension.valueString [ fhir:value "Synthetic university" ]
   ], [
      fhir:index 1 ;
-     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track" ] ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track" ] ;
      fhir:Extension.valueCoding [
-       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track" ] ;
+       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track" ] ;
        fhir:Coding.code [ fhir:value "fhir-101" ]
      ]
   ] ;
   fhir:Person.identifier [
      fhir:index 0 ;
-     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026" ] ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026" ] ;
      fhir:Identifier.value [ fhir:value "synthetic-105" ]
   ] ;
   fhir:Person.name [
@@ -48,14 +48,14 @@
   fhir:Person.link [
      fhir:index 0 ;
      fhir:Person.link.target [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Practitioner/example-attendee-practitioner> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Practitioner/example-attendee-practitioner> ;
        fhir:Reference.reference [ fhir:value "Practitioner/example-attendee-practitioner" ]
      ]
   ] .
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-101.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-101.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

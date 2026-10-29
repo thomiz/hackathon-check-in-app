@@ -5,14 +5,14 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-attendee-list> a fhir:List ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/List/example-attendee-list> a fhir:List ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:Resource.id [ fhir:value "example-attendee-list"] ;
   fhir:Resource.meta [
      fhir:Meta.profile [
-       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list" ;
+       fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list" ;
        fhir:index 0 ;
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list>
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list>
      ]
   ] ;
   fhir:DomainResource.text [
@@ -21,7 +21,7 @@
   ] ;
   fhir:List.identifier [
      fhir:index 0 ;
-     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list" ] ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list" ] ;
      fhir:Identifier.value [ fhir:value "synthetic-attendee-roster" ]
   ] ;
   fhir:List.status [ fhir:value "current"] ;
@@ -29,7 +29,7 @@
   fhir:List.code [
      fhir:CodeableConcept.coding [
        fhir:index 0 ;
-       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose" ] ;
+       fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose" ] ;
        fhir:Coding.code [ fhir:value "roster" ]
      ]
   ] ;
@@ -39,12 +39,12 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-care-plans> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-care-plans> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-care-plans" ]
      ]
   ], [
@@ -52,12 +52,12 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-medication> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-medication> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-medication" ]
      ]
   ], [
@@ -65,12 +65,12 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-ihe> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-ihe> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-ihe" ]
      ]
   ], [
@@ -78,12 +78,12 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-ehds> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-ehds> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-ehds" ]
      ]
   ], [
@@ -91,12 +91,12 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-101> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-101> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-101" ]
      ]
   ], [
@@ -104,19 +104,19 @@
      fhir:List.entry.flag [
        fhir:CodeableConcept.coding [
          fhir:index 0 ;
-         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role" ] ;
+         fhir:Coding.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role" ] ;
          fhir:Coding.code [ fhir:value "attendee" ]
        ]
      ] ;
      fhir:List.entry.item [
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-undecided> ;
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-undecided> ;
        fhir:Reference.reference [ fhir:value "Person/example-attendee-undecided" ]
      ]
   ] .
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-attendee-list.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/List/example-attendee-list.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

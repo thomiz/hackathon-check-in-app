@@ -1,4 +1,4 @@
-# Artifacts Summary - hackathon-attendance-registration-app v0.1.0
+# Artifacts Summary - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * **Artifacts Summary**

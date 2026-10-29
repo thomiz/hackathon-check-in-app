@@ -3,13 +3,13 @@
 <ValueSet xmlns="http://hl7.org/fhir">
   <id value="list-purposes"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ValueSet list-purposes</b></p><a name="list-purposes"> </a><a name="hclist-purposes"> </a><ul><li>Include all codes defined in <a href="CodeSystem-list-purpose.html"><code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose</code></a><span title="Version is not explicitly stated, which means it is fixed to the version provided in this specification"> version &#x1F4E6;0.1.0</span></li></ul></div>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ValueSet list-purposes</b></p><a name="list-purposes"> </a><a name="hclist-purposes"> </a><ul><li>Include all codes defined in <a href="CodeSystem-list-purpose.html"><code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose</code></a><span title="Version is not explicitly stated, which means it is fixed to the version provided in this specification"> version &#x1F4E6;0.6.0</span></li></ul></div>
   </text>
-  <url value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes"/>
-  <version value="0.1.0"/>
+  <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes"/>
+  <version value="0.6.0"/>
   <name value="ListPurposes"/>
   <status value="draft"/>
-  <date value="2026-10-25T13:18:28+00:00"/>
+  <date value="2026-10-29T07:06:30+00:00"/>
   <publisher value="HL7 Norway"/>
   <contact>
     <name value="HL7 Norway"/>
@@ -26,7 +26,7 @@
   </jurisdiction>
   <compose>
     <include>
-      <system value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose"/>
+      <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose"/>
     </include>
   </compose>
 </ValueSet>

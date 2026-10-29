@@ -1,4 +1,4 @@
-# Hackathon participant roster - hackathon-attendance-registration-app v0.1.0
+# Hackathon participant roster - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:RosterList |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:RosterList |
 
  
 Lists attendees and organizers registered for the event, with each person's participation role. 
@@ -18,7 +18,7 @@ Lists attendees and organizers registered for the event, with each person's part
 
 * Examples for this Profile: [List/example-attendee-list](List-example-attendee-list.md) and [List/example-roster](List-example-roster.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-roster-list.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-roster-list.json)
 
 ### Formal Views of Profile Content
 
@@ -36,12 +36,12 @@ Other representations of profile: [CSV](StructureDefinition-roster-list.csv), [E
 {
   "resourceType" : "StructureDefinition",
   "id" : "roster-list",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list",
+  "version" : "0.6.0",
   "name" : "RosterList",
   "title" : "Hackathon participant roster",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -71,7 +71,7 @@ Other representations of profile: [CSV](StructureDefinition-roster-list.csv), [E
   "kind" : "resource",
   "abstract" : false,
   "type" : "List",
-  "baseDefinition" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list",
+  "baseDefinition" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list",
   "derivation" : "constraint",
   "differential" : {
     "element" : [{
@@ -84,7 +84,7 @@ Other representations of profile: [CSV](StructureDefinition-roster-list.csv), [E
       "min" : 1,
       "binding" : {
         "strength" : "required",
-        "valueSet" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles"
+        "valueSet" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles"
       }
     },
     {
@@ -92,7 +92,7 @@ Other representations of profile: [CSV](StructureDefinition-roster-list.csv), [E
       "path" : "List.entry.item",
       "type" : [{
         "code" : "Reference",
-        "targetProfile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"]
+        "targetProfile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"]
       }]
     }]
   }

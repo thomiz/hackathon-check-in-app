@@ -1,14 +1,14 @@
-HackathonAttendanceRegistrationApp : Validation Results
+HackathonCheckInApp : Validation Results
 =========================================
 
 err = 21, warn = 55, info = 22, broken links = 0
 IG Publisher Version: 3.0.1
-Generated Sun Oct 25 13:19:15 UTC 2026. FHIR version 4.0.1 for hackathon-attendance-registration-app#0.1.0 (canonical = https://hl7.no/fhir/ig/hackathon-attendance-registration-app)
+Generated Thu Oct 29 07:07:13 UTC 2026. FHIR version 4.0.1 for hackathon-check-in-app#0.6.0 (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
  Build Errors : 6 / 32 / 0
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-list-purpose : 3 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-participation-role : 1 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-track : 2 / 2 / 1
- /github/workspace/fhir/fsh-generated/resources/ImplementationGuide-hackathon-attendance-registration-app : 0 / 0 / 2
+ /github/workspace/fhir/fsh-generated/resources/ImplementationGuide-hackathon-check-in-app : 0 / 0 / 2
  /github/workspace/fhir/fsh-generated/resources/List-example-attendee-list : 0 / 1 / 1
  /github/workspace/fhir/fsh-generated/resources/List-example-checkins : 0 / 1 / 1
  /github/workspace/fhir/fsh-generated/resources/List-example-roster : 0 / 1 / 1
@@ -56,7 +56,7 @@ WARNING: Unable to find ImplementationGuide.definition.resource.description for 
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-person.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Practitioner/example-practitioner.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource List/example-roster.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-ERROR: /github/workspace/fhir/output/index.html: The heading <h1> 'Hackathon attendance registration FHIR model' (id=hackathon-attendance-registration-fhir-model) is at a higher level than the first heading on the page (<h2> 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/index.html: The heading <h1> 'Hackathon check-in app FHIR model' (id=hackathon-check-in-app-fhir-model) is at a higher level than the first heading on the page (<h2> 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Scope and terminology' (id=scope-and-terminology) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Participant and list profiles' (id=participant-and-list-profiles) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Event use cases' (id=event-use-cases) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
@@ -96,66 +96,66 @@ WARNING: CodeSystem/track: CodeSystem.concept[0]: HL7 Defined CodeSystems should
 WARNING: Resource: The resource CodeSystem/track should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
 
 
-== fsh-generated/resources/ImplementationGuide-hackathon-attendance-registration-app.json ==
-INFORMATION: Resource: The resource ImplementationGuide/hackathon-attendance-registration-app could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+== fsh-generated/resources/ImplementationGuide-hackathon-check-in-app.json ==
+INFORMATION: Resource: The resource ImplementationGuide/hackathon-check-in-app could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
 
 
 == fsh-generated/resources/List-example-attendee-list.json ==
-WARNING: List/example-attendee-list: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+WARNING: List/example-attendee-list: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list'
 
 
 == fsh-generated/resources/List-example-checkins.json ==
-WARNING: List/example-checkins: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+WARNING: List/example-checkins: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list'
 
 
 == fsh-generated/resources/List-example-roster.json ==
-WARNING: List/example-roster: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list'
+WARNING: List/example-roster: List.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list'
 
 
 == fsh-generated/resources/Person-example-attendee-101.json ==
-INFORMATION: Person/example-attendee-101: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-attendee-101: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-attendee-101: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-attendee-101: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-care-plans.json ==
-INFORMATION: Person/example-attendee-care-plans: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-attendee-care-plans: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-attendee-care-plans: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-attendee-care-plans: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-ehds.json ==
-INFORMATION: Person/example-attendee-ehds: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-attendee-ehds: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-attendee-ehds: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-attendee-ehds: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-ihe.json ==
-INFORMATION: Person/example-attendee-ihe: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-attendee-ihe: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-attendee-ihe: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-attendee-ihe: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-medication.json ==
-INFORMATION: Person/example-attendee-medication: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-attendee-medication: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-attendee-medication: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-attendee-medication: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-undecided.json ==
-WARNING: Person/example-attendee-undecided: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+WARNING: Person/example-attendee-undecided: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-person.json ==
-INFORMATION: Person/example-person: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Person/example-person: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
+INFORMATION: Person/example-person: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Person/example-person: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Practitioner-example-attendee-practitioner.json ==
-INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Practitioner/example-attendee-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
-INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role|0.1.0
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Practitioner/example-attendee-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0
 
 
 == fsh-generated/resources/Practitioner-example-practitioner.json ==
-INFORMATION: Practitioner/example-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track|0.1.0
-WARNING: Practitioner/example-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026'
-INFORMATION: Practitioner/example-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role|0.1.0
+INFORMATION: Practitioner/example-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+WARNING: Practitioner/example-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
+INFORMATION: Practitioner/example-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0
 
 
 == fsh-generated/resources/StructureDefinition-affiliation.json ==
@@ -163,19 +163,19 @@ INFORMATION: Resource: The resource StructureDefinition/affiliation could useful
 
 
 == fsh-generated/resources/StructureDefinition-checked-in-participant.json ==
-INFORMATION: StructureDefinition/checked-in-participant: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.3.0 is deprecated with the note: 'Use additionalBinding extension or element instead'
+INFORMATION: StructureDefinition/checked-in-participant: StructureDefinition.snapshot.element[4].binding.extension[0]: The extension http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet|5.4.0 is deprecated with the note: 'Use additionalBinding extension or element instead'
 INFORMATION: Resource: The resource StructureDefinition/checked-in-participant could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
 
 
 == fsh-generated/resources/StructureDefinition-checkin-list.json ==
-INFORMATION: StructureDefinition/checkin-list: StructureDefinition.snapshot.element[13].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose|0.1.0
-INFORMATION: StructureDefinition/checkin-list: StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose|0.1.0
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.snapshot.element[13].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0
 INFORMATION: Resource: The resource StructureDefinition/checkin-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
 
 
 == fsh-generated/resources/StructureDefinition-event-list.json ==
 INFORMATION: Resource: The resource StructureDefinition/event-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
-WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list'): The Implementation Guide contains no examples for this profile
+WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list'): The Implementation Guide contains no examples for this profile
 
 
 == fsh-generated/resources/StructureDefinition-expected-participant.json ==
@@ -184,7 +184,7 @@ INFORMATION: Resource: The resource StructureDefinition/expected-participant cou
 
 == fsh-generated/resources/StructureDefinition-manual-registration.json ==
 INFORMATION: Resource: The resource StructureDefinition/manual-registration could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
-WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration'): The Implementation Guide contains no examples for this extension
+WARNING: StructureDefinition.where(url = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration'): The Implementation Guide contains no examples for this extension
 
 
 == fsh-generated/resources/StructureDefinition-primary-track.json ==

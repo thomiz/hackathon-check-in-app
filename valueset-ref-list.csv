@@ -1,4 +1,4 @@
 URL,Version,Status,OIDs,Name,Title,Description,Uses,Used,Sources
-https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes,0.1.0,draft,,ListPurposes,,"","StructureDefinition/event-list","Internal"
-https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles,0.1.0,draft,,ParticipationRoles,,"","StructureDefinition/checked-in-participant,StructureDefinition/roster-list","Internal"
-https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks,0.1.0,draft,,Tracks,,"","StructureDefinition/primary-track","Internal"
+https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes,0.6.0,draft,,ListPurposes,,"","StructureDefinition/event-list","Internal"
+https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles,0.6.0,draft,,ParticipationRoles,,"","StructureDefinition/checked-in-participant,StructureDefinition/roster-list","Internal"
+https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks,0.6.0,draft,,Tracks,,"","StructureDefinition/primary-track","Internal"

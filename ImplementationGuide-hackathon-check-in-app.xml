@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="hackathon-attendance-registration-app"/>
+  <id value="hackathon-check-in-app"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ImplementationGuide hackathon-attendance-registration-app</b></p><a name="hackathon-attendance-registration-app"> </a><a name="hchackathon-attendance-registration-app"> </a><h2>HackathonAttendanceRegistrationApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: ImplementationGuide hackathon-check-in-app</b></p><a name="hackathon-check-in-app"> </a><a name="hchackathon-check-in-app"> </a><h2>HackathonCheckInApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>
 </div></div>
   </text>
-  <url value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app"/>
-  <version value="0.1.0"/>
-  <name value="HackathonAttendanceRegistrationApp"/>
-  <title value="hackathon-attendance-registration-app"/>
+  <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app"/>
+  <version value="0.6.0"/>
+  <name value="HackathonCheckInApp"/>
+  <title value="hackathon-check-in-app"/>
   <status value="draft"/>
-  <date value="2026-10-25T13:18:28+00:00"/>
+  <date value="2026-10-29T07:06:30+00:00"/>
   <publisher value="HL7 Norway"/>
   <contact>
     <name value="HL7 Norway"/>
@@ -27,7 +27,7 @@
       <code value="NO"/>
     </coding>
   </jurisdiction>
-  <packageId value="hackathon-attendance-registration-app"/>
+  <packageId value="hackathon-check-in-app"/>
   <license value="CC0-1.0"/>
   <fhirVersion value="4.0.1"/>
   <dependsOn id="hl7tx">
@@ -36,7 +36,7 @@
     </extension>
     <uri value="http://terminology.hl7.org/ImplementationGuide/hl7.terminology"/>
     <packageId value="hl7.terminology.r4"/>
-    <version value="7.4.0"/>
+    <version value="7.5.0"/>
   </dependsOn>
   <dependsOn id="hl7ext">
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/implementationguide-dependency-comment">
@@ -44,7 +44,7 @@
     </extension>
     <uri value="http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"/>
     <packageId value="hl7.fhir.uv.extensions.r4"/>
-    <version value="5.3.0"/>
+    <version value="5.4.0"/>
   </dependsOn>
   <definition>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency">
@@ -127,7 +127,7 @@
         <valueCode value="path-history"/>
       </extension>
       <extension url="value">
-        <valueString value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/history.html"/>
+        <valueString value="https://hl7.no/fhir/ig/hackathon-check-in-app/history.html"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -289,7 +289,7 @@
         <reference value="Person/example-attendee-101"/>
       </reference>
       <name value="example-attendee-101"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -299,7 +299,7 @@
         <reference value="Person/example-attendee-care-plans"/>
       </reference>
       <name value="example-attendee-care-plans"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -309,7 +309,7 @@
         <reference value="Person/example-attendee-ehds"/>
       </reference>
       <name value="example-attendee-ehds"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -319,7 +319,7 @@
         <reference value="Person/example-attendee-ihe"/>
       </reference>
       <name value="example-attendee-ihe"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -329,7 +329,7 @@
         <reference value="List/example-attendee-list"/>
       </reference>
       <name value="example-attendee-list"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -339,7 +339,7 @@
         <reference value="Person/example-attendee-medication"/>
       </reference>
       <name value="example-attendee-medication"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -349,7 +349,7 @@
         <reference value="Practitioner/example-attendee-practitioner"/>
       </reference>
       <name value="example-attendee-practitioner"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -359,7 +359,7 @@
         <reference value="Person/example-attendee-undecided"/>
       </reference>
       <name value="example-attendee-undecided"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -369,7 +369,7 @@
         <reference value="List/example-checkins"/>
       </reference>
       <name value="example-checkins"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -379,7 +379,7 @@
         <reference value="Person/example-person"/>
       </reference>
       <name value="example-person"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -389,7 +389,7 @@
         <reference value="Practitioner/example-practitioner"/>
       </reference>
       <name value="example-practitioner"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
@@ -399,7 +399,7 @@
         <reference value="List/example-roster"/>
       </reference>
       <name value="example-roster"/>
-      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"/>
+      <exampleCanonical value="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list"/>
     </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">

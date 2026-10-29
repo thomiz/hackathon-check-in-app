@@ -1,4 +1,4 @@
-# hackathon-attendance-registration-app#0.1.0: hackathon-attendance-registration-app
+# hackathon-check-in-app#0.6.0: hackathon-check-in-app
 
 ## Pages
 
@@ -35,7 +35,7 @@
 
 ### ImplementationGuides
 
-* [hackathon-attendance-registration-app](index.md)
+* [hackathon-check-in-app](index.md)
 
 ### Examples
 

@@ -3,13 +3,13 @@
   "id" : "list-purpose",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem list-purpose</b></p><a name=\"list-purpose\"> </a><a name=\"hclist-purpose\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">roster<a name=\"list-purpose-roster\"> </a></td><td>Advance sign-ups</td></tr><tr><td style=\"white-space:nowrap\">staff<a name=\"list-purpose-staff\"> </a></td><td>Staff roster</td></tr><tr><td style=\"white-space:nowrap\">checkins<a name=\"list-purpose-checkins\"> </a></td><td>Actual arrivals</td></tr></table></div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem list-purpose</b></p><a name=\"list-purpose\"> </a><a name=\"hclist-purpose\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">roster<a name=\"list-purpose-roster\"> </a></td><td>Advance sign-ups</td></tr><tr><td style=\"white-space:nowrap\">staff<a name=\"list-purpose-staff\"> </a></td><td>Staff roster</td></tr><tr><td style=\"white-space:nowrap\">checkins<a name=\"list-purpose-checkins\"> </a></td><td>Actual arrivals</td></tr></table></div>"
   },
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
+  "version" : "0.6.0",
   "name" : "ListPurpose",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

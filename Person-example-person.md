@@ -1,4 +1,4 @@
-# example-person - hackathon-attendance-registration-app v0.1.0
+# example-person - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -12,7 +12,7 @@ Profile: [Expected Hackathon participant](StructureDefinition-expected-participa
 
 **Confirmed or expected primary track**: [2026 Hackathon tracks: smart](CodeSystem-track.md#track-smart) (SMART on FHIR)
 
-**identifier**: `https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026`/synthetic-001
+**identifier**: `https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026`/synthetic-001
 
 **name**: Alex Example
 
@@ -23,7 +23,7 @@ Profile: [Expected Hackathon participant](StructureDefinition-expected-participa
 | | |
 | :--- | :--- |
 | - | **Target** |
-| * | [Alex Example (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-001)](Practitioner-example-practitioner.md) |
+| * | [Alex Example (https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026#synthetic-001)](Practitioner-example-practitioner.md) |
 
 
 
@@ -34,21 +34,21 @@ Profile: [Expected Hackathon participant](StructureDefinition-expected-participa
   "resourceType" : "Person",
   "id" : "example-person",
   "meta" : {
-    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant"]
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"]
   },
   "extension" : [{
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
     "valueString" : "Example organization"
   },
   {
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
     "valueCoding" : {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
       "code" : "smart"
     }
   }],
   "identifier" : [{
-    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+    "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
     "value" : "synthetic-001"
   }],
   "name" : [{

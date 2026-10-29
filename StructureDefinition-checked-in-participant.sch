@@ -12,9 +12,9 @@
   <sch:pattern>
     <sch:title>f:Practitioner</sch:title>
     <sch:rule context="f:Practitioner">
-      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation']) &gt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation': minimum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation']) &lt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation': maximum cardinality of 'extension' is 1</sch:assert>
-      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track']) &lt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation']) &gt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation': minimum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation']) &lt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation': maximum cardinality of 'extension' is 1</sch:assert>
+      <sch:assert test="count(f:extension[@url = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track']) &lt;= 1">extension with URL = 'https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track': maximum cardinality of 'extension' is 1</sch:assert>
       <sch:assert test="count(f:name) &gt;= 1">name: minimum cardinality of 'name' is 1</sch:assert>
     </sch:rule>
   </sch:pattern>

@@ -1,4 +1,4 @@
-# example-attendee-practitioner - hackathon-attendance-registration-app v0.1.0
+# example-attendee-practitioner - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,7 +8,7 @@
 
 Profile: [Checked-in Hackathon participant](StructureDefinition-checked-in-participant.md)
 
-Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026#synthetic-105)
+Jamie Learner (https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026#synthetic-105)
 
 -------
 
@@ -16,8 +16,8 @@ Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/iden
 | :--- | :--- |
 | Contact Detail | [jamie@example.invalid](mailto:jamie@example.invalid) |
 | Qualification: | Attendee |
-| [Confirmed or expected primary track](StructureDefinition-primary-track.md) | [2026 Hackathon tracks: fhir-101](CodeSystem-track.md#track-fhir-101)(FHIR 101: Introduction to HL7 FHIR with practical assignments) |
 | [Participant affiliation](StructureDefinition-affiliation.md) | Synthetic university |
+| [Confirmed or expected primary track](StructureDefinition-primary-track.md) | [2026 Hackathon tracks: fhir-101](CodeSystem-track.md#track-fhir-101)(FHIR 101: Introduction to HL7 FHIR with practical assignments) |
 
 
 
@@ -28,21 +28,21 @@ Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/iden
   "resourceType" : "Practitioner",
   "id" : "example-attendee-practitioner",
   "meta" : {
-    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"]
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"]
   },
   "extension" : [{
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
     "valueString" : "Synthetic university"
   },
   {
-    "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
+    "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
     "valueCoding" : {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
       "code" : "fhir-101"
     }
   }],
   "identifier" : [{
-    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026",
+    "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
     "value" : "synthetic-105"
   }],
   "name" : [{
@@ -55,7 +55,7 @@ Jamie Learner (https://hl7.no/fhir/ig/hackathon-attendance-registration-app/iden
   "qualification" : [{
     "code" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     }

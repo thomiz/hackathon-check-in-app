@@ -1,4 +1,4 @@
-# ManualRegistration - hackathon-attendance-registration-app v0.1.0
+# ManualRegistration - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:ManualRegistration |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:ManualRegistration |
 
 **Context of Use**
 
@@ -19,7 +19,7 @@
 
 * Use this Extension: [Hackathon check-in list](StructureDefinition-checkin-list.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-manual-registration.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-manual-registration.json)
 
 ### Formal Views of Extension Content
 
@@ -39,11 +39,11 @@ Other representations of profile: [CSV](StructureDefinition-manual-registration.
 {
   "resourceType" : "StructureDefinition",
   "id" : "manual-registration",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration",
+  "version" : "0.6.0",
   "name" : "ManualRegistration",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -82,7 +82,7 @@ Other representations of profile: [CSV](StructureDefinition-manual-registration.
     {
       "id" : "Extension.url",
       "path" : "Extension.url",
-      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration"
+      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration"
     },
     {
       "id" : "Extension.value[x]",

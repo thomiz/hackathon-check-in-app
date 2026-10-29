@@ -1,105 +1,105 @@
 [{
   "id" : "list-purpose",
   "type" : "CodeSystem",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
+  "version" : "0.6.0",
   "name" : "ListPurpose"
 },
 {
   "id" : "participation-role",
   "type" : "CodeSystem",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
+  "version" : "0.6.0",
   "name" : "ParticipationRole"
 },
 {
   "id" : "track",
   "type" : "CodeSystem",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
+  "version" : "0.6.0",
   "name" : "Track"
 },
 {
-  "id" : "hackathon-attendance-registration-app",
+  "id" : "hackathon-check-in-app",
   "type" : "ImplementationGuide",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app",
-  "version" : "0.1.0",
-  "name" : "HackathonAttendanceRegistrationApp"
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
+  "version" : "0.6.0",
+  "name" : "HackathonCheckInApp"
 },
 {
   "id" : "affiliation",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
+  "version" : "0.6.0",
   "name" : "Affiliation"
 },
 {
   "id" : "checked-in-participant",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant",
+  "version" : "0.6.0",
   "name" : "CheckedInParticipant"
 },
 {
   "id" : "checkin-list",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list",
+  "version" : "0.6.0",
   "name" : "CheckinList"
 },
 {
   "id" : "event-list",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list",
+  "version" : "0.6.0",
   "name" : "EventList"
 },
 {
   "id" : "expected-participant",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant",
+  "version" : "0.6.0",
   "name" : "ExpectedParticipant"
 },
 {
   "id" : "manual-registration",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration",
+  "version" : "0.6.0",
   "name" : "ManualRegistration"
 },
 {
   "id" : "primary-track",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
+  "version" : "0.6.0",
   "name" : "PrimaryTrack"
 },
 {
   "id" : "roster-list",
   "type" : "StructureDefinition",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list",
+  "version" : "0.6.0",
   "name" : "RosterList"
 },
 {
   "id" : "list-purposes",
   "type" : "ValueSet",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes",
+  "version" : "0.6.0",
   "name" : "ListPurposes"
 },
 {
   "id" : "participation-roles",
   "type" : "ValueSet",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles",
+  "version" : "0.6.0",
   "name" : "ParticipationRoles"
 },
 {
   "id" : "tracks",
   "type" : "ValueSet",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks",
+  "version" : "0.6.0",
   "name" : "Tracks"
 }]

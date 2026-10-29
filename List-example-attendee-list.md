@@ -1,4 +1,4 @@
-# example-attendee-list - hackathon-attendance-registration-app v0.1.0
+# example-attendee-list - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -34,17 +34,17 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   "resourceType" : "List",
   "id" : "example-attendee-list",
   "meta" : {
-    "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list"]
+    "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list"]
   },
   "identifier" : [{
-    "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/list",
+    "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/list",
     "value" : "synthetic-attendee-roster"
   }],
   "status" : "current",
   "mode" : "working",
   "code" : {
     "coding" : [{
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : "roster"
     }]
   },
@@ -52,7 +52,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   "entry" : [{
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },
@@ -63,7 +63,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   {
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },
@@ -74,7 +74,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   {
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },
@@ -85,7 +85,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   {
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },
@@ -96,7 +96,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   {
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },
@@ -107,7 +107,7 @@ Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
   {
     "flag" : {
       "coding" : [{
-        "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
+        "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
         "code" : "attendee"
       }]
     },

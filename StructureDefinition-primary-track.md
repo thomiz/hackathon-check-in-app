@@ -1,4 +1,4 @@
-# Confirmed or expected primary track - hackathon-attendance-registration-app v0.1.0
+# Confirmed or expected primary track - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:PrimaryTrack |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:PrimaryTrack |
 
 **Context of Use**
 
@@ -20,7 +20,7 @@
 * Use this Extension: [Checked-in Hackathon participant](StructureDefinition-checked-in-participant.md) and [Expected Hackathon participant](StructureDefinition-expected-participant.md)
 * Examples for this Extension: [Person/example-attendee-101](Person-example-attendee-101.md), [Person/example-attendee-care-plans](Person-example-attendee-care-plans.md), [Person/example-attendee-ehds](Person-example-attendee-ehds.md), [Person/example-attendee-ihe](Person-example-attendee-ihe.md)... Show 4 more, [Person/example-attendee-medication](Person-example-attendee-medication.md), [Person/example-person](Person-example-person.md), [Practitioner/example-attendee-practitioner](Practitioner-example-attendee-practitioner.md) and [Practitioner/example-practitioner](Practitioner-example-practitioner.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-primary-track.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-primary-track.json)
 
 ### Formal Views of Extension Content
 
@@ -42,12 +42,12 @@ Other representations of profile: [CSV](StructureDefinition-primary-track.csv), 
 {
   "resourceType" : "StructureDefinition",
   "id" : "primary-track",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
+  "version" : "0.6.0",
   "name" : "PrimaryTrack",
   "title" : "Confirmed or expected primary track",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -95,7 +95,7 @@ Other representations of profile: [CSV](StructureDefinition-primary-track.csv), 
     {
       "id" : "Extension.url",
       "path" : "Extension.url",
-      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track"
+      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track"
     },
     {
       "id" : "Extension.value[x]",
@@ -106,7 +106,7 @@ Other representations of profile: [CSV](StructureDefinition-primary-track.csv), 
       }],
       "binding" : {
         "strength" : "required",
-        "valueSet" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks"
+        "valueSet" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks"
       }
     }]
   }

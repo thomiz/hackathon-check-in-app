@@ -5,28 +5,28 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-undecided> a fhir:Person ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-undecided> a fhir:Person ;
   fhir:nodeRole fhir:treeRoot ;
   fhir:Resource.id [ fhir:value "example-attendee-undecided"] ;
   fhir:Resource.meta [
      fhir:Meta.profile [
-       fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
+       fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
        fhir:index 0 ;
-       fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+       fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
      ]
   ] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "extensions" ] ;
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-undecided</b></p><a name=\"example-attendee-undecided\"> </a><a name=\"hcexample-attendee-undecided\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic independent developer</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026</code>/synthetic-106</p><p><b>name</b>: Jordan Visitor</p><p><b>telecom</b>: <a href=\"mailto:jordan@example.invalid\">jordan@example.invalid</a></p></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: Person example-attendee-undecided</b></p><a name=\"example-attendee-undecided\"> </a><a name=\"hcexample-attendee-undecided\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\"/><p style=\"margin-bottom: 0px\">Profile: <a href=\"StructureDefinition-expected-participant.html\">Expected Hackathon participant</a></p></div><p><b>Participant affiliation</b>: Synthetic independent developer</p><p><b>identifier</b>: <code>https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026</code>/synthetic-106</p><p><b>name</b>: Jordan Visitor</p><p><b>telecom</b>: <a href=\"mailto:jordan@example.invalid\">jordan@example.invalid</a></p></div>"
   ] ;
   fhir:DomainResource.extension [
      fhir:index 0 ;
-     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation" ] ;
+     fhir:Extension.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation" ] ;
      fhir:Extension.valueString [ fhir:value "Synthetic independent developer" ]
   ] ;
   fhir:Person.identifier [
      fhir:index 0 ;
-     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026" ] ;
+     fhir:Identifier.system [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026" ] ;
      fhir:Identifier.value [ fhir:value "synthetic-106" ]
   ] ;
   fhir:Person.name [
@@ -41,7 +41,7 @@
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-undecided.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-undecided.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

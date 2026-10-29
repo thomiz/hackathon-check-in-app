@@ -1,4 +1,4 @@
-# Hackathon event list - hackathon-attendance-registration-app v0.1.0
+# Hackathon event list - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:EventList |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:EventList |
 
  
 Base profile for lists that track attendees and organizers for a hackathon event. 
@@ -18,7 +18,7 @@ Base profile for lists that track attendees and organizers for a hackathon event
 
 * Derived from this Profile: [Hackathon check-in list](StructureDefinition-checkin-list.md) and [Hackathon participant roster](StructureDefinition-roster-list.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-event-list.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-event-list.json)
 
 ### Formal Views of Profile Content
 
@@ -36,12 +36,12 @@ Other representations of profile: [CSV](StructureDefinition-event-list.csv), [Ex
 {
   "resourceType" : "StructureDefinition",
   "id" : "event-list",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list",
+  "version" : "0.6.0",
   "name" : "EventList",
   "title" : "Hackathon event list",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -99,7 +99,7 @@ Other representations of profile: [CSV](StructureDefinition-event-list.csv), [Ex
       "min" : 1,
       "binding" : {
         "strength" : "required",
-        "valueSet" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes"
+        "valueSet" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes"
       }
     },
     {

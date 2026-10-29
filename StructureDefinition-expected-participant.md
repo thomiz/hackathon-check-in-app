@@ -1,4 +1,4 @@
-# Expected Hackathon participant - hackathon-attendance-registration-app v0.1.0
+# Expected Hackathon participant - hackathon-check-in-app v0.6.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant | *Version*:0.1.0 |
-| Draft as of 2026-10-25 | *Computable Name*:ExpectedParticipant |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant | *Version*:0.6.0 |
+| Draft as of 2026-10-29 | *Computable Name*:ExpectedParticipant |
 
  
 For attendees and organizers registered for the event. 
@@ -19,7 +19,7 @@ For attendees and organizers registered for the event.
 * Refer to this Profile: [Hackathon participant roster](StructureDefinition-roster-list.md)
 * Examples for this Profile: [Person/example-attendee-101](Person-example-attendee-101.md), [Person/example-attendee-care-plans](Person-example-attendee-care-plans.md), [Person/example-attendee-ehds](Person-example-attendee-ehds.md), [Person/example-attendee-ihe](Person-example-attendee-ihe.md)... Show 3 more, [Person/example-attendee-medication](Person-example-attendee-medication.md), [Person/example-attendee-undecided](Person-example-attendee-undecided.md) and [Person/example-person](Person-example-person.md)
 
-You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-expected-participant.json)
+You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-expected-participant.json)
 
 ### Formal Views of Profile Content
 
@@ -37,12 +37,12 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
 {
   "resourceType" : "StructureDefinition",
   "id" : "expected-participant",
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant",
+  "version" : "0.6.0",
   "name" : "ExpectedParticipant",
   "title" : "Expected Hackathon participant",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -105,7 +105,7 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
       "max" : "1",
       "type" : [{
         "code" : "Extension",
-        "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation"]
+        "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation"]
       }]
     },
     {
@@ -116,7 +116,7 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
       "max" : "1",
       "type" : [{
         "code" : "Extension",
-        "profile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track"]
+        "profile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track"]
       }]
     },
     {
@@ -142,7 +142,7 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
       "id" : "Person.identifier:eventId.system",
       "path" : "Person.identifier.system",
       "min" : 1,
-      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/identifier/participant-2026"
+      "fixedUri" : "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026"
     },
     {
       "id" : "Person.identifier:eventId.value",
@@ -194,7 +194,7 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
       "path" : "Person.link.target",
       "type" : [{
         "code" : "Reference",
-        "targetProfile" : ["https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant"]
+        "targetProfile" : ["https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant"]
       }]
     }]
   }

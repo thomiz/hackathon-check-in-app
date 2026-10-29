@@ -5,19 +5,19 @@
 
 # - resource -------------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app> a fhir:ImplementationGuide ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app> a fhir:ImplementationGuide ;
   fhir:nodeRole fhir:treeRoot ;
-  fhir:Resource.id [ fhir:value "hackathon-attendance-registration-app"] ;
+  fhir:Resource.id [ fhir:value "hackathon-check-in-app"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide hackathon-attendance-registration-app</b></p><a name=\"hackathon-attendance-registration-app\"> </a><a name=\"hchackathon-attendance-registration-app\"> </a><h2>HackathonAttendanceRegistrationApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>\n</div></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide hackathon-check-in-app</b></p><a name=\"hackathon-check-in-app\"> </a><a name=\"hchackathon-check-in-app\"> </a><h2>HackathonCheckInApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>\n</div></div>"
   ] ;
-  fhir:ImplementationGuide.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app"] ;
-  fhir:ImplementationGuide.version [ fhir:value "0.1.0"] ;
-  fhir:ImplementationGuide.name [ fhir:value "HackathonAttendanceRegistrationApp"] ;
-  fhir:ImplementationGuide.title [ fhir:value "hackathon-attendance-registration-app"] ;
+  fhir:ImplementationGuide.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app"] ;
+  fhir:ImplementationGuide.version [ fhir:value "0.6.0"] ;
+  fhir:ImplementationGuide.name [ fhir:value "HackathonCheckInApp"] ;
+  fhir:ImplementationGuide.title [ fhir:value "hackathon-check-in-app"] ;
   fhir:ImplementationGuide.status [ fhir:value "draft"] ;
-  fhir:ImplementationGuide.date [ fhir:value "2026-10-25T13:18:28+00:00"^^xsd:dateTime] ;
+  fhir:ImplementationGuide.date [ fhir:value "2026-10-29T07:06:30+00:00"^^xsd:dateTime] ;
   fhir:ImplementationGuide.publisher [ fhir:value "HL7 Norway"] ;
   fhir:ImplementationGuide.contact [
      fhir:index 0 ;
@@ -37,7 +37,7 @@
        fhir:Coding.code [ fhir:value "NO" ]
      ]
   ] ;
-  fhir:ImplementationGuide.packageId [ fhir:value "hackathon-attendance-registration-app"] ;
+  fhir:ImplementationGuide.packageId [ fhir:value "hackathon-check-in-app"] ;
   fhir:ImplementationGuide.license [ fhir:value "CC0-1.0"] ;
   fhir:ImplementationGuide.fhirVersion [
      fhir:value "4.0.1" ;
@@ -56,7 +56,7 @@
        fhir:link <http://terminology.hl7.org/ImplementationGuide/hl7.terminology>
      ] ;
      fhir:ImplementationGuide.dependsOn.packageId [ fhir:value "hl7.terminology.r4" ] ;
-     fhir:ImplementationGuide.dependsOn.version [ fhir:value "7.4.0" ]
+     fhir:ImplementationGuide.dependsOn.version [ fhir:value "7.5.0" ]
   ], [
      fhir:index 1 ;
      fhir:Element.id [ fhir:value "hl7ext" ] ;
@@ -70,7 +70,7 @@
        fhir:link <http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions>
      ] ;
      fhir:ImplementationGuide.dependsOn.packageId [ fhir:value "hl7.fhir.uv.extensions.r4" ] ;
-     fhir:ImplementationGuide.dependsOn.version [ fhir:value "5.3.0" ]
+     fhir:ImplementationGuide.dependsOn.version [ fhir:value "5.4.0" ]
   ] ;
   fhir:ImplementationGuide.definition [
      fhir:Element.extension [
@@ -194,7 +194,7 @@
        ], [
          fhir:index 1 ;
          fhir:Extension.url [ fhir:value "value" ] ;
-         fhir:Extension.valueString [ fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/history.html" ]
+         fhir:Extension.valueString [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/history.html" ]
        ] ;
        fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter" ]
      ], [
@@ -386,7 +386,7 @@
          fhir:Extension.valueString [ fhir:value "CodeSystem" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/track> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track> ;
          fhir:Reference.reference [ fhir:value "CodeSystem/track" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "2026 Hackathon tracks" ] ;
@@ -399,7 +399,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/checked-in-participant" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Checked-in Hackathon participant" ] ;
@@ -413,7 +413,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:extension" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/primary-track> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/primary-track" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Confirmed or expected primary track" ] ;
@@ -426,13 +426,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-101> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-101> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-101" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-101" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 4 ;
@@ -442,13 +442,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-care-plans> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-care-plans> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-care-plans" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-care-plans" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 5 ;
@@ -458,13 +458,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-ehds> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-ehds> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-ehds" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-ehds" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 6 ;
@@ -474,13 +474,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-ihe> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-ihe> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-ihe" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-ihe" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 7 ;
@@ -490,13 +490,13 @@
          fhir:Extension.valueString [ fhir:value "List" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-attendee-list> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/List/example-attendee-list> ;
          fhir:Reference.reference [ fhir:value "List/example-attendee-list" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-list" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list>
        ]
      ], [
        fhir:index 8 ;
@@ -506,13 +506,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-medication> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-medication> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-medication" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-medication" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 9 ;
@@ -522,13 +522,13 @@
          fhir:Extension.valueString [ fhir:value "Practitioner" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Practitioner/example-attendee-practitioner> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Practitioner/example-attendee-practitioner> ;
          fhir:Reference.reference [ fhir:value "Practitioner/example-attendee-practitioner" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-practitioner" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant>
        ]
      ], [
        fhir:index 10 ;
@@ -538,13 +538,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-attendee-undecided> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-attendee-undecided> ;
          fhir:Reference.reference [ fhir:value "Person/example-attendee-undecided" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-attendee-undecided" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 11 ;
@@ -554,13 +554,13 @@
          fhir:Extension.valueString [ fhir:value "List" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-checkins> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/List/example-checkins> ;
          fhir:Reference.reference [ fhir:value "List/example-checkins" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-checkins" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list>
        ]
      ], [
        fhir:index 12 ;
@@ -570,13 +570,13 @@
          fhir:Extension.valueString [ fhir:value "Person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Person/example-person> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Person/example-person> ;
          fhir:Reference.reference [ fhir:value "Person/example-person" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-person" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant>
        ]
      ], [
        fhir:index 13 ;
@@ -586,13 +586,13 @@
          fhir:Extension.valueString [ fhir:value "Practitioner" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/Practitioner/example-practitioner> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/Practitioner/example-practitioner> ;
          fhir:Reference.reference [ fhir:value "Practitioner/example-practitioner" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-practitioner" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant>
        ]
      ], [
        fhir:index 14 ;
@@ -602,13 +602,13 @@
          fhir:Extension.valueString [ fhir:value "List" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/List/example-roster> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/List/example-roster> ;
          fhir:Reference.reference [ fhir:value "List/example-roster" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "example-roster" ] ;
        fhir:ImplementationGuide.definition.resource.exampleCanonical [
-         fhir:value "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list" ;
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list>
+         fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list" ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list>
        ]
      ], [
        fhir:index 15 ;
@@ -618,7 +618,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/expected-participant> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/expected-participant" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Expected Hackathon participant" ] ;
@@ -632,7 +632,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/checkin-list" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Hackathon check-in list" ] ;
@@ -646,7 +646,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/event-list> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/event-list" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Hackathon event list" ] ;
@@ -660,7 +660,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:resource" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/roster-list> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/roster-list> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/roster-list" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Hackathon participant roster" ] ;
@@ -674,7 +674,7 @@
          fhir:Extension.valueString [ fhir:value "CodeSystem" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role> ;
          fhir:Reference.reference [ fhir:value "CodeSystem/participation-role" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Hackathon participation role" ] ;
@@ -688,7 +688,7 @@
          fhir:Extension.valueString [ fhir:value "CodeSystem" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose> ;
          fhir:Reference.reference [ fhir:value "CodeSystem/list-purpose" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "ListPurpose" ] ;
@@ -701,7 +701,7 @@
          fhir:Extension.valueString [ fhir:value "ValueSet" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes> ;
          fhir:Reference.reference [ fhir:value "ValueSet/list-purposes" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "ListPurposes" ] ;
@@ -714,7 +714,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:extension" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/manual-registration" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "ManualRegistration" ] ;
@@ -727,7 +727,7 @@
          fhir:Extension.valueString [ fhir:value "StructureDefinition:extension" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/affiliation> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation> ;
          fhir:Reference.reference [ fhir:value "StructureDefinition/affiliation" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Participant affiliation" ] ;
@@ -740,7 +740,7 @@
          fhir:Extension.valueString [ fhir:value "ValueSet" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/participation-roles> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles> ;
          fhir:Reference.reference [ fhir:value "ValueSet/participation-roles" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "ParticipationRoles" ] ;
@@ -753,7 +753,7 @@
          fhir:Extension.valueString [ fhir:value "ValueSet" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.reference [
-         fhir:link <https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/tracks> ;
+         fhir:link <https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks> ;
          fhir:Reference.reference [ fhir:value "ValueSet/tracks" ]
        ] ;
        fhir:ImplementationGuide.definition.resource.name [ fhir:value "Tracks" ] ;
@@ -845,7 +845,7 @@
 
 # - ontology header ------------------------------------------------------------
 
-<https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app.ttl> a owl:Ontology ;
+<https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app.ttl> a owl:Ontology ;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------

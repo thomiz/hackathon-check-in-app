@@ -7,7 +7,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>Hackathon check-in list - hackathon-attendance-registration-app v0.1.0</title>
+    <title>Hackathon check-in list - hackathon-check-in-app v0.6.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -54,9 +54,9 @@
 
 
         <div id="ig-status">
-          <p><span style="font-size:12pt;font-weight:bold">hackathon-attendance-registration-app</span>
+          <p><span style="font-size:12pt;font-weight:bold">hackathon-check-in-app</span>
             <br/>
-            <span style="display:inline-block;">0.1.0 - ci-build
+            <span style="display:inline-block;">0.6.0 - ci-build
 
 
 
@@ -118,7 +118,7 @@
           <div class="inner-wrapper">
 
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">hackathon-attendance-registration-app - Local Development build (v0.1.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://hl7.no/fhir/ig/hackathon-attendance-registration-app/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <!--ReleaseHeader--><p id="publish-box">hackathon-check-in-app - Local Development build (v0.6.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://hl7.no/fhir/ig/hackathon-check-in-app/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
   
 
 
@@ -205,10 +205,10 @@
   <table class="colsd">
 
     <tr>
-      <td colspan="4"><i>Official URL</i>: <span class="copy-text">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list<button title="Click to copy URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list"/></span>
+      <td colspan="4"><i>Official URL</i>: <span class="copy-text">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list<button title="Click to copy URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list"/></span>
       </td>
       <td><i>Version</i>:
-      <span class="copy-text">0.1.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checkin-list|0.1.0"/></span>
+      <span class="copy-text">0.6.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list|0.6.0"/></span>
       </td>
     </tr>
 
@@ -224,7 +224,7 @@
         
           Draft
           
-            as of 2026-10-25
+            as of 2026-10-29
           
         
       </td>
@@ -255,7 +255,7 @@
 <ul>
  <li>Examples for this Profile: <a href="List-example-checkins.html">List/example-checkins</a></li>
 </ul>
-<p>You can also check for <a href="https://packages2.fhir.org/xig/resource/hackathon-attendance-registration-app|current/StructureDefinition/StructureDefinition-checkin-list.json">usages in the FHIR IG Statistics</a></p>
+<p>You can also check for <a href="https://packages2.fhir.org/xig/resource/hackathon-check-in-app|current/StructureDefinition/StructureDefinition-checkin-list.json">usages in the FHIR IG Statistics</a></p>
 
   <!-- no uri -->
   <a name="profile"> </a>
@@ -337,11 +337,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0"><span aria-hidden="true" style="padding-left: 3px; padding-right: 3px; color: black; background-color: white" title="This element is included in summaries">Σ</span><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only"> This element is included in summaries. </span></td>
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
+<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -351,7 +351,7 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
 <td style="" class="hierarchy xhtCellBorder0">When the list was prepared</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listK-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listK'), 'binding', document.getElementById('cbcheckin-listK-binding').checked, document.getElementById('ppcheckin-listK'));
 document.getElementById('cbcheckin-listK-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -420,9 +420,9 @@ filterDesc(document.getElementById('checkin-listK'), 'obligation', document.getE
     </td>
     <td>
       <a style="opacity: 1.0" href="ValueSet-list-purposes.html">ListPurposes</a>
-      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
+      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
     </td>
-    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.1.0</td>
+    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.6.0</td>
     <td>This IG</td>
   </tr>
 </table>
@@ -572,7 +572,7 @@ filterDesc(document.getElementById('checkin-listK'), 'obligation', document.getE
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -587,11 +587,11 @@ filterDesc(document.getElementById('checkin-listK'), 'obligation', document.getE
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">0</span><span class="xhtPieceDeEmphasized">..</span><span class="xhtPieceDeEmphasized">*</span></td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension" class="xhtPieceDeEmphasized">Extension</a></td>
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Extension</span><br/><span class="xhtPieceBold">Slice: </span>Unordered, Open by value:url<br/><span class="xhtPieceBold">Slicing Note: </span>The rules on this element (including its children) apply to all the slices, but are not repeated in them</td></tr>
-<tr fhir="generated-heirarchy" id="abaa" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck0124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: white; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="List.entry.extension:manualRegistration"> </a></td>
+<tr fhir="generated-heirarchy" id="abaa" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck0124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: white; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="List.entry.extension:manualRegistration"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></td>
-<td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Optional Extensions Element</span><br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a></td></tr>
+<td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Optional Extensions Element</span><br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a></td></tr>
 <tr fhir="generated-heirarchy" id="abb" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck010.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_element.gif" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Element" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.date" data-no-external="true">date</a><a name="List.entry.date"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">1..<span class="xhtPieceDeEmphasized">1</span></td>
@@ -602,7 +602,7 @@ filterDesc(document.getElementById('checkin-listK'), 'obligation', document.getE
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">1</span><span class="xhtPieceDeEmphasized">..</span><span class="xhtPieceDeEmphasized">1</span></td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/references.html">Reference</a>(<a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant</a>)</td>
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Actual entry</span></td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listD-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listD'), 'binding', document.getElementById('cbcheckin-listD-binding').checked, document.getElementById('ppcheckin-listD'));
 document.getElementById('cbcheckin-listD-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -699,11 +699,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0"><span aria-hidden="true" style="padding-left: 3px; padding-right: 3px; color: black; background-color: white" title="This element is included in summaries">Σ</span><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only"> This element is included in summaries. </span></td>
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
+<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -753,11 +753,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0">0..*</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a></td>
 <td style="" class="hierarchy xhtCellBorder0">Extension<br/><span class="xhtPieceBold">Slice: </span>Unordered, Open by value:url<br/><br/><span class="xhtPieceBold">Slicing Note: </span>The rules on this element (including its children) apply to all the slices, but are not repeated in them</td></tr>
-<tr fhir="generated-heirarchy" id="s-atba" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck1124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="s-List.entry.extension:manualRegistration"> </a></td>
+<tr fhir="generated-heirarchy" id="s-atba" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck1124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="s-List.entry.extension:manualRegistration"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></td>
-<td style="" class="hierarchy xhtCellBorder0">Optional Extensions Element<br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a><br/></td></tr>
+<td style="" class="hierarchy xhtCellBorder0">Optional Extensions Element<br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a><br/></td></tr>
 <tr fhir="generated-heirarchy" id="s-atc" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck110.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_modifier_extension_simple.png" alt="" style="background-color: white; background-color: inherit" title="Simple Extension" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.modifierExtension" title="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
 
 Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." data-no-external="true">modifierExtension</a><a name="s-List.entry.modifierExtension"> </a></td>
@@ -822,7 +822,7 @@ The type is the Canonical URL of Resource Definition that is the type this refer
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 <td style="" class="hierarchy xhtCellBorder0">Why list is empty<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-list-empty-reason.html" title="http://hl7.org/fhir/ValueSet/list-empty-reason" class="binding">ListEmptyReasons</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#preferred" title="Instances are encouraged to draw from the specified codes for interoperability purposes but are not required to do so to be considered conformant." class="binding">preferred</a><span class="binding">)</span><span class="binding">: </span><span class="binding">If a list is empty, why it is empty.</span></td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listS-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listS'), 'binding', document.getElementById('cbcheckin-listS-binding').checked, document.getElementById('ppcheckin-listS'));
 document.getElementById('cbcheckin-listS-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -906,9 +906,9 @@ filterDesc(document.getElementById('checkin-listS'), 'obligation', document.getE
     </td>
     <td>
       <a style="opacity: 1.0" href="ValueSet-list-purposes.html">ListPurposes</a>
-      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
+      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
     </td>
-    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.1.0</td>
+    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.6.0</td>
     <td>This IG</td>
   </tr>
   <tr>
@@ -1139,7 +1139,7 @@ filterDesc(document.getElementById('checkin-listS'), 'obligation', document.getE
     "<a href="StructureDefinition-checkin-list.html#List.entry" title="Entries in this list" class="dict"><span style="text-decoration: underline">entry</span></a>" : [{ <span style="color: Gray">//</span> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children"><b>C?</b></span> <span style="color: navy; opacity: 0.8">Entries in the list</span>
       "extension": [
         { // <span style="color: navy; opacity: 0.8"> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children; ext-1: Must have either extensions or value[x], not both"><b>C?</b></span> <span style="color: brown" title="This element is an array in the base standard, but the profile only allows one element"><b>Only One!</b></span> Optional Extensions Element</span>
-          "url": "<a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a>",
+          "url": "<a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a>",
           "<a href="StructureDefinition-checkin-list.html#List.entry.extension.valueBoolean" title="Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list)" class="dict"><span style="text-decoration: underline">valueBoolean</span></a>" : &lt;<span style="color: darkgreen"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></span>&gt; <span style="color: Gray">//</span> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children"><b>C?</b></span> <span style="color: brown" title="This element is required"><b>R!</b></span> <span style="color: navy; opacity: 0.8">Value of extension</span>
         }
       ],
@@ -1189,14 +1189,14 @@ Summary
 <p>Mandatory: 0 element(1 nested mandatory element)</p><p><b>Structures</b></p>
 <p>This structure refers to these other structures:</p>
 <ul>
-<li><a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant <span style="font-size: 8px">(https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant)</span></a></li>
+<li><a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant <span style="font-size: 8px">(https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant)</span></a></li>
 
 </ul>
 
 <p><b>Extensions</b></p>
 <p>This structure refers to these extensions:</p>
 <ul>
-<li><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a></li>
+<li><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a></li>
 
 </ul>
 
@@ -1248,11 +1248,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0"><span aria-hidden="true" style="padding-left: 3px; padding-right: 3px; color: black; background-color: white" title="This element is included in summaries">Σ</span><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only"> This element is included in summaries. </span></td>
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
+<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -1262,7 +1262,7 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a></td>
 <td style="" class="hierarchy xhtCellBorder0">When the list was prepared</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listKA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listKA'), 'binding', document.getElementById('cbcheckin-listKA-binding').checked, document.getElementById('ppcheckin-listKA'));
 document.getElementById('cbcheckin-listKA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -1331,9 +1331,9 @@ filterDesc(document.getElementById('checkin-listKA'), 'obligation', document.get
     </td>
     <td>
       <a style="opacity: 1.0" href="ValueSet-list-purposes.html">ListPurposes</a>
-      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
+      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
     </td>
-    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.1.0</td>
+    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.6.0</td>
     <td>This IG</td>
   </tr>
 </table>
@@ -1483,7 +1483,7 @@ filterDesc(document.getElementById('checkin-listKA'), 'obligation', document.get
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -1498,11 +1498,11 @@ filterDesc(document.getElementById('checkin-listKA'), 'obligation', document.get
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">0</span><span class="xhtPieceDeEmphasized">..</span><span class="xhtPieceDeEmphasized">*</span></td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension" class="xhtPieceDeEmphasized">Extension</a></td>
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Extension</span><br/><span class="xhtPieceBold">Slice: </span>Unordered, Open by value:url<br/><span class="xhtPieceBold">Slicing Note: </span>The rules on this element (including its children) apply to all the slices, but are not repeated in them</td></tr>
-<tr fhir="generated-heirarchy" id="a-abaa" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck0124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: white; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="a-List.entry.extension:manualRegistration"> </a></td>
+<tr fhir="generated-heirarchy" id="a-abaa" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck0124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: white; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="a-List.entry.extension:manualRegistration"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></td>
-<td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Optional Extensions Element</span><br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a></td></tr>
+<td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Optional Extensions Element</span><br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a></td></tr>
 <tr fhir="generated-heirarchy" id="a-abb" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck010.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_blank.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_element.gif" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Element" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.date" data-no-external="true">date</a><a name="a-List.entry.date"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">1..<span class="xhtPieceDeEmphasized">1</span></td>
@@ -1513,7 +1513,7 @@ filterDesc(document.getElementById('checkin-listKA'), 'obligation', document.get
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">1</span><span class="xhtPieceDeEmphasized">..</span><span class="xhtPieceDeEmphasized">1</span></td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/references.html">Reference</a>(<a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant</a>)</td>
 <td style="" class="hierarchy xhtCellBorder0"><span class="xhtPieceDeEmphasized">Actual entry</span></td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listDA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listDA'), 'binding', document.getElementById('cbcheckin-listDA-binding').checked, document.getElementById('ppcheckin-listDA'));
 document.getElementById('cbcheckin-listDA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -1609,11 +1609,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0"><span aria-hidden="true" style="padding-left: 3px; padding-right: 3px; color: black; background-color: white" title="This element is included in summaries">Σ</span><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only"> This element is included in summaries. </span></td>
 <td style="" class="hierarchy xhtCellBorder0">1..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
-<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
+<td style="" class="hierarchy xhtCellBorder0">What the purpose of this list is<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="ValueSet-list-purposes.html" title="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" class="binding">ListPurposes</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#required" title="To be conformant, the concept in this element SHALL be from the specified value set." class="binding">required</a><span class="binding">)</span><br/><span class="xhtPieceBold">Required Pattern: </span>
 <div><pre class="json"><code>{
   "coding" : [
     {
-      "system" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/list-purpose",
+      "system" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
       "code" : <span title="Actual arrivals">"checkins"</span>
     }
   ]
@@ -1663,11 +1663,11 @@ Modifier extensions SHALL NOT change the meaning of any elements on Resource or 
 <td style="" class="hierarchy xhtCellBorder0">0..*</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/extensibility.html#Extension">Extension</a></td>
 <td style="" class="hierarchy xhtCellBorder0">Extension<br/><span class="xhtPieceBold">Slice: </span>Unordered, Open by value:url<br/><br/><span class="xhtPieceBold">Slicing Note: </span>The rules on this element (including its children) apply to all the slices, but are not repeated in them</td></tr>
-<tr fhir="generated-heirarchy" id="sa-atba" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck1124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="sa-List.entry.extension:manualRegistration"> </a></td>
+<tr fhir="generated-heirarchy" id="sa-atba" class="xhtRowBorder0 xhtRowOdd" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck1124.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin_end_slicer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_slice_item.png" alt="" style="background-color: #F7F7F7; background-color: inherit" title="Slice Item" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.Slices for extension.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.extension:manualRegistration" title="Extension URL = https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration" data-no-external="true">extension:manualRegistration</a><a name="sa-List.entry.extension:manualRegistration"> </a></td>
 <td style="" class="hierarchy xhtCellBorder0"></td>
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></td>
-<td style="" class="hierarchy xhtCellBorder0">Optional Extensions Element<br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a><br/></td></tr>
+<td style="" class="hierarchy xhtCellBorder0">Optional Extensions Element<br/><span class="xhtPieceBold">URL: </span><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a><br/></td></tr>
 <tr fhir="generated-heirarchy" id="sa-atc" class="xhtRowBorder0 xhtRowEven" data-fhir="generated-heirarchy"><td role="rowheader" style="background-image: url(tbl_bck110.png)" class="hierarchy xhtCellBorder0 xhtCellNoWrap"><img src="tbl_spacer.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vline.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="tbl_vjoin.png" alt="" style="background-color: inherit" class="hierarchy"/><img src="icon_modifier_extension_simple.png" alt="" style="background-color: white; background-color: inherit" title="Simple Extension" class="hierarchy"/> <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0" class="sr-only">List.entry.</span><a no-external="true" href="StructureDefinition-checkin-list-definitions.html#List.entry.modifierExtension" title="May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
 
 Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself)." data-no-external="true">modifierExtension</a><a name="sa-List.entry.modifierExtension"> </a></td>
@@ -1732,7 +1732,7 @@ The type is the Canonical URL of Resource Definition that is the type this refer
 <td style="" class="hierarchy xhtCellBorder0">0..1</td>
 <td style="" class="hierarchy xhtCellBorder0"><a href="http://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept</a></td>
 <td style="" class="hierarchy xhtCellBorder0">Why list is empty<br class="binding"/><span class="xhtPieceBold binding">Binding: </span><a href="http://hl7.org/fhir/R4/valueset-list-empty-reason.html" title="http://hl7.org/fhir/ValueSet/list-empty-reason" class="binding">ListEmptyReasons</a><span class="binding"> (</span><a href="http://hl7.org/fhir/R4/terminologies.html#preferred" title="Instances are encouraged to draw from the specified codes for interoperability purposes but are not required to do so to be considered conformant." class="binding">preferred</a><span class="binding">)</span><span class="binding">: </span><span class="binding">If a list is empty, why it is empty.</span></td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 6d8802aa-0cc0-4744-b6bd-a9e6089a6aea
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 5f4b0329-96f8-4355-a6cd-6a89941af368
 document.getElementById('cbcheckin-listSA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('checkin-listSA'), 'binding', document.getElementById('cbcheckin-listSA-binding').checked, document.getElementById('ppcheckin-listSA'));
 document.getElementById('cbcheckin-listSA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -1816,9 +1816,9 @@ filterDesc(document.getElementById('checkin-listSA'), 'obligation', document.get
     </td>
     <td>
       <a style="opacity: 1.0" href="ValueSet-list-purposes.html">ListPurposes</a>
-      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
+      <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes" title="Click to copy URL" class="btn-copy" aria-label="copy"></button>
     </td>
-    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.1.0</td>
+    <td title="Version is not explicitly stated, which means it is fixed to the version provided in this specification">&#x1F4E6;0.6.0</td>
     <td>This IG</td>
   </tr>
   <tr>
@@ -2049,7 +2049,7 @@ filterDesc(document.getElementById('checkin-listSA'), 'obligation', document.get
     "<a href="StructureDefinition-checkin-list.html#List.entry" title="Entries in this list" class="dict"><span style="text-decoration: underline">entry</span></a>" : [{ <span style="color: Gray">//</span> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children"><b>C?</b></span> <span style="color: navy; opacity: 0.8">Entries in the list</span>
       "extension": [
         { // <span style="color: navy; opacity: 0.8"> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children; ext-1: Must have either extensions or value[x], not both"><b>C?</b></span> <span style="color: brown" title="This element is an array in the base standard, but the profile only allows one element"><b>Only One!</b></span> Optional Extensions Element</span>
-          "url": "<a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a>",
+          "url": "<a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a>",
           "<a href="StructureDefinition-checkin-list.html#List.entry.extension.valueBoolean" title="Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list)" class="dict"><span style="text-decoration: underline">valueBoolean</span></a>" : &lt;<span style="color: darkgreen"><a href="http://hl7.org/fhir/R4/datatypes.html#boolean">boolean</a></span>&gt; <span style="color: Gray">//</span> <span style="color: brown" title="ele-1: All FHIR elements must have a @value or children"><b>C?</b></span> <span style="color: brown" title="This element is required"><b>R!</b></span> <span style="color: navy; opacity: 0.8">Value of extension</span>
         }
       ],
@@ -2095,14 +2095,14 @@ Summary
 <p>Mandatory: 0 element(1 nested mandatory element)</p><p><b>Structures</b></p>
 <p>This structure refers to these other structures:</p>
 <ul>
-<li><a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant <span style="font-size: 8px">(https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/checked-in-participant)</span></a></li>
+<li><a href="StructureDefinition-checked-in-participant.html">Checked-in Hackathon participant <span style="font-size: 8px">(https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant)</span></a></li>
 
 </ul>
 
 <p><b>Extensions</b></p>
 <p>This structure refers to these extensions:</p>
 <ul>
-<li><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-attendance-registration-app/StructureDefinition/manual-registration</a></li>
+<li><a href="StructureDefinition-manual-registration.html">https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration</a></li>
 
 </ul>
 
@@ -2142,7 +2142,7 @@ Summary
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-attendance-registration-app#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Sun, Oct 25, 2026 13:18+0000">2026-10-25</span>
+          IG &#169; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-check-in-app#0.6.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 29, 2026 07:06+0000">2026-10-29</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

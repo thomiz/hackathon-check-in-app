@@ -1,13 +1,13 @@
 {
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/ImplementationGuide/hackathon-attendance-registration-app",
-  "name" : "HackathonAttendanceRegistrationApp",
-  "title" : "hackathon-attendance-registration-app",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
+  "name" : "HackathonCheckInApp",
+  "title" : "hackathon-check-in-app",
   "description" : "Event-specific check-in demonstration; Practitioner event roles are not professional credentials.",
   "status" : "draft",
-  "package-id" : "hackathon-attendance-registration-app",
-  "ig-ver" : "0.1.0",
-  "date" : "Sun, 25 Oct, 2026 13:18:28 +0000",
-  "dateISO8601" : "2026-10-25T13:18:28+00:00",
+  "package-id" : "hackathon-check-in-app",
+  "ig-ver" : "0.6.0",
+  "date" : "Thu, 29 Oct, 2026 07:06:30 +0000",
+  "dateISO8601" : "2026-10-29T07:06:30+00:00",
   "errs" : 21,
   "warnings" : 55,
   "hints" : 22,
@@ -16,5 +16,5 @@
   "suppressed-warnings" : 0,
   "version" : "4.0.1",
   "tool" : "6.0.0-snapshot1 (3)",
-  "maxMemory" : 811637904
+  "maxMemory" : 818685240
 }

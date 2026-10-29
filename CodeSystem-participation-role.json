@@ -3,14 +3,14 @@
   "id" : "participation-role",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem participation-role</b></p><a name=\"participation-role\"> </a><a name=\"hcparticipation-role\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">attendee<a name=\"participation-role-attendee\"> </a></td><td>Attendee</td></tr><tr><td style=\"white-space:nowrap\">track-lead<a name=\"participation-role-track-lead\"> </a></td><td>Track lead</td></tr></table></div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem participation-role</b></p><a name=\"participation-role\"> </a><a name=\"hcparticipation-role\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">attendee<a name=\"participation-role-attendee\"> </a></td><td>Attendee</td></tr><tr><td style=\"white-space:nowrap\">track-lead<a name=\"participation-role-track-lead\"> </a></td><td>Track lead</td></tr></table></div>"
   },
-  "url" : "https://hl7.no/fhir/ig/hackathon-attendance-registration-app/CodeSystem/participation-role",
-  "version" : "0.1.0",
+  "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
+  "version" : "0.6.0",
   "name" : "ParticipationRole",
   "title" : "Hackathon participation role",
   "status" : "draft",
-  "date" : "2026-10-25T13:18:28+00:00",
+  "date" : "2026-10-29T07:06:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
