@@ -3,6 +3,7 @@
 ## Pages
 
 * [FHIR data model](index.md)
+* [Demo application](demo.md)
 * [Artifacts Summary](artifacts.md)
 
 ## Resources

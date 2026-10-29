@@ -69,6 +69,8 @@ Registration is represented by a `Person` referenced from a roster list. Check-i
 
 The guide defines code systems and value sets for list purposes, participation roles and event tracks. The examples illustrate roster entries, checked-in participants and the links between them. Published examples use synthetic information only; real participant details and event records must remain private.
 
+The [Demo application](demo.md) page links to a browser-only version of the check-in app that uses these examples as its data.
+
 
 
 ## Resource Content
@@ -82,7 +84,7 @@ The guide defines code systems and value sets for list purposes, participation r
   "name" : "HackathonCheckInApp",
   "title" : "hackathon-check-in-app",
   "status" : "draft",
-  "date" : "2026-10-29T07:06:30+00:00",
+  "date" : "2026-10-29T08:26:45+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -812,6 +814,15 @@ The guide defines code systems and value sets for list purposes, participation r
         }],
         "nameUrl" : "index.html",
         "title" : "FHIR data model",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "demo.html"
+        }],
+        "nameUrl" : "demo.html",
+        "title" : "Demo application",
         "generation" : "markdown"
       }]
     },

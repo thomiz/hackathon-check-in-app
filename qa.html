@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!-- broken links = 0, errors = 21, warn = 55, info = 22-->
+<!-- broken links = 2, errors = 25, warn = 55, info = 22-->
 <head>
   <title>HackathonCheckInApp : Validation Results</title>
   <link href="fhir.css" rel="stylesheet"/>
@@ -47,7 +47,7 @@
 </head>
 <body style="margin: 20px; background-color: #ffffff">
  <h1>Validation Results for HackathonCheckInApp</h1>
- <p>Generated Thu Oct 29 07:07:13 UTC 2026, FHIR version 4.0.1 for hackathon-check-in-app#0.6.0 (canonical = <a href="https://hl7.no/fhir/ig/hackathon-check-in-app">https://hl7.no/fhir/ig/hackathon-check-in-app</a> (<a href="https://hl7.no/fhir/ig/hackathon-check-in-app/history.html">history</a>)). See <a href="qa.min.html">Errors Only</a> &amp; <a href="qa-ipreview.html">IP</a></p>
+ <p>Generated Thu Oct 29 08:27:30 UTC 2026, FHIR version 4.0.1 for hackathon-check-in-app#0.6.0 (canonical = <a href="https://hl7.no/fhir/ig/hackathon-check-in-app">https://hl7.no/fhir/ig/hackathon-check-in-app</a> (<a href="https://hl7.no/fhir/ig/hackathon-check-in-app/history.html">history</a>)). See <a href="qa.min.html">Errors Only</a> &amp; <a href="qa-ipreview.html">IP</a></p>
 <table class="grid"> <tr><td colspan=2><b>Quality Checks</b></td></tr>
  <tr><td>Publisher Version:</td><td><span>IG Publisher Version: v3.0.1</span></td></tr>
  <tr><td>Publication Code:</td><td>n/a<span style="color: maroon; font-weight: bold"> </span>. PackageId = hackathon-check-in-app, Canonical = https://hl7.no/fhir/ig/hackathon-check-in-app</td></tr>
@@ -100,14 +100,14 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
  <tr><td>IPA Comparison:</td><td> n/a</td></tr>
  <tr><td>IPS Comparison:</td><td> n/a</td></tr>
  <tr><td>Validation Flags:</td><td> On: autoLoad; Off: hintAboutNonMustSupport, anyExtensionsAllowed, checkAggregation, showReferenceMessages, noExperimentalContent, displayWarnings</td></tr>
- <tr><td>Summary:</td><td> errors = 21, warn = 55, info = 22, broken links = 0, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
+ <tr><td>Summary:</td><td> errors = 25, warn = 55, info = 22, broken links = 2, pinned = n/a.  <button onclick="toggleCodes()">Show Message Ids</button></td></tr>
 </table>
  <table class="grid">
    <tr>
      <td><b>Filename</b></td><td><b>Errors</b></td><td><b>Warnings</b></td><td><b>Hints</b></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>6</b></td><td><b>32</b></td><td><b>0</b></td>
+     <td><a href="#internal"><b>Build Errors</b></a></td><td><b>12</b></td><td><b>32</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #EFFFEF">
      <td><a href="#_github_workspace_fhir_fsh-generated_includes_fsh-link-references"><b>/github/workspace/fhir/fsh-generated/includes/fsh-link-references</b></a></td><td><b>0</b></td><td><b>0</b></td><td><b>0</b></td>
@@ -197,6 +197,9 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><a href="#_github_workspace_fhir_fsh-generated_resources_ValueSet-tracks"><b>/github/workspace/fhir/fsh-generated/resources/ValueSet-tracks</b></a></td><td><b>3</b></td><td><b>1</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #EFFFEF">
+     <td><a href="#_github_workspace_fhir_input_pagecontent_demo"><b>/github/workspace/fhir/input/pagecontent/demo</b></a></td><td><b>0</b></td><td><b>0</b></td><td><b>0</b></td>
+   </tr>
+   <tr style="background-color: #EFFFEF">
      <td><a href="#_github_workspace_fhir_input_pagecontent_index"><b>/github/workspace/fhir/input/pagecontent/index</b></a></td><td><b>0</b></td><td><b>0</b></td><td><b>0</b></td>
    </tr>
    <tr style="background-color: #EFFFEF">
@@ -278,19 +281,37 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
      <td><b></b></td><td><b>warning</b></td><td><b>Unable to find ImplementationGuide.definition.resource.description for the resource List/example-roster.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy"></span></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><b><a href="index.html#hackathon-check-in-app-fhir-model">output/index.html (l196/c2)</a></b></td><td><b>error</b></td><td><b>The heading &lt;h1&gt; 'Hackathon check-in app FHIR model' (id=hackathon-check-in-app-fhir-model) is at a higher level than the first heading on the page (&lt;h2&gt; 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_ABOVE_ROOT</span></td>
+     <td><b><a href="demo.html#demo-application">output/demo.html (l158/c2)</a></b></td><td><b>error</b></td><td><b>The heading &lt;h1&gt; 'Demo application' (id=demo-application) is at a higher level than the first heading on the page (&lt;h2&gt; 'Demo application'). The first heading on a page must be its top level heading (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_ABOVE_ROOT</span></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><b><a href="index.html#scope-and-terminology">output/index.html (l203/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Scope and terminology' (id=scope-and-terminology) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+     <td><b><a href="demo.html#how-the-demo-works">output/demo.html (l172/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'How the demo works' (id=how-the-demo-works) is at the same level as the first heading on the page (&lt;h2&gt; 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><b><a href="index.html#participant-and-list-profiles">output/index.html (l217/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Participant and list profiles' (id=participant-and-list-profiles) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+     <td><b><a href="demo.html#trying-it-out">output/demo.html (l222/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Trying it out' (id=trying-it-out) is at the same level as the first heading on the page (&lt;h2&gt; 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><b><a href="index.html#event-use-cases">output/index.html (l261/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Event use cases' (id=event-use-cases) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+     <td><b><a href="demo.html#limitations">output/demo.html (l254/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Limitations' (id=limitations) is at the same level as the first heading on the page (&lt;h2&gt; 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
    </tr>
    <tr style="background-color: #ffdddd">
-     <td><b><a href="index.html#terminology-and-examples">output/index.html (l277/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Terminology and examples' (id=terminology-and-examples) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+     <td><b><a href="demo.html#l281">demo&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/a at Line 166, column 8</a></b></td><td><b>error</b></td><td><b>The link 'demo/index.html' for &quot;Open the attendee check-in screen&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="demo.html#l285">demo&#8203;.html&#8203;#&#8203;/html&#8203;/body&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/div&#8203;/ul&#8203;/li&#8203;/a at Line 167, column 8</a></b></td><td><b>error</b></td><td><b>The link 'demo/index.html#staff' for &quot;Open the organizer screen&quot; cannot be resolved</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_LINK_CHECK_FAILED</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="index.html#hackathon-check-in-app-fhir-model">output/index.html (l199/c2)</a></b></td><td><b>error</b></td><td><b>The heading &lt;h1&gt; 'Hackathon check-in app FHIR model' (id=hackathon-check-in-app-fhir-model) is at a higher level than the first heading on the page (&lt;h2&gt; 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_ABOVE_ROOT</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="index.html#scope-and-terminology">output/index.html (l206/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Scope and terminology' (id=scope-and-terminology) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="index.html#participant-and-list-profiles">output/index.html (l220/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Participant and list profiles' (id=participant-and-list-profiles) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="index.html#event-use-cases">output/index.html (l264/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Event use cases' (id=event-use-cases) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
+   </tr>
+   <tr style="background-color: #ffdddd">
+     <td><b><a href="index.html#terminology-and-examples">output/index.html (l280/c2)</a></b></td><td><b>error</b></td><td><b>The page has more than one top level heading: &lt;h2&gt; 'Terminology and examples' (id=terminology-and-examples) is at the same level as the first heading on the page (&lt;h2&gt; 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_HEADING_MULTIPLE_ROOTS</span></td>
    </tr>
    <tr style="background-color: #ffebcc">
      <td><b>output/searchform.html</b></td><td><b>warning</b></td><td><b>The html source is not well formed: Found &quot;&lt;/a&gt;&quot; expecting &quot;&lt;/img&gt;&quot; at line 34 column 177</b> <span class="code-value code-hidden" style="font-size: 8px; color: navy">HTML_NOT_WELL_FORMED</span></td>
@@ -798,8 +819,8 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
-<a name="_github_workspace_fhir_input_pagecontent_index"> </a>
-<h2><a href="">input/pagecontent/index.md</a> <span id="svi30" class="toggle" onclick="toggle('vi30')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi30')">(0)</span></h2>
+<a name="_github_workspace_fhir_input_pagecontent_demo"> </a>
+<h2><a href="">input/pagecontent/demo.md</a> <span id="svi30" class="toggle" onclick="toggle('vi30')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi30')">(0)</span></h2>
  <div style="border: 1px grey solid; display: none" id="vi30"></div>
  <table class="grid">
    <tr>
@@ -807,8 +828,8 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
-<a name="_github_workspace_fhir_temp_pages__includes_artifacts"> </a>
-<h2><a href="">temp/pages/_includes/artifacts.xml</a> <span id="svi31" class="toggle" onclick="toggle('vi31')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi31')">(0)</span></h2>
+<a name="_github_workspace_fhir_input_pagecontent_index"> </a>
+<h2><a href="">input/pagecontent/index.md</a> <span id="svi31" class="toggle" onclick="toggle('vi31')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi31')">(0)</span></h2>
  <div style="border: 1px grey solid; display: none" id="vi31"></div>
  <table class="grid">
    <tr>
@@ -816,8 +837,8 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
-<a name="_github_workspace_fhir_template_config"> </a>
-<h2><a href="">template/config</a> <span id="svi32" class="toggle" onclick="toggle('vi32')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi32')">(0)</span></h2>
+<a name="_github_workspace_fhir_temp_pages__includes_artifacts"> </a>
+<h2><a href="">temp/pages/_includes/artifacts.xml</a> <span id="svi32" class="toggle" onclick="toggle('vi32')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi32')">(0)</span></h2>
  <div style="border: 1px grey solid; display: none" id="vi32"></div>
  <table class="grid">
    <tr>
@@ -825,9 +846,18 @@ hl7.fhir.r4.core#4.0.1:     <a href="http://hl7.org/fhir/R4/codesystem-guide-par
    </tr>
 </table>
 <hr/>
-<a name="_github_workspace_fhir_template_config__config"> </a>
-<h2><a href="">template/config/_config.yml</a> <span id="svi33" class="toggle" onclick="toggle('vi33')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi33')">(0)</span></h2>
+<a name="_github_workspace_fhir_template_config"> </a>
+<h2><a href="">template/config</a> <span id="svi33" class="toggle" onclick="toggle('vi33')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi33')">(0)</span></h2>
  <div style="border: 1px grey solid; display: none" id="vi33"></div>
+ <table class="grid">
+   <tr>
+     <td>&check;</td>
+   </tr>
+</table>
+<hr/>
+<a name="_github_workspace_fhir_template_config__config"> </a>
+<h2><a href="">template/config/_config.yml</a> <span id="svi34" class="toggle" onclick="toggle('vi34')">Show Validation Information</span> <span class="vcount" onclick="toggle('vi34')">(0)</span></h2>
+ <div style="border: 1px grey solid; display: none" id="vi34"></div>
  <table class="grid">
    <tr>
      <td>&check;</td>
