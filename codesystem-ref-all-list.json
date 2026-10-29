@@ -144,7 +144,7 @@
   },
   {
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "ListPurpose",
     "title" : null,
@@ -155,7 +155,7 @@
   },
   {
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "ParticipationRole",
     "title" : "Hackathon participation role",
@@ -166,7 +166,7 @@
   },
   {
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "Track",
     "title" : "2026 Hackathon tracks",

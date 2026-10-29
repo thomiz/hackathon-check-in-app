@@ -1,4 +1,4 @@
-# FHIR data model - hackathon-check-in-app v0.6.0
+# FHIR data model - hackathon-check-in-app v0.6.1
 
 * [**Table of Contents**](toc.md)
 * **FHIR data model**
@@ -7,12 +7,12 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app | *Version*:0.6.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app | *Version*:0.6.1 |
 | Draft as of 2026-10-29 | *Computable Name*:HackathonCheckInApp |
 
 # Hackathon check-in app FHIR model
 
-This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event roster and attendee check-in. It documents the FHIR resources, profiles, extensions, terminology and examples used to represent those records. It does not describe the internal operation or architecture of any application.
+This page describes the FHIR R4 (4.0.1) data model for an event roster and attendee check-in. It documents the FHIR resources, profiles, extensions, terminology and examples used to represent those records. See [Business architecture](business-architecture.md) for the event use cases and the business-layer process view.
 
 ## Scope and terminology
 
@@ -51,20 +51,6 @@ CheckinList.entry.date ------> Check-in time
 
 ```
 
-## Event use cases
-
-The following overview shows the actors' basic interactions with the event process. It describes the use cases, not a particular user interface or application workflow.
-
-```
-Attendee  ------> (Register for the event)
-Attendee  ------> (Check in on arrival)
-Organizer ------> (Maintain participant roster)
-Organizer ------> (Record attendee check-in)
-
-```
-
-Registration is represented by a `Person` referenced from a roster list. Check-in is represented by a linked `Practitioner` referenced from a check-in list, with the arrival time recorded on the list entry.
-
 ## Terminology and examples
 
 The guide defines code systems and value sets for list purposes, participation roles and event tracks. The examples illustrate roster entries, checked-in participants and the links between them. Published examples use synthetic information only; real participant details and event records must remain private.
@@ -80,11 +66,11 @@ The [Demo application](demo.md) page links to a browser-only version of the chec
   "resourceType" : "ImplementationGuide",
   "id" : "hackathon-check-in-app",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
-  "version" : "0.6.0",
+  "version" : "0.6.1",
   "name" : "HackathonCheckInApp",
   "title" : "hackathon-check-in-app",
   "status" : "draft",
-  "date" : "2026-10-29T08:26:45+00:00",
+  "date" : "2026-10-29T09:23:29+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
@@ -814,6 +800,15 @@ The [Demo application](demo.md) page links to a browser-only version of the chec
         }],
         "nameUrl" : "index.html",
         "title" : "FHIR data model",
+        "generation" : "markdown"
+      },
+      {
+        "extension" : [{
+          "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name",
+          "valueUrl" : "business-architecture.html"
+        }],
+        "nameUrl" : "business-architecture.html",
+        "title" : "Business architecture",
         "generation" : "markdown"
       },
       {

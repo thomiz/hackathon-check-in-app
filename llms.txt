@@ -1,10 +1,11 @@
-# hackathon-check-in-app#0.6.0: hackathon-check-in-app
+# hackathon-check-in-app#0.6.1: hackathon-check-in-app
 
 ## Pages
 
 * [FHIR data model](index.md)
 * [Demo application](demo.md)
 * [Artifacts Summary](artifacts.md)
+* [Business architecture](business-architecture.md)
 
 ## Resources
 

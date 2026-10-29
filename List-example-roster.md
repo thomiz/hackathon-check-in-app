@@ -1,4 +1,4 @@
-# example-roster - hackathon-check-in-app v0.6.0
+# example-roster - hackathon-check-in-app v0.6.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)

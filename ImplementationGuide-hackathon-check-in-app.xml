@@ -7,11 +7,11 @@
 </div></div>
   </text>
   <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app"/>
-  <version value="0.6.0"/>
+  <version value="0.6.1"/>
   <name value="HackathonCheckInApp"/>
   <title value="hackathon-check-in-app"/>
   <status value="draft"/>
-  <date value="2026-10-29T08:26:45+00:00"/>
+  <date value="2026-10-29T09:23:29+00:00"/>
   <publisher value="HL7 Norway"/>
   <contact>
     <name value="HL7 Norway"/>
@@ -529,6 +529,14 @@
         </extension>
         <nameUrl value="index.html"/>
         <title value="FHIR data model"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="business-architecture.html"/>
+        </extension>
+        <nameUrl value="business-architecture.html"/>
+        <title value="Business architecture"/>
         <generation value="markdown"/>
       </page>
       <page>

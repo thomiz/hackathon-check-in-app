@@ -3,13 +3,13 @@
   "id" : "participation-roles",
   "text" : {
     "status" : "generated",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet participation-roles</b></p><a name=\"participation-roles\"> </a><a name=\"hcparticipation-roles\"> </a><ul><li>Include all codes defined in <a href=\"CodeSystem-participation-role.html\"><code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role</code></a><span title=\"Version is not explicitly stated, which means it is fixed to the version provided in this specification\"> version &#x1F4E6;0.6.0</span></li></ul></div>"
+    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ValueSet participation-roles</b></p><a name=\"participation-roles\"> </a><a name=\"hcparticipation-roles\"> </a><ul><li>Include all codes defined in <a href=\"CodeSystem-participation-role.html\"><code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role</code></a><span title=\"Version is not explicitly stated, which means it is fixed to the version provided in this specification\"> version &#x1F4E6;0.6.1</span></li></ul></div>"
   },
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles",
-  "version" : "0.6.0",
+  "version" : "0.6.1",
   "name" : "ParticipationRoles",
   "status" : "draft",
-  "date" : "2026-10-29T08:26:45+00:00",
+  "date" : "2026-10-29T09:23:29+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

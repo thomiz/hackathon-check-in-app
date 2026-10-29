@@ -13,11 +13,11 @@
      fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide hackathon-check-in-app</b></p><a name=\"hackathon-check-in-app\"> </a><a name=\"hchackathon-check-in-app\"> </a><h2>HackathonCheckInApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>\n</div></div>"
   ] ;
   fhir:ImplementationGuide.url [ fhir:value "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app"] ;
-  fhir:ImplementationGuide.version [ fhir:value "0.6.0"] ;
+  fhir:ImplementationGuide.version [ fhir:value "0.6.1"] ;
   fhir:ImplementationGuide.name [ fhir:value "HackathonCheckInApp"] ;
   fhir:ImplementationGuide.title [ fhir:value "hackathon-check-in-app"] ;
   fhir:ImplementationGuide.status [ fhir:value "draft"] ;
-  fhir:ImplementationGuide.date [ fhir:value "2026-10-29T08:26:45+00:00"^^xsd:dateTime] ;
+  fhir:ImplementationGuide.date [ fhir:value "2026-10-29T09:23:29+00:00"^^xsd:dateTime] ;
   fhir:ImplementationGuide.publisher [ fhir:value "HL7 Norway"] ;
   fhir:ImplementationGuide.contact [
      fhir:index 0 ;
@@ -780,6 +780,16 @@
          fhir:ImplementationGuide.definition.page.generation [ fhir:value "markdown" ]
        ], [
          fhir:index 1 ;
+         fhir:Element.extension [
+           fhir:index 0 ;
+           fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name" ] ;
+           fhir:Extension.valueUrl [ fhir:value "business-architecture.html" ]
+         ] ;
+         fhir:ImplementationGuide.definition.page.nameUrl [ fhir:value "business-architecture.html" ] ;
+         fhir:ImplementationGuide.definition.page.title [ fhir:value "Business architecture" ] ;
+         fhir:ImplementationGuide.definition.page.generation [ fhir:value "markdown" ]
+       ], [
+         fhir:index 2 ;
          fhir:Element.extension [
            fhir:index 0 ;
            fhir:Extension.url [ fhir:value "http://hl7.org/fhir/tools/StructureDefinition/ig-page-name" ] ;

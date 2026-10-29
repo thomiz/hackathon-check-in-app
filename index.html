@@ -3,7 +3,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>FHIR data model - hackathon-check-in-app v0.6.0</title>
+    <title>FHIR data model - hackathon-check-in-app v0.6.1</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -52,7 +52,7 @@
         <div id="ig-status">
           <p><span style="font-size:12pt;font-weight:bold">hackathon-check-in-app</span>
             <br/>
-            <span style="display:inline-block;">0.6.0 - ci-build
+            <span style="display:inline-block;">0.6.1 - ci-build
 
 
 
@@ -85,6 +85,9 @@
 <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
   <li>
     <a href="index.html">Home</a>
+  </li>
+  <li>
+    <a href="business-architecture.html">Business architecture</a>
   </li>
   <li>
     <a href="demo.html">Demo</a>
@@ -124,7 +127,7 @@ h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) ".
 h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
 </style>
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">hackathon-check-in-app - Local Development build (v0.6.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://hl7.no/fhir/ig/hackathon-check-in-app/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <!--ReleaseHeader--><p id="publish-box">hackathon-check-in-app - Local Development build (v0.6.1) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://hl7.no/fhir/ig/hackathon-check-in-app/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
   <h2>FHIR data model</h2>
   
 
@@ -139,7 +142,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
       <td colspan="4"><i>Official URL</i>: <span class="copy-text">https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app<button title="Click to copy URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app"/></span>
       </td>
       <td><i>Version</i>:
-      <span class="copy-text">0.6.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app|0.6.0"/></span>
+      <span class="copy-text">0.6.1<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app|0.6.1"/></span>
       </td>
     </tr>
 
@@ -189,7 +192,6 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
           <li><a href="#lists" id="markdown-toc-lists">Lists</a></li>
         </ul>
       </li>
-      <li><a href="#event-use-cases" id="markdown-toc-event-use-cases">Event use cases</a></li>
       <li><a href="#terminology-and-examples" id="markdown-toc-terminology-and-examples">Terminology and examples</a></li>
     </ul>
   </li>
@@ -198,10 +200,11 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 </div>
 <h1 id="hackathon-check-in-app-fhir-model">Hackathon check-in app FHIR model</h1>
 
-<p>This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event
-roster and attendee check-in. It documents the FHIR resources, profiles,
-extensions, terminology and examples used to represent those records. It does
-not describe the internal operation or architecture of any application.</p>
+<p>This page describes the FHIR R4 (4.0.1) data model for an event roster and
+attendee check-in. It documents the FHIR resources, profiles, extensions,
+terminology and examples used to represent those records. See
+<a href="business-architecture.html">Business architecture</a> for the event use cases and
+the business-layer process view.</p>
 
 <h2 id="scope-and-terminology">Scope and terminology</h2>
 
@@ -261,22 +264,6 @@ CheckinList.entry.item ------&gt; CheckedInParticipant (Practitioner)
 CheckinList.entry.date ------&gt; Check-in time
 </code></pre></div></div>
 
-<h2 id="event-use-cases">Event use cases</h2>
-
-<p>The following overview shows the actors' basic interactions with the event
-process. It describes the use cases, not a particular user interface or
-application workflow.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Attendee  ------&gt; (Register for the event)
-Attendee  ------&gt; (Check in on arrival)
-Organizer ------&gt; (Maintain participant roster)
-Organizer ------&gt; (Record attendee check-in)
-</code></pre></div></div>
-
-<p>Registration is represented by a <code class="language-plaintext highlighter-rouge">Person</code> referenced from a roster list.
-Check-in is represented by a linked <code class="language-plaintext highlighter-rouge">Practitioner</code> referenced from a check-in
-list, with the arrival time recorded on the list entry.</p>
-
 <h2 id="terminology-and-examples">Terminology and examples</h2>
 
 <p>The guide defines code systems and value sets for list purposes, participation
@@ -307,7 +294,7 @@ the check-in app that uses these examples as its data.</p>
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-check-in-app#0.6.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 29, 2026 08:26+0000">2026-10-29</span>
+          IG &#169; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-check-in-app#0.6.1 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 29, 2026 09:23+0000">2026-10-29</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

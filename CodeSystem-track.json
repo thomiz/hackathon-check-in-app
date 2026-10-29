@@ -6,11 +6,11 @@
     "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem track</b></p><a name=\"track\"> </a><a name=\"hctrack\"> </a><p>This case-sensitive code system <code>https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td></tr><tr><td style=\"white-space:nowrap\">care-plans<a name=\"track-care-plans\"> </a></td><td>Modeling Patient care plans as FHIR</td></tr><tr><td style=\"white-space:nowrap\">smart<a name=\"track-smart\"> </a></td><td>SMART on FHIR</td></tr><tr><td style=\"white-space:nowrap\">medication-definition<a name=\"track-medication-definition\"> </a></td><td>Medication Definition on FHIR - Exploration of FHIR services from EMA and NoMA</td></tr><tr><td style=\"white-space:nowrap\">ihe-mhd<a name=\"track-ihe-mhd\"> </a></td><td>Document sharing for IHE MHD</td></tr><tr><td style=\"white-space:nowrap\">ehds-summary<a name=\"track-ehds-summary\"> </a></td><td>EHDS patient summary</td></tr><tr><td style=\"white-space:nowrap\">fhir-101<a name=\"track-fhir-101\"> </a></td><td>FHIR 101: Introduction to HL7 FHIR with practical assignments</td></tr></table></div>"
   },
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
-  "version" : "0.6.0",
+  "version" : "0.6.1",
   "name" : "Track",
   "title" : "2026 Hackathon tracks",
   "status" : "draft",
-  "date" : "2026-10-29T08:26:45+00:00",
+  "date" : "2026-10-29T09:23:29+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

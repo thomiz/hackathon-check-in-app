@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="644c340d-5bf9-4058-985b-af3df8207d18"/>
+  <id value="d1667dba-419b-488f-bfc2-ec2bbe360e63"/>
   <meta>
-    <lastUpdated value="2026-10-29T08:26:45.610+00:00"/>
+    <lastUpdated value="2026-10-29T09:23:29.145+00:00"/>
   </meta>
   <type value="collection"/>
   <entry>
@@ -15,9 +15,9 @@
           <div xmlns="http://www.w3.org/1999/xhtml" data-fhir="generated">
             <p class="res-header-id"/>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion performed internally based on 
-              <a href="CodeSystem-list-purpose.html">codesystem ListPurpose v0.6.0 (CodeSystem)</a>
+              <a href="CodeSystem-list-purpose.html">codesystem ListPurpose v0.6.1 (CodeSystem)</a>
               <span class="copy-text-inline">
-                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
+                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.1" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
               </span>
             </p>
             <p>This value set contains 3 concepts</p>
@@ -50,12 +50,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;roster&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;roster&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;roster&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;roster&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -70,12 +70,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;staff&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;staff&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;staff&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;staff&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -90,12 +90,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;checkins&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;checkins&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;checkins&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;checkins&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -103,10 +103,10 @@
           </div>
         </text>
         <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes"/>
-        <version value="0.6.0"/>
+        <version value="0.6.1"/>
         <name value="ListPurposes"/>
         <status value="draft"/>
-        <date value="2026-10-29T08:26:45+00:00"/>
+        <date value="2026-10-29T09:23:29+00:00"/>
         <jurisdiction>
           <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -114,8 +114,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:1ff754dd-346a-4d43-b621-2f18bcdf32d8"/>
-          <timestamp value="2026-10-29T08:27:21+00:00"/>
+          <identifier value="urn:uuid:0082abf6-5246-40e7-a9e5-32aec36d241a"/>
+          <timestamp value="2026-10-29T09:24:15+00:00"/>
           <total value="3"/>
           <offset value="0"/>
           <parameter>
@@ -136,7 +136,7 @@
           </parameter>
           <parameter>
             <name value="used-codesystem"/>
-            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0"/>
+            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.1"/>
           </parameter>
           <contains>
             <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose"/>
@@ -163,9 +163,9 @@
           <div xmlns="http://www.w3.org/1999/xhtml" data-fhir="generated">
             <p class="res-header-id"/>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion performed internally based on 
-              <a href="CodeSystem-participation-role.html">codesystem Hackathon participation role v0.6.0 (CodeSystem)</a>
+              <a href="CodeSystem-participation-role.html">codesystem Hackathon participation role v0.6.1 (CodeSystem)</a>
               <span class="copy-text-inline">
-                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
+                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.1" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
               </span>
             </p>
             <p>This value set contains 2 concepts</p>
@@ -198,12 +198,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;attendee&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;attendee&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;attendee&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;attendee&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -218,12 +218,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;track-lead&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;track-lead&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;track-lead&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;track-lead&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -231,10 +231,10 @@
           </div>
         </text>
         <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles"/>
-        <version value="0.6.0"/>
+        <version value="0.6.1"/>
         <name value="ParticipationRoles"/>
         <status value="draft"/>
-        <date value="2026-10-29T08:26:45+00:00"/>
+        <date value="2026-10-29T09:23:29+00:00"/>
         <jurisdiction>
           <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -242,8 +242,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:e90eba44-e54e-4f44-a323-f5b897f2b524"/>
-          <timestamp value="2026-10-29T08:27:21+00:00"/>
+          <identifier value="urn:uuid:b67d712d-b0c5-4a44-b445-ece8c825bed7"/>
+          <timestamp value="2026-10-29T09:24:15+00:00"/>
           <total value="2"/>
           <offset value="0"/>
           <parameter>
@@ -264,7 +264,7 @@
           </parameter>
           <parameter>
             <name value="used-codesystem"/>
-            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0"/>
+            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.1"/>
           </parameter>
           <contains>
             <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role"/>
@@ -287,9 +287,9 @@
           <div xmlns="http://www.w3.org/1999/xhtml" data-fhir="generated">
             <p class="res-header-id"/>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion performed internally based on 
-              <a href="CodeSystem-track.html">codesystem 2026 Hackathon tracks v0.6.0 (CodeSystem)</a>
+              <a href="CodeSystem-track.html">codesystem 2026 Hackathon tracks v0.6.1 (CodeSystem)</a>
               <span class="copy-text-inline">
-                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
+                <button data-clipboard-text="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1" title="Click to Copy URL" class="btn-copy" aria-label="copy"> </button>
               </span>
             </p>
             <p>This value set contains 6 concepts</p>
@@ -322,12 +322,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;care-plans&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;care-plans&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;care-plans&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;care-plans&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -342,12 +342,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;smart&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;smart&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;smart&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;smart&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -362,12 +362,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;medication-definition&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;medication-definition&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;medication-definition&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;medication-definition&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -382,12 +382,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;ihe-mhd&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;ihe-mhd&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;ihe-mhd&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;ihe-mhd&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -402,12 +402,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;ehds-summary&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;ehds-summary&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;ehds-summary&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;ehds-summary&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -422,12 +422,12 @@
                 <td/>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.0&quot;, &quot;code&quot;: &quot;fhir-101&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="{&quot;system&quot;: &quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;, &quot;version&quot;: &quot;0.6.1&quot;, &quot;code&quot;: &quot;fhir-101&quot;}" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
                 <td>
                   <span class="copy-text-inline">
-                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.0&quot;/&gt;&lt;code value=&quot;fhir-101&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
+                    <button data-clipboard-text="&lt;coding&gt;&lt;system value=&quot;https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track&quot;/&gt;&lt;version value=&quot;0.6.1&quot;/&gt;&lt;code value=&quot;fhir-101&quot;/&gt;&lt;/coding&gt;" title="Click to Copy as Coding" class="btn-copy" aria-label="copy"> </button>
                   </span>
                 </td>
               </tr>
@@ -435,10 +435,10 @@
           </div>
         </text>
         <url value="https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks"/>
-        <version value="0.6.0"/>
+        <version value="0.6.1"/>
         <name value="Tracks"/>
         <status value="draft"/>
-        <date value="2026-10-29T08:26:45+00:00"/>
+        <date value="2026-10-29T09:23:29+00:00"/>
         <jurisdiction>
           <coding>
             <system value="urn:iso:std:iso:3166"/>
@@ -446,8 +446,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:5cd082df-525f-43a5-ba31-c24732101f42"/>
-          <timestamp value="2026-10-29T08:27:21+00:00"/>
+          <identifier value="urn:uuid:b0dee86c-1a5e-461f-997a-9b6ceb0ee891"/>
+          <timestamp value="2026-10-29T09:24:15+00:00"/>
           <total value="6"/>
           <offset value="0"/>
           <parameter>
@@ -468,7 +468,7 @@
           </parameter>
           <parameter>
             <name value="used-codesystem"/>
-            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0"/>
+            <valueUri value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1"/>
           </parameter>
           <contains>
             <system value="https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track"/>

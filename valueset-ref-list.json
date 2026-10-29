@@ -1,7 +1,7 @@
 {
   "codeSystems" : [{
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/list-purposes",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "ListPurposes",
     "title" : null,
@@ -13,7 +13,7 @@
   },
   {
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/participation-roles",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "ParticipationRoles",
     "title" : null,
@@ -26,7 +26,7 @@
   },
   {
     "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks",
-    "version" : "0.6.0",
+    "version" : "0.6.1",
     "status" : "draft",
     "name" : "Tracks",
     "title" : null,

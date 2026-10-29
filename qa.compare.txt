@@ -1,10 +1,10 @@
 HackathonCheckInApp : Validation Results
 =========================================
 
-err = 25, warn = 55, info = 22, broken links = 2
+err = 27, warn = 55, info = 22, broken links = 3
 $--
 Generated $--. FHIR version $-- for hackathon-check-in-app#$-- (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
- Build Errors : 12 / 32 / 0
+ Build Errors : 15 / 32 / 0
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-list-purpose : 3 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-participation-role : 1 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-track : 2 / 2 / 1
@@ -56,16 +56,19 @@ WARNING: Unable to find ImplementationGuide.definition.resource.description for 
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Person/example-person.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource Practitioner/example-practitioner.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource List/example-roster.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
+ERROR: /github/workspace/fhir/output/business-architecture.html: The heading <h1> 'Business architecture' (id=business-architecture) is at a higher level than the first heading on the page (<h2> 'Business architecture'). The first heading on a page must be its top level heading (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/business-architecture.html: The page has more than one top level heading: <h2> 'Use cases for the check-in app' (id=use-cases-for-the-check-in-app) is at the same level as the first heading on the page (<h2> 'Business architecture'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+ERROR: /github/workspace/fhir/output/business-architecture.html: The page has more than one top level heading: <h2> 'Process view' (id=process-view) is at the same level as the first heading on the page (<h2> 'Business architecture'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
+ERROR: business-architecture.html#/html/body/div/div/div/div/div/p/img at Line 167, column 5: The image source 'images/attendance-process.svg' cannot be resolved
 ERROR: /github/workspace/fhir/output/demo.html: The heading <h1> 'Demo application' (id=demo-application) is at a higher level than the first heading on the page (<h2> 'Demo application'). The first heading on a page must be its top level heading (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/demo.html: The page has more than one top level heading: <h2> 'How the demo works' (id=how-the-demo-works) is at the same level as the first heading on the page (<h2> 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/demo.html: The page has more than one top level heading: <h2> 'Trying it out' (id=trying-it-out) is at the same level as the first heading on the page (<h2> 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/demo.html: The page has more than one top level heading: <h2> 'Limitations' (id=limitations) is at the same level as the first heading on the page (<h2> 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
-ERROR: demo.html#/html/body/div/div/div/div/div/ul/li/a at Line 166, column 8: The link 'demo/index.html' for "Open the attendee check-in screen" cannot be resolved
-ERROR: demo.html#/html/body/div/div/div/div/div/ul/li/a at Line 167, column 8: The link 'demo/index.html#staff' for "Open the organizer screen" cannot be resolved
+ERROR: demo.html#/html/body/div/div/div/div/div/ul/li/a at Line 169, column 8: The link 'demo/index.html' for "Open the attendee check-in screen" cannot be resolved
+ERROR: demo.html#/html/body/div/div/div/div/div/ul/li/a at Line 170, column 8: The link 'demo/index.html#staff' for "Open the organizer screen" cannot be resolved
 ERROR: /github/workspace/fhir/output/index.html: The heading <h1> 'Hackathon check-in app FHIR model' (id=hackathon-check-in-app-fhir-model) is at a higher level than the first heading on the page (<h2> 'FHIR data model'). The first heading on a page must be its top level heading (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Scope and terminology' (id=scope-and-terminology) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Participant and list profiles' (id=participant-and-list-profiles) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
-ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Event use cases' (id=event-use-cases) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/index.html: The page has more than one top level heading: <h2> 'Terminology and examples' (id=terminology-and-examples) is at the same level as the first heading on the page (<h2> 'FHIR data model'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</a>" expecting "</img>" at line 34 column 177
 WARNING: /github/workspace/fhir/output/searchform.html: The html source is not well formed: Found "</div>" expecting "</body>" at line 79 column 10
@@ -119,27 +122,27 @@ WARNING: List/example-roster: List.identifier[0].system: No definition could be 
 
 
 == fsh-generated/resources/Person-example-attendee-101.json ==
-INFORMATION: Person/example-attendee-101: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-attendee-101: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-attendee-101: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-care-plans.json ==
-INFORMATION: Person/example-attendee-care-plans: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-attendee-care-plans: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-attendee-care-plans: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-ehds.json ==
-INFORMATION: Person/example-attendee-ehds: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-attendee-ehds: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-attendee-ehds: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-ihe.json ==
-INFORMATION: Person/example-attendee-ihe: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-attendee-ihe: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-attendee-ihe: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Person-example-attendee-medication.json ==
-INFORMATION: Person/example-attendee-medication: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-attendee-medication: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-attendee-medication: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
@@ -148,20 +151,20 @@ WARNING: Person/example-attendee-undecided: Person.identifier[0].system: No defi
 
 
 == fsh-generated/resources/Person-example-person.json ==
-INFORMATION: Person/example-person: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Person/example-person: Person.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Person/example-person: Person.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
 
 
 == fsh-generated/resources/Practitioner-example-attendee-practitioner.json ==
-INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Practitioner/example-attendee-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
-INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0
+INFORMATION: Practitioner/example-attendee-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.1
 
 
 == fsh-generated/resources/Practitioner-example-practitioner.json ==
-INFORMATION: Practitioner/example-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.0
+INFORMATION: Practitioner/example-practitioner: Practitioner.extension[1].value.ofType(Coding): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track|0.6.1
 WARNING: Practitioner/example-practitioner: Practitioner.identifier[0].system: No definition could be found for URL value 'https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026'
-INFORMATION: Practitioner/example-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.0
+INFORMATION: Practitioner/example-practitioner: Practitioner.qualification[0].code: Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role|0.6.1
 
 
 == fsh-generated/resources/StructureDefinition-affiliation.json ==
@@ -174,8 +177,8 @@ INFORMATION: Resource: The resource StructureDefinition/checked-in-participant c
 
 
 == fsh-generated/resources/StructureDefinition-checkin-list.json ==
-INFORMATION: StructureDefinition/checkin-list: StructureDefinition.snapshot.element[13].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0
-INFORMATION: StructureDefinition/checkin-list: StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.0
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.snapshot.element[13].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.1
+INFORMATION: StructureDefinition/checkin-list: StructureDefinition.differential.element[1].pattern.ofType(CodeableConcept): Reference to draft CodeSystem https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose|0.6.1
 INFORMATION: Resource: The resource StructureDefinition/checkin-list could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
 
 

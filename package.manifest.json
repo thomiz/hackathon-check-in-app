@@ -1,7 +1,7 @@
 {
-  "version" : "0.6.0",
+  "version" : "0.6.1",
   "fhirVersion" : ["4.0.1"],
-  "date" : "20261029082645",
+  "date" : "20261029092329",
   "name" : "hackathon-check-in-app",
   "jurisdiction" : "urn:iso:std:iso:3166#NO"
 }
