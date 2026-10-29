@@ -334,8 +334,7 @@ When upgrading to 0.6.0, first follow the
 The check-in app runs directly on Windows; Docker runs only the Blaze FHIR
 server. Changes in `server/`, `src/`, `shared/` or `scripts/` do **not** require
 building or recreating a Docker image. Follow the app test, build and restart
-steps below. The separate Blaze/Docker step applies only when its configuration
-or pinned image changes.
+steps below. Blaze needs updating only in the cases listed in step 8.
 
 1. Finish active check-ins and stop the app with **Ctrl+C**.
 2. Take a [database backup](README.md#backup-and-restore-of-the-host-data-directory).
@@ -374,13 +373,41 @@ or pinned image changes.
    | Attendee CSV | Import the reviewed attendee file as described above. |
    | `.env.example` or configuration requirements | Review new settings and update the private `.env`; do not replace it with the example. |
 
-8. **If the Blaze configuration or pinned image changed, update Blaze before
-   restarting the app.** This includes changes to `compose.yaml` or Blaze-related
-   `.env` settings. Otherwise, leave the existing Blaze container running and
-   continue to the next step.
+8. **Update Blaze only if `compose.yaml` changed.** Blaze is configured
+   entirely by `compose.yaml` plus `BLAZE_DATA_DIR` in `.env`. Check
+   whether the update changed `compose.yaml`, replacing `<previous-version>`
+   with the commit or tag you were running:
 
-   Review release-specific upgrade requirements and preserve `BLAZE_DATA_DIR`;
-   do not point Blaze at a new or empty database directory. Apply the update:
+   ```powershell
+   git --no-pager diff --stat <previous-version> HEAD -- compose.yaml
+   ```
+
+   No output means Blaze is unchanged: leave the container running and
+   continue to step 9. Otherwise, update Blaze before restarting the app.
+   Changes requiring this include:
+
+   * a new pinned `image:` tag (a Blaze version upgrade);
+   * Blaze `environment:` settings, such as memory or cache sizes;
+   * `ports`, `volumes`, `healthcheck`, `restart` or `stop_grace_period`.
+     If the published port changes, update `FHIR_BASE_URL` in `.env` to match.
+
+   Blaze is **not** updated automatically when Samply publishes a new release.
+   The version changes only when a reviewed update edits the `image:` tag.
+   Changes in `server/`, `src/`, `shared/`, `scripts/`, FHIR definitions,
+   rosters, `package.json` or app-only `.env` settings never require a Blaze
+   update. App-only settings include `HOST`, `PORT`, `PUBLIC_URL`,
+   `FHIR_BASE_URL`, secrets and staff login. Do not change `BLAZE_DATA_DIR`
+   during an upgrade: it must keep pointing at the existing database.
+
+   Apply the update explicitly here instead of letting `npm.cmd run ops -- start`
+   apply it. That command runs `docker compose up -d blaze`. Compose silently
+   recreates the container with a changed image or environment, and downloads
+   the image if needed. The command refuses to start only if the existing
+   container's port or database mount no longer matches `compose.yaml`.
+   Read the release notes for any Blaze version upgrade before
+   applying it, because Blaze can migrate the database. Older Blaze versions
+   may not be able to read the migrated database, so keep the backup from step 2.
+   Apply the update:
 
    ```powershell
    docker compose pull
