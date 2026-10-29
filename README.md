@@ -324,6 +324,22 @@ For an HTML IG, run IG Publisher using `fhir\ig.ini`.
 See [FHIR model and validation](DESIGN.md#fhir-model-and-validation) for resource
 relationships and package identifiers.
 
+### Static demo with the IG examples
+
+`npm.cmd run build:demo` builds a server-free demo into `dist-demo`. It runs SUSHI
+first, then bundles the synthetic `Person`, `Practitioner` and `List` examples from
+`fhir\fsh-generated\resources` into the app. In the browser, the real registration
+service runs against an in-memory store, so check-in, receipts, organizer dashboard,
+manual registration, corrections and CSV export all work. Data resets on reload. The
+IG example roster `synthetic-attendee-roster` is mapped to the event roster in memory.
+Staff sign-in accepts any credentials, and roster CSV import is disabled.
+Run `npm.cmd run dev:demo` to try it locally; add `#staff` to the URL for the
+organizer screen.
+
+The *Build and publish FHIR Implementation Guide* workflow builds the demo and
+publishes it with the IG on GitHub Pages under `demo/`. The IG's *Demo* page links
+to it.
+
 ## QR attendance receipts
 
 Successful check-in shows a receipt with registered details, event role, primary

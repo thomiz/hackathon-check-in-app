@@ -84,3 +84,6 @@ roles and event tracks. The examples illustrate roster entries, checked-in
 participants and the links between them. Published examples use synthetic
 information only; real participant details and event records must remain
 private.
+
+The [Demo application](demo.html) page links to a browser-only version of
+the check-in app that uses these examples as its data.

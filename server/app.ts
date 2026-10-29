@@ -7,6 +7,7 @@ import rateLimit from '@fastify/rate-limit';
 import staticFiles from '@fastify/static';
 import { z, ZodError } from 'zod';
 import { checkinSchema, detailsSchema, manualSchema, roleSchema, tracks } from '../shared/domain.js';
+import { checkinsCsv } from '../shared/export.js';
 import { AppError, type FhirStore } from './fhir.js';
 import { RegistrationService } from './registration.js';
 import { importRoster, parseRoster } from './imports.js';
@@ -112,10 +113,8 @@ export async function buildApp(store: FhirStore, config: Config) {
   app.get('/api/staff/export', async (request, reply) => {
     session(request);
     const { rows } = await service.dashboard();
-    const cell = (value: string) => `"${(/^[=+\-@\t\r]/.test(value) ? "'" + value : value).replace(/"/g, '""')}"`;
-    const columns = ['name', 'email', 'affiliation', 'track', 'role', 'arrived'] as const;
     reply.header('Content-Disposition', 'attachment; filename="hackathon-2026-checkins.csv"').type('text/csv; charset=utf-8');
-    return '\uFEFF' + [columns.join(','), ...rows.map(row => columns.map(key => cell(row[key])).join(','))].join('\r\n');
+    return checkinsCsv(rows);
   });
   const dist = resolve('dist');
   if (existsSync(dist)) {

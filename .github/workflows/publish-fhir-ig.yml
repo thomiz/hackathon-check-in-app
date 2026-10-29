@@ -24,6 +24,13 @@ jobs:
           npm ci
           npm run fhir:build
 
+      # The demo bundles the example JSON that SUSHI just generated into fhir/fsh-generated.
+      - name: Test and build demo app from IG examples
+        run: |
+          npm run typecheck
+          npx vitest run tests/demo.test.ts
+          npx vite build --mode demo
+
       - name: Download FHIR IG Publisher
         run: |
           curl --fail --location --silent --show-error \
@@ -34,6 +41,12 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           args: java -jar publisher.jar publisher -ig fhir/ig.ini
+
+      # The publisher container writes fhir/output as root, hence sudo.
+      - name: Add demo app to IG output
+        run: |
+          sudo mkdir -p fhir/output/demo
+          sudo cp -r dist-demo/. fhir/output/demo/
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type Selection } from '../shared/domain';
-import { api } from './api';
+import { api, DEMO, downloadDemoExport } from './api';
 import { Receipt } from './Receipt';
 import './styles.css';
 
@@ -147,11 +147,13 @@ function Staff() {
       event.preventDefault();
       void action(async () => { await api('/staff/login', { username, password }); setPassword(''); setLoggedIn(true); await refresh(); });
     }}>
-      <h2>Staff sign-in</h2><label>Username<input required autoComplete="username" value={username} onChange={e => setUsername(e.target.value)} /></label>
+      <h2>Staff sign-in</h2>{DEMO && <p className="notice">Demo: sign in with any username and password.</p>}<label>Username<input required autoComplete="username" value={username} onChange={e => setUsername(e.target.value)} /></label>
       <label>Password<input required type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} /></label>
       <button disabled={busy}>Sign in</button>
     </form> : <>
-      <div className="toolbar"><button disabled={busy} onClick={() => void action(refresh)}>Refresh dashboard</button><a className="button secondary" href="/api/staff/export">Export check-ins (CSV)</a></div>
+      <div className="toolbar"><button disabled={busy} onClick={() => void action(refresh)}>Refresh dashboard</button>{DEMO
+        ? <button className="secondary" disabled={busy} onClick={() => void action(downloadDemoExport)}>Export check-ins (CSV)</button>
+        : <a className="button secondary" href="/api/staff/export">Export check-ins (CSV)</a>}</div>
       {dashboard && <>
         <section className="metrics" aria-label="Attendance totals">
           {Object.entries(dashboard.totals).map(([key, value]) => <div className="metric" key={key}><strong>{value}</strong><span>{({ roster: 'Advance sign-ups', staff: 'Staff roster', checkedIn: 'Checked in', rosterMissing: 'Sign-ups not here', staffMissing: 'Staff not here', manual: 'Manual registrations', attendees: 'Attendees here', trackLeads: 'Track leads here' } as Record<string, string>)[key]}</span></div>)}
@@ -199,7 +201,7 @@ function Staff() {
           <button type="button" className="secondary" disabled={busy} onClick={resetForm}>Clear / new manual registration</button>
         </form>
       </div>
-      <form className="card" onSubmit={event => {
+      {!DEMO && <form className="card" onSubmit={event => {
         event.preventDefault();
         void action(async () => { const result = await api<{ imported: number }>('/staff/import', { source, csv }); setNotice(`Replaced the selected roster with ${result.imported} entries. The other roster and attendance history were preserved; no check-ins created.`); setCsv(''); await refresh(); });
       }}>
@@ -207,7 +209,7 @@ function Staff() {
         <label>Roster<select value={source} onChange={e => setSource(e.target.value)}><option value="roster">Google Sheet attendees</option><option value="staff">Agenda staff / track leads</option></select></label>
         <label>CSV content<textarea rows={6} required value={csv} onChange={e => setCsv(e.target.value)} /></label>
         <button disabled={busy}>Validate and replace roster</button>
-      </form>
+      </form>}
     </>}
   </main>;
 }
@@ -226,7 +228,13 @@ function App() {
       <p className="eyebrow">9 NOVEMBER 2026 · REBEL, OSLO</p>
     </div>
     <a className="header-navigation" href={staff ? '#' : '#staff'}>{staff ? 'Attendee check-in' : 'Staff access'}</a>
-  </div></header>{staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
+  </div></header>
+  {DEMO && <p className="demo-banner" role="note">
+    <strong>Demo</strong> using the synthetic FHIR IG examples, e.g. Robin Sample or Morgan Demo. Changes stay in this browser tab only.{' '}
+    <a href={staff ? '#' : '#staff'}>{staff ? 'Open attendee check-in' : 'Open organizer screen'}</a>{' · '}
+    <a href="#" onClick={event => { event.preventDefault(); window.location.reload(); }}>Reset demo</a>
+  </p>}
+  {staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
