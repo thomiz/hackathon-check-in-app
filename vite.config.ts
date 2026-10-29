@@ -17,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
       : {},
     // Relative asset URLs let the demo be served from any sub-path, e.g. <ig>/demo/ on GitHub Pages.
     ...(demo ? { base: './', build: { outDir: 'dist-demo' } } : {}),
-    server: { proxy: demo ? {} : { '/api': 'http://127.0.0.1:8080' } },
+    server: { proxy: demo ? undefined : { '/api': 'http://127.0.0.1:8080' } },
     test: { include: ['tests/**/*.test.ts'], fileParallelism: false }
   };
 });
