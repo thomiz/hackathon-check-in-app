@@ -1,9 +1,10 @@
 # Hackathon check-in app FHIR model
 
-This Implementation Guide describes a FHIR R4 (4.0.1) data model for an event
-roster and attendee check-in. It documents the FHIR resources, profiles,
-extensions, terminology and examples used to represent those records. It does
-not describe the internal operation or architecture of any application.
+This page describes the FHIR R4 (4.0.1) data model for an event roster and
+attendee check-in. It documents the FHIR resources, profiles, extensions,
+terminology and examples used to represent those records. See
+[Business architecture](business-architecture.html) for the event use cases and
+the business-layer process view.
 
 ## Scope and terminology
 
@@ -59,23 +60,6 @@ ExpectedParticipant.link ----> CheckedInParticipant (Practitioner)
 CheckinList.entry.item ------> CheckedInParticipant (Practitioner)
 CheckinList.entry.date ------> Check-in time
 ```
-
-## Event use cases
-
-The following overview shows the actors' basic interactions with the event
-process. It describes the use cases, not a particular user interface or
-application workflow.
-
-```text
-Attendee  ------> (Register for the event)
-Attendee  ------> (Check in on arrival)
-Organizer ------> (Maintain participant roster)
-Organizer ------> (Record attendee check-in)
-```
-
-Registration is represented by a `Person` referenced from a roster list.
-Check-in is represented by a linked `Practitioner` referenced from a check-in
-list, with the arrival time recorded on the list entry.
 
 ## Terminology and examples
 

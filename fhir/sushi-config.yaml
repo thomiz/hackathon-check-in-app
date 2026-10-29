@@ -3,7 +3,7 @@ canonical: https://hl7.no/fhir/ig/hackathon-check-in-app
 name: HackathonCheckInApp
 title: hackathon-check-in-app
 status: draft
-version: 0.6.0
+version: 0.6.1
 fhirVersion: 4.0.1
 copyrightYear: 2026+
 releaseLabel: ci-build
@@ -15,10 +15,13 @@ jurisdiction: urn:iso:std:iso:3166#NO
 pages:
   index.md:
     title: FHIR data model
+  business-architecture.md:
+    title: Business architecture
   demo.md:
     title: Demo application
     
 menu:
   Home: index.html
+  Business architecture: business-architecture.html
   Demo: demo.html
   Artifacts: artifacts.html
