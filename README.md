@@ -96,9 +96,13 @@ container: no separate database, cache or administration app is needed.
 Blaze stores its database in a **bind-mounted directory on the host disk**,
 outside the container. Keep this directory when stopping or upgrading services.
 
-The host directory is set by `BLAZE_DATA_DIR` in `.env` (default
+The host directory is set by `BLAZE_DATA_DIR` in `.env` (the example uses
 `./data/blaze`, relative to the repository; `data/` is ignored by Git). Compose
-uses `create_host_path: false`, so you must create the directory before the first
+requires an explicit, nonempty value; it no longer guesses a directory when
+the setting is absent. If an older installation relied on the implicit
+`C:\hackathon-data\blaze` location, record that existing location in `.env`
+before starting anything. Do not select a new empty directory for an upgrade.
+Compose uses `create_host_path: false`, so you must create the directory before the first
 start; a typo then fails loudly instead of silently starting an empty database.
 Use an empty directory for a new database.
 
@@ -159,6 +163,28 @@ options.
 
 ## Run the application
 
+For day-to-day Windows operation, use the operations CLI:
+
+```powershell
+npm.cmd run ops -- start
+# In a second PowerShell window:
+npm.cmd run ops -- status
+# Gracefully stop the app and Blaze:
+npm.cmd run ops -- stop
+```
+
+`start` checks the existing database directory, starts Blaze, waits for health,
+then runs the app in the foreground. Leave its terminal open. Ctrl+C stops
+only the app; `stop --app-only` does the same from another terminal.
+No rebuild, dependency installation or roster replacement is performed on
+ordinary startup. See the [Operations CLI guide](OPERATIONS.md#operations-cli-recommended)
+for verified cold backups, read-only roster/reset previews and guarded
+`--apply` workflows. Each apply requires a stopped app, exact confirmation and
+a fresh verified backup. Configuration still uses `npm.cmd run configure`;
+there is no web administration console in this version.
+
+The existing manual startup remains available after starting and checking Blaze:
+
 ```powershell
 npm.cmd run start
 ```
@@ -191,8 +217,8 @@ See `.env.example`. Generated passwords and secrets belong only in `.env`.
   a trusted HTTPS reverse proxy; expose only the HTTPS application endpoint.
 * `FHIR_BASE_URL`: Blaze FHIR base including `/fhir`
   (default `http://localhost:8090/fhir`). Must stay a loopback address.
-* `BLAZE_DATA_DIR`: host directory for the Blaze database files, used by
-  `compose.yaml` (default `./data/blaze`). Must exist before `docker compose up`.
+* `BLAZE_DATA_DIR`: required host directory for the Blaze database files, used by
+  `compose.yaml` (the example uses `./data/blaze`). Must exist before `docker compose up`.
 * `PRIVACY_NOTICE_URL`: link to the event privacy notice.
 
 The 2026 event privacy notice must be updated before real use to cover check-in

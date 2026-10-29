@@ -13,6 +13,125 @@ Use your actual installation path if different. Run each numbered step
 separately. **If a command fails, stop and resolve the error before continuing.**
 Never delete the Blaze data directory to fix a startup or import error.
 
+## Operations CLI (recommended)
+
+The local operations tool combines startup, shutdown, status, verified backups,
+import previews and attendance resets. It is a command-line tool, not a web
+console or Windows service. Run it on the registration PC with Windows,
+Node.js 18.17+ and Docker Desktop using a **local Linux-container engine**.
+It supports the installed Compose 2.4 generation without requiring
+`--wait-timeout`.
+
+Complete the [initial installation](README.md#windows-setup) first. Configure
+`.env` using `npm.cmd run configure` if it does not exist; keep existing
+credentials when updating an installation. Set `BLAZE_DATA_DIR` explicitly
+to the existing database directory. The tool resolves Compose paths relative
+to the checkout, checks the actual container mount and loopback endpoint,
+and **never creates a missing database directory** or silently selects a new
+one. It does not install dependencies, rebuild, rotate passwords or import
+rosters during ordinary startup. The existing first-start staff preload still
+applies when the staff List is empty.
+
+If an existing Blaze container points to a different directory or endpoint,
+the tool refuses to replace or stop it implicitly. Reconcile the configuration
+with the intended existing database before proceeding; use the documented
+backup/migration procedure for an intentional storage change.
+
+```powershell
+npm.cmd run ops -- help
+```
+
+| Command | Behavior |
+|---|---|
+| `npm.cmd run ops -- start` | Starts Blaze, waits for health, then runs the built app in this terminal. |
+| `npm.cmd run ops -- start --blaze-only` | Starts only Blaze, for maintenance or recovery. |
+| `npm.cmd run ops -- status` | Reports health, managed/manual app ownership, disk space, last verified backup, aggregate attendance and track totals. |
+| `npm.cmd run --silent ops -- status --json` | The same one-shot status as JSON; suppresses npm's banner for machine-readable output. No names, emails, credentials or control tokens. |
+| `npm.cmd run ops -- stop --app-only` | Gracefully stops an ops-managed app; leaves Blaze running for maintenance. |
+| `npm.cmd run ops -- stop` | Gracefully stops the ops-managed app, then stops Blaze. |
+| `npm.cmd run ops -- backup --backup-dir 'D:\private\hackathon-backups'` | Makes and verifies a new cold backup; the app must already be stopped. |
+| `npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv'` | **Read-only preview** of replacing the attendee roster. |
+| `npm.cmd run ops -- import --staff 'D:\private\reviewed-staff.csv'` | **Read-only preview** of replacing the staff/track-lead-and-partner roster. |
+| `npm.cmd run ops -- reset` | **Read-only preview** of resetting attendance, including leftover event Practitioners from an interrupted reset. |
+
+Commands return a nonzero exit code on failure. `status` also returns nonzero
+when the app or Blaze is unavailable, or maintenance is unfinished. That is
+expected while the app is deliberately stopped; it is not permission to
+discard the database. Status is a snapshot, not a background monitoring service.
+
+### Backup destination and verification
+
+Create a private backup parent directory once, on an access-restricted,
+preferably encrypted disk **outside both the checkout and the database**:
+
+```powershell
+New-Item -ItemType Directory -Force 'D:\private\hackathon-backups'
+```
+
+Choose your actual backup disk; a separate disk also protects against loss of
+the database disk. Restrict its NTFS permissions to event operators. The tool
+does not set Windows ACLs, encrypt backups or delete old backups automatically.
+
+For a standalone backup, stop the app first, then run:
+
+```powershell
+npm.cmd run ops -- stop --app-only
+npm.cmd run ops -- backup --backup-dir 'D:\private\hackathon-backups'
+```
+
+The tool checks the configured container/mount, stops Blaze, uses `robocopy`
+without `/MIR`, and compares the SHA-256 digest and size of every source and
+copied file. It checks the source again to detect changes during the copy.
+Only after verification does it write `backup.json` in a new timestamped
+backup directory. Database files are in that directory's **`blaze` subfolder**.
+It restarts the same container if it was previously running; otherwise it
+leaves Blaze stopped. The app always remains stopped.
+
+If copying or verification fails, the tool does not restart Blaze or mark the
+copy as verified. Resolve the error and take another backup. If the copy
+verified but restarting Blaze failed, the error identifies the usable backup.
+The backup does **not** contain `.env`; keep that file separately and securely.
+Restore using the [approved recovery procedure](README.md#backup-and-restore-of-the-host-data-directory),
+copying from the backup's `blaze` subfolder, not from its parent.
+
+### Preview, confirmation and recovery rules
+
+* `import` and `reset` default to previews; `--dry-run` makes that explicit.
+  Previews do not initialize missing event Lists or modify FHIR resources,
+  configuration, seed files or backups. Start the app once after a new
+  installation to initialize its Lists, then stop it before maintenance.
+* To apply, repeat the command with **`--apply --backup-dir <directory>`**.
+  The tool shows the target database, counts and an exact confirmation phrase.
+  Type that phrase when prompted. Any other input cancels without a backup or
+  database write. For noninteractive use, pass `--confirm '<exact phrase>'`;
+  there is no generic `--yes` bypass.
+* Every apply takes a **fresh verified cold backup**, even if a recent backup
+  exists. It rechecks the preview after backup before making changes.
+  Imports require the complete selected roster(s), not a file of differences.
+* Applying requires a stopped app. A local database lock prevents concurrent
+  startup and CLI maintenance; it also covers the normal `npm run start`,
+  development backend, and existing import/reset CLI entry points. Unknown
+  listeners on the configured app port block maintenance too. An app started
+  manually must be stopped with **Ctrl+C**; the tool never kills unrelated
+  processes by name or by a saved PID.
+* Stop other installations, older versions and external FHIR writers yourself.
+  This is coordination for this toolchain, **not an access lock inside Blaze**.
+  Use the same checkout/operator account for recovery. Never run two Blaze
+  containers against the same directory.
+* Runtime control tokens, the last-backup record and an unfinished-operation
+  journal are kept under the Git-ignored `data\ops` directory. Protect it along
+  with `.env`. An interrupted reset/import blocks both normal and ops app
+  startup. **Do not remove the journal to bypass the block.** Keep the original
+  reviewed input files and backup; retry the same ops operation with the same
+  inputs, review its new counts and confirm again. If needed, use
+  `start --blaze-only` to bring Blaze back for recovery.
+* A combined reset/import is **not one atomic operation**: reset requires two
+  FHIR transactions, followed by the roster import transaction. Errors leave
+  the app stopped and identify the failed stage and original backup.
+  No automatic rollback or restart of registration is attempted. If the
+  original inputs are unavailable or the failure persists, have the maintainer
+  investigate or follow the approved restore procedure.
+
 ## 1. Start the program after installation and testing
 
 ### What must already be done
@@ -36,38 +155,27 @@ See the [event checklist](README.md#verification-and-event-operation).
 ### Normal startup
 
 1. Open **Docker Desktop** and wait until its engine is running.
-2. Open PowerShell, go to the application folder, and start Blaze:
+2. Open PowerShell, go to the application folder, and start the services:
 
    ```powershell
-   docker compose up -d
+   npm.cmd run ops -- start
    ```
 
-3. Check readiness:
+   The command verifies configuration and the existing data directory, waits
+   for Blaze and checks application health before printing `Check-in app ready`.
+   Startup does not recreate rosters or attendance. If it fails, registration
+   remains unavailable; inspect the reported error rather than switching data
+   directories.
+
+3. **Leave this PowerShell window open.** It runs the app; it is not a
+   background service. Docker Desktop alone does not start the check-in app.
+4. In a **second PowerShell window**, check readiness:
 
    ```powershell
-   docker compose ps
-   Invoke-RestMethod 'http://localhost:8090/health'
+   npm.cmd run ops -- status
    ```
 
-   Blaze normally takes 10-60 seconds to start. Wait for `healthy` in the
-   Compose output and a successful health request before continuing.
-
-4. Start the check-in app:
-
-   ```powershell
-   npm.cmd run start
-   ```
-
-   **Leave this PowerShell window open.** It runs the app; closing it stops
-   registration access. Docker Desktop alone does not start the check-in app.
-
-5. In a **second PowerShell window**, check application health:
-
-   ```powershell
-   Invoke-RestMethod 'http://localhost:8080/api/health'
-   ```
-
-   Expect `status: ok`. Open `http://localhost:8080` in the browser, sign in
+   Expect `Overall: READY`. Open `http://localhost:8080` in the browser, sign in
    through **Staff access**, and check the roster counts.
 
 The addresses above are the default workstation configuration. If you configured
@@ -75,30 +183,35 @@ a different application address, use it for the browser and application health
 check. Keep Blaze accessible only on loopback.
 
 **No rebuild or CSV reimport is needed for an ordinary restart.** Rosters and
-check-ins remain in the existing Blaze database. Use `npm.cmd run start`, not
-the development servers, for event operation.
+check-ins remain in the existing Blaze database. The manual alternative remains
+`docker compose up -d`, wait for Blaze health, then `npm.cmd run start`;
+see the [README](README.md#start-and-check). Do not use the development servers
+for event operation.
 
 ### Normal shutdown
 
 1. Finish the current registration.
-2. Press **Ctrl+C** in the PowerShell window running the app.
-3. If shutting down the PC or stopping the database, run:
+2. From a second PowerShell window, run:
 
    ```powershell
-   docker compose stop
+   npm.cmd run ops -- stop
    ```
 
-Stopping does not erase the database. Follow the
-[backup procedure](README.md#backup-and-restore-of-the-host-data-directory)
-at agreed intervals and before maintenance.
+   This drains app requests before stopping Blaze. Use `--app-only` to leave
+   Blaze running for maintenance. **Ctrl+C** in the startup window also stops
+   only the app. For an app started with the old `npm.cmd run start`, press
+   Ctrl+C first, then use `ops stop` to stop Blaze.
+
+Stopping does not erase the database. Take a
+[verified backup](#backup-destination-and-verification) at agreed intervals and
+before maintenance.
 
 ## 2. When the attendee list or staff roster changes
 
 **Editing a source file does not update the database. You must import it.**
-Keep Blaze running. You can leave the app running and use a second PowerShell
-window for imports, but schedule changes when nobody is checking in.
-Take a [backup](README.md#backup-and-restore-of-the-host-data-directory) first;
-if you stopped the app or Blaze for the backup, restart them afterwards.
+Keep Blaze running. Previews can run while the app is open, but schedule applying
+changes when nobody is checking in. The ops apply workflow below requires the
+app to be stopped and takes its own fresh backup.
 
 ### Attendee list changes
 
@@ -112,22 +225,33 @@ if you stopped the app or Blaze for the backup, restart them afterwards.
      rather than generating a new one.
    * For a person also in the staff roster, supply the same `id` and event
      `role` as the staff CSV. The import rejects ambiguous overlaps.
-3. Import the reviewed file:
+3. Preview the reviewed file and check additions, removals and updates:
 
    ```powershell
-   npm.cmd run import -- roster 'D:\private\reviewed-attendees.csv'
+   npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv'
    ```
 
-4. Expect `Imported ... roster entries.` followed by confirmation that the selected
-   list was replaced and attendance history was preserved.
-   If validation fails, correct the CSV and retry; the import is atomic.
-5. Refresh the staff dashboard and check the expected roster count and changes.
+4. Stop the app, then apply and type the displayed confirmation phrase:
+
+   ```powershell
+   npm.cmd run ops -- stop --app-only
+   npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --apply --backup-dir 'D:\private\hackathon-backups'
+   ```
+
+   Expect `Maintenance verified (import)`. The tool replaces only the selected
+   list and preserves attendance. If validation fails, correct the CSV and
+   preview again; the import transaction is atomic.
+5. Run `npm.cmd run ops -- start`, sign in to the staff dashboard and check the
+   expected roster count and changes.
    The reported import count is the number of input rows, not the number of
    newly added people. People absent from the CSV are removed from the attendee
    list. An import does not check anyone in.
 
-You can also paste the CSV into **Import reviewed roster CSV** on the staff
-page with **Google Sheet attendees** selected.
+You can still paste the CSV into **Import reviewed roster CSV** on the staff
+page with **Google Sheet attendees** selected, or use the existing
+`npm.cmd run import -- roster 'D:\private\reviewed-attendees.csv'` command.
+These alternatives do **not** perform the ops preview/confirmation/backup
+workflow; take a backup separately and schedule changes at a quiet moment.
 See [CSV format and ID rules](README.md#google-sheet-attendees-and-optional-staff-updates).
 
 ### Staff roster changes
@@ -143,17 +267,43 @@ See [CSV format and ID rules](README.md#google-sheet-attendees-and-optional-staf
 3. Review the generation warnings and `seed\staff.csv`. If someone was renamed,
    reconcile their existing participant ID before importing. Track-associated
    people are `track-lead`; Partner rows are `attendee`.
-4. Explicitly import the complete generated roster (this replaces the staff list):
+4. Preview the complete generated roster, then stop the app and apply:
 
    ```powershell
-   npm.cmd run import -- staff '.\seed\staff.csv'
+   npm.cmd run ops -- import --staff '.\seed\staff.csv'
+   npm.cmd run ops -- stop --app-only
+   npm.cmd run ops -- import --staff '.\seed\staff.csv' --apply --backup-dir 'D:\private\hackathon-backups'
    ```
 
-5. Refresh the staff dashboard and check counts and changes.
+5. Run `npm.cmd run ops -- start`, then check dashboard counts and changes.
 
 **Restarting the app does not refresh an existing staff roster.** Generation
 and import are separate steps. If you receive an already reviewed staff CSV
-instead, import that file with `npm.cmd run import -- staff 'D:\private\reviewed-staff.csv'`.
+instead, use `--staff 'D:\private\reviewed-staff.csv'` in the preview and apply
+commands above.
+
+Alternatively, `--agenda 'D:\path\to\hack-agenda.md'` can be used instead of
+`--staff`. It parses the agenda in memory without changing the bundled seed
+files. Review warnings block applying directly from the agenda: generate the
+staff files privately, review them and import the reviewed CSV instead.
+Input files inside the checkout generate a warning; never commit private
+attendee exports.
+
+### Update both rosters together
+
+Supply both complete CSVs to one command:
+
+```powershell
+npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --staff 'D:\private\reviewed-staff.csv'
+npm.cmd run ops -- stop --app-only
+npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --staff 'D:\private\reviewed-staff.csv' --apply --backup-dir 'D:\private\hackathon-backups'
+```
+
+Both Lists and their Person updates are committed in **one FHIR transaction**.
+For someone in both input files, use matching stable IDs, roles and details.
+This permits a coordinated roster-role change for a person who has not checked
+in. Already confirmed roles still require an audited correction, or an explicit
+reset when starting a new attendance run.
 
 ### Removals, role changes and already checked-in people
 
@@ -277,55 +427,79 @@ resource history, audit records, backups, and previously saved receipt copies
 can still contain earlier attendance information. Old receipts cannot be
 reopened in the app after reset.
 
-### Reset procedure
+### Guarded reset procedure
 
 1. Confirm approval and stop all check-in activity. Export the arrivals CSV
    from the staff dashboard if you need a readable record of the previous run.
-2. Stop the check-in app with **Ctrl+C** in its PowerShell window.
-   Stop any other app instance, development server, or import process using
-   this database. **Keep the app stopped until verification is complete.**
-   The reset command cannot enforce exclusive access by itself.
-3. Take a [database backup](README.md#backup-and-restore-of-the-host-data-directory).
-   That procedure stops Blaze while copying its data and starts it afterwards.
-   Confirm the backup succeeded before proceeding.
-4. With Blaze running, check its health:
+2. Stop the app but keep Blaze running:
 
    ```powershell
-   Invoke-RestMethod 'http://localhost:8090/health'
+   npm.cmd run ops -- stop --app-only
    ```
 
-5. From the application folder, run:
+   For a manually started app, use Ctrl+C instead. Stop any other app instance,
+   development server or external import process using this database.
+   **Keep the app stopped until verification is complete.**
+3. Preview the reset:
 
    ```powershell
-   npm.cmd run checkins:reset -- --confirm-reset-checkins
+   npm.cmd run ops -- reset
    ```
 
-   The explicit confirmation flag is required. The command uses the FHIR server
-   configured in `.env`; check that it is the intended database before running.
-   It uses two FHIR transactions: first remove Person links and clear the check-in
-   List, then delete event Practitioners. Blaze checks delete references against
-   the database before each transaction, so these steps cannot be combined.
-   It then verifies zero active check-ins and no remaining event Practitioners.
-   Expect a message starting with `Reset verified:`.
+   Check the target database, check-in count and event Practitioner count.
+   The latter can be nonzero after a partially completed reset even when the
+   dashboard shows zero arrivals.
+4. Apply and type the exact phrase shown in the preview:
 
-   If it reports an error, **do not reopen registration** until resolved. A
-   transport error can mean the write outcome is uncertain. Inspect the database
-   or rerun the command with the app still stopped; a completed reset can safely
-   be repeated. If the first stage succeeded but deletion failed, the dashboard
-   may show zero arrivals while old Practitioners still remain: **this is not
-   a completed reset**. Keep the app stopped and rerun the command to finish.
+   ```powershell
+   npm.cmd run ops -- reset --apply --backup-dir 'D:\private\hackathon-backups'
+   ```
+
+   This takes and verifies a fresh cold backup first. Reset then uses two FHIR
+   transactions: remove Person links and clear the check-in List, then delete
+   event Practitioners. Blaze checks delete references against the database
+   before each transaction, so these steps cannot be combined. Finally it
+   verifies zero active check-ins, zero event Practitioners and unchanged
+   roster Lists. Expect `Maintenance verified (reset)`.
+
+   If it reports an error, **do not reopen registration**. A transport error
+   can mean the write outcome is uncertain. Follow the
+   [recovery rules](#preview-confirmation-and-recovery-rules), keeping the app
+   stopped and retrying the same ops command. A completed reset can safely be
+   repeated, but zero dashboard arrivals alone do not prove completion.
    Inconsistent references must be repaired before resetting. A conflict with
    diagnostics saying `Referential integrity violated` is not a version conflict;
    if it persists with the two-stage reset, have the maintainer inspect additional
    references rather than disabling referential-integrity checks.
 
-6. Follow [Normal startup](#normal-startup). Reload the browser to discard old
+5. Follow [Normal startup](#normal-startup). Reload the browser to discard old
    selections and receipts, sign in, and refresh the dashboard.
-7. Verify:
+6. Verify:
    * Checked-in, attendee-arrival, track-lead-arrival and manual-arrival totals
      are zero; the arrivals table is empty.
    * Attendee and staff roster counts are unchanged.
    * Expected roster members appear as not yet checked in.
+
+### Reset and import updated rosters in the same maintenance window
+
+After stopping the app, preview the combined operation, then apply:
+
+```powershell
+npm.cmd run ops -- import --reset-checkins --attendees 'D:\private\reviewed-attendees.csv' --staff 'D:\private\reviewed-staff.csv'
+npm.cmd run ops -- import --reset-checkins --attendees 'D:\private\reviewed-attendees.csv' --staff 'D:\private\reviewed-staff.csv' --apply --backup-dir 'D:\private\hackathon-backups'
+```
+
+Omit either roster flag to leave that roster unchanged. The tool validates the
+proposed post-reset imports **before** resetting anything, confirms the counts,
+takes a fresh backup, resets attendance, and imports the selected roster(s).
+This allows reviewed details/roles to be applied for the new run instead of
+preserving the preceding run's confirmed details. Shared IDs in both supplied
+rosters must agree. Restart only after the combined operation verifies.
+
+The original `npm.cmd run checkins:reset -- --confirm-reset-checkins` command
+remains an advanced manual alternative, with a separately verified backup.
+It does not provide the ops backup/journal workflow and cannot bypass an
+unfinished ops operation. Prefer the guarded procedure above.
 
 No roster reimport is needed for existing roster members. Manual-only people
 remain outside both rosters, as before; they are not automatically eligible for

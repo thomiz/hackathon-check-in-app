@@ -1,20 +1,13 @@
-import { buildApp } from './app.js';
 import { loadConfig } from './config.js';
-import { BlazeStore } from './fhir.js';
-import { preloadStaff } from './preload.js';
+import { operationPaths, withOperationLock } from './operations-runtime.js';
+import { startApplication, waitForApplication } from './startup.js';
 
 const config = loadConfig();
-const { app, service } = await buildApp(new BlazeStore(config.fhir), config);
+const paths = operationPaths(config.fhir.baseUrl);
 try {
-  await service.initialize();
-  const preloaded = await preloadStaff(service);
-  if (preloaded) app.log.info({ count: preloaded }, 'Preloaded agenda staff roster; no attendance recorded.');
-  const shutdown = () => { void app.close().catch(error => { console.error(error); process.exitCode = 1; }); };
-  process.once('SIGINT', shutdown);
-  process.once('SIGTERM', shutdown);
-  await app.listen({ host: config.host, port: config.port });
+  const running = await withOperationLock(paths, () => startApplication(config, paths));
+  await waitForApplication(running);
 } catch (error) {
-  app.log.error(error, 'Startup failed; no check-in server is available.');
-  await app.close();
+  console.error('The check-in server failed:', error instanceof Error ? error.message : 'Unknown error');
   process.exitCode = 1;
 }
