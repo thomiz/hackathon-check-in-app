@@ -45,7 +45,7 @@ Other representations of profile: [CSV](StructureDefinition-affiliation.csv), [E
   "name" : "Affiliation",
   "title" : "Participant affiliation",
   "status" : "draft",
-  "date" : "2026-10-29T15:50:41+00:00",
+  "date" : "2026-10-29T16:44:10+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

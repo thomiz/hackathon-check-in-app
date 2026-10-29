@@ -1,10 +1,10 @@
 HackathonCheckInApp : Validation Results
 =========================================
 
-err = 27, warn = 55, info = 22, broken links = 3
+err = 27, warn = 55, info = 22, broken links = 2
 IG Publisher Version: 3.0.1
-Generated Thu Oct 29 15:51:42 UTC 2026. FHIR version 4.0.1 for hackathon-check-in-app#0.6.1 (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
- Build Errors : 15 / 32 / 0
+Generated Thu Oct 29 16:44:52 UTC 2026. FHIR version 4.0.1 for hackathon-check-in-app#0.6.1 (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
+ Build Errors : 14 / 32 / 0
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-list-purpose : 3 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-participation-role : 1 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-track : 2 / 2 / 1
@@ -59,7 +59,6 @@ WARNING: Unable to find ImplementationGuide.definition.resource.description for 
 ERROR: /github/workspace/fhir/output/business-architecture.html: The heading <h1> 'Business architecture' (id=business-architecture) is at a higher level than the first heading on the page (<h2> 'Business architecture'). The first heading on a page must be its top level heading (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/business-architecture.html: The page has more than one top level heading: <h2> 'Use cases for the check-in app' (id=use-cases-for-the-check-in-app) is at the same level as the first heading on the page (<h2> 'Business architecture'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/business-architecture.html: The page has more than one top level heading: <h2> 'Process view' (id=process-view) is at the same level as the first heading on the page (<h2> 'Business architecture'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
-ERROR: business-architecture.html#/html/body/div/div/div/div/div/p/img at Line 167, column 5: The image source '../images/attendance-process.svg' cannot be resolved
 ERROR: /github/workspace/fhir/output/demo.html: The heading <h1> 'Demo application' (id=demo-application) is at a higher level than the first heading on the page (<h2> 'Demo application'). The first heading on a page must be its top level heading (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/demo.html: The page has more than one top level heading: <h2> 'How the demo works' (id=how-the-demo-works) is at the same level as the first heading on the page (<h2> 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
 ERROR: /github/workspace/fhir/output/demo.html: The page has more than one top level heading: <h2> 'Trying it out' (id=trying-it-out) is at the same level as the first heading on the page (<h2> 'Demo application'). A page must have exactly one top level heading, with every other heading beneath it (WCAG compliance test)
