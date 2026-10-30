@@ -1,10 +1,10 @@
 import type { BundleEntry, Person, Practitioner } from 'fhir/r4';
 import { ID_SYSTEM, LISTS } from '../shared/domain.js';
-import { AppError, put } from './fhir.js';
+import { AppError, put, resourceFingerprint } from './fhir.js';
 import { refs } from './model.js';
 import type { RegistrationService } from './registration.js';
 
-export async function resetCheckins(service: RegistrationService): Promise<number> {
+async function planReset(service: RegistrationService) {
   const list = await service.list(LISTS.checkins);
   const people = await service.store.search<Person>('Person', '_count=200');
   const practitioners = await service.store.search<Practitioner>('Practitioner', '_count=200');
@@ -13,6 +13,10 @@ export async function resetCheckins(service: RegistrationService): Promise<numbe
   if (eventPractitioners.some(p => !p.id) || refs(list).some(ref => !targets.has(ref))) {
     throw new AppError(409, 'Check-in records are inconsistent. Repair them before resetting attendance.');
   }
+  const preview = {
+    checkedIn: refs(list).length, practitioners: eventPractitioners.length,
+    fingerprint: resourceFingerprint([list, ...people, ...practitioners])
+  };
   const entries: BundleEntry[] = [];
   for (const p of people) {
     if (!p.link?.some(link => targets.has(link.target.reference ?? ''))) continue;
@@ -23,6 +27,15 @@ export async function resetCheckins(service: RegistrationService): Promise<numbe
   list.entry = [];
   list.date = new Date().toISOString();
   entries.push(put(list));
+  return { entries, eventPractitioners, preview };
+}
+
+export async function previewResetCheckins(service: RegistrationService) {
+  return (await planReset(service)).preview;
+}
+
+export async function resetCheckins(service: RegistrationService): Promise<number> {
+  const { entries, eventPractitioners } = await planReset(service);
   // Blaze checks DELETE references against the database before the transaction.
   await service.store.transaction(entries);
   if (eventPractitioners.length) {

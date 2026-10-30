@@ -1,7 +1,12 @@
-import 'dotenv/config';
+import { config as dotenv } from 'dotenv';
 import { z } from 'zod';
 
-export function loadConfig() {
+export function loadConfig(environment?: NodeJS.ProcessEnv) {
+  if (!environment) {
+    const result = dotenv();
+    if (result.error && !('code' in result.error && result.error.code === 'ENOENT')) throw result.error;
+    environment = process.env;
+  }
   const schema = z.object({
     HOST: z.string().default('127.0.0.1'),
     PORT: z.coerce.number().int().min(1).max(65535).default(8080),
@@ -12,7 +17,7 @@ export function loadConfig() {
     STAFF_PASSWORD_HASH: z.string().regex(/^[a-f0-9]{32}:[a-f0-9]{128}$/),
     PRIVACY_NOTICE_URL: z.string().url().default('https://hl7norway.github.io/Norwegian-FHIR-Hackathon-2026/currentbuild/privacy.html')
   });
-  const result = schema.safeParse(process.env);
+  const result = schema.safeParse(environment);
   if (!result.success) throw new Error(`Invalid environment configuration: ${result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
   const value = result.data;
   return {
