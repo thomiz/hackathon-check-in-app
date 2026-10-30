@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import jsQR from 'jsqr';
 import { QRCodeSVG } from 'qrcode.react';
 import { Receipt } from '../src/Receipt';
-import { receiptText } from '../shared/receipt';
+import { receiptMailto, receiptSubject, receiptText } from '../shared/receipt';
 import { detailsSchema, tracks, type Confirmation } from '../shared/domain';
 
 const receipt: Confirmation = {
@@ -53,23 +53,32 @@ describe('local QR attendance receipts', () => {
     expect(markup).toContain('alex@example.invalid');
     expect(markup).toContain('Example Organization');
     expect(markup).toContain('SMART on FHIR');
-    expect(markup).toContain('Scan or photograph this QR code and store the information contained or an image of this confirmation as a check in receipt.');
+    expect(markup).toContain('Scan this QR code with your phone camera to open a pre-filled email to yourself');
     expect(markup).toContain(receipt.receiptId);
     expect(markup).not.toContain('<img');
     expect(markup).not.toContain('<script');
-    const text = decodeReceipt(markup);
-    expect(text).toBe(receiptText(receipt));
-    expect(text).toBe([
-      'Norwegian FHIR Hackathon 2026',
-      'Check-in confirmation',
+    const uri = decodeReceipt(markup);
+    expect(uri).toBe(receiptMailto(receipt));
+    const parsed = new URL(uri!);
+    expect(parsed.protocol).toBe('mailto:');
+    expect(parsed.pathname).toBe('alex@example.invalid');
+    expect(parsed.searchParams.get('subject')).toBe(receiptSubject);
+    const body = decodeURIComponent(/[?&]body=([^&]*)/.exec(uri!)![1]!);
+    expect(body).toBe([
       'Name: Alex Example',
-      'Email: alex@example.invalid',
       'Primary track: smart',
       'Checked in: 9 Nov 2026, 08:42:00 CET',
       `Receipt reference: ${receipt.receiptId}`
-    ].join('\n'));
-    expect(text).not.toMatch(/Event:|Affiliation:|Role:|Confirms check-in|Attendance check-in|SMART on FHIR/);
-    expect(text).not.toMatch(/https?:\/\//);
+    ].join('\r\n'));
+    expect(body).not.toMatch(/Event:|Email:|Affiliation:|Role:|SMART on FHIR/);
+    expect(uri).not.toMatch(/https?:\/\//);
+  });
+  it('percent-encodes characters that would break the mailto URI', () => {
+    const value = { ...receipt, name: 'A&B ?#%=+', email: 'a+b@example.invalid' };
+    const uri = receiptMailto(value);
+    expect(uri.startsWith('mailto:a%2Bb@example.invalid?subject=')).toBe(true);
+    expect(uri.match(/[?&]/g)).toHaveLength(2);
+    expect(decodeURIComponent(/&body=(.*)$/.exec(uri)![1]!)).toBe(receiptText(value).replace(/\n/g, '\r\n'));
   });
   it('round trips maximum-length Unicode details and the longest track label without truncation', () => {
     const longestTrack = [...tracks].sort((a, b) => b.label.length - a.label.length)[0]!;
@@ -84,14 +93,14 @@ describe('local QR attendance receipts', () => {
       role: 'track-lead'
     };
     expect(long.email.length).toBe(254);
-    expect(decodeReceipt(renderReceipt(long))).toBe(receiptText(long));
+    expect(decodeReceipt(renderReceipt(long))).toBe(receiptMailto(long));
   });
   it('handles no selected track and prevents embedded line breaks from creating receipt fields', () => {
     const value = { ...receipt, name: 'Alex\nExample', affiliation: 'Example\r\nOrganization', track: '' as const };
     expect(receiptText(value)).toContain('Name: Alex Example\n');
     expect(receiptText(value)).not.toContain('Affiliation:');
     expect(receiptText(value)).toContain('Primary track: Not selected\n');
-    expect(decodeReceipt(renderReceipt(value))).toBe(receiptText(value));
+    expect(decodeReceipt(renderReceipt(value))).toBe(receiptMailto(value));
   });
   it('produces fewer QR modules than the previous full receipt payload', () => {
     const previousText = [

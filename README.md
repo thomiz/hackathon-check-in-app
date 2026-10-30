@@ -5,7 +5,7 @@ November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 
 The app and FHIR implementation guide are named `hackathon-check-in-app`,
-version `0.6.0`. Existing installations must follow the
+version `0.7.0`. Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
 FHIR namespace and Compose project.
 
@@ -29,8 +29,9 @@ views check-in status. The organizer roster is the app's staff roster.
 * Linked Practitioners for actual arrivals, with attendee/track-lead qualification.
 * Staff login, FHIR-backed counts, track totals, corrections, manual registration,
   receipt retrieval and CSV export.
-* A readable attendance receipt and locally generated plain-text QR code after
-  check-in, including original arrival time and registered details.
+* A readable attendance receipt and locally generated `mailto:` QR code after
+  check-in that opens a pre-filled confirmation email to the attendee on iPhone
+  and Android, including original arrival time and registered details.
 * FSH profiles, terminology, synthetic examples and a generated validation package.
 
 For day-to-day use, follow the [Operations guide](OPERATIONS.md): starting and
@@ -370,15 +371,19 @@ to it.
 
 Successful check-in shows a receipt with registered details, event role, primary
 track, event date/location, original arrival time in Europe/Oslo and a stable
-receipt reference. The QR contains a compact plain-text confirmation: event name,
-name, email, primary-track code, arrival time and receipt reference. The full
-event details, affiliation and role remain on screen but are omitted from the QR
-to reduce its density. It is generated locally and works without internet access.
+receipt reference. The QR contains a standard `mailto:` link addressed to the
+attendee's registered email, with the subject "Norwegian FHIR Hackathon 2026
+check-in confirmation" and a compact body: name, primary-track code, arrival time
+and receipt reference. The full event details, affiliation and role remain on
+screen but are omitted from the QR to reduce its density. It is generated locally
+and works without internet access.
 
-Ask the attendee to scan the code using their phone's camera/QR reader and copy
-the text or take a screenshot. Some phones need a dedicated QR reader or Lens
-for plain-text codes. They can also photograph the readable receipt. Scanning
-does not automatically save a file. Long names/affiliations produce denser codes;
+Ask the attendee to scan the code with their phone camera. iPhone Camera and
+Android Camera/Google Lens offer to open the pre-filled email in the default mail
+app; the attendee taps **Send** to keep the receipt in their own mailbox. Sending
+requires a configured mail app and network access on the attendee's phone. Older
+Android phones may need Google Lens or a QR reader app. Attendees can always
+photograph the readable receipt instead. Long names produce denser codes;
 rehearse scanning at the workstation's actual screen size.
 
 The receipt clears after 120 seconds for shared-workstation privacy. **Keep

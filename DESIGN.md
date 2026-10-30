@@ -52,7 +52,7 @@ The IG title and package ID are `hackathon-check-in-app`, with
 canonical URL `https://hl7.no/fhir/ig/hackathon-check-in-app`.
 Its FHIR machine-readable name is `HackathonCheckInApp`.
 The repository, npm package and Compose project are also named
-`hackathon-check-in-app`. The app and IG release version is `0.6.0`.
+`hackathon-check-in-app`. The app and IG release version is `0.7.0`.
 
 * Persons represent expected participants and use the event participant
   identifier system.
@@ -94,16 +94,19 @@ not the newly submitted draft or current time.
 
 QR generation uses `qrcode.react` (ISC license) locally, without an external
 service, API key, font, CDN or internet request. It renders a black-on-white SVG
-with a four-module quiet zone and at least medium error correction. Receipt text
-is embedded directly, not a URL or FHIR JSON, so phones do not need access to the
-check-in server to read it. The payload uses "Check-in confirmation" and
-includes the event name, participant name/email, primary-track code, original
-arrival time and receipt reference. Event date/location, affiliation, role and
+with a four-module quiet zone and at least medium error correction. The payload
+is an RFC 6068 `mailto:` URI, because phone cameras (notably iOS) only offer an
+action for recognised payload types and ignore plain text. It is addressed to
+the participant's registered email with the subject "Norwegian FHIR Hackathon
+2026 check-in confirmation" and a percent-encoded body containing the participant
+name, primary-track code, original arrival time and receipt reference. No URL to
+the check-in server or FHIR JSON is embedded, so phones never contact the
+check-in server. Event date/location, affiliation, role and
 the participation-duration disclaimer remain on screen only to reduce QR
 density without removing full receipt details from the UI.
 
 The development-only dependency `jsqr` (Apache-2.0) decodes rendered QR codes in
-tests to verify exact text round trips, including maximum-length and Unicode
+tests to verify exact `mailto:` URI round trips, including maximum-length and Unicode
 fields. It is not bundled into the application.
 
 If rendering fails, the persisted check-in remains valid and readable details,

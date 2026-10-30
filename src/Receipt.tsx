@@ -1,7 +1,7 @@
 import { Component, useEffect, useRef, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { Confirmation } from '../shared/domain';
-import { receiptRole, receiptText, receiptTime, receiptTrack } from '../shared/receipt';
+import { receiptMailto, receiptRole, receiptTime, receiptTrack } from '../shared/receipt';
 
 class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
   state = { failed: false };
@@ -13,7 +13,7 @@ class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
       <button type="button" onClick={() => this.setState({ failed: false })}>Retry QR code</button>
     </>;
     return <QRCodeSVG className="receipt-qr" value={this.props.text} size={600} level="M" marginSize={4}
-      role="img" title="QR code containing a compact check-in confirmation" />;
+      role="img" title="QR code that opens a pre-filled check-in confirmation email" />;
   }
 }
 
@@ -35,8 +35,8 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     <p>{receipt.alreadyCheckedIn ? 'Your existing check-in was found. No duplicate registration was created.' : 'Your attendance has been saved.'}</p>
     <h3>Attendance receipt</h3>
     <p>Review your registered details below. If anything is incorrect, ask registration staff to correct it before saving your receipt.</p>
-    <p>Scan or photograph this QR code and store the information contained or an image of this confirmation as a check in receipt.</p>
-    <ReceiptCode key={receipt.receiptId} text={receiptText(receipt)} />
+    <p>Scan this QR code with your phone camera to open a pre-filled email to yourself, then tap Send to keep it as your check-in receipt. You can also photograph this confirmation.</p>
+    <ReceiptCode key={receipt.receiptId} text={receiptMailto(receipt)} />
     <dl className="receipt-details">
       <dt>Event</dt><dd>Norwegian FHIR Hackathon 2026</dd>
       <dt>When and where</dt><dd>9 November 2026 - Rebel, Oslo</dd>

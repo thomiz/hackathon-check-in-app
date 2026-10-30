@@ -31,3 +31,6 @@ transaction.
 The backend reads the same FHIR resources to provide check-in status and
 retrieve saved check-in details. The app generates the attendee's receipt and
 QR code locally from those details; the receipt itself is not a FHIR resource.
+The QR code contains a `mailto:` link that opens a pre-filled confirmation email
+to the attendee's own address, so attendees' phones never need to reach the
+check-in app.
