@@ -3,7 +3,7 @@ canonical: https://hl7.no/fhir/ig/hackathon-check-in-app
 name: HackathonCheckInApp
 title: hackathon-check-in-app
 status: draft
-version: 0.6.1
+version: 0.7.0
 fhirVersion: 4.0.1
 copyrightYear: 2026+
 releaseLabel: ci-build

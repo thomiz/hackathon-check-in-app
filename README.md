@@ -5,7 +5,7 @@ November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 Blaze FHIR R4 server persistence, and locally generated QR attendance receipts.
 
 The app and FHIR implementation guide are named `hackathon-check-in-app`,
-version `0.6.0`. Existing installations must follow the
+version `0.7.0`. Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
 FHIR namespace and Compose project.
 
