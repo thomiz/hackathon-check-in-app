@@ -17,7 +17,7 @@
   fhir:StructureDefinition.name [ fhir:value "RosterList"] ;
   fhir:StructureDefinition.title [ fhir:value "Hackathon participant roster"] ;
   fhir:StructureDefinition.status [ fhir:value "draft"] ;
-  fhir:StructureDefinition.date [ fhir:value "2026-10-29T16:44:10+00:00"^^xsd:dateTime] ;
+  fhir:StructureDefinition.date [ fhir:value "2026-10-30T09:20:03+00:00"^^xsd:dateTime] ;
   fhir:StructureDefinition.publisher [ fhir:value "HL7 Norway"] ;
   fhir:StructureDefinition.contact [
      fhir:index 0 ;

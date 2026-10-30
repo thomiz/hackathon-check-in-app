@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track | *Version*:0.6.1 |
-| Draft as of 2026-10-29 | *Computable Name*:PrimaryTrack |
+| Draft as of 2026-10-30 | *Computable Name*:PrimaryTrack |
 
 **Context of Use**
 
@@ -47,7 +47,7 @@ Other representations of profile: [CSV](StructureDefinition-primary-track.csv), 
   "name" : "PrimaryTrack",
   "title" : "Confirmed or expected primary track",
   "status" : "draft",
-  "date" : "2026-10-29T16:44:10+00:00",
+  "date" : "2026-10-30T09:20:03+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
