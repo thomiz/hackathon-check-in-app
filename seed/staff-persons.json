@@ -301,6 +301,48 @@
       }
     },
     {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-128af4806e3a12881a9c06db",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-128af4806e3a12881a9c06db",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
+            "value": "agenda-128af4806e3a12881a9c06db"
+          }
+        ],
+        "name": [
+          {
+            "text": "Jørn-Are Klubben Flaten"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "jorn-are.klubben.flaten@nav.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
+            "valueString": "NAV"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
+              "code": "smart"
+            }
+          }
+        ]
+      }
+    },
+    {
       "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-0ba8a6fff6053687db713dfb",
       "resource": {
         "resourceType": "Person",
@@ -595,6 +637,48 @@
       }
     },
     {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-66d4e830d26521059ae6c888",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-66d4e830d26521059ae6c888",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
+            "value": "agenda-66d4e830d26521059ae6c888"
+          }
+        ],
+        "name": [
+          {
+            "text": "Øyvind A. Bjørhus"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "oyvinb@netcompany.com"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
+            "valueString": "Netcompany"
+          },
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
+            "valueCoding": {
+              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
+              "code": "medication-definition"
+            }
+          }
+        ]
+      }
+    },
+    {
       "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-fe644572ed5339b6484a06b4",
       "resource": {
         "resourceType": "Person",
@@ -666,7 +750,7 @@
         "extension": [
           {
             "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
-            "valueString": "NoMA"
+            "valueString": "NOMA"
           },
           {
             "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
@@ -716,118 +800,6 @@
               "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
               "code": "medication-definition"
             }
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-788747cfcd455b901f432578",
-      "resource": {
-        "resourceType": "Person",
-        "id": "agenda-788747cfcd455b901f432578",
-        "meta": {
-          "profile": [
-            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
-          ]
-        },
-        "identifier": [
-          {
-            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
-            "value": "agenda-788747cfcd455b901f432578"
-          }
-        ],
-        "name": [
-          {
-            "text": "Kristine Aasen"
-          }
-        ],
-        "telecom": [
-          {
-            "system": "email",
-            "value": "kristine.aasen@dmp.no"
-          }
-        ],
-        "extension": [
-          {
-            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
-            "valueString": "NoMA"
-          },
-          {
-            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/primary-track",
-            "valueCoding": {
-              "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/track",
-              "code": "medication-definition"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-367a277fbf126a593a7a3254",
-      "resource": {
-        "resourceType": "Person",
-        "id": "agenda-367a277fbf126a593a7a3254",
-        "meta": {
-          "profile": [
-            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
-          ]
-        },
-        "identifier": [
-          {
-            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
-            "value": "agenda-367a277fbf126a593a7a3254"
-          }
-        ],
-        "name": [
-          {
-            "text": "Nino Lo Cascio"
-          }
-        ],
-        "telecom": [
-          {
-            "system": "email",
-            "value": "nino.lo.cascio@tietoevry.com"
-          }
-        ],
-        "extension": [
-          {
-            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
-            "valueString": "Bedredelt"
-          }
-        ]
-      }
-    },
-    {
-      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-e2d72fcef5e180faf9942943",
-      "resource": {
-        "resourceType": "Person",
-        "id": "agenda-e2d72fcef5e180faf9942943",
-        "meta": {
-          "profile": [
-            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
-          ]
-        },
-        "identifier": [
-          {
-            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
-            "value": "agenda-e2d72fcef5e180faf9942943"
-          }
-        ],
-        "name": [
-          {
-            "text": "Øyvind Aassve"
-          }
-        ],
-        "telecom": [
-          {
-            "system": "email",
-            "value": "oeyaas@sykehuspartner.no"
-          }
-        ],
-        "extension": [
-          {
-            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
-            "valueString": "Sykehuspartner"
           }
         ]
       }

@@ -4,6 +4,8 @@
   "section": "Track leads and partners",
   "roleSystem": "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
   "roleRule": "Track-associated rows are track leads; Partner rows are attendees. Membership does not grant staff login.",
-  "count": 20,
-  "warnings": []
+  "count": 19,
+  "warnings": [
+    "Jørn-Are Klubben Flaten: displayed email differs from contact target; using jorn-are.klubben.flaten@nav.no. Review the master agenda."
+  ]
 }

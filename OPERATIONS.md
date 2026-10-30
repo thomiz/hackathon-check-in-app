@@ -235,7 +235,7 @@ app to be stopped and takes its own fresh backup.
 
    ```powershell
    npm.cmd run ops -- stop --app-only
-   npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --apply --backup-dir 'D:\private\hackathon-backups'
+   npm.cmd run ops -- import --attendees 'C:\hackathon-data\attendees.csv' --apply --backup-dir 'C:\hackathon-data\hackathon-backups'
    ```
 
    Expect `Maintenance verified (import)`. The tool replaces only the selected
