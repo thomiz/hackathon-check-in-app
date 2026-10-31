@@ -13,8 +13,10 @@ import { normalize, type RegistrationService } from './registration.js';
 export const rowSchema = detailsSchema.extend({ id: z.string().regex(/^[A-Za-z0-9.-]{1,64}$/), role: roleSchema });
 export type ImportRow = z.infer<typeof rowSchema>;
 
-export const stableRosterId = (name: string, affiliation: string): string =>
-  `roster-${createHash('sha256').update(JSON.stringify([normalize(name), normalize(affiliation)])).digest('hex').slice(0, 32)}`;
+export const GENERATED_ID_PREFIX = 'email-';
+/** Stable key for rows without an explicit ID: a hash of the normalized email address. */
+export const stableRosterId = (email: string): string =>
+  `${GENERATED_ID_PREFIX}${createHash('sha256').update(email.trim().toLowerCase()).digest('hex').slice(0, 32)}`;
 // The same person: identical email, or identical normalized name and affiliation.
 export const sameParticipant = (a: Details, b: Details): boolean =>
   a.email.toLowerCase() === b.email.toLowerCase() ||
@@ -28,7 +30,7 @@ const listRole = (list: List, personId: string) =>
  * already in the other list), applies the same role rules as CSV imports, and records an AuditEvent.
  */
 export async function addRosterEntry(service: RegistrationService, source: RosterSource, input: Details & { role: Role }, reason: string, staff: string): Promise<RosterChange> {
-  const row = rowSchema.parse({ ...input, id: stableRosterId(input.name, input.affiliation) });
+  const row = rowSchema.parse({ ...input, id: stableRosterId(input.email) });
   const otherSource: RosterSource = source === 'roster' ? 'staff' : 'roster';
   return service.retry(async () => {
     const [roster, staffList, people, practitioners] = await Promise.all([

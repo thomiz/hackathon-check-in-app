@@ -79,30 +79,33 @@ describe('HTTP authorization and input boundaries', () => {
     const again = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: selected.json() });
     expect(again.json()).toEqual({ ...checkin.json(), alreadyCheckedIn: true });
   });
-  it('imports an attendee export without IDs through the staff endpoint and safely reimports it', async () => {
+  it('previews and then applies web imports, requiring the preview token', async () => {
     const { service } = await setup();
     const staff = await login();
+    const post = (url: string, payload: object) => app!.inject({ method: 'POST', url, headers: origin, cookies: { staff }, payload });
     const csv = 'E-postadresse,Your name,Your affiliation/employer,What primary track do you want to attend?\nalice@example.invalid,Alice Example,Example Labs,SMART on FHIR';
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const response = await app!.inject({
-        method: 'POST', url: '/api/staff/import', headers: origin, cookies: { staff }, payload: { source: 'roster', csv }
-      });
-      expect(response.statusCode).toBe(200);
-      expect(response.json()).toEqual({ imported: 1 });
-    }
-    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0, attendees: 0 });
+    expect((await app!.inject({ method: 'POST', url: '/api/staff/import/preview', headers: origin, payload: { source: 'roster', csv } })).statusCode).toBe(401);
+    expect((await post('/api/staff/import', { source: 'roster', csv })).statusCode).toBe(400);
+    const preview = await post('/api/staff/import/preview', { source: 'roster', csv });
+    expect(preview.statusCode).toBe(200);
+    expect(preview.json()).toMatchObject({ source: 'roster', total: 1, added: 1, removed: 0, changes: { added: ['Alice Example'] }, token: expect.stringMatching(/^[a-f0-9]{64}$/) });
+    expect((await service.dashboard()).totals.roster).toBe(0);
+    expect((await post('/api/staff/import', { source: 'roster', csv: csv + '\nbob@example.invalid,Bob Example,Example Labs,', token: preview.json().token })).statusCode).toBe(409);
+    const applied = await post('/api/staff/import', { source: 'roster', csv, token: preview.json().token });
+    expect(applied.statusCode).toBe(200);
+    expect(applied.json()).toEqual({ imported: 1, added: 1, updated: 0, removed: 0 });
     expect(await service.matches('Alice')).toHaveLength(1);
-    const response = await app!.inject({
-      method: 'POST', url: '/api/staff/import', headers: origin, cookies: { staff },
-      payload: { source: 'roster', csv: csv.replace('alice@example.invalid,Alice Example', 'bob@example.invalid,Bob Example') }
-    });
-    expect(response.statusCode).toBe(200);
-    expect(response.json()).toEqual({ imported: 1 });
-    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0 });
+    const bobCsv = csv.replace('alice@example.invalid,Alice Example', 'bob@example.invalid,Bob Example');
+    const keep = await post('/api/staff/import/preview', { source: 'roster', csv: bobCsv, removeMissing: false });
+    expect(keep.json()).toMatchObject({ added: 1, removed: 0 });
+    const replace = await post('/api/staff/import/preview', { source: 'roster', csv: bobCsv });
+    expect(replace.json()).toMatchObject({ added: 1, removed: 1, changes: { removed: ['Alice Example'] } });
+    expect((await post('/api/staff/import', { source: 'roster', csv: bobCsv, removeMissing: false, token: replace.json().token })).statusCode).toBe(409);
+    await post('/api/staff/import', { source: 'roster', csv: bobCsv, token: replace.json().token });
     expect(await service.matches('Alice')).toHaveLength(0);
     expect(await service.matches('Bob Example')).toHaveLength(1);
-  });
-  it('adds and removes single roster participants through audited staff endpoints', async () => {
+    expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0 });
+  });  it('adds and removes single roster participants through audited staff endpoints', async () => {
     const { service } = await setup();
     await importRoster(service, 'staff', [{ id: 'lead', name: 'Lead Example', email: 'lead@example.invalid', affiliation: 'Example', role: 'track-lead', track: 'smart' }]);
     const payload = { name: 'Late Signup', email: 'late@example.invalid', affiliation: 'Example', track: 'smart', role: 'attendee', reason: 'Signed up by email this morning' };

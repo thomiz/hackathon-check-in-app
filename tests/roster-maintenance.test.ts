@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { AuditEvent, Person } from 'fhir/r4';
-import { importRoster, importRosters, previewRosters, verifyRosters, type ImportRow } from '../server/imports';
+import { importRoster, importRosters, parseRoster, previewRosters, verifyRosters, type ImportRow } from '../server/imports';
 import { addRosterEntry, removeRosterEntry, stableRosterId } from '../server/roster';
 import { MemoryStore } from './memory-store';
 import { RegistrationService } from '../server/registration';
@@ -25,7 +25,8 @@ describe('roster maintenance previews and atomic imports', () => {
     const snapshot = structuredClone(store.resources);
     const preview = await previewRosters(service, { roster: [{ ...alice, track: 'care-plans' }, bob] });
     expect(preview.rosters).toEqual([{
-      source: 'roster', total: 2, added: 1, removed: 0, updated: 1, unchanged: 0, confirmedDetailsPreserved: 0
+      source: 'roster', total: 2, added: 1, removed: 0, updated: 1, unchanged: 0, confirmedDetailsPreserved: 0,
+      changes: { added: ['Bob Example'], updated: ['Alice Example'], removed: [] }
     }]);
     expect((await previewRosters(service, { roster: [bob] })).rosters[0]).toMatchObject({ added: 1, removed: 1 });
     expect((await previewRosters(service, { roster: [alice] })).rosters[0]).toMatchObject({ unchanged: 1 });
@@ -104,7 +105,7 @@ describe('single participant roster changes', () => {
 
   it('adds a new person to the attendee list with the import-compatible ID, an audit and no check-in', async () => {
     const result = await addRosterEntry(service, 'roster', carol, 'Late sign-up by email', 'organizer');
-    expect(result).toMatchObject({ created: true, id: stableRosterId(carol.name, carol.affiliation), lists: ['roster'] });
+    expect(result).toMatchObject({ created: true, id: stableRosterId(carol.email), lists: ['roster'] });
     expect(await store.search('Practitioner', '')).toHaveLength(0);
     expect((await service.dashboard()).totals).toMatchObject({ roster: 2, staff: 1, checkedIn: 0, rosterMissing: 2 });
     expect(await audits()).toEqual(['Added to attendee list: Late sign-up by email']);
@@ -113,7 +114,7 @@ describe('single participant roster changes', () => {
     const selected = await service.select(match!.token);
     expect((await service.checkin(selected, selected.selection)).role).toBe('attendee');
     // A later complete reimport recognizes the same person.
-    const preview = await previewRosters(service, { roster: [alice, { ...carol, id: stableRosterId(carol.name, carol.affiliation) }] });
+    const preview = await previewRosters(service, { roster: [alice, { ...carol, id: stableRosterId(carol.email) }] });
     expect(preview.rosters[0]).toMatchObject({ added: 0, confirmedDetailsPreserved: 1 });
   });
   it('reuses an existing person from the other list and rejects duplicates and role conflicts', async () => {
@@ -175,6 +176,62 @@ describe('single participant roster changes', () => {
     await expect(addRosterEntry(service, 'roster', carol, 'Late sign-up', 'organizer')).rejects.toThrow('failure');
     await expect(removeRosterEntry(service, 'roster', (await store.search<Person>('Person', ''))[0]!.id!, 'Cancelled', 'organizer')).rejects.toThrow('failure');
     expect(store.resources).toEqual(snapshot);
+  });
+});
+
+describe('email identity, optional removal and preview tokens', () => {
+  const csvRow = (row: ImportRow) => `${row.name},${row.email},${row.affiliation},${row.track},${row.role}`;
+  const csv = (...rows: ImportRow[]) => ['name,email,affiliation,track,role', ...rows.map(csvRow)].join('\n');
+  const persons = () => store.search<Person>('Person', '');
+
+  it('keeps existing identities when a CSV without IDs is imported', async () => {
+    // Alice was imported with the explicit (agenda/legacy) ID "alice" and is in both lists.
+    await importRoster(service, 'roster', parseRoster(csv({ ...alice, email: 'ALICE@example.invalid' })));
+    expect(await persons()).toHaveLength(1);
+    expect((await persons())[0]!.identifier?.[0]?.value).toBe('alice');
+    await verifyRosters(service, { roster: parseRoster(csv(alice)), staff: [alice] });
+    // An email correction is still the same person when name and affiliation match.
+    const corrected = parseRoster(csv({ ...alice, email: 'alice.new@example.invalid' }));
+    expect((await previewRosters(service, { roster: corrected })).rosters[0]).toMatchObject({ added: 0, updated: 1 });
+    // A role conflict with the staff list is still reported.
+    await expect(importRoster(service, 'roster', parseRoster(csv({ ...alice, role: 'track-lead' })))).rejects.toThrow('Conflicting roles');
+  });
+  it('matches a row without ID to the explicitly identified row in the other supplied CSV', async () => {
+    const carol: ImportRow = { id: 'agenda-carol', name: 'Carol Example', email: 'carol@example.invalid', affiliation: 'Example', track: '', role: 'attendee' };
+    const [attendee] = parseRoster(csv({ ...carol, email: 'Carol@Example.invalid' }));
+    await importRosters(service, { roster: [alice, { ...attendee!, email: carol.email }], staff: [alice, carol] });
+    expect((await persons()).map(p => p.identifier?.[0]?.value).sort()).toEqual(['agenda-carol', 'alice']);
+  });
+  it('adds and updates without removing when removal is turned off', async () => {
+    await importRoster(service, 'roster', [alice, bob].map(row => ({ ...row, role: 'attendee' as const })), { removeMissing: true });
+    const carol: ImportRow = { id: 'carol', name: 'Carol Example', email: 'carol@example.invalid', affiliation: 'Example', track: '', role: 'attendee' };
+    const preview = await previewRosters(service, { roster: [carol] }, false, { removeMissing: false });
+    expect(preview.rosters[0]).toMatchObject({ added: 1, removed: 0, changes: { added: ['Carol Example'], removed: [] } });
+    expect((await previewRosters(service, { roster: [carol] })).rosters[0]).toMatchObject({ removed: 2, changes: { removed: ['Alice Example', 'Bob Example'] } });
+    await importRoster(service, 'roster', [carol], { removeMissing: false });
+    expect((await service.dashboard()).totals.roster).toBe(3);
+    await verifyRosters(service, { roster: [carol] }, { removeMissing: false });
+    await expect(verifyRosters(service, { roster: [carol] })).rejects.toThrow('could not be verified');
+  });
+  it('detects role conflicts with kept entries of the other list', async () => {
+    await importRosters(service, { roster: [alice], staff: [{ ...bob, role: 'track-lead' }] });
+    const asAttendee = { ...bob, role: 'attendee' as const };
+    await expect(importRosters(service, { roster: [asAttendee], staff: [alice] }, { removeMissing: false })).rejects.toThrow('Conflicting roles');
+    await importRosters(service, { roster: [asAttendee], staff: [alice] });
+  });
+  it('applies only the previewed additions and removals', async () => {
+    const { token } = await previewRosters(service, { roster: [alice, bob] });
+    expect((await previewRosters(service, { roster: [alice, bob] })).token).toBe(token);
+    expect((await previewRosters(service, { roster: [alice, bob] }, false, { removeMissing: false })).token).not.toBe(token);
+    // A check-in between preview and apply does not invalidate the preview.
+    const selected = await service.select((await service.matches('Alice'))[0]!.token);
+    await service.checkin(selected, selected.selection);
+    const snapshot = structuredClone(store.resources);
+    await importRoster(service, 'roster', [alice]);
+    await expect(importRosters(service, { roster: [alice, bob] }, { expectedToken: token })).resolves.toBeDefined();
+    store.resources = snapshot;
+    await importRoster(service, 'roster', [bob].map(row => ({ ...row, role: 'attendee' as const })), { removeMissing: false });
+    await expect(importRosters(service, { roster: [alice, bob] }, { expectedToken: token })).rejects.toThrow('changed since the preview');
   });
 });
 

@@ -14,8 +14,8 @@ export const help = `Local check-in operations
   npm run ops -- start
   npm run ops -- status [--json]
   npm run ops -- backup [--backup-dir <directory>]
-  npm run ops -- import --attendees <csv> [--staff <csv> | --agenda <md>] [--reset-checkins]
-  npm run ops -- import --staff <csv> | --agenda <md>
+  npm run ops -- import --attendees <csv> [--staff <csv> | --agenda <md>] [--keep-missing] [--reset-checkins]
+  npm run ops -- import --staff <csv> | --agenda <md> [--keep-missing]
   npm run ops -- reset
 
 Import/reset default to READ-ONLY PREVIEWS and can run while the app is running.
@@ -27,14 +27,15 @@ Apply with --apply (the app must be stopped with Ctrl+C first).
 Start runs the app in the foreground; Ctrl+C stops it.
 Backup copies the data file and can run while the app is running.
 Every apply takes a verified backup first and writes all changes in one atomic step.
-Each selected CSV REPLACES the entire selected roster. Attendance is preserved unless reset is explicit.
+Each selected CSV REPLACES the selected roster (people not in the CSV are removed from it),
+unless --keep-missing is given: then rows are only added/updated. Attendance is preserved unless reset is explicit.
 Reset is NOT secure erasure: audit records and backups remain.
 See OPERATIONS.md for details.
 `;
 
 const commandOptions: Record<string, string[]> = {
   status: ['json'], start: [], backup: ['backup-dir'],
-  import: ['attendees', 'staff', 'agenda', 'reset-checkins', 'apply', 'dry-run', 'backup-dir', 'confirm'],
+  import: ['attendees', 'staff', 'agenda', 'keep-missing', 'reset-checkins', 'apply', 'dry-run', 'backup-dir', 'confirm'],
   reset: ['apply', 'dry-run', 'backup-dir', 'confirm']
 };
 export function parseOperationsArgs(args: string[]) {
@@ -43,7 +44,7 @@ export function parseOperationsArgs(args: string[]) {
     options: {
       help: { type: 'boolean', short: 'h' }, json: { type: 'boolean' },
       'backup-dir': { type: 'string' }, attendees: { type: 'string' }, staff: { type: 'string' }, agenda: { type: 'string' },
-      'reset-checkins': { type: 'boolean' }, apply: { type: 'boolean' }, 'dry-run': { type: 'boolean' }, confirm: { type: 'string' }
+      'reset-checkins': { type: 'boolean' }, 'keep-missing': { type: 'boolean' }, apply: { type: 'boolean' }, 'dry-run': { type: 'boolean' }, confirm: { type: 'string' }
     }
   });
   const seen = new Set<string>();
@@ -160,7 +161,9 @@ export async function runOperations(args: string[]): Promise<number> {
   }
   const inputs = await readRosterInputs(options, environment.root, cwd);
   for (const warning of inputs.warnings) console.warn(`REVIEW: ${warning}`);
-  const request: MaintenanceRequest = { resetCheckins: command === 'reset' || !!options['reset-checkins'], rosters: inputs.rosters };
+  const request: MaintenanceRequest = {
+    resetCheckins: command === 'reset' || !!options['reset-checkins'], rosters: inputs.rosters, keepMissing: !!options['keep-missing']
+  };
   console.log(`Target event: ${EVENT}; data file: ${operations.paths.file}`);
   if (!options.apply) {
     printPreview(await operations.preview(request));

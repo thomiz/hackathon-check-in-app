@@ -24,7 +24,7 @@ npm.cmd run ops -- help
 | `npm.cmd run ops -- status` | Reports app health, the data file, lock holder, disk space, last backup, attendance and track totals. |
 | `npm.cmd run --silent ops -- status --json` | The same as JSON, without names, emails or credentials. |
 | `npm.cmd run ops -- backup` | Copies and verifies the data file into `DATA_DIR\backups` (or `--backup-dir`). Works while the app runs. |
-| `npm.cmd run ops -- import --attendees '<csv>'` | **Read-only preview** of replacing the attendee roster. |
+| `npm.cmd run ops -- import --attendees '<csv>'` | **Read-only preview** of replacing the attendee roster (add `--keep-missing` to only add/update). |
 | `npm.cmd run ops -- import --staff '<csv>'` | **Read-only preview** of replacing the staff/track-lead-and-partner roster. |
 | `npm.cmd run ops -- reset` | **Read-only preview** of resetting all attendance. |
 
@@ -45,7 +45,9 @@ expected while it is deliberately stopped.
   one atomic step**, including a combined reset and import. If validation or
   verification fails, the data file is left exactly as it was; correct the
   input and try again.
-* Imports require the complete selected roster(s), not a file of differences.
+* By default an import replaces the selected roster(s), so use the complete
+  latest CSV. With `--keep-missing`, people absent from the CSV are kept and
+  the file may contain only new or changed people.
 
 ### Backups
 
@@ -133,23 +135,24 @@ The app can stay running and nobody else is affected.
 
 Both actions are recorded as AuditEvents with the staff username and reason,
 and the roster totals update immediately. **Afterwards, update the reviewed
-CSV sources to match**: the next complete import of a list replaces it with
-exactly the CSV rows, so a dashboard-only addition disappears again unless the
-CSV includes that person (use the same name and affiliation, or the generated
-`id`), and a dashboard-only removal is undone if the CSV still lists them.
+CSV sources to match**: the next replacing import of a list keeps exactly the
+CSV rows, so a dashboard-only addition disappears again unless the CSV includes
+that person (matched by email), and a dashboard-only removal is undone if the
+CSV still lists them. An add-only import never removes anyone.
 
 ### Attendee list changes
 
 1. Export the latest Google Forms attendee CSV. Save it in a private location,
    for example `D:\private\reviewed-attendees.csv`. Use the **complete latest
-   list**, not only new or changed rows: each import replaces the attendee list.
+   list** for a normal (replacing) import. For a file with only new or changed
+   people, use the add-only option instead (see below).
 2. Review changed people before importing:
-   * Missing IDs are generated from name and affiliation. Repeat imports retain
-     identity if those fields are unchanged.
-   * If correcting a name or affiliation, supply the person's previous `id`
-     rather than generating a new one.
-   * For a person also in the staff roster, supply the same `id` and event
-     `role` as the staff CSV. The import rejects ambiguous overlaps.
+   * People are matched by email; names, affiliations and tracks can change.
+     An email correction is recognized when name and affiliation are unchanged;
+     otherwise supply the person's existing `id`.
+   * A person also in the staff roster is matched automatically, but must have
+     the same event `role` (add a `role` column for a track lead). The import
+     rejects ambiguous overlaps.
 3. Preview the reviewed file and check additions, removals and updates:
 
    ```powershell
@@ -162,15 +165,20 @@ CSV includes that person (use the same name and affiliation, or the generated
    npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --apply
    ```
 
-   Expect `Maintenance verified (import)`. Only the selected list is replaced;
-   attendance is preserved.
+   Expect `Maintenance verified (import)`. Only the selected list changes;
+   attendance is preserved. Add `--keep-missing` (to both the preview and the
+   apply) to only add and update people.
 5. Start the app again, sign in to the staff dashboard and check the expected
    roster count and changes. The reported import count is the number of input
    rows, not the number of newly added people. An import never checks anyone in.
 
-You can also paste the CSV into **Import reviewed roster CSV** on the staff
-page with **Google Sheet attendees** selected. That does **not** show a
-preview or take a backup; take a backup first and import at a quiet moment.
+**Alternatively, import from the staff page without stopping the app.** Paste
+the CSV into **Import reviewed roster CSV**, select **Google Sheet attendees**,
+leave **Remove people who are not in this CSV** ticked for the complete list
+(or untick it to only add and update), and press **Preview import**. Check the
+added, updated and removed names, then press **Apply import**. The app saves a
+backup to `DATA_DIR\backups` first and applies exactly the previewed changes;
+if the list changed in between, it asks you to preview again.
 See [CSV format and ID rules](README.md#google-sheet-attendees-and-optional-staff-updates).
 
 ### Staff roster changes
@@ -209,15 +217,17 @@ are committed together:
 npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --staff 'D:\private\reviewed-staff.csv' --apply
 ```
 
-For someone in both input files, use matching stable IDs, roles and details.
+Someone in both input files is matched by `id` or email; their details and role
+must be identical in both files.
 This permits a coordinated roster-role change for a person who has not checked
 in. Already confirmed roles still require an audited correction, or an explicit
 reset when starting a new attendance run.
 
 ### Removals, role changes and already checked-in people
 
-* **Each import replaces only the selected list.** Removing a CSV row and
-  importing the complete updated file removes that person from that list.
+* **Each import changes only the selected list.** Removing a CSV row and
+  importing the complete updated file (replacing mode, the default) removes
+  that person from that list; an add-only import keeps them.
   The active roster/search combines the attendee and staff lists: someone
   present in either remains eligible. Empty/header-only CSVs are rejected.
 * Removal from both lists prevents further roster-based selection/check-in,

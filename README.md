@@ -5,8 +5,10 @@ November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 FHIR R4 resources stored in a local JSON file, and locally generated QR attendance receipts.
 
 The app and FHIR implementation guide are named `hackathon-check-in-app`.
-The app is version `0.8.0` (FHIR storage moved from Blaze to a local JSON file;
-see [Migrating from an earlier Blaze installation](#migrating-from-an-earlier-blaze-installation)).
+The app is version `0.8.1`. Version 0.8.0 moved FHIR storage from Blaze to a
+local JSON file (see [Migrating from an earlier Blaze installation](#migrating-from-an-earlier-blaze-installation));
+0.8.1 identifies participants by email, adds add-only roster imports and a
+preview before every web import (see [Roster imports](#roster-imports)).
 The IG remains version `0.7.0`, because its FHIR definitions are unchanged.
 Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
@@ -199,10 +201,10 @@ This generates `seed\staff.csv`, a matching Person Bundle in
 the CSV; do not copy the collection Bundle into the data file.
 
 Track-associated rows use `track-lead`, while Partner rows use `attendee` with
-no primary track. Stable IDs are derived from names and are independent of email;
-reconcile IDs manually if someone is renamed.
-For a Google Sheet participant who is also in the staff roster, use the same
-bundled ID and role when preparing that attendee CSV.
+no primary track. Staff IDs are derived from names; reconcile IDs manually if
+someone is renamed. A Google Sheet participant who is also in the staff roster
+is matched by email automatically; their event role must be the same in both
+lists (add a `role` column to the attendee CSV for a track lead).
 
 After updating the master, regenerate and explicitly refresh an existing project:
 
@@ -211,9 +213,10 @@ npm.cmd run ops -- import --staff '.\seed\staff.csv'            # preview
 npm.cmd run ops -- import --staff '.\seed\staff.csv' --apply    # app stopped
 ```
 
-Each import replaces the staff list, removing people absent from the latest CSV
-from that list. People still in the attendee list remain in the active roster;
-attendance history is preserved. The snapshot contains public personal
+By default an import replaces the staff list, removing people absent from the
+latest CSV from that list (see [Replace or add only](#replace-or-add-only)).
+People still in the attendee list remain in the active roster; attendance
+history is preserved. The snapshot contains public personal
 contact data: protect it in the deployed app, never serve `seed` as static files,
 and include this distribution in the event's privacy review.
 
@@ -233,35 +236,49 @@ name,email,affiliation,track,role
 Example Person,example@example.invalid,Example Org,smart,attendee
 ```
 
-The optional `id` column is a stable participant key, not an email address or
-FHIR resource ID. Missing or empty IDs are generated as `roster-` plus a hash
-of normalized name and affiliation. IDs are deterministic across repeat imports,
-row ordering, email corrections and track changes. Keep name and affiliation
-unchanged on reimport, or supply the previously generated ID when correcting them.
-Explicit IDs remain unchanged. For anyone already in the staff roster, add `id`
-and `role` columns with the bundled ID and event role, including when using the
-Google Forms export. Ambiguous overlaps are rejected, not automatically merged.
+**People are identified by email.** Rows without an `id` get a stable ID
+generated from the normalized email address (`email-` plus a hash; the address
+itself is not used as the ID). Case and surrounding spaces in the email do not
+matter, and name, affiliation and track can change between imports. Such a row
+is also matched to an existing participant with the same email, so people
+already in the staff list, added from the dashboard or imported by earlier
+versions (with name-based IDs) keep their identity. An email correction is
+recognized when name and affiliation are unchanged. The optional `id` column
+overrides all of this: explicit IDs are used exactly as given. Ambiguous matches
+(for example a row matching two existing people) are rejected, not merged.
+
 Allowed roles: `attendee`, `track-lead`. Other partners/staff are attendees unless
-confirmed as track leads. Allowed track codes appear in the UI and FHIR ValueSet;
-an empty track is allowed. Imports validate every row, reject ambiguous duplicates
-and conflicting roles, and import atomically (maximum 500 rows per import).
-Existing confirmed details are not overwritten by reimports. Every import
-replaces the selected list with exactly the supplied rows: always import the
-complete latest CSV, not a file containing only changes. People absent from that
-CSV are removed from that list. The active roster/search is the union of the
-latest attendee and staff lists; import both CSVs if both have changed.
-Person resources and recorded check-ins are retained, so removed people may
-still appear in attendance history and exports, but cannot start a roster-based
-check-in unless they remain in the other list. Re-adding a stable ID reuses the
-existing Person and any recorded check-in. Empty/header-only CSVs are rejected;
-validation or transaction failures leave the previous list unchanged.
+confirmed as track leads; someone in both lists must have the same role in
+both. Allowed track codes appear in the UI and FHIR ValueSet; an empty track is
+allowed. Imports validate every row, reject duplicates and conflicting roles,
+and import atomically (maximum 500 rows per import). Existing confirmed details
+are not overwritten by reimports, and imports never check anyone in.
+Empty/header-only CSVs are rejected; validation failures leave the list unchanged.
+
+#### Replace or add only
+
+By default an import **replaces** the selected list with exactly the supplied
+rows, so people absent from the CSV are removed from that list. Use this with
+the complete latest CSV. To only add and update people (for example with a
+file containing just new sign-ups), untick **Remove people who are not in this
+CSV** on the staff page, or add `--keep-missing` to `ops import`.
+
+The active roster/search is the union of the attendee and staff lists. Removed
+people keep their Person resource, any recorded check-in and export rows, but
+cannot start a roster-based check-in unless they remain in the other list.
+Re-adding them later reuses the existing Person and any recorded check-in.
 
 ```powershell
 npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv'           # preview
 npm.cmd run ops -- import --attendees 'D:\private\reviewed-attendees.csv' --apply   # app stopped
 ```
 
-Alternatively paste CSV in the authenticated staff page.
+Alternatively paste the CSV into **Import reviewed roster CSV** on the staff
+page and press **Preview import**. The preview lists everyone who would be
+added, updated or removed; **Apply import** applies exactly that preview (if
+the list changed in between, you are asked to preview again) and saves a backup
+to `DATA_DIR\backups` first. Unlike `ops import --apply`, the app can keep
+running.
 
 ### Last-minute single additions and removals
 
@@ -272,9 +289,9 @@ can add or remove one person at a time without replacing a list:
   email, affiliation, track, verified role and an audit reason) but only adds
   the person to the selected attendee or staff List. Nothing is checked in; the
   person then checks in from the attendee page like everyone else. The stable
-  ID is generated exactly as for CSV rows without an `id`, so a later complete
-  reimport that includes the same name and affiliation recognizes the same
-  Person. If someone with the same email, or the same name and affiliation,
+  ID is generated from the email exactly as for CSV rows without an `id`, so a
+  later import containing the same email recognizes the same Person. If
+  someone with the same email, or the same name and affiliation,
   already exists (for example in the other list), that Person is reused rather
   than duplicated; the roles must agree, and details confirmed at check-in are
   never overwritten. Adding someone already in the selected list is rejected.
@@ -286,9 +303,10 @@ can add or remove one person at a time without replacing a list:
   stops roster-based check-in, including with an earlier selection token.
 
 Every single change writes an AuditEvent with the staff username and reason.
-Keep the reviewed CSV sources aligned afterwards: the next complete import of a
-list replaces it with exactly the CSV rows, so a person added only through the
-dashboard disappears from that list unless the CSV also includes them.
+Keep the reviewed CSV sources aligned afterwards: the next replacing import of
+a list keeps exactly the CSV rows, so a person added only through the dashboard
+disappears from that list unless the CSV also includes them (an add-only import
+keeps them).
 
 Synthetic samples are in `examples`, with reserved `example.invalid` addresses.
 Do not import samples into the real event project.

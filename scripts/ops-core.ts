@@ -1,15 +1,15 @@
-import { access, mkdir, readFile, stat, statfs, writeFile } from 'node:fs/promises';
+import { access, readFile, stat, statfs } from 'node:fs/promises';
 import { join } from 'node:path';
-import { z, ZodError } from 'zod';
+import { ZodError } from 'zod';
 import { loadConfig, repositoryRoot, type Config } from '../server/config.js';
-import { JsonFileStore, parseSnapshot, readStore, sha256, storePaths } from '../server/file-store.js';
+import { backupDataFile, backupRecordSchema, JsonFileStore, readStore, storePaths, type BackupRecord } from '../server/file-store.js';
 import { importRosters, previewRosters, verifyRosters, type RosterUpdates } from '../server/imports.js';
 import { MemoryStore } from '../server/memory-store.js';
 import { RegistrationService } from '../server/registration.js';
 import { previewResetCheckins, resetCheckins } from '../server/reset-checkins.js';
 import { startApplication } from '../server/startup.js';
 
-export interface MaintenanceRequest { resetCheckins: boolean; rosters: RosterUpdates }
+export interface MaintenanceRequest { resetCheckins: boolean; rosters: RosterUpdates; keepMissing?: boolean }
 export interface MaintenancePreview {
   action: 'reset' | 'import' | 'reset-and-import';
   reset: boolean;
@@ -18,10 +18,7 @@ export interface MaintenancePreview {
   rosters: Awaited<ReturnType<typeof previewRosters>>['rosters'];
   confirmation: string;
 }
-export const backupRecordSchema = z.object({
-  createdAt: z.string(), file: z.string(), source: z.string(), sha256: z.string(), bytes: z.number(), resources: z.number()
-});
-export type BackupRecord = z.infer<typeof backupRecordSchema>;
+export { backupRecordSchema, type BackupRecord } from '../server/file-store.js';
 export interface OperationsEnvironment { root: string; config: Config }
 
 export function loadOperationsEnvironment(root = repositoryRoot): OperationsEnvironment {
@@ -97,23 +94,8 @@ export class Operations {
   }
 
   /** Copies the current snapshot. Safe while the app runs, because the app replaces the file atomically. */
-  async backup(directory = this.defaultBackupDirectory()): Promise<BackupRecord | undefined> {
-    let data: Buffer;
-    try { data = await readFile(this.paths.file); }
-    catch (error) {
-      if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return undefined;
-      throw error;
-    }
-    const resources = parseSnapshot(data.toString('utf8')).size;
-    await mkdir(directory, { recursive: true });
-    const createdAt = new Date().toISOString();
-    const file = join(directory, `fhir-store-${createdAt.replace(/[:.]/g, '-')}.json`);
-    await writeFile(file, data, { flag: 'wx', mode: 0o600 });
-    const digest = sha256(data);
-    if (sha256(await readFile(file)) !== digest) throw new Error(`The backup copy ${file} could not be verified.`);
-    const record: BackupRecord = { createdAt, file, source: this.paths.file, sha256: digest, bytes: data.length, resources };
-    await writeFile(join(this.paths.directory, 'last-backup.json'), JSON.stringify(record, null, 2), { mode: 0o600 });
-    return record;
+  backup(directory = this.defaultBackupDirectory()): Promise<BackupRecord | undefined> {
+    return backupDataFile(this.environment.config.dataDir, directory);
   }
 
   private async plan(service: RegistrationService, request: MaintenanceRequest): Promise<MaintenancePreview> {
@@ -121,7 +103,7 @@ export class Operations {
     if (!request.resetCheckins && !hasImports) throw new Error('Select at least one roster or a check-in reset.');
     await service.initialize();
     const reset = await previewResetCheckins(service);
-    const imports = hasImports ? await previewRosters(service, request.rosters, request.resetCheckins) : undefined;
+    const imports = hasImports ? await previewRosters(service, request.rosters, request.resetCheckins, { removeMissing: !request.keepMissing }) : undefined;
     const confirmations: string[] = [];
     if (request.resetCheckins) confirmations.push(`RESET ${reset.checkedIn} CHECK-INS AND ${reset.practitioners} EVENT RECORDS`);
     if (imports) {
@@ -156,12 +138,12 @@ export class Operations {
       await store.batch(async () => {
         await service.initialize();
         if (request.resetCheckins) await resetCheckins(service);
-        if (preview.rosters.length) await importRosters(service, request.rosters);
+        if (preview.rosters.length) await importRosters(service, request.rosters, { removeMissing: !request.keepMissing });
         if (request.resetCheckins) {
           const after = await previewResetCheckins(service);
           if (after.checkedIn !== 0 || after.practitioners !== 0) throw new Error('Reset verification found remaining check-in records.');
         }
-        await verifyRosters(service, request.rosters);
+        await verifyRosters(service, request.rosters, { removeMissing: !request.keepMissing });
       });
       return { preview, backup };
     } finally { await store.close(); }

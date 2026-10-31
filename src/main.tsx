@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { rosterSourceLabels, tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type RosterChange, type RosterSource, type Selection, type StaffSelection } from '../shared/domain';
+import { rosterSourceLabels, tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type RosterChange, type RosterImportPreview, type RosterImportResult, type RosterSource, type Selection, type StaffSelection } from '../shared/domain';
 import { api, DEMO, downloadDemoExport } from './api';
 import { Receipt } from './Receipt';
 import './styles.css';
@@ -106,6 +106,51 @@ function Checkin() {
   </main>;
 }
 
+function ChangeList({ label, names }: { label: string; names: string[] }) {
+  if (!names.length) return null;
+  return <details className="change-list"><summary>{label} ({names.length})</summary><ul>{names.map((name, index) => <li key={`${name}-${index}`}>{name}</li>)}</ul></details>;
+}
+
+function RosterImport({ busy, action, onImported }: {
+  busy: boolean; action: (operation: () => Promise<void>) => Promise<void>; onImported: (message: string) => Promise<void>;
+}) {
+  const [source, setSource] = useState<RosterSource>('roster');
+  const [csv, setCsv] = useState('');
+  const [removeMissing, setRemoveMissing] = useState(true);
+  const [preview, setPreview] = useState<RosterImportPreview>();
+  // Any change to the input invalidates the preview, so only a reviewed import can be applied.
+  useEffect(() => setPreview(undefined), [source, csv, removeMissing]);
+  const list = rosterSourceLabels[source];
+  return <form className="card" onSubmit={event => {
+    event.preventDefault();
+    void action(async () => { setPreview(await api<RosterImportPreview>('/staff/import/preview', { source, csv, removeMissing })); });
+  }}>
+    <h2>Import reviewed roster CSV</h2>
+    <p className="muted">Columns: name,email,affiliation,track,role, with optional id. Google Forms attendee exports are also supported and default to attendee. People are matched by email (or by an explicit id); someone already in the other list keeps their identity, but must have the same event role. Confirmed check-in details are never overwritten, and no one is checked in.</p>
+    <label>Roster<select value={source} onChange={e => setSource(e.target.value as RosterSource)}><option value="roster">Google Sheet attendees</option><option value="staff">Agenda staff / track leads</option></select></label>
+    <label>CSV content<textarea rows={6} required value={csv} onChange={e => setCsv(e.target.value)} /></label>
+    <label className="checkbox"><input type="checkbox" checked={removeMissing} onChange={e => setRemoveMissing(e.target.checked)} />
+      <span>Remove people who are not in this CSV from the {list} <span className="muted">(use with the complete latest CSV; uncheck to only add and update)</span></span></label>
+    {!preview && <button disabled={busy}>Preview import</button>}
+    {preview && <div className="import-preview" role="status">
+      <h3>Preview for the {list}</h3>
+      <p>{preview.total} rows: <strong>{preview.added} added</strong>, <strong>{preview.updated} updated</strong>, <strong>{preview.removed} removed</strong>, {preview.unchanged} unchanged.
+        {preview.confirmedDetailsPreserved > 0 && ` Confirmed details are kept for ${preview.confirmedDetailsPreserved} checked-in participant(s).`}</p>
+      <ChangeList label="Added" names={preview.changes.added} />
+      <ChangeList label="Updated" names={preview.changes.updated} />
+      <ChangeList label="Removed from this list" names={preview.changes.removed} />
+      {preview.removed > 0 && <p className="notice">Removed people keep their attendance history and stay searchable if they are in the other list.</p>}
+      <button type="button" disabled={busy} onClick={() => void action(async () => {
+        const result = await api<RosterImportResult>('/staff/import', { source, csv, removeMissing, token: preview.token });
+        setCsv(''); setPreview(undefined); setRemoveMissing(true);
+        await onImported(`Imported ${result.imported} rows into the ${list}: ${result.added} added, ${result.updated} updated, ${result.removed} removed. ` +
+          `${result.backup ? `A backup was saved first (${result.backup}). ` : ''}No check-ins were created.`);
+      })}>Apply import</button>
+      <button type="button" className="secondary" disabled={busy} onClick={() => setPreview(undefined)}>Cancel</button>
+    </div>}
+  </form>;
+}
+
 function Staff() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -119,8 +164,6 @@ function Staff() {
   const [targetList, setTargetList] = useState<RosterSource>('roster');
   const [searchVersion, setSearchVersion] = useState(0);
   const [requestId, setRequestId] = useState(() => crypto.randomUUID());
-  const [csv, setCsv] = useState('');
-  const [source, setSource] = useState('roster');
   const [filter, setFilter] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -241,15 +284,7 @@ function Staff() {
           </>}
         </form>
       </div>
-      {!DEMO && <form className="card" onSubmit={event => {
-        event.preventDefault();
-        void action(async () => { const result = await api<{ imported: number }>('/staff/import', { source, csv }); setNotice(`Replaced the selected roster with ${result.imported} entries. The other roster and attendance history were preserved; no check-ins created.`); setCsv(''); await refresh(); });
-      }}>
-        <h2>Import reviewed roster CSV</h2><p className="muted">Columns: name,email,affiliation,track,role, with optional id. Google Forms attendee exports are also supported and default to attendee. Missing IDs are generated from name and affiliation; keep these unchanged on reimport or supply the previous ID. For anyone already in the other roster, supply the same ID and event role. Each import replaces the selected roster: use the complete latest CSV, not just changed rows. Absent people are removed from that list, but remain searchable if listed in the other roster. Attendance history is preserved.</p>
-        <label>Roster<select value={source} onChange={e => setSource(e.target.value)}><option value="roster">Google Sheet attendees</option><option value="staff">Agenda staff / track leads</option></select></label>
-        <label>CSV content<textarea rows={6} required value={csv} onChange={e => setCsv(e.target.value)} /></label>
-        <button disabled={busy}>Validate and replace roster</button>
-      </form>}
+      {!DEMO && <RosterImport busy={busy} action={action} onImported={async message => { await refresh(); setNotice(message); }} />}
     </>}
   </main>;
 }

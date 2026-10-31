@@ -161,14 +161,15 @@ describe('rosters and matching', () => {
     expect(() => parseRoster('name,email,affiliation,track,role\n')).toThrow();
     await expect(importRoster(service, 'roster', [alice, alice])).rejects.toThrow('Duplicate');
   });
-  it('generates valid stable IDs for missing or blank IDs without changing explicit IDs', () => {
+  it('generates valid email-based stable IDs for missing or blank IDs without changing explicit IDs', () => {
     const csv = 'name,email,affiliation,track,role\nAlicia Example,alicia@example.invalid,Another Group,smart,attendee';
     const [generated] = parseRoster(csv);
-    expect(generated!.id).toMatch(/^roster-[a-f0-9]{32}$/);
+    expect(generated!.id).toMatch(/^email-[a-f0-9]{32}$/);
+    expect(generated!.id).not.toContain('alicia');
     expect(parseRoster(csv)[0]!.id).toBe(generated!.id);
     expect(parseRoster('id,' + csv.replace('\n', '\n,'))[0]!.id).toBe(generated!.id);
-    expect(parseRoster(csv.replace('alicia@example.invalid', 'corrected@example.invalid').replace(',smart,', ',fhir-101,'))[0]!.id).toBe(generated!.id);
-    expect(parseRoster(csv.replace('Alicia Example', 'ALICIA EXAMPLE'))[0]!.id).toBe(generated!.id);
+    expect(parseRoster(csv.replace('Alicia Example,alicia@example.invalid,Another Group,smart', 'Alicia Renamed, ALICIA@Example.invalid ,Moved Org,fhir-101'))[0]!.id).toBe(generated!.id);
+    expect(parseRoster(csv.replace('alicia@example.invalid', 'corrected@example.invalid'))[0]!.id).not.toBe(generated!.id);
     expect(parseRoster('id,' + csv.replace('\n', '\nreviewed-id,'))[0]!.id).toBe('reviewed-id');
     expect(() => parseRoster('id,' + csv.replace('\n', '\ninvalid/id,'))).toThrow();
   });
@@ -194,7 +195,7 @@ describe('rosters and matching', () => {
     const csv = '\uFEFFTidsmerke,E-postadresse,Your name,Your affiliation/employer,What primary track do you want to attend?,What is your main role,"Other\nquestion"\r\n' +
       `2026-10-22,alicia@example.invalid,Alicia Example,Another Group,${label},Developer,"ignored\nanswer"`;
     const [row] = parseRoster(csv);
-    expect(row).toEqual({ id: expect.stringMatching(/^roster-[a-f0-9]{32}$/), name: bob.name, email: bob.email, affiliation: bob.affiliation, track, role: 'attendee' });
+    expect(row).toEqual({ id: expect.stringMatching(/^email-[a-f0-9]{32}$/), name: bob.name, email: bob.email, affiliation: bob.affiliation, track, role: 'attendee' });
     const canonical = `name,email,affiliation,track,role\n${bob.name},${bob.email},${bob.affiliation},${track},attendee`;
     expect(parseRoster(canonical)).toEqual([row]);
   });

@@ -43,6 +43,17 @@ export const manualSchema = detailsSchema.extend({
 });
 export const rosterEntrySchema = detailsSchema.extend({ role: roleSchema, reason: z.string().trim().min(5).max(500) });
 export const rosterRemovalSchema = z.object({ reason: z.string().trim().min(5).max(500) });
+export const rosterImportSchema = z.object({
+  source: rosterSourceSchema,
+  csv: z.string().min(1).max(900000),
+  removeMissing: z.boolean().default(true)
+});
+export const rosterImportApplySchema = rosterImportSchema.extend({ token: z.string().regex(/^[a-f0-9]{64}$/) });
+export type RosterImportPreview = {
+  source: RosterSource; total: number; added: number; updated: number; removed: number; unchanged: number;
+  confirmedDetailsPreserved: number; changes: { added: string[]; updated: string[]; removed: string[] }; token: string;
+};
+export type RosterImportResult = { imported: number; added: number; updated: number; removed: number; backup?: string };
 export type Details = z.infer<typeof detailsSchema>;
 export type Candidate = { token: string; name: string; affiliation: string; alreadyCheckedIn: boolean };
 export type Selection = Details & { selection: string };

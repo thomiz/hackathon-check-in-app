@@ -1,8 +1,9 @@
 import { createHash } from 'node:crypto';
-import { mkdir, open, readFile, rename, unlink } from 'node:fs/promises';
+import { mkdir, open, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import type { Bundle, BundleEntry, Resource } from 'fhir/r4';
+import { z } from 'zod';
 import { FhirError } from './fhir.js';
 import { MemoryStore } from './memory-store.js';
 
@@ -42,6 +43,36 @@ export function snapshot(resources: Map<string, Resource>): Bundle {
 }
 
 export const sha256 = (data: string | Buffer) => createHash('sha256').update(data).digest('hex');
+
+export const backupRecordSchema = z.object({
+  createdAt: z.string(), file: z.string(), source: z.string(), sha256: z.string(), bytes: z.number(), resources: z.number()
+});
+export type BackupRecord = z.infer<typeof backupRecordSchema>;
+
+/**
+ * Copies the data file to the backup directory (default DATA_DIR/backups), verifies the copy and records it
+ * as the last backup. Safe while the app runs, because the app only ever replaces the file atomically.
+ * Returns undefined when no data file exists yet.
+ */
+export async function backupDataFile(dataDir: string, directory = join(storePaths(dataDir).directory, 'backups'), label = ''): Promise<BackupRecord | undefined> {
+  const paths = storePaths(dataDir);
+  let data: Buffer;
+  try { data = await readFile(paths.file); }
+  catch (error) {
+    if (hasCode(error, 'ENOENT')) return undefined;
+    throw error;
+  }
+  const resources = parseSnapshot(data.toString('utf8')).size;
+  await mkdir(directory, { recursive: true });
+  const createdAt = new Date().toISOString();
+  const file = join(directory, `fhir-store-${createdAt.replace(/[:.]/g, '-')}${label ? `-${label}` : ''}.json`);
+  await writeFile(file, data, { flag: 'wx', mode: 0o600 });
+  const digest = sha256(data);
+  if (sha256(await readFile(file)) !== digest) throw new Error(`The backup copy ${file} could not be verified.`);
+  const record: BackupRecord = { createdAt, file, source: paths.file, sha256: digest, bytes: data.length, resources };
+  await writeFile(join(paths.directory, 'last-backup.json'), JSON.stringify(record, null, 2), { mode: 0o600 });
+  return record;
+}
 
 /** Loads a snapshot without taking the lock, for read-only reporting while the app may be running. */
 export async function readStore(dataDir: string): Promise<MemoryStore> {

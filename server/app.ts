@@ -1,16 +1,20 @@
 import { scryptSync, timingSafeEqual } from 'node:crypto';
 import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import Fastify, { type FastifyRequest } from 'fastify';
 import cookie from '@fastify/cookie';
 import rateLimit from '@fastify/rate-limit';
 import staticFiles from '@fastify/static';
 import { z, ZodError } from 'zod';
-import { checkinSchema, detailsSchema, manualSchema, roleSchema, rosterEntrySchema, rosterRemovalSchema, rosterSourceSchema, tracks } from '../shared/domain.js';
+import {
+  checkinSchema, detailsSchema, manualSchema, roleSchema, rosterEntrySchema, rosterImportApplySchema, rosterImportSchema,
+  rosterRemovalSchema, rosterSourceSchema, tracks, type RosterImportPreview, type RosterImportResult
+} from '../shared/domain.js';
 import { checkinsCsv } from '../shared/export.js';
 import { AppError, type FhirStore } from './fhir.js';
 import { RegistrationService } from './registration.js';
-import { importRoster, parseRoster } from './imports.js';
+import { importRosters, parseRoster, previewRosters } from './imports.js';
+import { backupDataFile, JsonFileStore } from './file-store.js';
 import { addRosterEntry, removeRosterEntry } from './roster.js';
 import { repositoryRoot, type Config } from './config.js';
 
@@ -102,10 +106,20 @@ export async function buildApp(store: FhirStore, config: Config) {
     await service.correct(id, input, input.role, input.reason, staff);
     return { ok: true };
   });
-  app.post('/api/staff/import', async request => {
+  // Imports are previewed first; applying requires the preview's token, so what is applied matches what staff reviewed.
+  app.post('/api/staff/import/preview', async (request): Promise<RosterImportPreview> => {
     session(request);
-    const { source, csv } = z.object({ source: rosterSourceSchema, csv: z.string().min(1).max(900000) }).parse(request.body);
-    return { imported: await importRoster(service, source, parseRoster(csv)) };
+    const { source, csv, removeMissing } = rosterImportSchema.parse(request.body);
+    const { rosters: [preview], token } = await previewRosters(service, { [source]: parseRoster(csv) }, false, { removeMissing });
+    return { ...preview!, token };
+  });
+  app.post('/api/staff/import', async (request): Promise<RosterImportResult> => {
+    session(request);
+    const { source, csv, removeMissing, token } = rosterImportApplySchema.parse(request.body);
+    const rows = parseRoster(csv);
+    const backup = store instanceof JsonFileStore ? await backupDataFile(config.dataDir, undefined, 'before-web-import') : undefined;
+    const [result] = await importRosters(service, { [source]: rows }, { removeMissing, expectedToken: token });
+    return { imported: result!.total, added: result!.added, updated: result!.updated, removed: result!.removed, backup: backup && basename(backup.file) };
   });
   app.post('/api/staff/rosters/:source/participants', async request => {
     const staff = session(request);

@@ -77,6 +77,7 @@ async function route(method: string, path: string, body: unknown): Promise<unkno
       const input = manualSchema.parse(body);
       return service.manual(input, input.role, input.reason, input.requestId, user);
     }
+    case 'POST /staff/import/preview':
     case 'POST /staff/import': staff(); throw new AppError(501, 'CSV import is not available in the demo.');
   }
   if (participant && method === 'PUT') {

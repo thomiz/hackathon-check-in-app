@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { scryptSync } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { buildApp } from '../server/app';
 import { parseOperationsArgs, readRosterInputs, runOperations } from '../scripts/ops';
 import { errorMessage, Operations } from '../scripts/ops-core';
 import type { Config } from '../server/config';
@@ -11,6 +13,7 @@ import { RegistrationService } from '../server/registration';
 
 const alice: ImportRow = { id: 'alice', name: 'Alice Example', email: 'alice@example.invalid', affiliation: 'Synthetic', track: 'smart', role: 'attendee' };
 const bob: ImportRow = { id: 'bob', name: 'Bob Example', email: 'bob@example.invalid', affiliation: 'Synthetic', track: '', role: 'attendee' };
+const salt = '0123456789abcdef0123456789abcdef';
 let base: string;
 let operations: Operations;
 let config: Config;
@@ -150,6 +153,33 @@ describe('operations against the JSON data file', () => {
     expect(result.backup?.file).toContain(join('data', 'backups'));
     const after = new RegistrationService(await readStore(config.dataDir), config.sessionSecret);
     expect((await after.dashboard()).totals).toMatchObject({ roster: 2, checkedIn: 0 });
+  });
+  it('keeps people not in the CSV with --keep-missing', async () => {
+    expect(parseOperationsArgs(['import', '--attendees', 'a.csv', '--keep-missing']).options['keep-missing']).toBe(true);
+    expect(() => parseOperationsArgs(['reset', '--keep-missing'])).toThrow();
+    const { store } = await seed([alice]);
+    await store.close();
+    const request = { resetCheckins: false, rosters: { roster: [bob] }, keepMissing: true };
+    expect(await operations.preview(request)).toMatchObject({ rosters: [{ added: 1, removed: 0 }], confirmation: 'IMPORT 1 ATTENDEES; REMOVE 0 ROSTER MEMBERSHIPS' });
+    await operations.apply(request, undefined, async p => p.confirmation);
+    const after = new RegistrationService(await readStore(config.dataDir), config.sessionSecret);
+    expect((await after.dashboard()).totals.roster).toBe(2);
+  });
+  it('backs up the data file before a web import is applied', async () => {
+    const { store, service } = await seed([alice]);
+    const { app } = await buildApp(store, { ...config, publicUrl: 'http://localhost:1', staffPasswordHash: `${salt}:${scryptSync('pw', salt, 64).toString('hex')}` });
+    const headers = { origin: 'http://localhost:1' };
+    const login = await app.inject({ method: 'POST', url: '/api/staff/login', headers, payload: { username: 'organizer', password: 'pw' } });
+    const cookies = { staff: login.cookies[0]!.value };
+    const payload = { source: 'roster', csv: 'name,email,affiliation,track,role\nBob Example,bob@example.invalid,Synthetic,,attendee', removeMissing: false };
+    const preview = await app.inject({ method: 'POST', url: '/api/staff/import/preview', headers, cookies, payload });
+    const applied = await app.inject({ method: 'POST', url: '/api/staff/import', headers, cookies, payload: { ...payload, token: preview.json().token } });
+    expect(applied.json()).toMatchObject({ imported: 1, added: 1, removed: 0, backup: expect.stringMatching(/before-web-import\.json$/) });
+    const backups = await readdir(join(config.dataDir, 'backups'));
+    expect(backups).toEqual([applied.json().backup]);
+    expect((await service.dashboard()).totals.roster).toBe(2);
+    await app.close();
+    await store.close();
   });
   it('rejects invalid combined input before any backup or write', async () => {
     const { store } = await seed();
