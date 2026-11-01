@@ -1,4 +1,4 @@
-# example-attendee-practitioner - hackathon-check-in-app v0.6.1
+# example-attendee-practitioner - hackathon-check-in-app v0.7.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)

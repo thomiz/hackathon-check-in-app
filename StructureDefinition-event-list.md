@@ -1,4 +1,4 @@
-# Hackathon event list - hackathon-check-in-app v0.6.1
+# Hackathon event list - hackathon-check-in-app v0.7.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list | *Version*:0.6.1 |
-| Draft as of 2026-10-30 | *Computable Name*:EventList |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list | *Version*:0.7.0 |
+| Draft as of 2026-11-01 | *Computable Name*:EventList |
 
  
 Base profile for lists that track attendees and organizers for a hackathon event. 
@@ -37,11 +37,11 @@ Other representations of profile: [CSV](StructureDefinition-event-list.csv), [Ex
   "resourceType" : "StructureDefinition",
   "id" : "event-list",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/event-list",
-  "version" : "0.6.1",
+  "version" : "0.7.0",
   "name" : "EventList",
   "title" : "Hackathon event list",
   "status" : "draft",
-  "date" : "2026-10-30T09:20:03+00:00",
+  "date" : "2026-11-01T09:08:30+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
