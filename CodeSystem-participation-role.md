@@ -1,4 +1,4 @@
-# Hackathon participation role - hackathon-check-in-app v0.7.0
+# Hackathon participation role - hackathon-check-in-app v0.8.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,7 +8,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role | *Version*:0.7.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role | *Version*:0.8.1 |
 | Draft as of 2026-11-01 | *Computable Name*:ParticipationRole |
 
  
@@ -27,11 +27,11 @@ Event roles only, not professional qualifications.
   "resourceType" : "CodeSystem",
   "id" : "participation-role",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/participation-role",
-  "version" : "0.7.0",
+  "version" : "0.8.1",
   "name" : "ParticipationRole",
   "title" : "Hackathon participation role",
   "status" : "draft",
-  "date" : "2026-11-01T09:08:30+00:00",
+  "date" : "2026-11-01T10:01:21+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

@@ -1,4 +1,4 @@
-# Hackathon check-in list - hackathon-check-in-app v0.7.0
+# Hackathon check-in list - hackathon-check-in-app v0.8.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,7 +8,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list | *Version*:0.7.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list | *Version*:0.8.1 |
 | Draft as of 2026-11-01 | *Computable Name*:CheckinList |
 
  
@@ -37,11 +37,11 @@ Other representations of profile: [CSV](StructureDefinition-checkin-list.csv), [
   "resourceType" : "StructureDefinition",
   "id" : "checkin-list",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list",
-  "version" : "0.7.0",
+  "version" : "0.8.1",
   "name" : "CheckinList",
   "title" : "Hackathon check-in list",
   "status" : "draft",
-  "date" : "2026-11-01T09:08:30+00:00",
+  "date" : "2026-11-01T10:01:21+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

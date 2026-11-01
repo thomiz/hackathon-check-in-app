@@ -1,4 +1,4 @@
-# example-checkins - hackathon-check-in-app v0.7.0
+# example-checkins - hackathon-check-in-app v0.8.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)

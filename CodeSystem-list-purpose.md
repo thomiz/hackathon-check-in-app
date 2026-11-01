@@ -1,4 +1,4 @@
-# ListPurpose - hackathon-check-in-app v0.7.0
+# ListPurpose - hackathon-check-in-app v0.8.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,7 +8,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose | *Version*:0.7.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose | *Version*:0.8.1 |
 | Draft as of 2026-11-01 | *Computable Name*:ListPurpose |
 
  This Code system is referenced in the content logical definition of the following value sets: 
@@ -24,10 +24,10 @@
   "resourceType" : "CodeSystem",
   "id" : "list-purpose",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose",
-  "version" : "0.7.0",
+  "version" : "0.8.1",
   "name" : "ListPurpose",
   "status" : "draft",
-  "date" : "2026-11-01T09:08:30+00:00",
+  "date" : "2026-11-01T10:01:21+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

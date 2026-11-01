@@ -1,6 +1,6 @@
 {
   "package": "hackathon-check-in-app",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "fhirVersion": "4.0.1",
   "jurisdiction": "NO",
   "extensions": [
