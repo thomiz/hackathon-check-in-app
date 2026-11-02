@@ -5,11 +5,13 @@ November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 FHIR R4 resources stored in a local JSON file, and locally generated QR attendance receipts.
 
 The app and FHIR implementation guide are named `hackathon-check-in-app`.
-The app is version `0.8.1`. Version 0.8.0 moved FHIR storage from Blaze to a
+The app is version `0.8.2`. Version 0.8.0 moved FHIR storage from Blaze to a
 local JSON file (see [Migrating from an earlier Blaze installation](#migrating-from-an-earlier-blaze-installation));
 0.8.1 identifies participants by email, adds add-only roster imports and a
 preview before every web import (see [Roster imports](#roster-imports)).
-The IG remains version `0.7.0`, because its FHIR definitions are unchanged.
+Version 0.8.2 includes Partner rows from the agenda's Track leads table in the
+staff roster, while excluding the separate Partners chapter.
+The IG is version `0.8.2`; its FHIR definitions are unchanged.
 Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
 FHIR namespace.
