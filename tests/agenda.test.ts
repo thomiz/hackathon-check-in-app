@@ -23,9 +23,10 @@ describe('master agenda staff generation', () => {
       '| IHE document sharing | Example Lead + 4 team members | [lead@example.invalid](mailto:lead@example.invalid) | Example |\n' +
       '| Partner | Example Partner | [display@example.invalid](mailto:target@example.invalid>) | Partner |'
     ));
-    expect(rows).toHaveLength(1);
+    expect(rows).toHaveLength(2);
     expect(rows[0]).toMatchObject({ name: 'Example Lead', role: 'track-lead', track: 'ihe-mhd' });
-    expect(warnings).toHaveLength(1);
+    expect(rows[1]).toMatchObject({ name: 'Example Partner', email: 'target@example.invalid', role: 'attendee', track: '' });
+    expect(warnings).toHaveLength(2);
     expect(parseRoster(rosterCsv(rows))).toEqual(rows);
   });
   it('keeps participant identity stable when email changes', () => {
@@ -33,12 +34,13 @@ describe('master agenda staff generation', () => {
     const next = agendaRoster(table('| SMART on FHIR | Example Lead | [two@example.invalid](mailto:two@example.invalid) | Example |'));
     expect(first.rows[0]?.id).toBe(next.rows[0]?.id);
   });
-  it('reads track leads only and ignores the separate partners section', () => {
-    const markdown = `#### Track leads
+  it.each(['Track leads', 'Track leads and partners'])('includes Partner rows under %s but ignores the separate partners chapter', heading => {
+    const markdown = `#### ${heading}
 
 | Track | Name | Contact | Affiliate |
 |-------|------|---------|-----------|
 | FHIR 101 | Example Lead | [lead@example.invalid](mailto:lead@example.invalid) | Example |
+| Partner | Example Staff Partner | [staff@example.invalid](mailto:staff@example.invalid) | Example |
 
 ### Partners
 
@@ -47,14 +49,17 @@ describe('master agenda staff generation', () => {
 | Partner | Example Organizer | [Example Organizer](organizer@example.invalid) | Example Org |
 `;
     const { rows, warnings } = agendaRoster(markdown);
-    expect(rows).toHaveLength(1);
+    expect(rows).toHaveLength(2);
     expect(rows[0]).toMatchObject({ name: 'Example Lead', role: 'track-lead', track: 'fhir-101' });
+    expect(rows[1]).toMatchObject({ name: 'Example Staff Partner', role: 'attendee', track: '' });
+    expect(parseRoster(rosterCsv(rows))).toEqual(rows);
     expect(warnings).toHaveLength(0);
   });
   it('fails clearly for unknown tracks, missing section and invalid contact', () => {
     expect(() => agendaRoster('no table')).toThrow('section');
     expect(() => agendaRoster(table('| Unknown | Name | [a@example.invalid](mailto:a@example.invalid) | Org |'))).toThrow('Unknown agenda track');
     expect(() => agendaRoster(table('| SMART on FHIR | Name | no email | Org |'))).toThrow('email contact');
+    expect(() => agendaRoster(table('| Partner | Name | no email | Org |'))).toThrow('email contact');
   });
   it('bundles matching CSV and Person instances, preloads once and records no attendance', async () => {
     const rows = parseRoster(await readFile(join('seed', 'staff.csv'), 'utf8'));

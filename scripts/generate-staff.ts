@@ -24,7 +24,7 @@ await writeFile(join(directory, 'staff-persons.json'), JSON.stringify(bundle, nu
 await writeFile(join(directory, 'staff-source.json'), JSON.stringify({
   sourceRepository: 'HL7Norway/Norwegian-FHIR-Hackathon-2026',
   sourceFile: 'Norwegian-FHIR-hackathon-2026/input/pagecontent/hack-agenda.md',
-  section: 'Track leads and partners',
+  section: 'Track leads (also accepts Track leads and partners); excludes the separate Partners chapter',
   roleSystem: ROLE_SYSTEM,
   roleRule: 'Track-associated rows are track leads; Partner rows are attendees. Membership does not grant staff login.',
   count: rows.length,

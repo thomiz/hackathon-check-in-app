@@ -188,11 +188,13 @@ Never publish the app directly on the network.
 
 ### Bundled agenda staff roster
 
-The event agenda's **Track leads and partners** table is the master staff source.
+The event agenda's **Track leads** table (also accepted as **Track leads and
+partners**) is the master staff source. Include Partner rows in that table;
+exclude people listed only in the separate **Partners** chapter.
 Generate the distributable snapshot from that Markdown file:
 
 ```powershell
-npm.cmd run staff:generate -- 'D:\Programdisk-2\GitRepo\Norwegian-FHIR-Hackathon-2026\Norwegian-FHIR-hackathon-2026\input\pagecontent\hack-agenda.md'
+npm.cmd run staff:generate -- 'C:\GitRepo\Norwegian-FHIR-Hackathon-2026\Norwegian-FHIR-hackathon-2026\input\pagecontent\hack-agenda.md'
 ```
 
 This generates `seed\staff.csv`, a matching Person Bundle in

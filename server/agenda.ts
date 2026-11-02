@@ -31,8 +31,7 @@ export function agendaRoster(markdown: string): { rows: ImportRow[]; warnings: s
       const cells = line.split('|').slice(1, -1).map(cell => cell.trim());
       if (cells.length !== 4) throw new Error('Agenda contains a malformed staff-table row.');
       const [trackLabel, sourceName, contact, affiliation] = cells as [string, string, string, string];
-      if (trackLabel.toLowerCase() === 'partner') continue;
-      const track = trackCodes[trackLabel.toLowerCase()];
+      const track = trackLabel.toLowerCase() === 'partner' ? '' : trackCodes[trackLabel.toLowerCase()];
       if (track === undefined) throw new Error(`Unknown agenda track: ${trackLabel}`);
       const emailMatch = /\[([^\]]+)\]\((?:mailto:)?([^)>]+)>?\)/i.exec(contact);
       if (!emailMatch) throw new Error(`No valid email contact for ${sourceName}.`);

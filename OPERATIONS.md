@@ -183,8 +183,10 @@ See [CSV format and ID rules](README.md#google-sheet-attendees-and-optional-staf
 
 ### Staff roster changes
 
-1. Update or obtain the latest event agenda Markdown file. Its **Track leads
-   and partners** table is the master source.
+1. Update or obtain the latest event agenda Markdown file. Its **Track leads**
+   table (also accepted as **Track leads and partners**) is the master source,
+   including Partner rows there. People listed only in the separate **Partners**
+   chapter are excluded.
 2. Generate the local staff files, substituting your actual agenda path:
 
    ```powershell

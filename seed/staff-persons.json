@@ -803,6 +803,41 @@
           }
         ]
       }
+    },
+    {
+      "fullUrl": "https://hl7.no/fhir/ig/hackathon-check-in-app/Person/agenda-e2d72fcef5e180faf9942943",
+      "resource": {
+        "resourceType": "Person",
+        "id": "agenda-e2d72fcef5e180faf9942943",
+        "meta": {
+          "profile": [
+            "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://hl7.no/fhir/ig/hackathon-check-in-app/identifier/participant-2026",
+            "value": "agenda-e2d72fcef5e180faf9942943"
+          }
+        ],
+        "name": [
+          {
+            "text": "Øyvind Aassve"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "oeyaas@sykehuspartner.no"
+          }
+        ],
+        "extension": [
+          {
+            "url": "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
+            "valueString": "Sykehuspartner"
+          }
+        ]
+      }
     }
   ]
 }
