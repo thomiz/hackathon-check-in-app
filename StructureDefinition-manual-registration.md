@@ -1,4 +1,4 @@
-# ManualRegistration - hackathon-check-in-app v0.9.0
+# ManualRegistration - hackathon-check-in-app v0.9.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,7 +8,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration | *Version*:0.9.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration | *Version*:0.9.1 |
 | Draft as of 2026-11-03 | *Computable Name*:ManualRegistration |
 
 **Context of Use**
@@ -40,10 +40,10 @@ Other representations of profile: [CSV](StructureDefinition-manual-registration.
   "resourceType" : "StructureDefinition",
   "id" : "manual-registration",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/manual-registration",
-  "version" : "0.9.0",
+  "version" : "0.9.1",
   "name" : "ManualRegistration",
   "status" : "draft",
-  "date" : "2026-11-03T16:31:20+00:00",
+  "date" : "2026-11-03T17:08:05+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

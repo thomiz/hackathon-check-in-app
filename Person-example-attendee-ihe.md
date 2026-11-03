@@ -1,4 +1,4 @@
-# example-attendee-ihe - hackathon-check-in-app v0.9.0
+# example-attendee-ihe - hackathon-check-in-app v0.9.1
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)

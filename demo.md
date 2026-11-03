@@ -1,4 +1,4 @@
-# Demo application - hackathon-check-in-app v0.9.0
+# Demo application - hackathon-check-in-app v0.9.1
 
 * [**Table of Contents**](toc.md)
 * **Demo application**

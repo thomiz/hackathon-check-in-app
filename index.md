@@ -1,4 +1,4 @@
-# FHIR data model - hackathon-check-in-app v0.9.0
+# FHIR data model - hackathon-check-in-app v0.9.1
 
 * [**Table of Contents**](toc.md)
 * **FHIR data model**
@@ -7,7 +7,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app | *Version*:0.9.0 |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app | *Version*:0.9.1 |
 | Draft as of 2026-11-03 | *Computable Name*:HackathonCheckInApp |
 
 ### Hackathon check-in app FHIR model
@@ -66,11 +66,11 @@ The [Demo application](demo.md) page links to a browser-only version of the chec
   "resourceType" : "ImplementationGuide",
   "id" : "hackathon-check-in-app",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
-  "version" : "0.9.0",
+  "version" : "0.9.1",
   "name" : "HackathonCheckInApp",
   "title" : "hackathon-check-in-app",
   "status" : "draft",
-  "date" : "2026-11-03T16:31:20+00:00",
+  "date" : "2026-11-03T17:08:05+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

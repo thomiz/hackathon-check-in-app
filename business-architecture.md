@@ -1,4 +1,4 @@
-# Business architecture - hackathon-check-in-app v0.9.0
+# Business architecture - hackathon-check-in-app v0.9.1
 
 * [**Table of Contents**](toc.md)
 * **Business architecture**
