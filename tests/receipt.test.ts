@@ -62,6 +62,14 @@ describe('local QR attendance receipts', () => {
     expect(markup).toContain('Close FHIR data');
     expect(markup).not.toContain('<dialog open');
   });
+  it('places decorative flame icons before and after the FHIR button text', () => {
+    const markup = renderReceipt(receipt);
+    const button = markup.match(/<button[^>]*class="secondary fhir-button"[^>]*>(.*?)<\/button>/)?.[1];
+    expect(button).toBeDefined();
+    expect(button?.match(/class="fhir-icon"/g)).toHaveLength(2);
+    expect(button?.match(/aria-hidden="true" focusable="false"/g)).toHaveLength(2);
+    expect(button).toMatch(/^<svg.*<\/svg><span>Show FHIR data<\/span><svg.*<\/svg>$/);
+  });
   it('keeps full readable details while encoding only the compact confirmation', () => {
     const markup = renderReceipt(receipt);
     expect(markup).toContain('Alex Example');

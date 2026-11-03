@@ -111,9 +111,20 @@ describe('operations command line', () => {
 });
 
 describe('operations against the JSON data file', () => {
+  it.each([
+    { resetCheckins: false, rosters: { roster: [alice] }, phrase: 'IMPORT ROSTERS' },
+    { resetCheckins: false, rosters: { staff: [alice] }, phrase: 'IMPORT ROSTERS' },
+    { resetCheckins: false, rosters: { roster: [alice], staff: [alice] }, phrase: 'IMPORT ROSTERS' },
+    { resetCheckins: true, rosters: { roster: [alice] }, phrase: 'RESET IMPORT' },
+    { resetCheckins: true, rosters: {}, phrase: 'RESET CHECKINS' }
+  ])('uses a two-word confirmation: $phrase', async ({ phrase, ...request }) => {
+    const preview = await operations.preview(request);
+    expect(preview.confirmation).toBe(phrase);
+    expect(preview.confirmation.split(/\s+/)).toHaveLength(2);
+  });
   it('previews on a fresh installation and while the app holds the data, without writing', async () => {
     expect(await operations.preview({ resetCheckins: false, rosters: { roster: [alice] } }))
-      .toMatchObject({ action: 'import', rosters: [{ added: 1 }], confirmation: 'IMPORT 1 ATTENDEES; REMOVE 0 ROSTER MEMBERSHIPS' });
+      .toMatchObject({ action: 'import', rosters: [{ added: 1 }], confirmation: 'IMPORT ROSTERS' });
     const { store } = await seed();
     const before = await readFile(store.paths.file, 'utf8');
     expect(await operations.preview({ resetCheckins: true, rosters: { roster: [bob] } }))
@@ -149,7 +160,7 @@ describe('operations against the JSON data file', () => {
     await service.checkin(selected, selected.selection);
     await store.close();
     const result = await operations.apply({ resetCheckins: true, rosters: { roster: [alice, bob] } }, undefined, async p => p.confirmation);
-    expect(result.preview.confirmation).toBe('RESET 1 CHECK-INS AND 1 EVENT RECORDS; IMPORT 2 ATTENDEES; REMOVE 0 ROSTER MEMBERSHIPS');
+    expect(result.preview.confirmation).toBe('RESET IMPORT');
     expect(result.backup?.file).toContain(join('data', 'backups'));
     const after = new RegistrationService(await readStore(config.dataDir), config.sessionSecret);
     expect((await after.dashboard()).totals).toMatchObject({ roster: 2, checkedIn: 0 });
@@ -160,7 +171,7 @@ describe('operations against the JSON data file', () => {
     const { store } = await seed([alice]);
     await store.close();
     const request = { resetCheckins: false, rosters: { roster: [bob] }, keepMissing: true };
-    expect(await operations.preview(request)).toMatchObject({ rosters: [{ added: 1, removed: 0 }], confirmation: 'IMPORT 1 ATTENDEES; REMOVE 0 ROSTER MEMBERSHIPS' });
+    expect(await operations.preview(request)).toMatchObject({ rosters: [{ added: 1, removed: 0 }], confirmation: 'IMPORT ROSTERS' });
     await operations.apply(request, undefined, async p => p.confirmation);
     const after = new RegistrationService(await readStore(config.dataDir), config.sessionSecret);
     expect((await after.dashboard()).totals.roster).toBe(2);

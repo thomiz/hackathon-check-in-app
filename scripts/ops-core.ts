@@ -104,16 +104,11 @@ export class Operations {
     await service.initialize();
     const reset = await previewResetCheckins(service);
     const imports = hasImports ? await previewRosters(service, request.rosters, request.resetCheckins, { removeMissing: !request.keepMissing }) : undefined;
-    const confirmations: string[] = [];
-    if (request.resetCheckins) confirmations.push(`RESET ${reset.checkedIn} CHECK-INS AND ${reset.practitioners} EVENT RECORDS`);
-    if (imports) {
-      confirmations.push(`IMPORT ${imports.rosters.map(r => `${r.total} ${r.source === 'roster' ? 'ATTENDEES' : 'STAFF'}`).join(' AND ')}`);
-      confirmations.push(`REMOVE ${imports.rosters.reduce((total, r) => total + r.removed, 0)} ROSTER MEMBERSHIPS`);
-    }
     return {
       action: request.resetCheckins ? hasImports ? 'reset-and-import' : 'reset' : 'import',
       reset: request.resetCheckins, checkins: reset.checkedIn, eventRecords: reset.practitioners,
-      rosters: imports?.rosters ?? [], confirmation: confirmations.join('; ')
+      rosters: imports?.rosters ?? [],
+      confirmation: request.resetCheckins ? hasImports ? 'RESET IMPORT' : 'RESET CHECKINS' : 'IMPORT ROSTERS'
     };
   }
 

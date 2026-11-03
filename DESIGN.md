@@ -59,8 +59,8 @@ The IG title and package ID are `hackathon-check-in-app`, with
 canonical URL `https://hl7.no/fhir/ig/hackathon-check-in-app`.
 Its FHIR machine-readable name is `HackathonCheckInApp`.
 The repository and npm package are also named
-`hackathon-check-in-app`. The app version is `0.9.0`; the IG release version
-is `0.9.0` (its FHIR definitions are unchanged).
+`hackathon-check-in-app`. The app version is `0.9.1`; the IG release version
+is `0.9.1` (its FHIR definitions are unchanged).
 
 Participants' stable identifiers (`Person.identifier` in the event participant
 system) are explicit IDs where supplied (agenda staff, reviewed CSV `id`

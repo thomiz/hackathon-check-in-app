@@ -39,7 +39,10 @@ expected while it is deliberately stopped.
   `--apply`. The tool refuses to apply while the app (or another command) has
   the data open. It shows the counts and an exact confirmation phrase; type it
   when prompted. Any other input cancels without a backup or change. For
-  noninteractive use, pass `--confirm '<exact phrase>'`.
+  noninteractive use, pass `--confirm '<exact phrase>'`. The phrases are
+  `IMPORT ROSTERS` for imports, `RESET IMPORT` for imports with a check-in
+  reset, and `RESET CHECKINS` for a reset alone. Review the counts and warnings
+  before confirming; the phrase does not encode the preview counts.
 * Every apply takes a verified backup first (`DATA_DIR\backups`, or
   `--backup-dir 'D:\private\hackathon-backups'`), then writes **all changes in
   one atomic step**, including a combined reset and import. If validation or

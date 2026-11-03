@@ -27,11 +27,15 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     return () => clearInterval(timer);
   }, []);
   useEffect(() => { if (remaining === 0) onDone(); }, [remaining, onDone]);
+  const fhirIcon = <svg className="fhir-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path fill="#d94716" d="M13 1C15 7 6 8 8 14c-2-1-3-3-3-5-5 7-2 14 7 14 8 0 12-10 5-16 1 4-1 5-2 6 1-5 0-9-2-12Z" />
+    <path fill="#ffb52e" d="M12 12c1 4-4 5-3 8 1 2 5 2 6-1 1-2-1-4-1-4 0 2-1 2-1 2 1-2 0-4-1-5Z" />
+  </svg>;
   const actions = <div className="receipt-actions">
-    <button type="button" className="secondary" onClick={() => {
+    <button type="button" className="secondary fhir-button" onClick={() => {
       setRemaining(120);
       fhirDialog.current?.showModal();
-    }}>Show FHIR data</button>
+    }}>{fhirIcon}<span>Show FHIR data</span>{fhirIcon}</button>
     <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
     <button type="button" onClick={onDone}>Done / clear receipt</button>
   </div>;
