@@ -1,4 +1,4 @@
-# Artifacts Summary - hackathon-check-in-app v0.8.1
+# Artifacts Summary - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * **Artifacts Summary**

@@ -1,4 +1,4 @@
-# Participant affiliation - hackathon-check-in-app v0.8.1
+# Participant affiliation - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation | *Version*:0.8.1 |
-| Draft as of 2026-11-01 | *Computable Name*:Affiliation |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation | *Version*:0.9.0 |
+| Draft as of 2026-11-03 | *Computable Name*:Affiliation |
 
 **Context of Use**
 
@@ -41,11 +41,11 @@ Other representations of profile: [CSV](StructureDefinition-affiliation.csv), [E
   "resourceType" : "StructureDefinition",
   "id" : "affiliation",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/affiliation",
-  "version" : "0.8.1",
+  "version" : "0.9.0",
   "name" : "Affiliation",
   "title" : "Participant affiliation",
   "status" : "draft",
-  "date" : "2026-11-01T10:01:21+00:00",
+  "date" : "2026-11-03T16:31:20+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

@@ -6,11 +6,11 @@
     "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide hackathon-check-in-app</b></p><a name=\"hackathon-check-in-app\"> </a><a name=\"hchackathon-check-in-app\"> </a><h2>HackathonCheckInApp</h2><p>The official URL for this implementation guide is: </p><pre>https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app</pre><div><p>Event-specific check-in demonstration; Practitioner event roles are not professional credentials.</p>\n</div></div>"
   },
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ImplementationGuide/hackathon-check-in-app",
-  "version" : "0.8.1",
+  "version" : "0.9.0",
   "name" : "HackathonCheckInApp",
   "title" : "hackathon-check-in-app",
   "status" : "draft",
-  "date" : "2026-11-01T10:01:21+00:00",
+  "date" : "2026-11-03T16:31:20+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

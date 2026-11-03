@@ -1,4 +1,4 @@
-# Tracks - hackathon-check-in-app v0.8.1
+# Tracks - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks | *Version*:0.8.1 |
-| Draft as of 2026-11-01 | *Computable Name*:Tracks |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks | *Version*:0.9.0 |
+| Draft as of 2026-11-03 | *Computable Name*:Tracks |
 
  **References** 
 
@@ -43,10 +43,10 @@
   "resourceType" : "ValueSet",
   "id" : "tracks",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/ValueSet/tracks",
-  "version" : "0.8.1",
+  "version" : "0.9.0",
   "name" : "Tracks",
   "status" : "draft",
-  "date" : "2026-11-01T10:01:21+00:00",
+  "date" : "2026-11-03T16:31:20+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

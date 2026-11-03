@@ -5,10 +5,10 @@
   "description" : "Event-specific check-in demonstration; Practitioner event roles are not professional credentials.",
   "status" : "draft",
   "package-id" : "hackathon-check-in-app",
-  "ig-ver" : "0.8.1",
-  "date" : "Sun, 01 Nov, 2026 10:01:21 +0000",
-  "dateISO8601" : "2026-11-01T10:01:21+00:00",
-  "errs" : 27,
+  "ig-ver" : "0.9.0",
+  "date" : "Tue, 03 Nov, 2026 16:31:20 +0000",
+  "dateISO8601" : "2026-11-03T16:31:20+00:00",
+  "errs" : 16,
   "warnings" : 55,
   "hints" : 22,
   "broken-links" : 2,
@@ -16,5 +16,5 @@
   "suppressed-warnings" : 0,
   "version" : "4.0.1",
   "tool" : "6.0.0-snapshot1 (3)",
-  "maxMemory" : 656364768
+  "maxMemory" : 552058352
 }

@@ -3,7 +3,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <title>Demo application - hackathon-check-in-app v0.8.1</title>
+    <title>Demo application - hackathon-check-in-app v0.9.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -52,7 +52,7 @@
         <div id="ig-status">
           <p><span style="font-size:12pt;font-weight:bold">hackathon-check-in-app</span>
             <br/>
-            <span style="display:inline-block;">0.8.1 - ci-build
+            <span style="display:inline-block;">0.9.0 - ci-build
 
 
 
@@ -127,7 +127,7 @@ h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) ".
 h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
 </style>
 <div class="col-12">
-    <!-- ReleaseHeader --><p id="publish-box">hackathon-check-in-app - Local Development build (v0.8.1) built by the FHIR (HL7&reg; FHIR&reg; Standard) Build Tools. See the <a href="https://hl7.no/fhir/ig/hackathon-check-in-app/history.html">Directory of published versions</a></p>  <!-- EndReleaseHeader -->
+    <!-- ReleaseHeader --><p id="publish-box">hackathon-check-in-app - Local Development build (v0.9.0) built by the FHIR (HL7&reg; FHIR&reg; Standard) Build Tools. See the <a href="https://hl7.no/fhir/ig/hackathon-check-in-app/history.html">Directory of published versions</a></p>  <!-- EndReleaseHeader -->
   <h2>Demo application</h2>
   
 
@@ -143,22 +143,10 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p>  <!-- white space is critical inside of capture --></p>
-<div class="markdown-toc">
-<ul id="markdown-toc">
-  <li><a href="#demo-application" id="markdown-toc-demo-application">Demo application</a>    <ul>
-      <li><a href="#how-the-demo-works" id="markdown-toc-how-the-demo-works">How the demo works</a></li>
-      <li><a href="#trying-it-out" id="markdown-toc-trying-it-out">Trying it out</a>        <ul>
-          <li><a href="#attendee-check-in" id="markdown-toc-attendee-check-in">Attendee check-in</a></li>
-          <li><a href="#organizer-screen" id="markdown-toc-organizer-screen">Organizer screen</a></li>
-        </ul>
-      </li>
-      <li><a href="#limitations" id="markdown-toc-limitations">Limitations</a></li>
-    </ul>
-  </li>
-</ul>
-
+<div>
+  <!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown. -->
 </div>
-<h1 id="demo-application">Demo application</h1>
+<h3 id="demo-application">Demo application</h3>
 
 <p>A browser-only demo of the hackathon check-in app is published with this
 Implementation Guide. It uses the synthetic examples in this guide as its data, so you
@@ -166,13 +154,13 @@ can see how the FHIR resources support attendee check-in and the organizer
 desk. You do not need a FHIR server or an account.</p>
 
 <ul>
-  <li><a name="l287">​</a><a href="demo/index.html">Open the attendee check-in screen</a></li>
-  <li><a name="l291">​</a><a href="demo/index.html#staff">Open the organizer screen</a></li>
+  <li><a name="l254">​</a><a href="demo/index.html">Open the attendee check-in screen</a></li>
+  <li><a name="l258">​</a><a href="demo/index.html#staff">Open the organizer screen</a></li>
 </ul>
 
 <p>The banner at the top of the demo switches between the two screens.</p>
 
-<h2 id="how-the-demo-works">How the demo works</h2>
+<h4 id="how-the-demo-works">How the demo works</h4>
 
 <p>The production app keeps the roster and check-ins on a FHIR R4 server. The
 demo runs the same registration logic directly in the browser instead. It
@@ -222,9 +210,9 @@ manually or correcting details, changes only the data in that browser tab.
 Nothing is sent to a server. Reloading the page, or choosing <em>Reset demo</em>,
 restores the original examples.</p>
 
-<h2 id="trying-it-out">Trying it out</h2>
+<h4 id="trying-it-out">Trying it out</h4>
 
-<h3 id="attendee-check-in">Attendee check-in</h3>
+<h5 id="attendee-check-in">Attendee check-in</h5>
 
 <ol>
   <li>Type at least five letters of a name from the attendee roster, for example
@@ -241,7 +229,7 @@ the attendance receipt with a QR code.</li>
 already checked in, so the app shows their existing receipts instead of
 creating duplicates.</p>
 
-<h3 id="organizer-screen">Organizer screen</h3>
+<h5 id="organizer-screen">Organizer screen</h5>
 
 <p>Sign in with any username and password. The organizer screen shows:</p>
 
@@ -254,7 +242,7 @@ creating duplicates.</p>
 <p>You can export check-ins as CSV. Roster CSV import is not available in the
 demo.</p>
 
-<h2 id="limitations">Limitations</h2>
+<h4 id="limitations">Limitations</h4>
 
 <p>The demo is for illustration only. It has no authentication, persistence or
 audit storage, and it must not be used with real participant data. Only the
@@ -279,7 +267,7 @@ synthetic examples published in this guide are included.</p>
 
       <div class="inner-wrapper">
         <p>
-          IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-check-in-app#0.8.1 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Sun, Nov 1, 2026 10:01+0000">2026-11-01</span>
+          IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.hl7.no">HL7 Norway</a>.  Package hackathon-check-in-app#0.9.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Tue, Nov 3, 2026 16:31+0000">2026-11-03</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |

@@ -1,4 +1,4 @@
-# hackathon-check-in-app#0.8.1: hackathon-check-in-app
+# hackathon-check-in-app#0.9.0: hackathon-check-in-app
 
 ## Pages
 

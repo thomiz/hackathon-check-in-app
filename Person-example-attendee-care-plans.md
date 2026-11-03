@@ -1,4 +1,4 @@
-# example-attendee-care-plans - hackathon-check-in-app v0.8.1
+# example-attendee-care-plans - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)

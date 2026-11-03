@@ -1,4 +1,4 @@
-# Expected Hackathon participant - hackathon-check-in-app v0.8.1
+# Expected Hackathon participant - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant | *Version*:0.8.1 |
-| Draft as of 2026-11-01 | *Computable Name*:ExpectedParticipant |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant | *Version*:0.9.0 |
+| Draft as of 2026-11-03 | *Computable Name*:ExpectedParticipant |
 
  
 For attendees and organizers registered for the event. 
@@ -38,11 +38,11 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
   "resourceType" : "StructureDefinition",
   "id" : "expected-participant",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant",
-  "version" : "0.8.1",
+  "version" : "0.9.0",
   "name" : "ExpectedParticipant",
   "title" : "Expected Hackathon participant",
   "status" : "draft",
-  "date" : "2026-11-01T10:01:21+00:00",
+  "date" : "2026-11-03T16:31:20+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

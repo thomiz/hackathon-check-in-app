@@ -1,4 +1,4 @@
-# Checked-in Hackathon participant - hackathon-check-in-app v0.8.1
+# Checked-in Hackathon participant - hackathon-check-in-app v0.9.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant | *Version*:0.8.1 |
-| Draft as of 2026-11-01 | *Computable Name*:CheckedInParticipant |
+| *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant | *Version*:0.9.0 |
+| Draft as of 2026-11-03 | *Computable Name*:CheckedInParticipant |
 
  
 For attendees and organizers checked in to the event. Event-specific demonstration model. Does not imply healthcare employment or a professional credential. 
@@ -38,11 +38,11 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
   "resourceType" : "StructureDefinition",
   "id" : "checked-in-participant",
   "url" : "https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant",
-  "version" : "0.8.1",
+  "version" : "0.9.0",
   "name" : "CheckedInParticipant",
   "title" : "Checked-in Hackathon participant",
   "status" : "draft",
-  "date" : "2026-11-01T10:01:21+00:00",
+  "date" : "2026-11-03T16:31:20+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
