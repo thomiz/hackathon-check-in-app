@@ -20,6 +20,7 @@ class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
 export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: () => void }) {
   const [remaining, setRemaining] = useState(120);
   const heading = useRef<HTMLHeadingElement>(null);
+  const fhirDialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
   useEffect(() => {
     const timer = setInterval(() => setRemaining(value => Math.max(0, value - 1)), 1000);
@@ -27,6 +28,10 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
   }, []);
   useEffect(() => { if (remaining === 0) onDone(); }, [remaining, onDone]);
   const actions = <div className="receipt-actions">
+    <button type="button" className="secondary" onClick={() => {
+      setRemaining(120);
+      fhirDialog.current?.showModal();
+    }}>Show FHIR data</button>
     <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
     <button type="button" onClick={onDone}>Done / clear receipt</button>
   </div>;
@@ -51,5 +56,16 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     <p className="muted">This receipt confirms check-in, not duration of participation. It is not digitally signed.</p>
     <p className="muted">The receipt includes your email address. Keep your saved copy private. This screen clears in {remaining} seconds.</p>
     {actions}
+    <dialog ref={fhirDialog} className="fhir-dialog" aria-labelledby="fhir-heading" onKeyDown={event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.currentTarget.close();
+      }
+    }}>
+      <h2 id="fhir-heading">Your FHIR Practitioner resource</h2>
+      <p>This is the saved attendance resource, not a professional credential. It contains personal data; keep any copy private. The receipt and this window clear together when the timer expires.</p>
+      <pre><code>{JSON.stringify(receipt.practitioner, null, 2)}</code></pre>
+      <form method="dialog"><button type="submit">Close FHIR data</button></form>
+    </dialog>
   </section>;
 }

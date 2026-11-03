@@ -165,7 +165,7 @@ export class RegistrationService {
     const entry = list.entry?.find(item => !item.deleted && item.item.reference === `Practitioner/${id}`);
     if (!current || !entry) throw new AppError(404, 'Check-in receipt not found.');
     if (!entry.date || !Number.isFinite(Date.parse(entry.date))) throw new AppError(503, 'Check-in timestamp is missing or invalid. Ask staff to repair the record.');
-    return { ...detailsOf(current), role: roleOf(current), arrived: entry.date, receiptId: id, alreadyCheckedIn };
+    return { ...detailsOf(current), role: roleOf(current), arrived: entry.date, receiptId: id, alreadyCheckedIn, practitioner: current };
   }
   audit(id: string, staff: string, reason: string, action: string): AuditEvent {
     return {

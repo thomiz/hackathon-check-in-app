@@ -10,7 +10,11 @@ import { detailsSchema, tracks, type Confirmation } from '../shared/domain';
 const receipt: Confirmation = {
   name: 'Alex Example', email: 'alex@example.invalid', affiliation: 'Example Organization',
   track: 'smart', role: 'attendee', arrived: '2026-11-09T07:42:00.000Z',
-  receiptId: '12526e49-53e1-4150-9226-a20c78168b95', alreadyCheckedIn: false
+  receiptId: '12526e49-53e1-4150-9226-a20c78168b95', alreadyCheckedIn: false,
+  practitioner: {
+    resourceType: 'Practitioner', id: '12526e49-53e1-4150-9226-a20c78168b95',
+    meta: { versionId: '1' }, name: [{ text: 'Alex Example' }]
+  }
 };
 
 function renderReceipt(value: Confirmation) {
@@ -46,6 +50,17 @@ describe('local QR attendance receipts', () => {
     expect(markup.match(/Keep receipt open/g)).toHaveLength(1);
     expect(markup.match(/Done \/ clear receipt/g)).toHaveLength(1);
     expect(markup.lastIndexOf('Keep receipt open')).toBeGreaterThan(markup.indexOf('</dl>'));
+  });
+  it('offers a labelled FHIR dialog with formatted saved resource data', () => {
+    const markup = renderReceipt(receipt);
+    expect(markup).toContain('Show FHIR data');
+    expect(markup).toContain('<dialog');
+    expect(markup).toContain('aria-labelledby="fhir-heading"');
+    expect(markup).toContain('Your FHIR Practitioner resource');
+    expect(markup).toContain('{\n  &quot;resourceType&quot;: &quot;Practitioner&quot;,');
+    expect(markup).toContain('&quot;versionId&quot;: &quot;1&quot;');
+    expect(markup).toContain('Close FHIR data');
+    expect(markup).not.toContain('<dialog open');
   });
   it('keeps full readable details while encoding only the compact confirmation', () => {
     const markup = renderReceipt(receipt);

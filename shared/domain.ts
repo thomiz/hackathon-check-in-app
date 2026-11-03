@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { Practitioner } from 'fhir/r4';
 
 export const CANONICAL = 'https://hl7.no/fhir/ig/hackathon-check-in-app';
 export const EVENT = 'hackathon-2026';
@@ -59,7 +60,7 @@ export type Candidate = { token: string; name: string; affiliation: string; alre
 export type Selection = Details & { selection: string };
 export type StaffSelection = Selection & { id: string; lists: RosterSource[] };
 export type RosterChange = { personId: string; id: string; created: boolean; lists: RosterSource[] };
-export type Confirmation = Details & { alreadyCheckedIn: boolean; role: Role; arrived: string; receiptId: string };
+export type Confirmation = Details & { alreadyCheckedIn: boolean; role: Role; arrived: string; receiptId: string; practitioner: Practitioner };
 export type DashboardRow = Details & {
   id: string;
   personId: string;

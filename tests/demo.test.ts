@@ -34,6 +34,7 @@ describe.skipIf(!existsSync('fhir/fsh-generated/resources'))('demo backend seede
     const selected = await demoApi<Selection>('/select', { token: robin!.token }, 'POST');
     const receipt = await demoApi<Confirmation>('/checkin', { ...selected, track: 'smart' }, 'POST');
     expect(receipt).toMatchObject({ name: 'Robin Sample', role: 'attendee', track: 'smart', alreadyCheckedIn: false });
+    expect(receipt.practitioner).toMatchObject({ resourceType: 'Practitioner', id: receipt.receiptId, meta: { versionId: expect.any(String) } });
     const [again] = await demoApi<Candidate[]>('/matches?name=Robin+Sample', undefined, 'GET');
     expect(again?.alreadyCheckedIn).toBe(true);
   });

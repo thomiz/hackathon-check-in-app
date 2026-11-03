@@ -307,7 +307,10 @@ describe('persisted attendance receipts', () => {
     expect(await restored.receipt(first.receiptId)).toEqual({ ...first, alreadyCheckedIn: true });
     const p = (await store.search<Person>('Person', ''))[0]!;
     await restored.correct(p.id!, { ...alice, track: 'ehds-summary' }, 'track-lead', 'Organizer correction', 'organizer');
-    expect(await restored.receipt(first.receiptId)).toEqual({ ...first, track: 'ehds-summary', role: 'track-lead', alreadyCheckedIn: true });
+    expect(await restored.receipt(first.receiptId)).toEqual({
+      ...first, track: 'ehds-summary', role: 'track-lead', alreadyCheckedIn: true,
+      practitioner: await store.read('Practitioner', first.receiptId)
+    });
   });
   it('rejects missing check-ins and invalid persisted timestamps', async () => {
     await expect(service.receipt('missing')).rejects.toThrow('not found');

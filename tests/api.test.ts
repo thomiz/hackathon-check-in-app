@@ -5,7 +5,7 @@ import { buildApp } from '../server/app';
 import { MemoryStore } from './memory-store';
 import { importRoster } from '../server/imports';
 import type { Config } from '../server/config';
-import type { Selection } from '../shared/domain';
+import type { Confirmation, Selection } from '../shared/domain';
 
 const salt = '0123456789abcdef0123456789abcdef';
 export const config: Config = {
@@ -73,6 +73,10 @@ describe('HTTP authorization and input boundaries', () => {
     const checkin = await app!.inject({ method: 'POST', url: '/api/checkin', headers: origin, payload: { ...selected.json<Selection>(), track: 'ehds-summary' } });
     expect(checkin.statusCode).toBe(200);
     expect(checkin.json()).toMatchObject({ name: 'Alice Example', email: 'test@example.invalid', track: 'ehds-summary' });
+    const confirmation = checkin.json<Confirmation>();
+    expect(confirmation.practitioner).toEqual(await service.store.read('Practitioner', confirmation.receiptId));
+    expect(confirmation.practitioner.meta?.versionId).toBeDefined();
+    expect(checkin.headers['cache-control']).toBe('no-store');
     expect((await app!.inject('/api/matches?name=Alice')).json()[0].alreadyCheckedIn).toBe(true);
     const staff = await login();
     expect((await app!.inject({ url: '/api/staff/matches?name=Alice', cookies: { staff } })).json()[0].alreadyCheckedIn).toBe(true);

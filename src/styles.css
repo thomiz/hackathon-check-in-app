@@ -64,6 +64,9 @@ button:disabled { opacity: .55; cursor: wait; }
 .receipt-details dd { margin: 4px 0 0; }
 .receipt-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .receipt-actions .secondary { margin-left: 0; }
+.fhir-dialog { width: min(900px, calc(100% - 32px)); max-height: 85vh; padding: 24px; border: 1px solid #acbebb; border-radius: 12px; color: #193c43; text-align: left; }
+.fhir-dialog::backdrop { background: #193c4380; }
+.fhir-dialog pre { overflow: auto; max-height: 50vh; padding: 16px; background: #f1f5f3; font-size: 13px; }
 .staff-title, .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .toolbar { justify-content: flex-start; }
 .login { max-width: 450px; }
