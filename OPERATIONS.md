@@ -368,11 +368,33 @@ Start-Service sshd
   Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -RemoteAddress 172.20.10.0/28
   ```
 
-  A less strict alternative allows the whole local subnet on private networks:
+  **Optional: allow SSH on a trusted private network.** Instead of specifying
+  the hotspot subnet, allow the whole local subnet on private networks:
 
   ```powershell
   Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -Enabled True -Profile Private -RemoteAddress LocalSubnet
   ```
+
+  This rule does not apply if Windows classifies the hotspot connection as
+  **Public**, even when both PCs are on the same subnet and ping works. On the
+  registration PC, check the active network profiles:
+
+  ```powershell
+  Get-NetConnectionProfile |
+      Select-Object InterfaceIndex, InterfaceAlias, NetworkCategory
+  ```
+
+  Only for your own trusted, password-protected hotspot or network, change
+  that connection to **Private**. Replace `<index>` with the hotspot's
+  `InterfaceIndex`; run in administrator PowerShell:
+
+  ```powershell
+  Set-NetConnectionProfile -InterfaceIndex <index> -NetworkCategory Private
+  ```
+
+  Changing the profile also enables other applicable Private-profile firewall
+  rules. Do not do this on an untrusted or public network, and do not disable
+  the firewall. Retry the port test below from the monitoring PC.
 
 ### Connect from the monitoring PC
 
@@ -384,8 +406,10 @@ Test-NetConnection 172.20.10.2 -Port 22
 ssh -N -L 8080:127.0.0.1:8080 eventops@172.20.10.2
 ```
 
-Some Android hotspots isolate clients from each other; if the connection test
-fails, check the hotspot settings.
+If the connection test fails, first check that `sshd` is running and the SSH
+firewall rule is enabled for the registration PC's active network profile.
+Some Android hotspots also isolate clients from each other; check the hotspot
+settings if the service and firewall configuration are correct.
 
 Open `http://localhost:8080` on the monitoring PC and sign in via **Staff
 access** to see check-in counts, track totals, arrivals, receipts and CSV
