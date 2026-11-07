@@ -407,9 +407,11 @@ Disable-NetFirewallRule -Name "SSH-Hotspot-Subnet"
 Check the connection, then open the tunnel and leave the window open while
 monitoring (replace the user and address):
 
+For surface hotspot wifi:
+
 ```powershell
-Test-NetConnection 172.20.10.2 -Port 22
-ssh -N -L 8080:127.0.0.1:8080 eventops@172.20.10.2
+Test-NetConnection 192.168.137.1 -Port 22
+ssh -N -L 8080:127.0.0.1:8080 192.168.137.1 -l "username"
 ```
 
 If the connection test fails, first check that `sshd` is running and the SSH
