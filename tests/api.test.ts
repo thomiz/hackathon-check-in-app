@@ -6,7 +6,7 @@ import { MemoryStore } from './memory-store';
 import { importRoster } from '../server/imports';
 import type { Config } from '../server/config';
 import type { Confirmation, Selection } from '../shared/domain';
-import type { Bundle } from 'fhir/r4';
+import type { Bundle, FhirResource } from 'fhir/r4';
 import * as ssh from '../server/ssh';
 
 const salt = '0123456789abcdef0123456789abcdef';
@@ -49,7 +49,7 @@ describe('HTTP authorization and input boundaries', () => {
     expect(response.headers['content-type']).toBe('application/fhir+json; charset=utf-8');
     expect(response.headers['content-disposition']).toBe('attachment; filename="hackathon-2026-fhir.json"');
     expect(response.headers['cache-control']).toBe('no-store');
-    const bundle = response.json<Bundle>();
+    const bundle = response.json<Bundle<FhirResource>>();
     expect(bundle.resourceType).toBe('Bundle');
     expect(bundle.type).toBe('collection');
     expect(bundle.timestamp).toEqual(expect.any(String));
