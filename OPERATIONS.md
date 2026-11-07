@@ -25,8 +25,8 @@ delete `fhir-store.json` or the data directory to fix a startup or import error.
 npm.cmd run ops -- start
 ```
 
-6. Start sshd service  
-7. Enable firewall rules for ssh connection  
+6. Start sshd service  `Start-Service sshd`
+7. Enable firewall rules for ssh connection `Enable-NetFirewallRule -Name "SSH-Hotspot-Subnet"`
 8. Test localhost:8080 in browser
 9. **Check-in computer:** login the kiosk user  
 10. **Monitoring computer:** start ssh connection to check-in computer  
