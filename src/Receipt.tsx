@@ -32,12 +32,12 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
     <path fill="#ffb52e" d="M12 12c1 4-4 5-3 8 1 2 5 2 6-1 1-2-1-4-1-4 0 2-1 2-1 2 1-2 0-4-1-5Z" />
   </svg>;
   const actions = <div className="receipt-actions">
+    <button type="button" className="receipt-done" onClick={onDone}>Done / clear receipt</button>
+    <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
     <button type="button" className="secondary fhir-button" onClick={() => {
       setRemaining(120);
       fhirDialog.current?.showModal();
     }}>{fhirIcon}<span>Show FHIR data</span>{fhirIcon}</button>
-    <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
-    <button type="button" className="receipt-done" onClick={onDone}>Done / clear receipt</button>
   </div>;
   return <section className="success receipt" aria-labelledby="receipt-heading">
     <h2 id="receipt-heading" tabIndex={-1} ref={heading}>You are checked in, {receipt.name}!</h2>

@@ -21,8 +21,8 @@ administrator PowerShell commands (see [Remote monitoring helper](OPERATIONS.md#
 Version 0.9.6 adds an authenticated **Download all FHIR data** button to the
 staff dashboard, exporting all currently stored resources as a FHIR collection Bundle.
 Version 0.9.7 highlights attendee and staff-roster check-in counts in a separate
-dashboard row and orders receipt buttons as **Show FHIR data**, **Keep receipt open**,
-then **Done / clear receipt**, together in a centered group.
+dashboard row and orders receipt buttons as **Done / clear receipt**, **Keep receipt open**,
+then **Show FHIR data**, together in a centered group.
 The IG is version `0.9.1`; its FHIR definitions are unchanged.
 Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
@@ -414,8 +414,8 @@ rehearse scanning at the workstation's actual screen size.
 
 The receipt clears after 120 seconds for shared-workstation privacy. **Keep
 receipt open** restarts that period; **Done / clear receipt** clears it immediately
-and appears immediately after **Keep receipt open**. The three buttons are
-grouped together, with **Show FHIR data** leftmost and **Done / clear receipt**
+and appears immediately before **Keep receipt open**. The three buttons are
+grouped together, with **Done / clear receipt** leftmost and **Show FHIR data**
 rightmost, rather than aligning the Done button separately to the screen edge.
 **Show FHIR data** opens a dialog with the saved FHIR Practitioner resource as
 formatted JSON, including its ID and metadata, and restarts the receipt timer.

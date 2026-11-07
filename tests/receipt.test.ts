@@ -51,6 +51,8 @@ describe('local QR attendance receipts', () => {
     expect(markup.match(/Done \/ clear receipt/g)).toHaveLength(1);
     expect(markup.lastIndexOf('Keep receipt open')).toBeGreaterThan(markup.indexOf('</dl>'));
     expect(markup).toContain('class="receipt-done">Done / clear receipt</button>');
+    expect(markup.indexOf('Done / clear receipt')).toBeLessThan(markup.indexOf('Keep receipt open'));
+    expect(markup.indexOf('Keep receipt open')).toBeLessThan(markup.indexOf('Show FHIR data'));
   });
   it('offers a labelled FHIR dialog with formatted saved resource data', () => {
     const markup = renderReceipt(receipt);
