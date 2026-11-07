@@ -14,11 +14,28 @@ delete `fhir-store.json` or the data directory to fix a startup or import error.
 
 ## Quick-start cheatsheet
 
-1. Wi-fi hotspot on phone (for internet access)
-2. Wi-fi hotspot on SURFACE (for ssh connection)
+1. Start Wi-fi hotspot on phone (for internet access)
+2. Start Wi-fi hotspot on SURFACE (for ssh connection)
 3. Connect monitoring computer to SURFACE hotspot  
 4. Connect check-in computer to phone hotspot  
-5. Start check-in server
+5. Set-Location to github repo
+6. Start check-in server (check-in computer)  
+
+```powershell
+npm.cmd run ops -- start
+```
+
+6. Start sshd service  
+7. Enable firewall rules for ssh connection  
+8. Test localhost:8080 in browser
+9. **Check-in computer:** login the kiosk user  
+10. **Monitoring computer:** start ssh connection to check-in computer  
+
+```powershell
+ssh -N -L 8080:127.0.0.1:8080 192.168.137.1 -l "username" 
+```
+
+**Remember to connect the computers to mains power!**
 
 ## Operations CLI
 
@@ -352,7 +369,67 @@ No change to `.env` or the application is needed. The tunneled browser is just
 another client of the same app; it never touches the data file directly, so it
 cannot conflict with the kiosk.
 
-### Prepare the registration PC (once)
+### Dashboard SSH helper
+
+Sign in through **Staff access**, then select **SSH remote monitoring** to open
+the separate helper page (`#staff/ssh`). It reads Windows status without making
+changes: active IPv4 interfaces, network profiles, SSH service/configuration,
+host public-key fingerprints and inbound allow rules that may apply to SSH.
+The hosted demo and non-Windows deployments cannot operate this helper.
+
+1. Complete the one-time OpenSSH/key preparation below. The Windows SSH account
+   is separate from the app's staff account. The helper requires
+   `PasswordAuthentication no`; also review any account-specific `Match`
+   overrides in `sshd_config` to ensure password login is disabled for that account.
+2. Refresh status and explicitly select the trusted hotspot/network interface.
+   Use the registration PC's displayed IP address, not the hotspot gateway
+   unless the registration PC itself hosts that hotspot. Subnets are calculated
+   from the address/prefix, not hardcoded to Surface or iPhone defaults.
+3. Enter the monitoring PC's IPv4 address (preferred), or explicitly choose the
+   trusted subnet, and enter the Windows SSH username. The page includes a
+   `Get-NetIPAddress` command to run on the monitoring PC to find its source IP.
+4. Copy **Prepare remote monitoring** and run it in **PowerShell as Administrator
+   on the registration PC**. Refresh status afterwards.
+5. On the monitoring PC, run the generated port test and tunnel command, verify
+   the server fingerprint, then open the displayed localhost URL.
+6. Close the tunnel with Ctrl+C. Run the generated disable command locally.
+   The optional disable-and-stop command stops all SSH sessions; do not use it
+   if others depend on SSH.
+
+The fixed helper is `scripts\Ssh-Monitoring.ps1`:
+
+```powershell
+& .\scripts\Ssh-Monitoring.ps1 -Action Status
+& .\scripts\Ssh-Monitoring.ps1 -Action Enable -InterfaceIndex 12 -LocalAddress '192.168.137.1' -RemoteAddress '192.168.137.2'
+& .\scripts\Ssh-Monitoring.ps1 -Action Disable
+& .\scripts\Ssh-Monitoring.ps1 -Action Disable -StopService
+```
+
+Replace the example interface index/addresses with those shown in the helper.
+Enable rechecks the active interface/address and creates or replaces only the
+`Hackathon-SSH-Monitoring` firewall rule, scoped to TCP 22, that interface,
+local address and remote source. It supports Public/Private profiles without
+changing the Windows network category. If another enabled inbound allow rule
+may apply to sshd on port 22, it stops before changing anything; review that
+rule explicitly in Windows Firewall. Adding a narrower allow rule does not
+cancel a broader one. Disabled rules are also shown in the status table.
+
+Enable starts `sshd` and checks service/listener/rule status. If verification
+fails after creating the rule, it disables that rule and reports the error;
+the service may remain running. Disable affects only the app-owned rule unless
+`-StopService` is supplied. Installation, authorized keys, other firewall rules
+and service startup settings are never changed. An existing automatic startup
+setting can restart SSH after reboot; review it separately.
+
+The guided tunnel requires `HOST=127.0.0.1` and
+`PUBLIC_URL=http://localhost:<PORT>`. The web server remains unelevated and
+exposes only an authenticated, rate-limited read-only status endpoint. It never
+executes enable/disable commands from the browser. A remote tunneled browser
+also looks local to the server, so localhost alone is not a privilege boundary.
+Local status cannot prove remote connectivity: test from the monitoring PC,
+and check firewall block/policy rules or hotspot client isolation if needed.
+
+### Prepare the registration PC manually (once)
 
 Run in an administrator PowerShell window:
 
@@ -378,8 +455,9 @@ Disable-NetFirewallRule -Name "SSH-Hotspot-Subnet"
 
 ### Specific rules for surface hotspot
 
-  **Optional: allow SSH on a trusted private network.** Instead of specifying
-  the hotspot subnet, allow the whole local subnet on private networks:
+  **Optional: allow SSH on a trusted hotspot.** Use the actual trusted subnet.
+  This manual rule applies on any network profile; the dashboard helper
+  additionally restricts its rule to the selected interface and local address:
 
   ```powershell
   New-NetFirewallRule -Name "SSH-Hotspot-Subnet" -DisplayName "SSH from hotspot subnet" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 22 -Profile Any -RemoteAddress "192.168.137.0/24"
@@ -387,8 +465,9 @@ Disable-NetFirewallRule -Name "SSH-Hotspot-Subnet"
 
 #### Optional
 
-  This rule does not apply if Windows classifies the hotspot connection as
-  **Public**, even when both PCs are on the same subnet and ping works. On the
+  The `-Profile Any` rule above also applies when Windows classifies the
+  hotspot as **Public**. A different rule restricted to Private will not apply
+  there, even when both PCs are on the same subnet and ping works. On the
   registration PC, check the active network profiles:
 
   ```powershell
@@ -398,8 +477,9 @@ Disable-NetFirewallRule -Name "SSH-Hotspot-Subnet"
 
 #### Precautions
 
-  Only for your own trusted, password-protected hotspot or network, change
-  that connection to **Private**. Replace `<index>` with the hotspot's
+  Changing the network to **Private** is not needed for the dashboard helper
+  or the `-Profile Any` rule above. If separately needed for your own trusted,
+  password-protected hotspot or network, replace `<index>` with the hotspot's
   `InterfaceIndex`; run in administrator PowerShell:
 
   ```powershell

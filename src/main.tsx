@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { rosterSourceLabels, tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type RosterChange, type RosterImportPreview, type RosterImportResult, type RosterSource, type Selection, type StaffSelection } from '../shared/domain';
 import { api, DEMO, downloadDemoExport } from './api';
 import { Receipt } from './Receipt';
+import { SshHelper } from './SshHelper';
 import './styles.css';
 
 const blank: Details = { name: '', email: '', affiliation: '', track: '' };
@@ -151,7 +152,7 @@ function RosterImport({ busy, action, onImported }: {
   </form>;
 }
 
-function Staff() {
+function Staff({ ssh = false }: { ssh?: boolean }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -196,6 +197,9 @@ function Staff() {
     setNotice(`Removed ${details.name} from the ${rosterSourceLabels[source]}. Attendance history was kept. ${result.lists.length ? `They remain in the ${listNames(result.lists)}.` : 'They can no longer check in from the attendee page.'}`);
   }
   const filtered = dashboard?.rows.filter(row => `${row.name} ${row.email} ${row.affiliation}`.toLowerCase().includes(filter.toLowerCase())) ?? [];
+  if (loggedIn && ssh) return <SshHelper onSignOut={async () => {
+    await api('/staff/logout', {}); setLoggedIn(false); setDashboard(undefined); resetForm(); setReceipt(undefined);
+  }} />;
   if (receipt) return <main className="registration"><div className="card"><Receipt receipt={receipt} onDone={() => setReceipt(undefined)} /></div></main>;
   return <main className="staff">
     <div className="staff-title"><div><p className="eyebrow">EVENT OPERATIONS</p><h1>Registration desk</h1></div>
@@ -212,7 +216,8 @@ function Staff() {
     </form> : <>
       <div className="toolbar"><button disabled={busy} onClick={() => void action(refresh)}>Refresh dashboard</button>{DEMO
         ? <button className="secondary" disabled={busy} onClick={() => void action(downloadDemoExport)}>Export check-ins (CSV)</button>
-        : <a className="button secondary" href="/api/staff/export">Export check-ins (CSV)</a>}</div>
+        : <a className="button secondary" href="/api/staff/export">Export check-ins (CSV)</a>}
+        <a className="button secondary" href="#staff/ssh">SSH remote monitoring</a></div>
       {dashboard && <>
         <section className="metrics" aria-label="Attendance totals">
           {Object.entries(dashboard.totals).map(([key, value]) => <div className="metric" key={key}><strong>{value}</strong><span>{({ roster: 'Advance sign-ups', staff: 'Staff roster', checkedIn: 'Checked in', rosterMissing: 'Sign-ups not here', staffMissing: 'Staff not here', manual: 'Manual registrations', attendees: 'Attendees here', trackLeads: 'Track leads here' } as Record<string, string>)[key]}</span></div>)}
@@ -290,9 +295,10 @@ function Staff() {
 }
 
 function App() {
-  const [staff, setStaff] = useState(window.location.hash === '#staff');
+  const [page, setPage] = useState(window.location.hash);
+  const staff = page === '#staff' || page === '#staff/ssh';
   useEffect(() => {
-    const changed = () => setStaff(window.location.hash === '#staff');
+    const changed = () => setPage(window.location.hash);
     window.addEventListener('hashchange', changed);
     return () => window.removeEventListener('hashchange', changed);
   }, []);
@@ -309,7 +315,7 @@ function App() {
     <a href={staff ? '#' : '#staff'}>{staff ? 'Open attendee check-in' : 'Open organizer screen'}</a>{' · '}
     <a href="#" onClick={event => { event.preventDefault(); window.location.reload(); }}>Reset demo</a>
   </p>}
-  {staff ? <Staff /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
+  {staff ? <Staff ssh={page === '#staff/ssh'} /> : <Checkin />}<footer>Norwegian FHIR Hackathon 2026 · Check-in at Rebel, Oslo</footer></>;
 }
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

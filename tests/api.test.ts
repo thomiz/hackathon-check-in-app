@@ -1,11 +1,12 @@
 import { scryptSync } from 'node:crypto';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { FastifyInstance } from 'fastify';
 import { buildApp } from '../server/app';
 import { MemoryStore } from './memory-store';
 import { importRoster } from '../server/imports';
 import type { Config } from '../server/config';
 import type { Confirmation, Selection } from '../shared/domain';
+import * as ssh from '../server/ssh';
 
 const salt = '0123456789abcdef0123456789abcdef';
 export const config: Config = {
@@ -15,7 +16,7 @@ export const config: Config = {
   staffUsername: 'organizer', staffPasswordHash: `${salt}:${scryptSync('test-password', salt, 64).toString('hex')}`
 };
 let app: FastifyInstance | undefined;
-afterEach(async () => { await app?.close(); });
+afterEach(async () => { await app?.close(); vi.restoreAllMocks(); });
 async function setup() {
   const result = await buildApp(new MemoryStore(), config);
   app = result.app;
@@ -28,6 +29,20 @@ async function login() {
   return response.cookies[0]!.value;
 }
 describe('HTTP authorization and input boundaries', () => {
+  it('protects read-only SSH discovery and explicitly surfaces discovery failures', async () => {
+    const discovery = vi.spyOn(ssh, 'sshStatus').mockResolvedValue({ supported: false, reason: 'Requires Windows.' });
+    await setup();
+    expect((await app!.inject('/api/staff/ssh/status')).statusCode).toBe(401);
+    expect(discovery).not.toHaveBeenCalled();
+    const staff = await login();
+    const response = await app!.inject({ url: '/api/staff/ssh/status', cookies: { staff } });
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toEqual({ supported: false, reason: 'Requires Windows.' });
+    expect(response.headers['cache-control']).toBe('no-store');
+    discovery.mockRejectedValueOnce(new Error('PowerShell discovery failed'));
+    expect((await app!.inject({ url: '/api/staff/ssh/status', cookies: { staff } })).statusCode).toBe(500);
+    expect((await app!.inject({ method: 'POST', url: '/api/staff/ssh/status', headers: origin, cookies: { staff }, payload: {} })).statusCode).toBe(404);
+  });
   it('rejects unauthenticated staff operations', async () => {
     await setup();
     expect((await app!.inject('/api/staff/dashboard')).statusCode).toBe(401);

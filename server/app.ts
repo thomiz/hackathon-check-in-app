@@ -17,6 +17,7 @@ import { importRosters, parseRoster, previewRosters } from './imports.js';
 import { backupDataFile, JsonFileStore } from './file-store.js';
 import { addRosterEntry, removeRosterEntry } from './roster.js';
 import { repositoryRoot, type Config } from './config.js';
+import { sshStatus } from './ssh.js';
 
 export async function buildApp(store: FhirStore, config: Config) {
   const app = Fastify({ bodyLimit: 1024 * 1024, logger: { redact: ['req.headers.cookie', 'req.headers.authorization', 'res.headers.set-cookie'] }, disableRequestLogging: true });
@@ -88,6 +89,10 @@ export async function buildApp(store: FhirStore, config: Config) {
     return service.matches(query.name, query.affiliation, true);
   });
   app.get('/api/staff/dashboard', async request => { session(request); return service.dashboard(); });
+  app.get('/api/staff/ssh/status', { config: { rateLimit: { max: 6, timeWindow: '1 minute' } } }, async request => {
+    session(request);
+    return sshStatus(config);
+  });
   app.post('/api/staff/select', async request => {
     session(request);
     const { token } = z.object({ token: z.string().max(2048) }).parse(request.body);

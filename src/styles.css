@@ -72,6 +72,9 @@ button:disabled { opacity: .55; cursor: wait; }
 .staff-title, .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .toolbar { justify-content: flex-start; }
 .login { max-width: 450px; }
+.ssh-helper .card { margin-top: 24px; }
+.ssh-helper pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f1f5f3; padding: 16px; border-radius: 8px; font-size: 13px; }
+.ssh-command .secondary { margin-left: 0; }
 .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
 .metric { border-radius: 10px; background: #153d45; color: #fff; padding: 18px; }
 .metric strong { font-size: 32px; display: block; }
