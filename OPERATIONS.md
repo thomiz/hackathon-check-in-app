@@ -351,7 +351,7 @@ Run in an administrator PowerShell window:
 ```powershell
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Set-Service sshd -StartupType Automatic
-Start-Service sshd
+Disable-NetFirewallRule -Name "SSH-Hotspot-Subnet"
 ```
 
 * On the monitoring PC, create a key with `ssh-keygen -t ed25519` and copy the
@@ -368,12 +368,16 @@ Start-Service sshd
   Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -RemoteAddress 172.20.10.0/28
   ```
 
+### Specific rules for surface hotspot
+
   **Optional: allow SSH on a trusted private network.** Instead of specifying
   the hotspot subnet, allow the whole local subnet on private networks:
 
   ```powershell
-  Set-NetFirewallRule -Name OpenSSH-Server-In-TCP -Enabled True -Profile Private -RemoteAddress LocalSubnet
-  ```
+  New-NetFirewallRule -Name "SSH-Hotspot-Subnet" -DisplayName "SSH from hotspot subnet" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 22 -Profile Any -RemoteAddress "192.168.137.0/24"
+ ```
+
+#### Optional
 
   This rule does not apply if Windows classifies the hotspot connection as
   **Public**, even when both PCs are on the same subnet and ping works. On the
@@ -383,6 +387,8 @@ Start-Service sshd
   Get-NetConnectionProfile |
       Select-Object InterfaceIndex, InterfaceAlias, NetworkCategory
   ```
+
+#### Precautions
 
   Only for your own trusted, password-protected hotspot or network, change
   that connection to **Private**. Replace `<index>` with the hotspot's
@@ -425,7 +431,7 @@ from the registration PC.
 
    ```powershell
    Stop-Service sshd
-   Disable-NetFirewallRule -Name OpenSSH-Server-In-TCP
+   Disable-NetFirewallRule -Name SSH-Hotspot-Subnet
    ```
 
    Closing the tunnel alone does not stop the server. To prevent SSH from
