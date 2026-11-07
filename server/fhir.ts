@@ -8,6 +8,7 @@ export class FhirError extends AppError {
   constructor(status: number, message: string, public diagnostics?: string) { super(status, message); }
 }
 export interface FhirStore {
+  exportBundle(): Promise<Bundle>;
   read<T extends Resource>(type: T['resourceType'], id: string): Promise<T | undefined>;
   search<T extends Resource>(type: T['resourceType'], query: string): Promise<T[]>;
   transaction(entries: BundleEntry[]): Promise<void>;

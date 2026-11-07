@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { rosterSourceLabels, tracks, type Candidate, type Confirmation, type Dashboard, type DashboardRow, type Details, type Role, type RosterChange, type RosterImportPreview, type RosterImportResult, type RosterSource, type Selection, type StaffSelection } from '../shared/domain';
-import { api, DEMO, downloadDemoExport } from './api';
+import { api, DEMO, downloadDemoExport, downloadFhirExport } from './api';
 import { Receipt } from './Receipt';
 import { SshHelper } from './SshHelper';
 import './styles.css';
@@ -217,7 +217,9 @@ function Staff({ ssh = false }: { ssh?: boolean }) {
       <div className="toolbar"><button disabled={busy} onClick={() => void action(refresh)}>Refresh dashboard</button>{DEMO
         ? <button className="secondary" disabled={busy} onClick={() => void action(downloadDemoExport)}>Export check-ins (CSV)</button>
         : <a className="button secondary" href="/api/staff/export">Export check-ins (CSV)</a>}
+        <button className="secondary" disabled={busy} onClick={() => void action(downloadFhirExport)}>Download all FHIR data</button>
         <a className="button secondary" href="#staff/ssh">SSH remote monitoring</a></div>
+      <p className="privacy">The FHIR download contains personal data, all current rosters, check-ins and retained audit records. Store it securely; it does not include deleted resources or older resource versions.</p>
       {dashboard && <>
         <section className="metrics" aria-label="Attendance totals">
           {Object.entries(dashboard.totals).map(([key, value]) => <div className="metric" key={key}><strong>{value}</strong><span>{({ roster: 'Advance sign-ups', staff: 'Staff roster', checkedIn: 'Checked in', rosterMissing: 'Sign-ups not here', staffMissing: 'Staff not here', manual: 'Manual registrations', attendees: 'Attendees here', trackLeads: 'Track leads here' } as Record<string, string>)[key]}</span></div>)}

@@ -1,11 +1,21 @@
 import { randomUUID } from 'node:crypto';
-import type { BundleEntry, Resource, Person, List } from 'fhir/r4';
+import type { Bundle, BundleEntry, Resource, Person, List } from 'fhir/r4';
 import { FhirError, type FhirStore } from './fhir.js';
+
+export function snapshot(resources: Map<string, Resource>): Bundle {
+  return {
+    resourceType: 'Bundle', type: 'collection', timestamp: new Date().toISOString(),
+    entry: [...resources.values()].map(resource => ({ resource }))
+  };
+}
 
 export class MemoryStore implements FhirStore {
   resources = new Map<string, Resource>();
   fail = false;
   conflicts = 0;
+  async exportBundle(): Promise<Bundle> {
+    return structuredClone(snapshot(this.resources));
+  }
   async read<T extends Resource>(type: T['resourceType'], id: string): Promise<T | undefined> {
     return structuredClone(this.resources.get(`${type}/${id}`)) as T | undefined;
   }

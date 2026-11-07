@@ -5,7 +5,9 @@ import { join, resolve } from 'node:path';
 import type { Bundle, BundleEntry, Resource } from 'fhir/r4';
 import { z } from 'zod';
 import { FhirError } from './fhir.js';
-import { MemoryStore } from './memory-store.js';
+import { MemoryStore, snapshot } from './memory-store.js';
+
+export { snapshot } from './memory-store.js';
 
 export const STORE_FILE = 'fhir-store.json';
 export const LOCK_FILE = 'fhir-store.lock';
@@ -33,13 +35,6 @@ export function parseSnapshot(text: string): Map<string, Resource> {
     resources.set(`${resource.resourceType}/${resource.id}`, resource);
   }
   return resources;
-}
-
-export function snapshot(resources: Map<string, Resource>): Bundle {
-  return {
-    resourceType: 'Bundle', type: 'collection', timestamp: new Date().toISOString(),
-    entry: [...resources.values()].map(resource => ({ resource }))
-  };
 }
 
 export const sha256 = (data: string | Buffer) => createHash('sha256').update(data).digest('hex');

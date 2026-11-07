@@ -1,3 +1,5 @@
+import type { Bundle } from 'fhir/r4';
+
 export const DEMO = import.meta.env.MODE === 'demo';
 
 export async function api<T>(path: string, body?: unknown, method = body === undefined ? 'GET' : 'POST', signal?: AbortSignal): Promise<T> {
@@ -19,6 +21,14 @@ export async function downloadDemoExport(): Promise<void> {
   const { demoExportCsv } = await import('./demo/router');
   const url = URL.createObjectURL(new Blob([await demoExportCsv()], { type: 'text/csv;charset=utf-8' }));
   const link = Object.assign(document.createElement('a'), { href: url, download: 'hackathon-2026-checkins.csv' });
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export async function downloadFhirExport(): Promise<void> {
+  const bundle = await api<Bundle>('/staff/export/fhir');
+  const url = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/fhir+json;charset=utf-8' }));
+  const link = Object.assign(document.createElement('a'), { href: url, download: 'hackathon-2026-fhir.json' });
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

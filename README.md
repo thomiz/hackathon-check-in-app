@@ -5,7 +5,7 @@ November 9, 2026 at Rebel, Oslo. React/TypeScript frontend, Fastify backend,
 FHIR R4 resources stored in a local JSON file, and locally generated QR attendance receipts.
 
 The app and FHIR implementation guide are named `hackathon-check-in-app`.
-The app is version `0.9.5`. Version 0.8.0 moved FHIR storage from Blaze to a
+The app is version `0.9.6`. Version 0.8.0 moved FHIR storage from Blaze to a
 local JSON file (see [Migrating from an earlier Blaze installation](#migrating-from-an-earlier-blaze-installation));
 0.8.1 identifies participants by email, adds add-only roster imports and a
 preview before every web import (see [Roster imports](#roster-imports)).
@@ -18,6 +18,8 @@ to the **Show FHIR data** button.
 Version 0.9.5 adds a separate SSH remote-monitoring helper page linked from
 the staff dashboard, with Windows network/status discovery and explicit
 administrator PowerShell commands (see [Remote monitoring helper](OPERATIONS.md#dashboard-ssh-helper)).
+Version 0.9.6 adds an authenticated **Download all FHIR data** button to the
+staff dashboard, exporting all currently stored resources as a FHIR collection Bundle.
 The IG is version `0.9.1`; its FHIR definitions are unchanged.
 Installations older than 0.6.0 must follow the
 [0.6.0 upgrade guidance](DESIGN.md#upgrading-to-060) before using the renamed
@@ -325,6 +327,22 @@ Import does not create Practitioners or check anyone in.
 
 ## FHIR data and validation
 
+In the staff dashboard, **Download all FHIR data** saves
+`hackathon-2026-fhir.json`, a FHIR R4 `Bundle` of type `collection` containing
+every resource currently in the application's store: roster and participant
+records, check-in Practitioners, Lists and retained AuditEvents. Resource IDs,
+references and metadata are preserved. Downloading does not change the data
+or interrupt check-in. Staff authentication is required; failures are shown
+in the dashboard instead of downloading an error as data.
+
+The file contains personal data, including roster members who have not checked
+in and retained audit details. Store and share it securely. It is a snapshot,
+not a version-history export: deleted resources and older resource versions
+are not included. It excludes application credentials, configuration and
+previous backup files. The demo downloads only its current synthetic
+browser-tab data. Continue using the operations backup command for verified
+on-disk backups.
+
 Sources are under `fhir`; generated content is ignored by Git.
 
 ```powershell
@@ -355,7 +373,7 @@ relationships and package identifiers.
 first, then bundles the synthetic `Person`, `Practitioner` and `List` examples from
 `fhir\fsh-generated\resources` into the app. In the browser, the real registration
 service runs against an in-memory store, so check-in, receipts, organizer dashboard,
-manual registration, single roster additions/removals, corrections and CSV export
+manual registration, single roster additions/removals, corrections, CSV export and full FHIR download
 all work. Data resets on reload. The
 IG example roster `synthetic-attendee-roster` is mapped to the event roster in memory.
 Staff sign-in accepts any credentials, and roster CSV import is disabled.

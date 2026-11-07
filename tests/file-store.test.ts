@@ -17,6 +17,12 @@ describe('JSON file FHIR store', () => {
   it('persists transactions as a FHIR collection Bundle and reloads them', async () => {
     const store = await JsonFileStore.open(dir);
     await store.transaction([put(person('a'))]);
+    const exported = await store.exportBundle();
+    const persisted = JSON.parse(await readFile(store.paths.file, 'utf8')) as Bundle;
+    expect(exported.entry).toEqual(persisted.entry);
+    exported.entry![0]!.resource!.id = 'changed-export-only';
+    expect(await store.read<Person>('Person', 'a')).toHaveProperty('id', 'a');
+    expect((await store.exportBundle()).entry).toEqual(persisted.entry);
     await store.close();
     const bundle = JSON.parse(await readFile(join(dir, 'fhir-store.json'), 'utf8')) as Bundle;
     expect(bundle).toMatchObject({ resourceType: 'Bundle', type: 'collection', entry: [{ resource: { resourceType: 'Person', id: 'a', meta: { versionId: '1' } } }] });

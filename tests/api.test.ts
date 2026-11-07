@@ -6,6 +6,7 @@ import { MemoryStore } from './memory-store';
 import { importRoster } from '../server/imports';
 import type { Config } from '../server/config';
 import type { Confirmation, Selection } from '../shared/domain';
+import type { Bundle } from 'fhir/r4';
 import * as ssh from '../server/ssh';
 
 const salt = '0123456789abcdef0123456789abcdef';
@@ -29,6 +30,40 @@ async function login() {
   return response.cookies[0]!.value;
 }
 describe('HTTP authorization and input boundaries', () => {
+  it('downloads every stored FHIR resource without changing data, requiring staff authentication', async () => {
+    const { service } = await setup();
+    const exportBundle = vi.spyOn(service.store, 'exportBundle');
+    expect((await app!.inject('/api/staff/export/fhir')).statusCode).toBe(401);
+    expect(exportBundle).not.toHaveBeenCalled();
+    await importRoster(service, 'roster', [
+      { id: 'export-not-arrived', name: 'Not Arrived', email: 'not-arrived@example.invalid', affiliation: 'Synthetic', role: 'attendee', track: '' }
+    ]);
+    await service.manual(
+      { name: 'Export Visitor', email: 'export@example.invalid', affiliation: 'Synthetic', track: '' },
+      'attendee', 'Synthetic export test', '95551f24-c949-48c7-9cbf-bc7dfddf69d5', 'organizer'
+    );
+    const before = await service.store.exportBundle();
+    const staff = await login();
+    const response = await app!.inject({ url: '/api/staff/export/fhir', cookies: { staff } });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers['content-type']).toBe('application/fhir+json; charset=utf-8');
+    expect(response.headers['content-disposition']).toBe('attachment; filename="hackathon-2026-fhir.json"');
+    expect(response.headers['cache-control']).toBe('no-store');
+    const bundle = response.json<Bundle>();
+    expect(bundle.resourceType).toBe('Bundle');
+    expect(bundle.type).toBe('collection');
+    expect(bundle.timestamp).toEqual(expect.any(String));
+    expect(bundle.entry).toEqual(before.entry);
+    expect(new Set(bundle.entry?.map(entry => entry.resource?.resourceType))).toEqual(new Set(['Person', 'Practitioner', 'List', 'AuditEvent']));
+    expect(bundle.entry?.some(entry => entry.resource?.resourceType === 'Person' &&
+      entry.resource.telecom?.some(contact => contact.system === 'email' && contact.value === 'not-arrived@example.invalid'))).toBe(true);
+    expect((await service.store.exportBundle()).entry).toEqual(before.entry);
+    exportBundle.mockRejectedValueOnce(new Error('Snapshot failed'));
+    const failed = await app!.inject({ url: '/api/staff/export/fhir', cookies: { staff } });
+    expect(failed.statusCode).toBe(500);
+    expect(failed.headers['content-disposition']).toBeUndefined();
+    expect(failed.json()).toHaveProperty('error');
+  });
   it('protects read-only SSH discovery and explicitly surfaces discovery failures', async () => {
     const discovery = vi.spyOn(ssh, 'sshStatus').mockResolvedValue({ supported: false, reason: 'Requires Windows.' });
     await setup();

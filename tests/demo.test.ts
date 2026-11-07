@@ -5,6 +5,7 @@ import * as shim from '../src/demo/node-crypto';
 import { DemoBuffer } from '../src/demo/buffer';
 import { demoApi, demoExportCsv, resetDemo } from '../src/demo/router';
 import type { Candidate, Confirmation, Dashboard, RosterChange, Selection } from '../shared/domain';
+import type { Bundle } from 'fhir/r4';
 
 describe('demo node:crypto and Buffer shims', () => {
   it('match Node SHA-256 and HMAC-SHA-256', () => {
@@ -46,6 +47,7 @@ describe.skipIf(!existsSync('fhir/fsh-generated/resources'))('demo backend seede
 
   it('serves the organizer screen', async () => {
     await expect(demoApi('/staff/dashboard', undefined, 'GET')).rejects.toThrow('login required');
+    await expect(demoApi('/staff/export/fhir', undefined, 'GET')).rejects.toThrow('login required');
     await demoApi('/staff/login', { username: 'demo', password: 'demo' }, 'POST');
     const before = await demoApi<Dashboard>('/staff/dashboard', undefined, 'GET');
     expect(before.totals.roster).toBeGreaterThan(0);
@@ -61,6 +63,12 @@ describe.skipIf(!existsSync('fhir/fsh-generated/resources'))('demo backend seede
     expect(after.totals.checkedIn).toBe(before.totals.checkedIn + 1);
     expect(after.totals.manual).toBe(before.totals.manual + 1);
     expect(await demoExportCsv()).toContain('Walk In');
+    const bundle = await demoApi<Bundle>('/staff/export/fhir', undefined, 'GET');
+    expect(bundle).toMatchObject({ resourceType: 'Bundle', type: 'collection', timestamp: expect.any(String) });
+    expect(bundle.entry?.some(entry => entry.resource?.id === manual.receiptId && entry.resource.resourceType === 'Practitioner')).toBe(true);
+    expect(bundle.entry?.some(entry => entry.resource?.resourceType === 'AuditEvent')).toBe(true);
+    expect(bundle.entry?.some(entry => entry.resource?.resourceType === 'List')).toBe(true);
+    expect(bundle.entry?.some(entry => entry.resource?.resourceType === 'Person')).toBe(true);
     await expect(demoApi('/staff/import', { source: 'roster', csv: 'x' }, 'POST')).rejects.toThrow('not available in the demo');
 
     const added = await demoApi<RosterChange>('/staff/rosters/roster/participants', {

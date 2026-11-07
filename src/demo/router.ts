@@ -66,6 +66,7 @@ async function route(method: string, path: string, body: unknown): Promise<unkno
       return service.matches(input.name, input.affiliation, true);
     }
     case 'GET /staff/dashboard': staff(); return service.dashboard();
+    case 'GET /staff/export/fhir': staff(); return service.store.exportBundle();
     case 'POST /staff/select': {
       staff();
       const { token } = z.object({ token: z.string().max(2048) }).parse(body);

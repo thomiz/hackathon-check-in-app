@@ -149,6 +149,12 @@ export async function buildApp(store: FhirStore, config: Config) {
     reply.header('Content-Disposition', 'attachment; filename="hackathon-2026-checkins.csv"').type('text/csv; charset=utf-8');
     return checkinsCsv(rows);
   });
+  app.get('/api/staff/export/fhir', async (request, reply) => {
+    session(request);
+    const bundle = await store.exportBundle();
+    reply.header('Content-Disposition', 'attachment; filename="hackathon-2026-fhir.json"').type('application/fhir+json; charset=utf-8');
+    return JSON.stringify(bundle, null, 2);
+  });
   const dist = resolve(repositoryRoot, 'dist');
   if (existsSync(dist)) {
     await app.register(staticFiles, { root: dist });
