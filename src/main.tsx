@@ -4,6 +4,7 @@ import { rosterSourceLabels, tracks, type Candidate, type Confirmation, type Das
 import { api, DEMO, downloadDemoExport, downloadFhirExport } from './api';
 import { Receipt } from './Receipt';
 import { SshHelper } from './SshHelper';
+import { AttendanceTotals } from './AttendanceTotals';
 import './styles.css';
 
 const blank: Details = { name: '', email: '', affiliation: '', track: '' };
@@ -221,9 +222,7 @@ function Staff({ ssh = false }: { ssh?: boolean }) {
         <a className="button secondary" href="#staff/ssh">SSH remote monitoring</a></div>
       <p className="privacy">The FHIR download contains personal data, all current rosters, check-ins and retained audit records. Store it securely; it does not include deleted resources or older resource versions.</p>
       {dashboard && <>
-        <section className="metrics" aria-label="Attendance totals">
-          {Object.entries(dashboard.totals).map(([key, value]) => <div className="metric" key={key}><strong>{value}</strong><span>{({ roster: 'Advance sign-ups', staff: 'Staff roster', checkedIn: 'Checked in', rosterMissing: 'Sign-ups not here', staffMissing: 'Staff not here', manual: 'Manual registrations', attendees: 'Attendees here', trackLeads: 'Track leads here' } as Record<string, string>)[key]}</span></div>)}
-        </section>
+        <AttendanceTotals totals={dashboard.totals} />
         <section className="card"><h2>Tracks at check-in</h2><ul className="track-totals">{[...tracks, { code: 'unselected', label: 'Not selected' }].map(track => <li key={track.code}><span>{track.label}</span><strong>{dashboard.tracks[track.code] ?? 0}</strong></li>)}</ul></section>
         <section className="card"><h2>Arrivals</h2><label>Filter check-ins<input value={filter} onChange={e => setFilter(e.target.value)} /></label>
           <div className="table-scroll"><table><thead><tr><th>Name / affiliation</th><th>Role / track</th><th>Arrival</th><th>Actions</th></tr></thead>

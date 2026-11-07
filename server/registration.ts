@@ -234,6 +234,7 @@ export class RegistrationService {
         roster: refs(roster).length, staff: refs(staff).length, checkedIn: rows.length,
         rosterMissing: await missing(roster), staffMissing: await missing(staff),
         manual: rows.filter(r => r.manual).length, attendees: rows.filter(r => r.role === 'attendee').length,
+        staffCheckedIn: rows.filter(row => row.lists.includes('staff')).length,
         trackLeads: rows.filter(r => r.role === 'track-lead').length
       },
       tracks: byTrack, rows: rows.sort((a, b) => b.arrived.localeCompare(a.arrived))

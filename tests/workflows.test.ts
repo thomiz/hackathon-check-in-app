@@ -28,6 +28,18 @@ beforeEach(async () => {
   await importRoster(service, 'roster', [alice]);
 });
 describe('rosters and matching', () => {
+  it('counts checked-in staff by roster membership rather than track-lead role', async () => {
+    await importRoster(service, 'roster', [alice, bob]);
+    await importRoster(service, 'staff', [alice]);
+    expect((await service.dashboard()).totals.staffCheckedIn).toBe(0);
+    await checkin();
+    expect((await service.dashboard()).totals).toMatchObject({ attendees: 1, staffCheckedIn: 1, trackLeads: 0 });
+    const lead = await select('Alicia');
+    await service.checkin(lead, lead.selection);
+    expect((await service.dashboard()).totals).toMatchObject({ attendees: 1, staffCheckedIn: 1, trackLeads: 1, checkedIn: 2 });
+    await importRoster(service, 'staff', [bob]);
+    expect((await service.dashboard()).totals.staffCheckedIn).toBe(1);
+  });
   it('imports Persons only and no check-ins or Practitioners', async () => {
     expect(await store.search('Practitioner', '')).toHaveLength(0);
     expect((await service.dashboard()).totals).toMatchObject({ roster: 1, checkedIn: 0, rosterMissing: 1 });

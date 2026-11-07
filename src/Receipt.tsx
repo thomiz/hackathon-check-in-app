@@ -37,7 +37,7 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
       fhirDialog.current?.showModal();
     }}>{fhirIcon}<span>Show FHIR data</span>{fhirIcon}</button>
     <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
-    <button type="button" onClick={onDone}>Done / clear receipt</button>
+    <button type="button" className="receipt-done" onClick={onDone}>Done / clear receipt</button>
   </div>;
   return <section className="success receipt" aria-labelledby="receipt-heading">
     <h2 id="receipt-heading" tabIndex={-1} ref={heading}>You are checked in, {receipt.name}!</h2>

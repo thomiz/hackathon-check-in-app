@@ -70,7 +70,7 @@ export type DashboardRow = Details & {
   lists: RosterSource[];
 };
 export type Dashboard = {
-  totals: { roster: number; staff: number; checkedIn: number; rosterMissing: number; staffMissing: number; manual: number; attendees: number; trackLeads: number };
+  totals: { roster: number; staff: number; checkedIn: number; rosterMissing: number; staffMissing: number; manual: number; attendees: number; staffCheckedIn: number; trackLeads: number };
   tracks: Record<string, number>;
   rows: DashboardRow[];
 };
