@@ -377,6 +377,23 @@ changes: active IPv4 interfaces, network profiles, SSH service/configuration,
 host public-key fingerprints and inbound allow rules that may apply to SSH.
 The hosted demo and non-Windows deployments cannot operate this helper.
 
+Windows may restrict host public-key or `sshd_config` reads by the unelevated
+web-server account. These failures appear as warnings rather than hiding the
+available network, service and firewall status; unreadable authentication
+configuration is shown as **Unknown**, not as validated. Enable still requires
+successful configuration validation in an administrator shell.
+Do not elevate the web server or loosen SSH key ACLs to remove these warnings.
+Run the status helper in **PowerShell as Administrator on the registration PC**
+for diagnostics. To read the trusted host fingerprints there directly:
+
+```powershell
+Get-ChildItem -LiteralPath "$env:ProgramData\ssh" -Filter 'ssh_host_*_key.pub' | ForEach-Object { & "$env:WINDIR\System32\OpenSSH\ssh-keygen.exe" -lf $_.FullName }
+```
+
+Compare the matching fingerprint with the monitoring PC's SSH prompt before
+accepting the host key. Missing fingerprints are not evidence that no keys exist
+when a read warning is present.
+
 1. Complete the one-time OpenSSH/key preparation below. The Windows SSH account
    is separate from the app's staff account. The helper requires
    `PasswordAuthentication no`; also review any account-specific `Match`

@@ -6,7 +6,7 @@ import { ipv4Subnet, powershellLiteral, sshCommands, sshSourceSchema, sshStatusS
 const network = { index: 12, alias: 'Hotspot', address: '192.168.137.1', prefix: 24, profile: 'Public', virtual: true };
 const status: SshStatus = {
   supported: true, helperPath: "C:\\Event operator's app\\scripts\\Ssh-Monitoring.ps1",
-  service: 'Stopped', passwordAuthentication: 'no', interfaces: [network], rules: [], fingerprints: [],
+  service: 'Stopped', passwordAuthentication: 'no', interfaces: [network], rules: [], fingerprints: [], warnings: [],
   port: 8099, publicUrl: 'http://localhost:8099', loopback: true
 };
 
@@ -46,5 +46,7 @@ describe('SSH connection helpers', () => {
     expect(sshStatusSchema.parse(status).interfaces).toEqual([network]);
     expect(() => sshStatusSchema.parse({ ...status, interfaces: [{ ...network, address: '::1' }] })).toThrow();
     expect(() => sshStatusSchema.parse({ ...status, rules: 'none' })).toThrow();
+    expect(sshStatusSchema.parse({ ...status, warnings: ['Cannot read SSH host-key fingerprint: Permission denied'] }).warnings).toHaveLength(1);
+    expect(() => sshStatusSchema.parse({ ...status, warnings: 'Permission denied' })).toThrow();
   });
 });

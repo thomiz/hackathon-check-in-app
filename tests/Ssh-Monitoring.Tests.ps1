@@ -9,6 +9,9 @@ if ($parseErrors.Count) { throw "PowerShell syntax errors: $parseErrors" }
 $fixture = [scriptblock]::Create($source.Replace(
     '$sshd = Join-Path $env:WINDIR ''System32\OpenSSH\sshd.exe''',
     '$sshd = ''Test-Sshd'''
+).Replace(
+    '(Join-Path $env:WINDIR ''System32\OpenSSH\ssh-keygen.exe'')',
+    'Test-SshKeygen'
 ).Replace('    exit', '    return'))
 $script:events = @()
 $script:rules = @()
@@ -18,23 +21,54 @@ $script:active = $true
 $script:administrator = $true
 $script:port = '22'
 $script:program = 'Any'
+$script:keys = @()
+$script:directoryDenied = $false
+$script:configDenied = $false
+$script:keyFailure = 'none'
 
 function New-Object {
     param([string]$TypeName, $ArgumentList)
     if ($TypeName -eq 'System.Text.UTF8Encoding') { return [System.Text.UTF8Encoding]::new($false) }
+    if ($TypeName -eq 'System.Collections.Generic.List[string]') { return ,([System.Collections.Generic.List[string]]::new()) }
     $principal = [pscustomobject]@{}
     $principal | Add-Member -MemberType ScriptMethod -Name IsInRole -Value { param($role) return $script:administrator }
     return $principal
 }
-function Test-Path { param($LiteralPath) return ($LiteralPath -eq 'Test-Sshd') }
-function Test-Sshd { param([switch]$T) $global:LASTEXITCODE = 0; "passwordauthentication $script:password" }
+function Test-Path { param($LiteralPath) return $true }
+function Get-ChildItem {
+    param($LiteralPath, $Filter)
+    if ($script:directoryDenied) { throw 'Access to host-key directory denied.' }
+    $script:keys
+}
+function Test-SshKeygen {
+    param([switch]$lf, [string]$Path)
+    if ($Path -like '*ecdsa*') {
+        if ($script:keyFailure -eq 'stderr') {
+            & powershell.exe -NoProfile -NonInteractive -Command '[Console]::Error.WriteLine(''ssh-keygen: Permission denied''); exit 1'
+            return
+        }
+        if ($script:keyFailure -eq 'exit') {
+            $global:LASTEXITCODE = 1
+            return 'Invalid public key.'
+        }
+    }
+    $global:LASTEXITCODE = 0
+    '256 SHA256:fixture test (ED25519)'
+}
+function Test-Sshd {
+    param([switch]$T)
+    if ($script:configDenied) { throw 'sshd_config: Permission denied' }
+    $global:LASTEXITCODE = 0
+    "passwordauthentication $script:password"
+}
+function Get-NetConnectionProfile { [pscustomobject]@{ InterfaceIndex = 12; NetworkCategory = 'Public' } }
 function Get-NetIPAddress {
     param($InterfaceIndex, $AddressFamily)
-    [pscustomobject]@{ IPAddress = '192.168.137.1'; AddressState = $(if ($script:active) { 'Preferred' } else { 'Invalid' }) }
+    [pscustomobject]@{ IPAddress = '192.168.137.1'; InterfaceIndex = 12; InterfaceAlias = 'Test hotspot'; PrefixLength = 24; AddressState = $(if ($script:active) { 'Preferred' } else { 'Invalid' }) }
 }
 function Get-NetAdapter {
     param([switch]$IncludeHidden)
-    [pscustomobject]@{ InterfaceIndex = 12; Name = 'Test hotspot'; Status = 'Up' }
+    [pscustomobject]@{ InterfaceIndex = 12; Name = 'Test hotspot'; Status = 'Up'; HardwareInterface = $false }
 }
 function Get-NetFirewallRule {
     param($PolicyStore, $Direction, $Action, $ErrorAction)
@@ -85,7 +119,7 @@ function Disable-NetFirewallRule {
 }
 function Start-Service { param($Name) $script:events += 'start' }
 function Stop-Service { param($Name) $script:events += 'stop' }
-function Get-Service { param($Name) [pscustomobject]@{ Status = 'Running' } }
+function Get-Service { param($Name) [pscustomobject]@{ Name = 'sshd'; Status = 'Running' } }
 function Get-NetTCPConnection {
     param($State, $LocalPort)
     if ($script:listener) { [pscustomobject]@{ LocalAddress = '0.0.0.0' } }
@@ -148,5 +182,31 @@ $script:administrator = $true
 Assert-Rejected { & $fixture -Action Enable -InterfaceIndex 12 -LocalAddress '192.168.137.1' -RemoteAddress '0.0.0.0/0' } 'never all networks'
 Assert-Events ''
 Assert-Rejected { & $fixture -Action Enable -InterfaceIndex 12 -LocalAddress '192.168.137.1' -RemoteAddress "192.168.137.2'; Stop-Service sshd" } 'Invalid remote IPv4'
+Assert-Events ''
+$script:rules = @([pscustomobject]@{ Name = 'Other-SSH-Rule'; Enabled = 'True'; Profile = 'Any' })
+$script:administrator = $false
+$report = & $fixture -Action Status | ConvertFrom-Json
+if ($report.warnings.Count -ne 0 -or $report.fingerprints.Count -ne 0 -or $report.passwordAuthentication -ne 'no') { throw 'Incorrect empty-key status.' }
+$script:keys = @(
+    [pscustomobject]@{ Name = 'ssh_host_ecdsa_key.pub'; FullName = 'C:\Test\ssh_host_ecdsa_key.pub' },
+    [pscustomobject]@{ Name = 'ssh_host_ed25519_key.pub'; FullName = 'C:\Test\ssh_host_ed25519_key.pub' }
+)
+foreach ($failure in @('none', 'stderr', 'exit')) {
+    $script:keyFailure = $failure
+    $report = & $fixture -Action Status | ConvertFrom-Json
+    $expectedWarnings = $(if ($failure -eq 'none') { 0 } else { 1 })
+    if ($report.warnings.Count -ne $expectedWarnings -or $report.fingerprints.Count -ne (2 - $expectedWarnings)) { throw "Incorrect fingerprint status for $failure." }
+    if ($failure -ne 'none' -and $report.warnings[0] -notlike '*ssh_host_ecdsa_key.pub*') { throw 'Missing failed key name.' }
+    if ($failure -eq 'stderr' -and $report.warnings[0] -notlike '*Permission denied*') { throw "Missing native permission error: $($report.warnings[0])" }
+    if ($report.interfaces.Count -ne 1 -or $report.rules.Count -ne 1 -or $report.service -ne 'Running') { throw 'Key failure hid available status.' }
+    Assert-Events ''
+}
+$script:directoryDenied = $true
+$script:configDenied = $true
+$report = & $fixture -Action Status | ConvertFrom-Json
+if ($report.warnings.Count -ne 2 -or $report.fingerprints.Count -ne 0 -or $report.passwordAuthentication -ne 'Unknown') { throw 'Missing directory/configuration warnings.' }
+Assert-Events ''
+$script:administrator = $true
+Assert-Rejected { Enable-Fixture } 'sshd_config: Permission denied'
 Assert-Events ''
 Write-Host 'PASS: PowerShell syntax, scoped/idempotent enable, disable, authentication, stale network, conflicting rules, failure cleanup and elevation checks. No Windows state was changed.'

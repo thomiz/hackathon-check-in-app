@@ -19,6 +19,7 @@ export const sshStatusSchema = z.object({
   service: z.string(),
   passwordAuthentication: z.string(),
   fingerprints: z.array(z.string()),
+  warnings: z.array(z.string()),
   interfaces: z.array(z.object({
     index: z.number().int(), alias: z.string(), address: ipv4Schema,
     prefix: z.number().int().min(1).max(32), profile: z.string(), virtual: z.boolean()

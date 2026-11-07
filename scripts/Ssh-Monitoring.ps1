@@ -65,6 +65,7 @@ function Get-KeyAuthentication {
 }
 
 if ($Action -eq 'Status') {
+    $warnings = New-Object 'System.Collections.Generic.List[string]'
     $service = Get-Service | Where-Object Name -eq 'sshd'
     $profiles = @(Get-NetConnectionProfile)
     $adapters = @(Get-NetAdapter -IncludeHidden)
@@ -84,17 +85,31 @@ if ($Action -eq 'Status') {
     $fingerprints = @(
         $keyDirectory = Join-Path $env:ProgramData 'ssh'
         $keys = @()
-        if (Test-Path -LiteralPath $keyDirectory) { $keys = @(Get-ChildItem -LiteralPath $keyDirectory -Filter 'ssh_host_*_key.pub') }
+        try {
+            if (Test-Path -LiteralPath $keyDirectory) { $keys = @(Get-ChildItem -LiteralPath $keyDirectory -Filter 'ssh_host_*_key.pub') }
+        } catch {
+            $warnings.Add("Cannot list SSH host public keys: $($_.Exception.Message)")
+        }
         foreach ($key in $keys) {
-            $fingerprint = & (Join-Path $env:WINDIR 'System32\OpenSSH\ssh-keygen.exe') -lf $key.FullName
-            if ($LASTEXITCODE -ne 0) { throw 'Cannot read SSH host-key fingerprint.' }
-            "$fingerprint"
+            try {
+                $fingerprint = & (Join-Path $env:WINDIR 'System32\OpenSSH\ssh-keygen.exe') -lf $key.FullName 2>&1
+                if ($LASTEXITCODE -ne 0) { throw "ssh-keygen failed: $fingerprint" }
+                "$fingerprint"
+            } catch {
+                $warnings.Add("Cannot read SSH host-key fingerprint for $($key.Name): $($_.Exception.Message)")
+            }
         }
     )
+    $passwordAuthentication = 'Unknown'
+    try {
+        $passwordAuthentication = Get-KeyAuthentication
+    } catch {
+        $warnings.Add("Cannot read SSH password authentication configuration: $($_.Exception.Message)")
+    }
     [pscustomobject]@{
         service = $(if ($service) { "$($service.Status)" } else { 'Not installed' })
-        passwordAuthentication = Get-KeyAuthentication
-        interfaces = $interfaces; rules = @(Get-SshRules); fingerprints = $fingerprints
+        passwordAuthentication = $passwordAuthentication
+        interfaces = $interfaces; rules = @(Get-SshRules); fingerprints = $fingerprints; warnings = @($warnings.ToArray())
     } | ConvertTo-Json -Depth 6 -Compress
     exit
 }

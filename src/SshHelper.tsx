@@ -52,6 +52,11 @@ export function SshHelper({ onSignOut }: { onSignOut: () => Promise<void> }) {
       {status && <>
         <section className="card"><h2>Registration PC status</h2>
           <p>SSH service: <strong>{status.service}</strong><br />PasswordAuthentication: <strong>{status.passwordAuthentication}</strong></p>
+          {status.warnings.length > 0 && <div className="notice" role="alert">
+            <p>Some SSH details could not be read by the unelevated app. Available status is shown below.</p>
+            <ul>{status.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul>
+            <p>Run the local status helper in PowerShell as Administrator for diagnostics. Do not elevate the web server or loosen SSH key permissions.</p>
+          </div>}
           <p className="notice">One-time preparation: install Windows OpenSSH Server, provision your monitoring PC's public key in the Windows operator account's authorized_keys, and set PasswordAuthentication no in sshd_config. App staff credentials are not Windows SSH credentials.</p>
           <h3>Inbound firewall rules that may allow port 22</h3>
           <p>The helper owns only Hackathon-SSH-Monitoring. Other enabled rules must be reviewed explicitly before enabling it. Disabled rules are shown too; an allow rule does not override broader allow rules.</p>
@@ -59,7 +64,8 @@ export function SshHelper({ onSignOut }: { onSignOut: () => Promise<void> }) {
             <tbody>{status.rules.map(rule => <tr key={rule.name}><td>{rule.name}<br />{rule.enabled ? 'Enabled' : 'Disabled'}</td><td>{rule.profile}<br />{rule.interfaceAlias.join(', ')}</td><td>{rule.localAddress.join(', ')}<br />From: {rule.remoteAddress.join(', ')}</td><td>{rule.localPort.join(', ')}</td></tr>)}</tbody></table></div> : <p>No matching allow rules found.</p>}
           <p>Status does not prove reachability. Firewall block rules, policy or hotspot client isolation can still prevent connection.</p>
           <h3>Server host-key fingerprints</h3>
-          {status.fingerprints.length ? <pre>{status.fingerprints.join('\n')}</pre> : <p>No host public keys found. Prepare OpenSSH before connecting.</p>}
+          {status.fingerprints.length ? <pre>{status.fingerprints.join('\n')}</pre> : <p>No host-key fingerprints available. Resolve any read warnings above, or prepare OpenSSH if no host public keys exist.</p>}
+          {status.warnings.length > 0 && <Command title="Read host-key fingerprints as Administrator on the registration PC" value={'Get-ChildItem -LiteralPath "$env:ProgramData\\ssh" -Filter \'ssh_host_*_key.pub\' | ForEach-Object { & "$env:WINDIR\\System32\\OpenSSH\\ssh-keygen.exe" -lf $_.FullName }'} />}
         </section>
         <section className="card"><h2>1. Select the connection</h2>
           {!compatible && <p className="error" role="alert">This guided tunnel requires HOST=127.0.0.1 and PUBLIC_URL=http://localhost:{status.port}. Review the deployment configuration first; enable/connect commands are withheld.</p>}
