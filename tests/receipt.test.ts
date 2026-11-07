@@ -45,6 +45,9 @@ function decodeReceipt(markup: string): string | undefined {
 }
 
 describe('local QR attendance receipts', () => {
+  it('starts the receipt countdown at 40 seconds', () => {
+    expect(renderReceipt(receipt)).toContain('This screen clears in 40 seconds.');
+  });
   it('provides receipt controls only below the receipt details', () => {
     const markup = renderReceipt(receipt);
     expect(markup.match(/Keep receipt open/g)).toHaveLength(1);

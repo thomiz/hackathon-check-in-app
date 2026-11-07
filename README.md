@@ -412,7 +412,7 @@ Android phones may need Google Lens or a QR reader app. Attendees can always
 photograph the readable receipt instead. Long names produce denser codes;
 rehearse scanning at the workstation's actual screen size.
 
-The receipt clears after 120 seconds for shared-workstation privacy. **Keep
+The receipt clears after 40 seconds for shared-workstation privacy. **Keep
 receipt open** restarts that period; **Done / clear receipt** clears it immediately
 and appears immediately before **Keep receipt open**. The three buttons are
 grouped together, with **Done / clear receipt** leftmost and **Show FHIR data**

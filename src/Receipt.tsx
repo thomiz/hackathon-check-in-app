@@ -3,6 +3,8 @@ import { QRCodeSVG } from 'qrcode.react';
 import type { Confirmation } from '../shared/domain';
 import { receiptMailto, receiptRole, receiptTime, receiptTrack } from '../shared/receipt';
 
+const receiptTimeoutSeconds = 40;
+
 class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
@@ -18,7 +20,7 @@ class ReceiptCode extends Component<{ text: string }, { failed: boolean }> {
 }
 
 export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: () => void }) {
-  const [remaining, setRemaining] = useState(120);
+  const [remaining, setRemaining] = useState(receiptTimeoutSeconds);
   const heading = useRef<HTMLHeadingElement>(null);
   const fhirDialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { heading.current?.focus(); }, []);
@@ -33,9 +35,9 @@ export function Receipt({ receipt, onDone }: { receipt: Confirmation; onDone: ()
   </svg>;
   const actions = <div className="receipt-actions">
     <button type="button" className="receipt-done" onClick={onDone}>Done / clear receipt</button>
-    <button type="button" className="secondary" onClick={() => setRemaining(120)}>Keep receipt open</button>
+    <button type="button" className="secondary" onClick={() => setRemaining(receiptTimeoutSeconds)}>Keep receipt open</button>
     <button type="button" className="secondary fhir-button" onClick={() => {
-      setRemaining(120);
+      setRemaining(receiptTimeoutSeconds);
       fhirDialog.current?.showModal();
     }}>{fhirIcon}<span>Show FHIR data</span>{fhirIcon}</button>
   </div>;
