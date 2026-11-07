@@ -12,6 +12,14 @@ Set-Location 'C:\GitRepo\hackathon-check-in-app'
 **If a command fails, stop and resolve the error before continuing.** Never
 delete `fhir-store.json` or the data directory to fix a startup or import error.
 
+## Quick-start cheatsheet
+
+1. Wi-fi hotspot on phone (for internet access)
+2. Wi-fi hotspot on SURFACE (for ssh connection)
+3. Connect monitoring computer to SURFACE hotspot  
+4. Connect check-in computer to phone hotspot  
+5. Start check-in server
+
 ## Operations CLI
 
 ```powershell
