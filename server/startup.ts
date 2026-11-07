@@ -1,3 +1,4 @@
+import type { Socket } from 'node:net';
 import { buildApp } from './app.js';
 import type { Config } from './config.js';
 import { JsonFileStore } from './file-store.js';
@@ -7,7 +8,14 @@ export async function startApplication(config: Config, store?: JsonFileStore) {
   store ??= await JsonFileStore.open(config.dataDir);
   const { app, service } = await buildApp(store, config);
   let stopping = false;
-  app.server.on('request', (_request, response) => {
+  const pendingConnections = new Set<Socket>();
+  app.server.on('connection', socket => {
+    if (stopping) { socket.destroy(); return; }
+    pendingConnections.add(socket);
+    socket.once('close', () => { pendingConnections.delete(socket); });
+  });
+  app.server.on('request', (request, response) => {
+    pendingConnections.delete(request.socket);
     response.once('finish', () => {
       // Node does not automatically close keep-alive sockets that become idle during shutdown.
       if (stopping) app.server.closeIdleConnections();
@@ -16,6 +24,8 @@ export async function startApplication(config: Config, store?: JsonFileStore) {
   let closing: Promise<void> | undefined;
   const close = (): Promise<void> => closing ??= (async () => {
     stopping = true;
+    // Browser preconnections and incomplete headers are not covered by closeIdleConnections.
+    for (const socket of pendingConnections) socket.destroy();
     try { await app.close(); }
     finally { await store!.close(); }
   })();

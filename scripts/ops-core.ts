@@ -2,7 +2,7 @@ import { access, readFile, stat, statfs } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ZodError } from 'zod';
 import { loadConfig, repositoryRoot, type Config } from '../server/config.js';
-import { backupDataFile, backupRecordSchema, JsonFileStore, readStore, storePaths, type BackupRecord } from '../server/file-store.js';
+import { backupDataFile, backupRecordSchema, JsonFileStore, processAlive, readStore, storePaths, type BackupRecord } from '../server/file-store.js';
 import { importRosters, previewRosters, verifyRosters, type RosterUpdates } from '../server/imports.js';
 import { MemoryStore } from '../server/memory-store.js';
 import { RegistrationService } from '../server/registration.js';
@@ -64,7 +64,10 @@ export class Operations {
       const info = await stat(this.paths.file).catch(() => undefined);
       return info ? { bytes: info.size, modified: info.mtime.toISOString() } : undefined;
     });
-    const lock = await readFile(this.paths.lock, 'utf8').then(text => JSON.parse(text) as { pid: number; purpose: string; since: string }).catch(() => undefined);
+    const lock = await readFile(this.paths.lock, 'utf8').then(text => {
+      const holder = JSON.parse(text) as { pid: number; purpose: string; since: string };
+      return { ...holder, active: processAlive(holder.pid) };
+    }).catch(() => undefined);
     const disk = await capture('Disk space', async () => {
       const value = await statfs(this.paths.directory);
       return { freeBytes: value.bavail * value.bsize };

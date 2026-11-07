@@ -120,7 +120,8 @@ function printStatus(report: Awaited<ReturnType<Operations['status']>>) {
   console.log(`Overall: ${report.ready ? 'READY' : 'NOT READY'}`);
   console.log(`App: ${report.app.detail} - ${report.appUrl}`);
   console.log(`Data file: ${report.dataFile}${report.data ? ` (${report.data.bytes} bytes, last changed ${report.data.modified})` : ' (not created yet)'}`);
-  if (report.lock) console.log(`In use by: ${report.lock.purpose} (PID ${report.lock.pid}) since ${report.lock.since}`);
+  if (report.lock?.active) console.log(`In use by: ${report.lock.purpose} (PID ${report.lock.pid}) since ${report.lock.since}`);
+  else if (report.lock) console.log(`Stale lock: ${report.lock.purpose} (PID ${report.lock.pid}) since ${report.lock.since}. The process has exited; the next startup or maintenance apply will recover this lock.`);
   if (report.disk) console.log(`Data disk free: ${(report.disk.freeBytes / 1024 ** 3).toFixed(1)} GiB`);
   if (report.lastBackup) console.log(`Last verified backup: ${report.lastBackup.file} (${report.lastBackup.ageHours.toFixed(1)} hours ago)`);
   else console.log('Last verified backup: none.');

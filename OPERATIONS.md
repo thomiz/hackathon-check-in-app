@@ -131,6 +131,14 @@ operation.
 
 Finish the current registration, then press **Ctrl+C** in the app window.
 In-flight requests complete before the app exits. Stopping does not erase data.
+Unused browser preconnections and incomplete HTTP headers are closed during
+shutdown so they cannot keep the process and data lock alive.
+Wait for the PowerShell prompt to return before applying imports or resets.
+If status still reports `In use by`, the recorded process may still be shutting
+down; do not delete its lock while it is alive. Close browsers connected to the
+app (including through SSH) to release connections held by an older version.
+Status labels a leftover lock whose owner has exited as `Stale lock`, not
+`In use by`. Status does not remove it; startup or maintenance apply recovers it.
 If the PC crashes or loses power, simply start the app again: the data file is
 never left half-written, and the leftover lock is replaced automatically.
 

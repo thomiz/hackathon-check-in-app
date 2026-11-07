@@ -111,6 +111,18 @@ describe('operations command line', () => {
 });
 
 describe('operations against the JSON data file', () => {
+  it('distinguishes live owners from stale locks without changing the lock', async () => {
+    const { store } = await seed();
+    try {
+      expect((await operations.status()).lock).toMatchObject({ pid: process.pid, active: true });
+    } finally {
+      await store.close();
+    }
+    const stale = JSON.stringify({ pid: 2 ** 22 + 12345, purpose: 'crashed app', since: '2026-01-01T00:00:00.000Z' });
+    await writeFile(operations.paths.lock, stale);
+    expect((await operations.status()).lock).toMatchObject({ purpose: 'crashed app', active: false });
+    expect(await readFile(operations.paths.lock, 'utf8')).toBe(stale);
+  });
   it.each([
     { resetCheckins: false, rosters: { roster: [alice] }, phrase: 'IMPORT ROSTERS' },
     { resetCheckins: false, rosters: { staff: [alice] }, phrase: 'IMPORT ROSTERS' },
