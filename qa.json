@@ -6,8 +6,8 @@
   "status" : "draft",
   "package-id" : "hackathon-check-in-app",
   "ig-ver" : "0.9.1",
-  "date" : "Tue, 03 Nov, 2026 17:08:05 +0000",
-  "dateISO8601" : "2026-11-03T17:08:05+00:00",
+  "date" : "Tue, 10 Nov, 2026 08:48:02 +0000",
+  "dateISO8601" : "2026-11-10T08:48:02+00:00",
   "errs" : 16,
   "warnings" : 55,
   "hints" : 22,
@@ -16,5 +16,5 @@
   "suppressed-warnings" : 0,
   "version" : "4.0.1",
   "tool" : "6.0.0-snapshot1 (3)",
-  "maxMemory" : 631600368
+  "maxMemory" : 756737000
 }

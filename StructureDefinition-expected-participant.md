@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/expected-participant | *Version*:0.9.1 |
-| Draft as of 2026-11-03 | *Computable Name*:ExpectedParticipant |
+| Draft as of 2026-11-10 | *Computable Name*:ExpectedParticipant |
 
  
 For attendees and organizers registered for the event. 
@@ -42,7 +42,7 @@ Other representations of profile: [CSV](StructureDefinition-expected-participant
   "name" : "ExpectedParticipant",
   "title" : "Expected Hackathon participant",
   "status" : "draft",
-  "date" : "2026-11-03T17:08:05+00:00",
+  "date" : "2026-11-10T08:48:02+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

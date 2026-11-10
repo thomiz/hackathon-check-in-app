@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/CodeSystem/list-purpose | *Version*:0.9.1 |
-| Draft as of 2026-11-03 | *Computable Name*:ListPurpose |
+| Draft as of 2026-11-10 | *Computable Name*:ListPurpose |
 
  This Code system is referenced in the content logical definition of the following value sets: 
 
@@ -27,7 +27,7 @@
   "version" : "0.9.1",
   "name" : "ListPurpose",
   "status" : "draft",
-  "date" : "2026-11-03T17:08:05+00:00",
+  "date" : "2026-11-10T08:48:02+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

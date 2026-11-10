@@ -2,8 +2,8 @@ HackathonCheckInApp : Validation Results
 =========================================
 
 err = 16, warn = 55, info = 22, broken links = 2
-IG Publisher Version: 3.0.2
-Generated Tue Nov 03 17:09:42 UTC 2026. FHIR version 4.0.1 for hackathon-check-in-app#0.9.1 (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
+IG Publisher Version: 3.0.3
+Generated Tue Nov 10 08:49:00 UTC 2026. FHIR version 4.0.1 for hackathon-check-in-app#0.9.1 (canonical = https://hl7.no/fhir/ig/hackathon-check-in-app)
  Build Errors : 3 / 32 / 0
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-list-purpose : 3 / 2 / 1
  /github/workspace/fhir/fsh-generated/resources/CodeSystem-participation-role : 1 / 2 / 1

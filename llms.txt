@@ -3,8 +3,8 @@
 ## Pages
 
 * [FHIR data model](index.md)
-* [Demo application](demo.md)
 * [Artifacts Summary](artifacts.md)
+* [Demo application](demo.md)
 * [Business architecture](business-architecture.md)
 
 ## Resources

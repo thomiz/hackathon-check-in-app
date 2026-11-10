@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checked-in-participant | *Version*:0.9.1 |
-| Draft as of 2026-11-03 | *Computable Name*:CheckedInParticipant |
+| Draft as of 2026-11-10 | *Computable Name*:CheckedInParticipant |
 
  
 For attendees and organizers checked in to the event. Event-specific demonstration model. Does not imply healthcare employment or a professional credential. 
@@ -42,7 +42,7 @@ Other representations of profile: [CSV](StructureDefinition-checked-in-participa
   "name" : "CheckedInParticipant",
   "title" : "Checked-in Hackathon participant",
   "status" : "draft",
-  "date" : "2026-11-03T17:08:05+00:00",
+  "date" : "2026-11-10T08:48:02+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",

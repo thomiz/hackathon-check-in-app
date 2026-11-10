@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://hl7.no/fhir/ig/hackathon-check-in-app/StructureDefinition/checkin-list | *Version*:0.9.1 |
-| Draft as of 2026-11-03 | *Computable Name*:CheckinList |
+| Draft as of 2026-11-10 | *Computable Name*:CheckinList |
 
  
 Lists attendees and organizers checked in to the event, with their check-in dates. Entries may be marked as manually registered. 
@@ -41,7 +41,7 @@ Other representations of profile: [CSV](StructureDefinition-checkin-list.csv), [
   "name" : "CheckinList",
   "title" : "Hackathon check-in list",
   "status" : "draft",
-  "date" : "2026-11-03T17:08:05+00:00",
+  "date" : "2026-11-10T08:48:02+00:00",
   "publisher" : "HL7 Norway",
   "contact" : [{
     "name" : "HL7 Norway",
