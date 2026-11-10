@@ -4,7 +4,7 @@ import type { AuditEvent, BundleEntry, List, Person, Practitioner } from 'fhir/r
 import { z } from 'zod';
 import {
   CANONICAL, EXT, ID_SYSTEM, LISTS, ROLE_SYSTEM, type Candidate, type Confirmation, type Dashboard,
-  type Details, type Role, type RosterSource, type Selection, detailsSchema, roleSchema
+  type Details, type MissingPerson, type Role, type RosterSource, type Selection, detailsSchema, roleSchema
 } from '../shared/domain.js';
 import { AppError, FhirError, put, type FhirStore } from './fhir.js';
 import { detailsOf, emptyList, person, practitioner, refs, roleOf } from './model.js';
@@ -217,26 +217,28 @@ export class RegistrationService {
         lists: membership({ roster, staff }, expected.id)
       });
     }
-    const missing = async (list: List): Promise<number> => {
-      let count = 0;
+    const missing = (list: List): MissingPerson[] => {
+      const result: MissingPerson[] = [];
       for (const ref of refs(list)) {
         const p = people.find(person => person.id === ref.slice(7));
         if (!p) throw new AppError(503, 'Roster refers to a missing Person.');
         const links = p.link?.map(link => link.target.reference) ?? [];
-        if (!rows.some(row => links.includes(`Practitioner/${row.id}`))) count++;
+        if (!rows.some(row => links.includes(`Practitioner/${row.id}`))) result.push({ personId: p.id!, ...detailsOf(p) });
       }
-      return count;
+      return result.sort((a, b) => a.name.localeCompare(b.name));
     };
+    const [rosterMissing, staffMissing] = [missing(roster), missing(staff)];
     const byTrack: Record<string, number> = {};
     for (const row of rows) byTrack[row.track || 'unselected'] = (byTrack[row.track || 'unselected'] ?? 0) + 1;
     return {
       totals: {
         roster: refs(roster).length, staff: refs(staff).length, checkedIn: rows.length,
-        rosterMissing: await missing(roster), staffMissing: await missing(staff),
+        rosterMissing: rosterMissing.length, staffMissing: staffMissing.length,
         manual: rows.filter(r => r.manual).length, attendees: rows.filter(r => r.role === 'attendee').length,
         staffCheckedIn: rows.filter(row => row.lists.includes('staff')).length,
         trackLeads: rows.filter(r => r.role === 'track-lead').length
       },
+      missing: { attendees: rosterMissing, staff: staffMissing },
       tracks: byTrack, rows: rows.sort((a, b) => b.arrived.localeCompare(a.arrived))
     };
   }

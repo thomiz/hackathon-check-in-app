@@ -15,8 +15,19 @@ describe('staff dashboard attendance tiles', () => {
     expect(sections![0]).toContain('<strong>3</strong><span>Staff checked in</span>');
     expect(sections![0]!.match(/class="metric metric-highlight"/g)).toHaveLength(2);
     expect(sections![1]!.match(/class="metric"/g)).toHaveLength(7);
+    expect(sections![1]).not.toContain('<button');
     expect(sections![1]).toContain('<strong>2</strong><span>Track leads here</span>');
     expect(sections![1]).not.toContain('metric-highlight');
     expect(sections![1]).not.toContain('Staff checked in');
+  });
+
+  it('makes the missing tiles clickable when the lists are available', () => {
+    const markup = renderToStaticMarkup(createElement(AttendanceTotals, {
+      totals: { attendees: 1, staffCheckedIn: 1, roster: 2, staff: 2, checkedIn: 2, rosterMissing: 1, staffMissing: 1, manual: 0, trackLeads: 0 },
+      missing: { attendees: [], staff: [] }
+    }));
+    expect(markup.match(/<button/g)).toHaveLength(2);
+    expect(markup).toContain('Sign-ups not here</span></button>');
+    expect(markup).toContain('Staff not here</span></button>');
   });
 });
