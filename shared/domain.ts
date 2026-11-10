@@ -69,8 +69,10 @@ export type DashboardRow = Details & {
   manual: boolean;
   lists: RosterSource[];
 };
+export type MissingPerson = Details & { personId: string };
 export type Dashboard = {
   totals: { roster: number; staff: number; checkedIn: number; rosterMissing: number; staffMissing: number; manual: number; attendees: number; staffCheckedIn: number; trackLeads: number };
+  missing: { attendees: MissingPerson[]; staff: MissingPerson[] };
   tracks: Record<string, number>;
   rows: DashboardRow[];
 };

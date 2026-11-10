@@ -222,7 +222,7 @@ function Staff({ ssh = false }: { ssh?: boolean }) {
         <a className="button secondary" href="#staff/ssh">SSH remote monitoring</a></div>
       <p className="privacy">The FHIR download contains personal data, all current rosters, check-ins and retained audit records. Store it securely; it does not include deleted resources or older resource versions.</p>
       {dashboard && <>
-        <AttendanceTotals totals={dashboard.totals} />
+        <AttendanceTotals totals={dashboard.totals} missing={dashboard.missing} />
         <section className="card"><h2>Tracks at check-in</h2><ul className="track-totals">{[...tracks, { code: 'unselected', label: 'Not selected' }].map(track => <li key={track.code}><span>{track.label}</span><strong>{dashboard.tracks[track.code] ?? 0}</strong></li>)}</ul></section>
         <section className="card"><h2>Arrivals</h2><label>Filter check-ins<input value={filter} onChange={e => setFilter(e.target.value)} /></label>
           <div className="table-scroll"><table><thead><tr><th>Name / affiliation</th><th>Role / track</th><th>Arrival</th><th>Actions</th></tr></thead>
